@@ -1,3 +1,2 @@
 # ShopEase
 
-### Key Features:

@@ -1,5 +1,26 @@
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Header from "./component/Header";
+import Body from "./component/Body";
+import SingleProduct from "./component/SingleProduct";
+import { Provider } from "react-redux";
+import store from "./utils/Store";
+import Cart from "./component/Cart";
+
 function App() {
-  return <div className="bg-blue-500 text-white text-center p-4">Hello</div>;
+  return (
+    <BrowserRouter>
+      <Provider store={store}>
+        <div>
+          <Header />
+          <Routes>
+            <Route path="/" element={<Body />}></Route>
+            <Route path="/product/:id" element={<SingleProduct />}></Route>
+            <Route path="/cart" element={<Cart />}></Route>
+          </Routes>
+        </div>
+      </Provider>
+    </BrowserRouter>
+  );
 }
 
 export default App;

@@ -12,6 +12,12 @@ const Cart = () => {
 
   console.log(cartItems);
 
+  const total = cartItems?.reduce((acc, cur) => {
+    return acc + cur.price * cur.qty;
+  }, 0);
+
+  console.log(total, "to");
+
   const removeQty = (item) => {
     dispatch(removeItems(item));
   };
@@ -37,13 +43,13 @@ const Cart = () => {
           </Link>
         </div>
       ) : (
-        <div className="md:grid md:grid-flow-col flex flex-col gap-4">
-          <div className="flex flex-col gap-4  col-span-9">
+        <div className="md:grid md:grid-flow-col md:gap-8 flex flex-col gap-4">
+          <div className="flex flex-col gap-4 col-span-9">
             {cartItems?.map((item) => {
               return (
                 <div
                   key={item.id}
-                  className="grid grid-cols-4 items-center gap-4"
+                  className="grid grid-cols-4 items-center gap-6"
                 >
                   <img
                     src={item.images[0]?.url}
@@ -66,7 +72,7 @@ const Cart = () => {
                     </button>
                   </div>
                   <p className="text-md font-bold">{formatPrice(item.price)}</p>
-                  <p>
+                  <p className="justify-self-end">
                     <AiOutlineDelete className="text-xl" />
                   </p>
                 </div>
@@ -79,11 +85,16 @@ const Cart = () => {
             <div className="flex flex-col gap-2 mb-4">
               <p className="font-medium text-md">
                 Subtotals :{" "}
-                <span className="font-medium text-sm text-slate-600">₹00</span>
+                <span className="font-medium text-sm text-slate-600">
+                  {" "}
+                  {formatPrice(total)}
+                </span>
               </p>
               <p className="font-medium text-md">
                 Total :{" "}
-                <span className="font-medium text-slate-600 text-sm">₹00</span>
+                <span className="font-medium text-slate-600 text-sm">
+                  {formatPrice(total)}
+                </span>
               </p>
             </div>
 

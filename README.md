@@ -1,6 +1,6 @@
 # ShopEase
 
-### Key Features:
+<!-- ### Key Features:
 
 - ✅Product Listings
 - ✅Single Product Page
@@ -12,4 +12,4 @@
 
 Header
 Body -> single product page, cart page, checkout page
-Footer
+Footer -->

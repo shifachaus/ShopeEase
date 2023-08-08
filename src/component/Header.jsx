@@ -17,7 +17,10 @@ const Header = () => {
         aria-label="Global"
       >
         <Link to={"/"} className="flex md:flex-1">
-          <p className="font-medium text-lg">ShopEase</p>
+          <p className="font-medium text-lg ">
+            <span className="text-purple-800">Shop</span>
+            <span>Ease</span>
+          </p>
         </Link>
 
         {/* hamburger menu */}
@@ -59,21 +62,23 @@ const Header = () => {
           >
             Products
           </Link>
-          <Link
-            to={"/cart"}
-            className="text-sm font-semibold leading-6 text-gray-900"
-          >
-            Cart
-          </Link>
+          <div className="flex items-center gap-3">
+            <Link
+              to={"/cart"}
+              className="text-sm font-semibold leading-6 text-gray-900"
+            >
+              Cart
+            </Link>
+            <p className="relative ">
+              <BsCart4 className="text-xl " />
+              <span className="absolute text-sm text-white font-medium -top-1 left-4 bg-purple-800 rounded-[50%]  w-full text-center">
+                {cartItems.length}
+              </span>
+            </p>
+          </div>
         </div>
 
         <div className="hidden md:flex md:flex-1 md:justify-end md:items-center">
-          <p className="relative ">
-            <BsCart4 className="text-2xl " />
-            <span className="absolute text-md text-white font-medium -top-1 left-4 bg-purple-800 rounded-[50%] px-2 ">
-              {cartItems.length}
-            </span>
-          </p>
           <Link
             to={"/login"}
             className="text-sm font-semibold leading-6 text-gray-900 ml-8"
@@ -92,7 +97,10 @@ const Header = () => {
         <div className="fixed inset-y-0 right-0 z-10 w-7/12 overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
           <div className="flex items-center justify-between">
             <div className="flex lg:flex-1">
-              <p className="font-medium text-lg">ShopEase</p>
+              <p className="font-medium text-lg ">
+                <span className="text-purple-800">Shop</span>
+                <span>Ease</span>
+              </p>
             </div>
             <button
               type="button"
@@ -131,18 +139,20 @@ const Header = () => {
                 >
                   Products
                 </Link>
-                <Link
-                  to={"/cart"}
-                  className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
-                >
-                  Cart
-                </Link>
-                <p className="relative ">
-                  <BsCart4 className="text-2xl " />
-                  <span className="absolute text-white font-medium -top-1 left-4 bg-purple-800 rounded-[50%] px-2 ">
-                    {cartItems.length}
-                  </span>
-                </p>
+                <div className="flex items-center gap-3">
+                  <Link
+                    to={"/cart"}
+                    className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                  >
+                    Cart
+                  </Link>
+                  <p className="relative ">
+                    <BsCart4 className="text-xl " />
+                    <span className="absolute text-sm text-white font-medium -top-1 left-4 bg-purple-800 rounded-[50%]  w-full text-center">
+                      {cartItems.length}
+                    </span>
+                  </p>
+                </div>
               </div>
               <div className="py-6">
                 <Link

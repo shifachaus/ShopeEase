@@ -1,10 +1,24 @@
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { formatPrice } from "../utils/helper";
 import { AiOutlineDelete } from "react-icons/ai";
+import { addItems, removeItems } from "../utils/cartSlice";
+import { useState } from "react";
 
 const Cart = () => {
   const cartItems = useSelector((store) => store.cart.items);
+  const dispatch = useDispatch();
+  const [qty] = useState(1);
+
+  console.log(cartItems);
+
+  const removeQty = (item) => {
+    dispatch(removeItems(item));
+  };
+
+  const addQty = (item) => {
+    dispatch(addItems({ ...item, qty }));
+  };
   return (
     <div className="mx-auto max-w-7xl  p-6 lg:px-8 ">
       {cartItems?.length === 0 ? (
@@ -34,14 +48,20 @@ const Cart = () => {
                   <img
                     src={item.images[0]?.url}
                     alt="image"
-                    className="w-24 object-cover object-center  cursor-pointer rounded "
+                    className="w-24 h-16 object-cover object-center  cursor-pointer rounded "
                   />
-                  <div className="flex gap-4 ">
-                    <button className="text-md font-medium cursor-pointer">
+                  <div className="flex gap-4  items-center">
+                    <button
+                      className="text-lg font-medium cursor-pointer"
+                      onClick={() => removeQty(item)}
+                    >
                       -
                     </button>
-                    <p className="text-md font-bold">0</p>
-                    <button className="text-md font-medium cursor-pointer">
+                    <p className="text-md font-bold">{item?.qty}</p>
+                    <button
+                      className="text-lg font-medium cursor-pointer"
+                      onClick={() => addQty(item)}
+                    >
                       +
                     </button>
                   </div>
@@ -54,7 +74,7 @@ const Cart = () => {
             })}
           </div>
 
-          <div className="flex flex-col gap-4 bg-purple-200 p-5 items-center col-span-3">
+          <div className="flex flex-col gap-4 bg-purple-200 p-5 items-center col-span-3 h-fit">
             <h2 className="font-bold text-xl">Cart Totals</h2>
             <div className="flex flex-col gap-2 mb-4">
               <p className="font-medium text-md">

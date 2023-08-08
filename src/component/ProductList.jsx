@@ -5,7 +5,7 @@ const ProductList = ({ item }) => {
   const { id, name, image, price } = item;
   return (
     <Link to={`/product/${id}`}>
-      <div className="flex flex-col gap-3  hover:bg-slate-100 cursor-pointer p-3 aspect-h-1 aspect-w-1 w-full">
+      <div className="flex flex-col gap-3  hover:bg-purple-50 hover:shadow cursor-pointer p-3 aspect-h-1 aspect-w-1 w-full">
         <img
           src={image}
           alt="image"
@@ -15,7 +15,7 @@ const ProductList = ({ item }) => {
           <p className="font-medium text-slate-700 text-sm capitalize">
             {name}
           </p>
-          <p className="font-medium text-purple-800 text-sm">
+          <p className="font-medium text-purple-900 text-sm">
             {formatPrice(price)}
           </p>
         </div>

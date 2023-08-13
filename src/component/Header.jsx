@@ -8,7 +8,6 @@ const Header = () => {
 
   // sunscribe to specific portion of the store
   const cartItems = useSelector((store) => store.cart.items);
-  // console.log(cartItems);
 
   return (
     <header className="bg-white border-b-2">

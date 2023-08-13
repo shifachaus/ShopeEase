@@ -3,8 +3,14 @@ import { single_product_url } from "../utils/constants";
 import { useEffect, useState } from "react";
 import ShimmerSingleProduct from "./ShimmerSingleProduct";
 import Product from "./Product";
+import { useGetProductQuery } from "../utils/productApi";
+
 const SingleProduct = () => {
   const { id } = useParams();
+  const { data: product, error, isLoading } = useGetProductQuery(id);
+
+  console.log(product, error, isLoading);
+
   const [singleProductItem, setSingleProductItem] = useState(null);
   const [display, setDisplay] = useState(null);
 
@@ -28,10 +34,11 @@ const SingleProduct = () => {
 
   return (
     <div className="mx-auto max-w-7xl p-6 lg:px-8 ">
-      {singleProductItem !== null ? (
+      <p className="font-medium text-center">{error?.data.message}</p>
+      {!isLoading ? (
         <Product
           displayImage={displayImage}
-          singleProductItem={singleProductItem}
+          singleProductItem={product}
           setDisplay={setDisplay}
           display={display}
         />

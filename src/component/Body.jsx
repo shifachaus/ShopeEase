@@ -1,31 +1,46 @@
-import { useEffect, useState } from "react";
 import ProductList from "./ProductList";
-import { products_url } from "../utils/constants";
 import Shimmer from "./Shimmer";
+import { useGetAllProductsQuery } from "../utils/productApi";
+import Search from "./Search";
+import { useState } from "react";
 
 const Body = () => {
-  const [product, setProduct] = useState([]);
-  useEffect(() => {
-    fetchData();
-  }, []);
-
-  const fetchData = async () => {
-    const response = await fetch(products_url);
-    const data = await response.json();
-    // console.log(data);
-    setProduct(data);
-  };
+  const [inputKeyword, setInputKeyword] = useState("");
+  const {
+    data: product,
+    error,
+    isLoading,
+  } = useGetAllProductsQuery({
+    keyword: inputKeyword,
+    // currentPage: "",
+    // price: "", // example price range
+    // category: "",
+    // ratings: "",
+  });
+  console.log(product?.products);
+  if (error) {
+    return (
+      <p className="text-center font-medium mt-5 capitalize">
+        oops! something went wrong...
+      </p>
+    );
+  }
 
   return (
-    <div>
-      {product?.length ? (
-        <div className="mx-auto max-w-7xl  p-6 lg:px-8 grid sm:grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4">
-          {product?.map((item) => {
-            return <ProductList key={item?.id} item={item} />;
+    <div className="mx-auto max-w-7xl  p-6 lg:px-8">
+      <Search setInputKeyword={setInputKeyword} inputKeyword={inputKeyword} />
+      {isLoading ? (
+        <Shimmer />
+      ) : !inputKeyword ? (
+        <div className=" grid sm:grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4">
+          {product?.products?.map((item) => {
+            return <ProductList key={item?._id} item={item} />;
           })}
         </div>
       ) : (
-        <Shimmer />
+        <p className="font-medium text-center text-md capitalize">
+          Results Not Found
+        </p>
       )}
     </div>
   );

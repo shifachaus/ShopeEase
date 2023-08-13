@@ -3,11 +3,24 @@ import { addItems } from "../utils/cartSlice";
 import { formatPrice } from "../utils/helper";
 import { useDispatch } from "react-redux";
 import { useState } from "react";
+import Rating from "./Rating";
 
 const Product = ({ displayImage, singleProductItem, setDisplay, display }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [qty, setQty] = useState(1);
+
+  const {
+    name,
+    price,
+    ratings,
+    reviews,
+    images,
+    description,
+    category,
+    numOfReviews,
+    Stock,
+  } = singleProductItem?.product;
 
   const onAddToCart = () => {
     // console.log(qty, "qtyll");
@@ -35,17 +48,17 @@ const Product = ({ displayImage, singleProductItem, setDisplay, display }) => {
         <img
           src={displayImage?.[0]?.url}
           alt="image"
-          className="w-full h-[300px] object-cover object-center group-hover:opacity-75 "
+          className="w-full h-[300px] object-cover object-center group-hover:opacity-75 bg-gray-100"
         />
         <div className="grid grid-cols-5 gap-2">
-          {singleProductItem?.images?.map((img) => (
+          {images?.map((img) => (
             <img
               src={img.url}
               alt="image"
               key={img.id}
               className={`${
                 display === img.id && "border-2 border-purple-600"
-              } w-full object-cover object-center h-16 cursor-pointer rounded`}
+              } w-full object-cover object-center h-16 cursor-pointer rounded bg-gray-100`}
               onClick={() => setDisplay(img.id)}
             />
           ))}
@@ -53,21 +66,28 @@ const Product = ({ displayImage, singleProductItem, setDisplay, display }) => {
       </div>
       <div className="flex flex-col gap-4">
         <h2 className="font-bold capitalize text-slate-700 text-4xl ">
-          {singleProductItem?.name}
+          {name}
         </h2>
+
+        <div className="flex gap-2">
+          <Rating stars={ratings} />
+          <p className="font-normal text-sm">
+            {" "}
+            ({numOfReviews} customer reviews)
+          </p>
+        </div>
+
         <p className="font-medium capitalize text-purple-900 text-sm ">
-          {formatPrice(singleProductItem?.price)}
+          {formatPrice(price)}
         </p>
 
-        <p className="text-md text-slate-600 mb-4">
-          {singleProductItem?.description}
-        </p>
+        <p className="text-md text-slate-600 mb-4">{description}</p>
 
         <div className="flex flex-col max-w-xs gap-4">
           <div className="grid grid-cols-2 ">
             <p className="text-md text-slate-900 font-medium">Available : </p>
             <span className="text-md text-slate-900 ">
-              {singleProductItem?.stock ? " In Stock" : "Out of Stock"}
+              {Stock > 1 ? " In Stock" : "Out of Stock"}
             </span>
           </div>
           <div className="grid grid-cols-2">

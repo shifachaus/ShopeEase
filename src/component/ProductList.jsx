@@ -13,7 +13,7 @@ const ProductList = ({ item }) => {
           className="w-full object-cover object-center group-hover:opacity-75 h-72 cursor-pointer bg-gray-100"
         />
         <div className="flex justify-between">
-          <p className="font-medium text-slate-700 text-sm capitalize">
+          <p className="font-medium text-slate-700 text-sm capitalize ">
             {name}
           </p>
           <p className="font-medium text-purple-900 text-sm">

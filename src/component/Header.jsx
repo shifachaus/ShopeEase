@@ -1,13 +1,30 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { BsCart4 } from "react-icons/bs";
+import { useGetUserQuery, useLogoutUserMutation } from "../utils/userApi";
+import { logout } from "../utils/userSlice";
 
 const Header = () => {
   const [showMenu, setShowMenu] = useState(false);
-
-  // sunscribe to specific portion of the store
+  const [logoutUser] = useLogoutUserMutation();
+  const getUserQuery = useGetUserQuery();
   const cartItems = useSelector((store) => store.cart.items);
+  const userData = useSelector((store) => store.user);
+  const dispatch = useDispatch();
+
+  // // console.log(userData, "HEADER");
+  // console.log(
+  //   userData?.success === "undefined" || userData?.data?.success === "undefined"
+  // ? "login"
+  //     : "logout"
+  // );
+
+  const signOut = async () => {
+    await logoutUser();
+    dispatch(logout());
+    await getUserQuery.refetch();
+  };
 
   return (
     <header className="bg-white border-b-2">
@@ -61,6 +78,12 @@ const Header = () => {
           >
             Products
           </Link>
+          <Link
+            to={"/account"}
+            className="text-sm font-semibold leading-6 text-gray-900"
+          >
+            Profile
+          </Link>
           <div className="flex items-center gap-3">
             <Link
               to={"/cart"}
@@ -78,13 +101,39 @@ const Header = () => {
         </div>
 
         <div className="hidden md:flex md:flex-1 md:justify-end md:items-center">
-          <Link
-            to={"/login"}
-            className="text-sm font-semibold leading-6 text-gray-900 ml-8"
-          >
-            Log in <span aria-hidden="true">&rarr;</span>
-          </Link>
+          {userData?.success || userData?.data?.success ? (
+            <p
+              onClick={signOut}
+              className="cursor-pointer text-sm font-semibold leading-6 text-gray-900 ml-8"
+            >
+              Logout
+            </p>
+          ) : (
+            <Link
+              to={"/login"}
+              className="cursor-pointer text-sm font-semibold leading-6 text-gray-900 ml-8"
+            >
+              Log in <span aria-hidden="true">&rarr;</span>
+            </Link>
+          )}
         </div>
+        {/* <div className="hidden md:flex md:flex-1 md:justify-end md:items-center">
+          {!userData?.success ? (
+            <Link
+              to={"/login"}
+              className="cursor-pointer text-sm font-semibold leading-6 text-gray-900 ml-8"
+            >
+              Log in <span aria-hidden="true">&rarr;</span>
+            </Link>
+          ) : (
+            <p
+              onClick={signOut}
+              className="cursor-pointer text-sm font-semibold leading-6 text-gray-900 ml-8"
+            >
+              Logout
+            </p>
+          )}
+        </div> */}
       </nav>
 
       <div
@@ -125,7 +174,7 @@ const Header = () => {
           </div>
           <div className="mt-6 flow-root ">
             <div className="-my-6 divide-y divide-gray-500/10 ">
-              <div className="space-y-2 py-6 h-[500px]">
+              <div className="flex flex-col space-y-2 py-6 h-[500px]">
                 <Link
                   to={"/"}
                   className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
@@ -137,6 +186,12 @@ const Header = () => {
                   className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                 >
                   Products
+                </Link>
+                <Link
+                  to={"/account"}
+                  className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                >
+                  Profile
                 </Link>
                 <div className="flex items-center gap-3">
                   <Link
@@ -154,12 +209,21 @@ const Header = () => {
                 </div>
               </div>
               <div className="py-6">
-                <Link
-                  to={"/login"}
-                  className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
-                >
-                  Log in
-                </Link>
+                {userData?.success || userData?.data?.success ? (
+                  <p
+                    onClick={signOut}
+                    className="cursor-pointer text-sm font-semibold leading-6 text-gray-900 "
+                  >
+                    Logout
+                  </p>
+                ) : (
+                  <Link
+                    to={"/login"}
+                    className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                  >
+                    Log in <span aria-hidden="true">&rarr;</span>
+                  </Link>
+                )}
               </div>
             </div>
           </div>

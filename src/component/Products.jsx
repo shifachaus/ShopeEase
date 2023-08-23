@@ -39,6 +39,7 @@ const Products = () => {
     category: category,
     ratings: ratings,
   });
+
   console.log(product?.products, ratings);
 
   const setCurrentPageNo = (e) => {

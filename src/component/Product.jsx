@@ -23,8 +23,7 @@ const Product = ({ displayImage, singleProductItem, setDisplay, display }) => {
   } = singleProductItem?.product;
 
   const onAddToCart = () => {
-    // console.log(qty, "qtyll");
-    dispatch(addItems({ ...singleProductItem, qty }));
+    dispatch(addItems({ ...singleProductItem?.product, qty }));
     navigate("/cart");
   };
 
@@ -39,14 +38,17 @@ const Product = ({ displayImage, singleProductItem, setDisplay, display }) => {
   };
 
   const addQty = () => {
+    if (qty >= Stock) return;
     setQty((oldAmount) => oldAmount + 1);
   };
+
+  console.log(singleProductItem?.product, "IMAGE");
 
   return (
     <div className="grid grid-cols-1 gap-6 md:gap-8 md:grid-cols-2">
       <div className="flex flex-col gap-6 ">
         <img
-          src={displayImage?.[0]?.url}
+          src={images?.[0]?.url}
           alt="image"
           className="w-full h-[300px] object-cover object-center group-hover:opacity-75 bg-gray-100"
         />
@@ -55,11 +57,11 @@ const Product = ({ displayImage, singleProductItem, setDisplay, display }) => {
             <img
               src={img.url}
               alt="image"
-              key={img.id}
+              key={img._id}
               className={`${
-                display === img.id && "border-2 border-purple-600"
+                display === img._id && "border-2 border-purple-600"
               } w-full object-cover object-center h-16 cursor-pointer rounded bg-gray-100`}
-              onClick={() => setDisplay(img.id)}
+              onClick={() => setDisplay(img._id)}
             />
           ))}
         </div>

@@ -3,20 +3,25 @@ import { createSlice } from "@reduxjs/toolkit";
 const cartSlice = createSlice({
   name: "cart",
   initialState: {
-    items: [],
+    items: JSON.parse(localStorage.getItem("cart")) || [],
   },
 
   reducers: {
     addItems: (state, action) => {
-      const exists = state.items?.find((item) => item.id === action.payload.id);
+      console.log(action.payload, "ACTION");
+      const exists = state.items?.find(
+        (item) => item._id === action.payload._id
+      );
       if (exists) {
         state.items = state.items?.map((item) => {
-          return item.id === action.payload.id
+          return item._id === action.payload._id
             ? { ...exists, qty: exists.qty + action.payload.qty }
             : item;
         });
+        localStorage.setItem("cart", JSON.stringify(state.items));
       } else {
         state.items.push(action.payload);
+        localStorage.setItem("cart", JSON.stringify(state.items));
       }
     },
 
@@ -29,12 +34,14 @@ const cartSlice = createSlice({
             ? { ...action.payload, qty: exists.qty - 1 }
             : item
         );
+        localStorage.setItem("cart", JSON.stringify(state.items));
       }
 
       if (exists?.qty === 1) {
         state.items = state.items.filter(
           (item) => item.id !== action.payload.id
         );
+        localStorage.setItem("cart", JSON.stringify(state.items));
       }
     },
   },

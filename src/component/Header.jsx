@@ -13,7 +13,7 @@ const Header = () => {
   const userData = useSelector((store) => store.user);
   const dispatch = useDispatch();
 
-  // // console.log(userData, "HEADER");
+  // console.log(userData, "HEADER");
   // console.log(
   //   userData?.success === "undefined" || userData?.data?.success === "undefined"
   // ? "login"
@@ -27,9 +27,9 @@ const Header = () => {
   };
 
   return (
-    <header className="bg-white border-b-2">
+    <header className="bg-white ">
       <nav
-        className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8"
+        className="mx-auto flex max-w-7xl items-center justify-between p-6 md:pb-8 md:pt-8 lg:px-8"
         aria-label="Global"
       >
         <Link to={"/"} className="flex md:flex-1">
@@ -84,23 +84,9 @@ const Header = () => {
           >
             Profile
           </Link>
-          <div className="flex items-center gap-3">
-            <Link
-              to={"/cart"}
-              className="text-sm font-semibold leading-6 text-gray-900"
-            >
-              Cart
-            </Link>
-            <p className="relative ">
-              <BsCart4 className="text-xl " />
-              <span className="absolute text-sm text-white font-medium -top-1 left-4 bg-purple-800 rounded-[50%]  w-full text-center">
-                {cartItems.length}
-              </span>
-            </p>
-          </div>
         </div>
 
-        <div className="hidden md:flex md:flex-1 md:justify-end md:items-center">
+        <div className="hidden md:flex md:flex-1 md:justify-end md:items-center gap-4">
           {userData?.success || userData?.data?.success ? (
             <p
               onClick={signOut}
@@ -116,24 +102,19 @@ const Header = () => {
               Log in <span aria-hidden="true">&rarr;</span>
             </Link>
           )}
-        </div>
-        {/* <div className="hidden md:flex md:flex-1 md:justify-end md:items-center">
-          {!userData?.success ? (
-            <Link
-              to={"/login"}
-              className="cursor-pointer text-sm font-semibold leading-6 text-gray-900 ml-8"
-            >
-              Log in <span aria-hidden="true">&rarr;</span>
-            </Link>
-          ) : (
-            <p
-              onClick={signOut}
-              className="cursor-pointer text-sm font-semibold leading-6 text-gray-900 ml-8"
-            >
-              Logout
+
+          <Link
+            to={"/cart"}
+            className="text-sm font-semibold leading-6 text-gray-900"
+          >
+            <p className="relative ">
+              <BsCart4 className="text-xl " />
+              <span className="absolute text-sm text-white font-medium -top-1 left-4 bg-purple-800 rounded-[50%]  w-full text-center">
+                {cartItems.length}
+              </span>
             </p>
-          )}
-        </div> */}
+          </Link>
+        </div>
       </nav>
 
       <div
@@ -198,14 +179,13 @@ const Header = () => {
                     to={"/cart"}
                     className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                   >
-                    Cart
+                    <p className="relative ">
+                      <BsCart4 className="text-xl " />
+                      <span className="absolute text-sm text-white font-medium -top-1 left-4 bg-purple-800 rounded-[50%]  w-full text-center">
+                        {cartItems.length}
+                      </span>
+                    </p>
                   </Link>
-                  <p className="relative ">
-                    <BsCart4 className="text-xl " />
-                    <span className="absolute text-sm text-white font-medium -top-1 left-4 bg-purple-800 rounded-[50%]  w-full text-center">
-                      {cartItems.length}
-                    </span>
-                  </p>
                 </div>
               </div>
               <div className="py-6">

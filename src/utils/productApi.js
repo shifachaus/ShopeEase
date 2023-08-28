@@ -3,7 +3,10 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 export const productsApi = createApi({
   reducerPath: "productsApi",
 
-  baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:4000/api/v1/" }),
+  baseQuery: fetchBaseQuery({
+    baseUrl: "http://localhost:4000/api/v1/",
+    credentials: "include",
+  }),
   endpoints: (builder) => ({
     getAllFeaturedProducts: builder.query({
       query: () => {
@@ -39,6 +42,22 @@ export const productsApi = createApi({
     getProduct: builder.query({
       query: (product) => `product/${product}`,
     }),
+
+    newReview: builder.mutation({
+      query: (review) => {
+        console.log(review, "review API");
+        const formData = new FormData();
+        formData.append("productId", review.id);
+        formData.append("comment", review.comment);
+        formData.append("rating", review.rating);
+
+        return {
+          url: "review",
+          method: "PUT",
+          body: formData,
+        };
+      },
+    }),
   }),
 });
 
@@ -46,4 +65,5 @@ export const {
   useGetAllFeaturedProductsQuery,
   useGetAllProductsQuery,
   useGetProductQuery,
+  useNewReviewMutation,
 } = productsApi;

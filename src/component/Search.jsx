@@ -2,14 +2,8 @@ import { BsSearch } from "react-icons/bs";
 import { useGetAllProductsQuery } from "../utils/productApi";
 
 const Search = ({ setInputKeyword, inputKeyword }) => {
-  // const handleSearch = () => {
-  //   if (inputKeyword === "") {
-  //     return;
-  //   }
-  //   console.log(inputKeyword);
-  // };
   return (
-    <div className="mb-5 flex">
+    <div className="mb-5 flex ">
       <input
         type="text"
         placeholder="Search..."
@@ -17,13 +11,14 @@ const Search = ({ setInputKeyword, inputKeyword }) => {
           setInputKeyword(e.target.value);
         }}
         value={inputKeyword}
-        className="border border-gray-300 py-1 px-4 rounded-l-sm outline-0"
+        className="border-b border-l border-t rounded-l-md border-gray-300 py-1 px-1  outline-0"
       />
+
       <button
         // onClick={() => handleSearch()}
-        className="border-r border-t border-b border-gray-300 py-1 px-4 rounded-r-sm"
+        className="border-r border-t border-b rounded-r-md border-gray-300 py-1 px-4 "
       >
-        <BsSearch className="text-purple-800" />
+        <BsSearch className="text-gray-600" />
       </button>
     </div>
   );

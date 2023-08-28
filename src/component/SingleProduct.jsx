@@ -4,12 +4,13 @@ import { useEffect, useState } from "react";
 import ShimmerSingleProduct from "./ShimmerSingleProduct";
 import Product from "./Product";
 import { useGetProductQuery } from "../utils/productApi";
+import PageHero from "./PageHero";
 
 const SingleProduct = () => {
   const { id } = useParams();
   const { data: product, error, isLoading } = useGetProductQuery(id);
 
-  // console.log(product, "PRODUCT");
+  console.log(product, "PRODUCT");
 
   const [singleProductItem, setSingleProductItem] = useState(null);
   const [display, setDisplay] = useState(null);
@@ -31,21 +32,25 @@ const SingleProduct = () => {
   // );
 
   // console.log(displayImage?.[0], "hello", display);
+  console.log(product?.product?.name);
 
   return (
-    <div className="mx-auto max-w-7xl p-6 lg:px-8 ">
-      <p className="font-medium text-center">{error?.data.message}</p>
-      {!isLoading ? (
-        <Product
-          // displayImage={displayImage}
-          singleProductItem={product}
-          setDisplay={setDisplay}
-          display={display}
-        />
-      ) : (
-        <ShimmerSingleProduct />
-      )}
-    </div>
+    <section>
+      <PageHero title={product?.product?.name} product={product?.product} />
+      <div className="mx-auto max-w-7xl p-6 lg:px-8 ">
+        <p className="font-medium text-center">{error?.data.message}</p>
+        {!isLoading ? (
+          <Product
+            // displayImage={displayImage}
+            singleProductItem={product}
+            setDisplay={setDisplay}
+            display={display}
+          />
+        ) : (
+          <ShimmerSingleProduct />
+        )}
+      </div>
+    </section>
   );
 };
 

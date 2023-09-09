@@ -23,7 +23,7 @@ const Success = () => {
           <p> Have a great day! </p>
           <div className="py-10 text-center">
             <Link
-              to="/orders"
+              to="/order/me"
               className="px-12 bg-purple-800 hover:bg-purple-600 text-white font-semibold py-3"
             >
               View Orders

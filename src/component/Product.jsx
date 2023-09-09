@@ -24,7 +24,6 @@ const Product = ({ displayImage, singleProductItem, setDisplay, display }) => {
     numOfReviews,
     Stock,
   } = singleProductItem?.product;
-  // console.log(singleProductItem?.product);
 
   const onAddToCart = () => {
     dispatch(
@@ -56,27 +55,25 @@ const Product = ({ displayImage, singleProductItem, setDisplay, display }) => {
     setQty((oldAmount) => oldAmount + 1);
   };
 
-  // console.log(singleProductItem?.product, "IMAGE");
-
   return (
     <section>
       <div className="grid grid-cols-1 gap-6 md:gap-8 md:grid-cols-2">
         <div className="flex flex-col gap-6 ">
           <img
-            src={images?.[0]?.url}
+            src={images?.[display]?.url}
             alt="image"
             className="w-full h-[300px] object-cover object-center group-hover:opacity-75 bg-gray-100"
           />
           <div className="grid grid-cols-5 gap-2">
-            {images?.map((img) => (
+            {images?.map((img, index) => (
               <img
                 src={img.url}
                 alt="image"
                 key={img._id}
                 className={`${
-                  display === img._id && "border-2 border-purple-600"
+                  display === index && "border-2 border-purple-600"
                 } w-full object-cover object-center h-16 cursor-pointer rounded bg-gray-100`}
-                onClick={() => setDisplay(img._id)}
+                onClick={() => setDisplay(index)}
               />
             ))}
           </div>

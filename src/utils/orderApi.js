@@ -10,7 +10,6 @@ export const orderApi = createApi({
   endpoints: (builder) => ({
     newOrder: builder.mutation({
       query: (order) => {
-        console.log(order, "ORDER");
         return {
           url: "order/new",
           method: "POST",
@@ -29,6 +28,32 @@ export const orderApi = createApi({
     getOrderDetails: builder.query({
       query: (id) => `/order/${id}`,
     }),
+
+    allOrders: builder.query({
+      query: () => "admin/orders",
+    }),
+
+    deleteOrder: builder.mutation({
+      query: (order) => {
+        return {
+          url: `admin/order/${order}`,
+          method: "DELETE",
+        };
+      },
+    }),
+
+    updateOrder: builder.mutation({
+      query: (order) => {
+        const formData = new FormData();
+        formData.append("status", order?.status);
+        console.log(order, "ORDER");
+        return {
+          url: `admin/order/${order.id}`,
+          method: "PUT",
+          body: formData,
+        };
+      },
+    }),
   }),
 });
 
@@ -36,4 +61,7 @@ export const {
   useNewOrderMutation,
   useMyOrdersQuery,
   useGetOrderDetailsQuery,
+  useAllOrdersQuery,
+  useDeleteOrderMutation,
+  useUpdateOrderMutation,
 } = orderApi;

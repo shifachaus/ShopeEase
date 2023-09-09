@@ -37,29 +37,23 @@ const Products = () => {
     setCurrentPage(page);
   };
 
-  // if (error) {
-  //   return (
-  //     <p className="text-center font-medium mt-5 capitalize">
-  //       oops! something went wrong...
-  //     </p>
-  //   );
-  // }
-
   return (
     <section>
-      <div className="sticky top-10  flex  justify-end">
-        <svg
-          className="h-5 w-5"
-          aria-hidden="true"
-          viewBox="0 0 20 20"
-          fill="currentColor"
-        >
-          <path
-            fillRule="evenodd"
-            d="M2.628 1.601C5.028 1.206 7.49 1 10 1s4.973.206 7.372.601a.75.75 0 01.628.74v2.288a2.25 2.25 0 01-.659 1.59l-4.682 4.683a2.25 2.25 0 00-.659 1.59v3.037c0 .684-.31 1.33-.844 1.757l-1.937 1.55A.75.75 0 018 18.25v-5.757a2.25 2.25 0 00-.659-1.591L2.659 6.22A2.25 2.25 0 012 4.629V2.34a.75.75 0 01.628-.74z"
-            clipRule="evenodd"
-          ></path>
-        </svg>
+      <div className="sticky top-80 flex justify-end md:hidden">
+        <span className="bg-black p-2" onClick={() => setOpen(true)}>
+          <svg
+            className="h-5 w-5 z-10 fill-white  "
+            aria-hidden="true"
+            viewBox="0 0 20 20"
+            fill="currentColor"
+          >
+            <path
+              fillRule="evenodd"
+              d="M2.628 1.601C5.028 1.206 7.49 1 10 1s4.973.206 7.372.601a.75.75 0 01.628.74v2.288a2.25 2.25 0 01-.659 1.59l-4.682 4.683a2.25 2.25 0 00-.659 1.59v3.037c0 .684-.31 1.33-.844 1.757l-1.937 1.55A.75.75 0 018 18.25v-5.757a2.25 2.25 0 00-.659-1.591L2.659 6.22A2.25 2.25 0 012 4.629V2.34a.75.75 0 01.628-.74z"
+              clipRule="evenodd"
+            ></path>
+          </svg>
+        </span>
       </div>
       <div className="mx-auto max-w-7xl  p-6 lg:px-8 md:grid md:grid-flow-col gap-4 ">
         {/* DESKTOP */}
@@ -88,13 +82,13 @@ const Products = () => {
 
             <div className="fixed inset-0 z-40 flex">
               <div className="relative ml-auto flex h-full w-full max-w-xs flex-col overflow-y-auto bg-white py-4 pb-12 shadow-xl">
-                <div className="flex items-center justify-end px-4">
-                  {/* <h2 class="text-lg font-medium text-gray-900">Filters</h2> */}
+                <div className="flex items-center justify-between px-4">
+                  <h2 className="text-lg font-medium text-gray-900">Filters</h2>
                   <button
                     type="button"
                     className="-mr-2 flex h-10 w-10 items-center justify-center rounded-md bg-white p-2 text-gray-400"
+                    onClick={() => setOpen(false)}
                   >
-                    <span className="sr-only">Close menu</span>
                     <svg
                       className="h-6 w-6"
                       fill="none"

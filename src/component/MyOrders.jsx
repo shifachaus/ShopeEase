@@ -45,7 +45,7 @@ const MyOrders = () => {
     });
 
   return (
-    <div className="mx-auto max-w-7xl p-6 lg:px-8">
+    <div className="mx-auto max-w-7xl p-6 lg:px-8 h-screen">
       <h2 className="text-2xl font-medium text-gray-600 mb-6">My Orders</h2>
       {/* Render your table using the 'rows' and 'headerGroups' */}
       <div className=" overflow-x-auto shadow-md sm:rounded-lg">

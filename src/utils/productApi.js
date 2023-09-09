@@ -13,6 +13,7 @@ export const productsApi = createApi({
         return `/products`;
       },
     }),
+
     getAllProducts: builder.query({
       query: (queryObj) => {
         const { keyword, currentPage, price, category, ratings } = queryObj;
@@ -58,6 +59,60 @@ export const productsApi = createApi({
         };
       },
     }),
+
+    getAdminProducts: builder.query({
+      query: () => "/admin/products",
+    }),
+
+    newProduct: builder.mutation({
+      query: (product) => {
+        console.log(product, "product API", product.images);
+        const formData = new FormData();
+        formData.append("name", product.name);
+        formData.append("description", product.description);
+        formData.append("price", product.price);
+        formData.append("category", product.category);
+        formData.append("Stock", product.stock);
+
+        product.images.forEach((image) => {
+          formData.append("images", image);
+        });
+
+        return {
+          url: "product/new",
+          method: "POST",
+          body: formData,
+        };
+      },
+    }),
+
+    deleteProduct: builder.mutation({
+      query: (id) => ({
+        url: `product/${id}`,
+        method: "DELETE",
+      }),
+    }),
+
+    updateProduct: builder.mutation({
+      query: (product) => {
+        const formData = new FormData();
+        formData.append("name", product.name);
+        formData.append("description", product.description);
+        formData.append("price", product.price);
+        formData.append("category", product.category);
+        formData.append("Stock", product.stock);
+
+        product.images.forEach((image) => {
+          formData.append("images", image);
+        });
+
+        return {
+          url: `product/${product.id}`,
+          method: "PUT",
+          body: formData,
+        };
+      },
+    }),
   }),
 });
 
@@ -66,4 +121,8 @@ export const {
   useGetAllProductsQuery,
   useGetProductQuery,
   useNewReviewMutation,
+  useGetAdminProductsQuery,
+  useNewProductMutation,
+  useDeleteProductMutation,
+  useUpdateProductMutation,
 } = productsApi;

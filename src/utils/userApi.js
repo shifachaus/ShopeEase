@@ -9,6 +9,7 @@ export const userApi = createApi({
   endpoints: (builder) => ({
     registerUser: builder.mutation({
       query: (user) => {
+        console.log(user);
         const formData = new FormData();
         formData.append("name", user.name);
         formData.append("email", user.email);
@@ -18,7 +19,7 @@ export const userApi = createApi({
         return {
           url: "register",
           method: "POST",
-          headers: { "Content-Type": "multipart/form-data" },
+
           body: formData,
         };
       },
@@ -106,6 +107,17 @@ export const userApi = createApi({
         };
       },
     }),
+
+    getAllUser: builder.query({
+      query: () => `admin/users`,
+    }),
+
+    deleteUser: builder.mutation({
+      query: (id) => ({
+        url: `admin/user/${id}`, // Use a parameter for the URL if needed
+        method: "DELETE",
+      }),
+    }),
   }),
 });
 
@@ -118,4 +130,6 @@ export const {
   useEditPasswordMutation,
   useForgotPasswordMutation,
   useResetPasswordMutation,
+  useGetAllUserQuery,
+  useDeleteUserMutation,
 } = userApi;

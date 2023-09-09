@@ -5,7 +5,7 @@ import SingleProduct from "./component/SingleProduct";
 import Cart from "./component/Cart";
 import Products from "./component/Products";
 import LoginSignUp from "./component/user/LoginSignUp";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
 import Profile from "./component/user/Profile";
 import { useGetUserQuery } from "./utils/userApi";
@@ -24,6 +24,14 @@ import Success from "./component/Success";
 import MyOrders from "./component/MyOrders";
 import OrderDetails from "./component/OrderDetails";
 import Footer from "./component/Footer";
+import Dashboard from "./component/admin/Dashboard";
+import ProductList from "./component/admin/ProductList";
+import NewProduct from "./component/admin/NewProduct";
+import UpdateProduct from "./component/admin/UpdateProduct";
+import OrderList from "./component/admin/OrderList";
+import ProcessOrder from "./component/admin/ProcessOrder";
+import UsersList from "./component/admin/UsersList";
+import UpdateUser from "./component/admin/UpdateUser";
 
 function App() {
   const [stripeApiKey, setStripeApiKey] = useState("");
@@ -73,7 +81,6 @@ function App() {
         <Route path="/product/:id" element={<SingleProduct />}></Route>
         <Route path="/cart" element={<Cart />}></Route>
         <Route path="/login" element={<LoginSignUp />}></Route>
-        {/* <Route path="/account" element={<Profile />}></Route> */}
         <Route
           path="/account"
           element={
@@ -144,20 +151,100 @@ function App() {
           }
         />
 
-        {/* <Route
+        <Route
           path="/order/me"
           element={
             <ProtectedRoute>
               <MyOrders />
             </ProtectedRoute>
           }
-        /> */}
+        />
 
-        <Route path="/orders" element={<MyOrders />}></Route>
-        <Route path="/order/:id" element={<OrderDetails />}></Route>
+        <Route
+          path="/order/:id"
+          element={
+            <ProtectedRoute>
+              <OrderDetails />
+            </ProtectedRoute>
+          }
+        ></Route>
+
+        {/* DASHBOARD */}
+
+        <Route
+          path="/admin/dashboard"
+          element={
+            <ProtectedRoute isAdmin={true}>
+              <Dashboard />
+            </ProtectedRoute>
+          }
+        ></Route>
+
+        <Route
+          path="/admin/products"
+          element={
+            <ProtectedRoute isAdmin={true}>
+              <ProductList />
+            </ProtectedRoute>
+          }
+        ></Route>
+
+        <Route
+          path="/admin/product"
+          element={
+            <ProtectedRoute isAdmin={true}>
+              <NewProduct />
+            </ProtectedRoute>
+          }
+        ></Route>
+
+        <Route
+          path="/admin/product/:id"
+          element={
+            <ProtectedRoute isAdmin={true}>
+              <UpdateProduct />
+            </ProtectedRoute>
+          }
+        ></Route>
+
+        <Route
+          path="/admin/orders"
+          element={
+            <ProtectedRoute isAdmin={true}>
+              <OrderList />
+            </ProtectedRoute>
+          }
+        ></Route>
+
+        <Route
+          path="/admin/order/:id"
+          element={
+            <ProtectedRoute isAdmin={true}>
+              <ProcessOrder />
+            </ProtectedRoute>
+          }
+        ></Route>
+
+        <Route
+          path="/admin/users"
+          element={
+            <ProtectedRoute isAdmin={true}>
+              <UsersList />
+            </ProtectedRoute>
+          }
+        ></Route>
+
+        <Route
+          path="/admin/user/:id"
+          element={
+            <ProtectedRoute isAdmin={true}>
+              <UpdateUser />
+            </ProtectedRoute>
+          }
+        ></Route>
       </Routes>
 
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 }

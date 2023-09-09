@@ -1,4 +1,3 @@
-import React from "react";
 import CheckoutStep from "./CheckoutStep";
 import { useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
@@ -68,7 +67,11 @@ const ConfirmOrder = () => {
                     key={item._id}
                     className="grid grid-cols-3 gap-2 items-center"
                   >
-                    <img src={item?.image} alt={item.name} />
+                    <img
+                      src={item?.image}
+                      alt={item.name}
+                      className="h-20 w-20"
+                    />
                     <Link to={`/product/${item.product}`}>{item.name}</Link>
                     <p>
                       {item.qty} X {formatPrice(item.price)} ={" "}

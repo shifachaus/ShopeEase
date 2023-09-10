@@ -33,7 +33,7 @@ const ConfirmOrder = () => {
       <CheckoutStep activeStep={1} />
 
       <div className=" flex flex-col gap-6 md:grid md:grid-flow-col mt-6 ">
-        <div className="flex flex-col gap-6 col-span-9 relative">
+        <div className="md:col-span-9 relative">
           <div>
             <h2 className="text-2xl font-medium mb-2  text-gray-600">
               Shipping Info
@@ -70,7 +70,7 @@ const ConfirmOrder = () => {
                     <img
                       src={item?.image}
                       alt={item.name}
-                      className="h-20 w-20"
+                      className="h-16 w-20"
                     />
                     <Link to={`/product/${item.product}`}>{item.name}</Link>
                     <p>
@@ -85,7 +85,7 @@ const ConfirmOrder = () => {
           <div className="md:absolute md:border-r md:border-gray-200 md:w-10 md:h-full md:top-0 md:left-[90%]"></div>
         </div>
 
-        <div className="mt-8 col-span-2">
+        <div className="mt-8 md:col-span-3">
           <p className="text-2xl font-medium mb-2  text-gray-600 text-center">
             Order Summery
           </p>
@@ -107,7 +107,7 @@ const ConfirmOrder = () => {
               <span>{formatPrice(totalPrice)}</span>
             </div>
             <button
-              className=" bg-purple-800 mt-6 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+              className=" bg-[#252323] mt-6 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
               onClick={proceedToPayment}
             >
               Proceed To Payment

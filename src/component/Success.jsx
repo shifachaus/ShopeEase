@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 const Success = () => {
   return (
     <div className="bg-gray-100 mt-8">
-      <div className="bg-white p-6  md:mx-auto">
+      <div className="bg-white p-6  md:mx-auto h-screen">
         <svg
           viewBox="0 0 24 24"
           className="text-green-600 w-16 h-16 mx-auto my-6"
@@ -24,7 +24,7 @@ const Success = () => {
           <div className="py-10 text-center">
             <Link
               to="/order/me"
-              className="px-12 bg-purple-800 hover:bg-purple-600 text-white font-semibold py-3"
+              className="px-12 bg-[#252323]  text-white font-semibold py-3"
             >
               View Orders
             </Link>

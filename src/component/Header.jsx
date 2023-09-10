@@ -27,14 +27,14 @@ const Header = () => {
   };
 
   return (
-    <header className="bg-white ">
+    <header className=" bg-[#a99985]">
       <nav
         className="mx-auto flex max-w-7xl items-center justify-between p-6 md:pb-8 md:pt-8 lg:px-8"
         aria-label="Global"
       >
         <Link to={"/"} className="flex md:flex-1">
           <p className="font-medium text-lg ">
-            <span className="text-purple-800">Shop</span>
+            <span className="text-white">Shop</span>
             <span>Ease</span>
           </p>
         </Link>
@@ -109,7 +109,7 @@ const Header = () => {
           >
             <p className="relative ">
               <BsCart4 className="text-xl " />
-              <span className="absolute text-sm text-white font-medium -top-1 left-4 bg-purple-800 rounded-[50%]  w-full text-center">
+              <span className="absolute text-sm text-black font-medium -top-1 left-4 bg-white rounded-[50%]  w-full text-center">
                 {cartItems.length}
               </span>
             </p>

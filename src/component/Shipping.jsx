@@ -154,9 +154,9 @@ const Shipping = () => {
             </div>
           )}
 
-          <div className="flex flex-col">
+          <div className="flex flex-col mt-8">
             <button
-              className=" bg-purple-800  text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+              className="bg-[#252323]  text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
               type="submit"
               disabled={state ? false : true}
             >

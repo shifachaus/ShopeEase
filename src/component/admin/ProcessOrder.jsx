@@ -37,11 +37,11 @@ const ProcessOrder = () => {
     <section>
       <Sidebar />
       <main>
-        <div className="p-4 sm:ml-64">
+        <div className="p-4 sm:ml-64 bg-stone-50">
           <div className="mx-auto max-w-7xl  p-6 lg:px-8">
             <div className=" flex flex-col gap-6 md:grid md:grid-flow-col mt-6 ">
-              <div className="flex flex-col gap-6 col-span-9 relative">
-                <div>
+              <div className="md:col-span-8 relative">
+                <div className="">
                   <h2 className="text-2xl font-medium mb-2  text-gray-600">
                     Shipping Info
                   </h2>
@@ -128,7 +128,11 @@ const ProcessOrder = () => {
                           key={item._id}
                           className="grid grid-cols-3 gap-2 items-center"
                         >
-                          <img src={item?.image} alt={item.name} />
+                          <img
+                            src={item?.image}
+                            alt={item.name}
+                            className="h-16 w-20"
+                          />
                           <Link to={`/product/${item.product}`}>
                             {item.name}
                           </Link>
@@ -141,15 +145,26 @@ const ProcessOrder = () => {
                     })}
                   </div>
                 </div>
-                <div className="md:absolute md:border-r md:border-gray-200 md:w-10 md:h-full md:top-0 md:left-[90%]"></div>
+                {orderData?.order.orderStatus !== "Delivered" && (
+                  <div className="md:absolute md:border-r md:border-gray-200 md:w-10 md:h-full md:top-0 md:left-[90%]"></div>
+                )}
               </div>
 
-              <div className="mt-8 col-span-2">
-                <p className="text-2xl font-medium mb-2  text-gray-600 text-center">
+              <div
+                className={
+                  orderData?.order.orderStatus === "Delivered"
+                    ? "hidden"
+                    : "mt-8 md:col-span-4 "
+                }
+              >
+                <p className="text-2xl font-medium mb-6 border-b pb-3  text-gray-600 text-center">
                   Process Order
                 </p>
-                <div className="flex flex-col gap-3 p-2 border-t ">
-                  <select onChange={(e) => setStatus(e.target.value)}>
+                <div className="flex flex-col gap-4  p-2 ">
+                  <select
+                    onChange={(e) => setStatus(e.target.value)}
+                    className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                  >
                     <option value="">Choose Category</option>
                     {orderData?.order.orderStatus === "Processing" && (
                       <option value="Shipped">Shipped</option>
@@ -160,10 +175,10 @@ const ProcessOrder = () => {
                     )}
                   </select>
                   <button
-                    className=" bg-purple-800 mt-6 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                    className=" bg-purple-800  text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                     onClick={updateOrderStatus}
                   >
-                    Proceed To Payment
+                    Proceed
                   </button>
                 </div>
               </div>

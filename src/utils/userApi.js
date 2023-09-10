@@ -118,6 +118,26 @@ export const userApi = createApi({
         method: "DELETE",
       }),
     }),
+
+    getSingleUser: builder.query({
+      query: (user) => `/admin/user/${user}`,
+    }),
+
+    updateUserRole: builder.mutation({
+      query: (user) => {
+        console.log(user, "ROLE");
+        const formData = new FormData();
+        formData.append("name", user.name);
+        formData.append("email", user.email);
+        formData.append("role", user.role);
+
+        return {
+          url: `/admin/user/${user.id}`,
+          method: "PUT",
+          body: formData,
+        };
+      },
+    }),
   }),
 });
 
@@ -132,4 +152,6 @@ export const {
   useResetPasswordMutation,
   useGetAllUserQuery,
   useDeleteUserMutation,
+  useGetSingleUserQuery,
+  useUpdateUserRoleMutation,
 } = userApi;

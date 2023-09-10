@@ -55,7 +55,7 @@ const Cart = () => {
             }`}
           >
             <div>
-              <div className="hidden sm:grid grid-cols-3 items-center gap-8 shadow-sm bg-purple-800 text-white  py-4 px-2">
+              <div className="hidden sm:grid grid-cols-3 items-center gap-8  border-b text-black  py-4 px-2">
                 <p className="text-md font-medium capitalize">Product</p>
                 <p className="text-md font-medium capitalize">Quantity</p>
                 <p className="text-md font-medium capitalize">Price</p>
@@ -131,7 +131,7 @@ const Cart = () => {
                 to={
                   user?.success || user?.data?.success ? "/shipping" : "/login"
                 }
-                className="border border-purple-800 rounded-md text-center py-1 px-4 bg-purple-800 "
+                className="border border-purple-800 rounded-md text-center py-1 px-4 bg-[#252323] "
               >
                 <p className="text-lg font-medium  text-white">Check Out</p>
               </Link>

@@ -32,6 +32,8 @@ import OrderList from "./component/admin/OrderList";
 import ProcessOrder from "./component/admin/ProcessOrder";
 import UsersList from "./component/admin/UsersList";
 import UpdateUser from "./component/admin/UpdateUser";
+import SharedLayout from "./component/SharedLayout";
+import ProductReviews from "./component/admin/ProductReviews";
 
 function App() {
   const [stripeApiKey, setStripeApiKey] = useState("");
@@ -73,101 +75,108 @@ function App() {
 
   return (
     <div>
-      <Header />
-
       <Routes>
-        <Route path="/" element={<Body />}></Route>
-        <Route path="/products" element={<Products />}></Route>
-        <Route path="/product/:id" element={<SingleProduct />}></Route>
-        <Route path="/cart" element={<Cart />}></Route>
-        <Route path="/login" element={<LoginSignUp />}></Route>
         <Route
-          path="/account"
+          path="/"
           element={
             <ProtectedRoute>
-              <Profile />
+              <SharedLayout />
             </ProtectedRoute>
           }
-        />
-        <Route
-          path="/me/update"
-          element={
-            <ProtectedRoute>
-              <UpdateProfile />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path="/password/update"
-          element={
-            <ProtectedRoute>
-              <UpdatePassword />
-            </ProtectedRoute>
-          }
-        />
-
-        <Route path="/password/forgot" element={<ForgotPassword />}></Route>
-        <Route
-          path="/password/reset/:token"
-          element={<ResetPassword />}
-        ></Route>
-
-        <Route
-          path="/shipping"
-          element={
-            <ProtectedRoute>
-              <Shipping />
-            </ProtectedRoute>
-          }
-        />
-
-        <Route
-          path="/order/confirm"
-          element={
-            <ProtectedRoute>
-              <ConfirmOrder />
-            </ProtectedRoute>
-          }
-        />
-        {stripeApiKey && (
+        >
+          <Route path="/" element={<Body />}></Route>
+          <Route path="/products" element={<Products />}></Route>
+          <Route path="/product/:id" element={<SingleProduct />}></Route>
+          <Route path="/cart" element={<Cart />}></Route>
+          <Route path="/login" element={<LoginSignUp />}></Route>
           <Route
-            path="/process/payment"
+            path="/account"
             element={
-              <Elements stripe={loadStripe(stripeApiKey)}>
-                <ProtectedRoute>
-                  <Payment />
-                </ProtectedRoute>
-              </Elements>
+              <ProtectedRoute>
+                <Profile />
+              </ProtectedRoute>
             }
           />
-        )}
+          <Route
+            path="/me/update"
+            element={
+              <ProtectedRoute>
+                <UpdateProfile />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/password/update"
+            element={
+              <ProtectedRoute>
+                <UpdatePassword />
+              </ProtectedRoute>
+            }
+          />
 
-        <Route
-          path="/success"
-          element={
-            <ProtectedRoute>
-              <Success />
-            </ProtectedRoute>
-          }
-        />
+          <Route path="/password/forgot" element={<ForgotPassword />}></Route>
+          <Route
+            path="/password/reset/:token"
+            element={<ResetPassword />}
+          ></Route>
 
-        <Route
-          path="/order/me"
-          element={
-            <ProtectedRoute>
-              <MyOrders />
-            </ProtectedRoute>
-          }
-        />
+          <Route
+            path="/shipping"
+            element={
+              <ProtectedRoute>
+                <Shipping />
+              </ProtectedRoute>
+            }
+          />
 
-        <Route
-          path="/order/:id"
-          element={
-            <ProtectedRoute>
-              <OrderDetails />
-            </ProtectedRoute>
-          }
-        ></Route>
+          <Route
+            path="/order/confirm"
+            element={
+              <ProtectedRoute>
+                <ConfirmOrder />
+              </ProtectedRoute>
+            }
+          />
+          {stripeApiKey && (
+            <Route
+              path="/process/payment"
+              element={
+                <Elements stripe={loadStripe(stripeApiKey)}>
+                  <ProtectedRoute>
+                    <Payment />
+                  </ProtectedRoute>
+                </Elements>
+              }
+            />
+          )}
+
+          <Route
+            path="/success"
+            element={
+              <ProtectedRoute>
+                <Success />
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path="/order/me"
+            element={
+              <ProtectedRoute>
+                <MyOrders />
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path="/order/:id"
+            element={
+              <ProtectedRoute>
+                <OrderDetails />
+              </ProtectedRoute>
+            }
+          ></Route>
+        </Route>
 
         {/* DASHBOARD */}
 
@@ -242,9 +251,16 @@ function App() {
             </ProtectedRoute>
           }
         ></Route>
-      </Routes>
 
-      {/* <Footer /> */}
+        <Route
+          path="/admin/reviews"
+          element={
+            <ProtectedRoute isAdmin={true}>
+              <ProductReviews />
+            </ProtectedRoute>
+          }
+        ></Route>
+      </Routes>
     </div>
   );
 }

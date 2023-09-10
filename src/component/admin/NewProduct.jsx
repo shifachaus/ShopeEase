@@ -67,7 +67,7 @@ const NewProduct = () => {
     <section>
       <Sidebar />
       <main>
-        <div className="p-4 sm:ml-64 sm:bg-gray-100">
+        <div className="p-4 sm:ml-64 bg-stone-50">
           <div className="mx-auto max-w-lg mt-6  p-6 lg:px-8 h-screen">
             <h2 className="text-xl font-medium text-gray-600 mb-6 text-center ">
               CREATE PRODUCT

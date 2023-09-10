@@ -12,6 +12,8 @@ import {
   Legend,
 } from "chart.js";
 import { useGetAdminProductsQuery } from "../../utils/productApi";
+import { useAllOrdersQuery } from "../../utils/orderApi";
+import { useGetAllUserQuery } from "../../utils/userApi";
 
 Chartjs.register(
   LineElement,
@@ -25,6 +27,9 @@ Chartjs.register(
 
 const Dashboard = () => {
   const { data: productData, error, isLoading } = useGetAdminProductsQuery();
+  const { data: orderData } = useAllOrdersQuery();
+  const { data: userData } = useGetAllUserQuery();
+
   let outOfStock = 0;
 
   productData?.products &&
@@ -34,14 +39,22 @@ const Dashboard = () => {
       }
     });
 
+  let totalAmount = 0;
+  orderData?.orders &&
+    orderData?.orders.forEach((item) => {
+      totalAmount += item.totalPrice;
+    });
+
+  console.log(orderData?.orders, totalAmount, "DASH");
+
   const data = {
     labels: ["Initial Amount", "Amount Earned"],
     datasets: [
       {
         label: "TOTAL AMOUNT",
-        data: [0, 4000],
-        backgroundColor: "white",
-        borderColor: "purple",
+        data: [0, totalAmount / 100],
+        backgroundColor: "#c8b1e4",
+        borderColor: "#8351a8",
         borderWidth: 1,
       },
     ],
@@ -60,8 +73,7 @@ const Dashboard = () => {
     labels: ["Out of Stock", "InStock"],
     datasets: [
       {
-        backgroundColor: ["#00A6B4", "#6800B4"],
-        hoverBackgroundColor: ["#4B5000", "#35014F"],
+        backgroundColor: ["#c8b1e4", "#8351a8"],
         data: [outOfStock, productData?.products?.length - outOfStock],
       },
     ],
@@ -71,50 +83,50 @@ const Dashboard = () => {
     <section>
       <Sidebar />
 
-      <main>
-        <div className="p-4 sm:ml-64">
-          <div className="flex items-center p-2 text-gray-900 rounded-lg  group">
-            <svg
-              className="w-5 h-5 text-gray-500 transition duration-75  group-hover:text-gray-900 "
-              aria-hidden="true"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="currentColor"
-              viewBox="0 0 22 21"
-            >
-              <path d="M16.975 11H10V4.025a1 1 0 0 0-1.066-.998 8.5 8.5 0 1 0 9.039 9.039.999.999 0 0 0-1-1.066h.002Z" />
-              <path d="M12.5 0c-.157 0-.311.01-.565.027A1 1 0 0 0 11 1.02V10h8.975a1 1 0 0 0 1-.935c.013-.188.028-.374.028-.565A8.51 8.51 0 0 0 12.5 0Z" />
-            </svg>
-            <p className="ml-3 text-xl font-medium text-gray-600">Dashboard</p>
-          </div>
+      <main className="p-6 sm:ml-64 bg-stone-50">
+        <div className=" p-2 text-gray-900 ">
+          <p className="ml-3 text-xl font-medium text-gray-600">Dashboard</p>
+        </div>
 
-          <div className="p-4 flex flex-col  gap-4 ">
-            <div className=" flex flex-col items-center justify-center h-24 rounded bg-purple-800 mb-4 text-white">
-              <p>Total Amount</p>
-              <p>2000</p>
-            </div>
+        <div className="flex flex-col gap-8">
+          <div className="p-4  ">
+            <div className="sm:grid sm:grid-cols-2 md:grid-cols-4 gap-4 md:gap-6  flex flex-col">
+              <div className=" bg-white mb-4 text-black p-4 shadow-md rounded">
+                <span className="text-sm font-bold bg-blue-200 rounded  px-2 py-1 ">
+                  Total Amount
+                </span>
+                <p className="text-2xl mt-2">{totalAmount / 100}</p>
+              </div>
 
-            <div className="md:grid md:grid-cols-3 gap-4 self-center flex flex-wrap items-center justify-center">
-              <div className=" flex flex-col items-center justify-center h-40 w-40 rounded-full bg-orange-300 mb-4 text-white">
-                <p>Product</p>
-                <p>{productData?.products?.length}</p>
+              <div className=" bg-white mb-4 text-black p-4 shadow-md rounded">
+                <span className="text-sm font-bold bg-green-200 rounded  px-2 py-1 ">
+                  Product
+                </span>
+                <p className="text-2xl mt-2">{productData?.products?.length}</p>
               </div>
-              <div className=" flex flex-col items-center justify-center h-40 w-40 rounded-full bg-green-400 mb-4 text-white">
-                <p>Orders</p>
-                <p>4</p>
+              <div className=" bg-white mb-4 text-black p-4 shadow-md rounded">
+                <span className="text-sm font-bold bg-purple-200 rounded  px-2 py-1">
+                  Orders
+                </span>
+                <p className="text-2xl mt-2">{orderData?.orders?.length}</p>
               </div>
-              <div className=" flex flex-col items-center justify-center h-40 w-40 rounded-full bg-black mb-4 text-white">
-                <p>Users</p>
-                <p>2</p>
+              <div className="  bg-white mb-4 text-black p-4 shadow-md rounded">
+                <span className="text-sm font-bold bg-yellow-100 rounded  px-2 py-1 ">
+                  Users
+                </span>
+                <p className="text-2xl mt-2">{userData?.users?.length}</p>
               </div>
             </div>
           </div>
-        </div>
 
-        <div className="bg-white p-4 sm:ml-64 ">
-          <Line data={data} options={options} />
-        </div>
-        <div className="bg-white p-4 sm:ml-64 ">
-          <Doughnut data={doughnutState} />
+          <div className="p-4  flex flex-col  gap-6 md:grid md:grid-flow-col  ">
+            <div className=" bg-white  text-black p-4 shadow-md rounded col-span-10">
+              <Line data={data} options={options} />
+            </div>
+            <div className="flex flex-col justify-center col-span-2 p-2 bg-white shadow-md rounded">
+              <Doughnut data={doughnutState} />
+            </div>
+          </div>
         </div>
       </main>
     </section>

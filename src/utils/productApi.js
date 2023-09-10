@@ -113,6 +113,10 @@ export const productsApi = createApi({
         };
       },
     }),
+
+    getAllProductsReviews: builder.query({
+      query: (id) => `reviews?id=${id}`,
+    }),
   }),
 });
 
@@ -125,4 +129,5 @@ export const {
   useNewProductMutation,
   useDeleteProductMutation,
   useUpdateProductMutation,
+  useGetAllProductsReviewsQuery,
 } = productsApi;

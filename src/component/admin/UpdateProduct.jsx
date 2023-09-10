@@ -81,10 +81,10 @@ const UpdateProduct = () => {
     <section>
       <Sidebar />
       <main>
-        <div className="p-4 sm:ml-64 sm:bg-gray-100">
+        <div className="p-4 sm:ml-64 bg-stone-50">
           <div className="mx-auto max-w-lg mt-6  p-6 lg:px-8 h-screen">
             <h2 className="text-xl font-medium text-gray-600 mb-6 text-center ">
-              CREATE PRODUCT
+              UPDATE PRODUCT
             </h2>
 
             <div className="bg-white shadow-lg rounded">
@@ -229,7 +229,7 @@ const UpdateProduct = () => {
                   </div>
                 </div>
 
-                <div className="flex flex-col">
+                <div className="flex flex-col mt-6">
                   <button
                     className=" bg-purple-800 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                     type="submit"

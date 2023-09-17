@@ -9,7 +9,7 @@ const userSlice = createSlice({
       return action.payload;
     },
     logout() {
-      return {};
+      return null;
     },
   },
 });

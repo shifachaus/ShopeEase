@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { formatPrice } from "../utils/helper";
 
-const ProductList = ({ item }) => {
+const FeaturedProducts = ({ item }) => {
   const { _id, name, images, price } = item;
 
   // console.log(images);
@@ -18,7 +18,7 @@ const ProductList = ({ item }) => {
         />
       </div>
       <div className="flex flex-col justify-between">
-        <p className="font-medium capitalize transition-all duration-100 ease-linear  ">
+        <p className=" font-medium capitalize transition-all duration-100 ease-linear ">
           {name}
         </p>
         <p className="font-light  text-sm">{formatPrice(price)}</p>
@@ -27,4 +27,4 @@ const ProductList = ({ item }) => {
   );
 };
 
-export default ProductList;
+export default FeaturedProducts;

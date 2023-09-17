@@ -1,14 +1,13 @@
 import { Routes, Route, useNavigate, Link } from "react-router-dom";
-import Header from "./component/Header";
 import Body from "./component/Body";
 import SingleProduct from "./component/SingleProduct";
 import Cart from "./component/Cart";
 import Products from "./component/Products";
 import LoginSignUp from "./component/user/LoginSignUp";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import Profile from "./component/user/Profile";
-import { useGetUserQuery } from "./utils/userApi";
+import { useLazyGetUserQuery } from "./utils/userApi";
 import { login, logout } from "./utils/userSlice";
 import ProtectedRoute from "./component/ProtectedRoute";
 import UpdateProfile from "./component/UpdateProfile";
@@ -23,7 +22,6 @@ import { loadStripe } from "@stripe/stripe-js";
 import Success from "./component/Success";
 import MyOrders from "./component/MyOrders";
 import OrderDetails from "./component/OrderDetails";
-import Footer from "./component/Footer";
 import Dashboard from "./component/admin/Dashboard";
 import ProductList from "./component/admin/ProductList";
 import NewProduct from "./component/admin/NewProduct";
@@ -37,16 +35,24 @@ import ProductReviews from "./component/admin/ProductReviews";
 
 function App() {
   const [stripeApiKey, setStripeApiKey] = useState("");
-  const { data, error, isLoading } = useGetUserQuery();
+  const [getUser, results] = useLazyGetUserQuery();
+  const userData = useSelector((store) => store.user);
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  // console.log(data, "APP", isLoading);
+  console.log(results);
+
+  const fetchUserData = async () => {
+    try {
+      await getUser();
+    } catch (error) {
+      console.error("Error fetching user data:", error);
+    }
+  };
 
   useEffect(() => {
-    if (error) return;
-    if (data) {
-      dispatch(login(data));
+    if (results?.data?.success) {
+      dispatch(login(results?.data));
     } else {
       dispatch(logout());
     }
@@ -54,19 +60,27 @@ function App() {
     return () => {
       dispatch(login(null));
     };
-  }, [data]);
+  }, [dispatch, getUser, results?.data]);
 
   useEffect(() => {
     getStripeApiKey();
   }, []);
 
+  useEffect(() => {
+    if (userData === null) {
+      fetchUserData();
+    }
+  }, [userData]);
+
   async function getStripeApiKey() {
     try {
-      const res = await fetch("http://localhost:4000/api/v1/stripeapikey", {
-        credentials: "include",
-      });
+      const res = await fetch(
+        "https://shopease-backend.onrender.com/api/v1/stripeapikey",
+        {
+          credentials: "include",
+        }
+      );
       const data = await res.json();
-      // console.log(data);
       setStripeApiKey(data.stripeApiKey);
     } catch (error) {
       console.error("Error:", error);
@@ -76,14 +90,7 @@ function App() {
   return (
     <div>
       <Routes>
-        <Route
-          path="/"
-          element={
-            <ProtectedRoute>
-              <SharedLayout />
-            </ProtectedRoute>
-          }
-        >
+        <Route path="/" element={<SharedLayout />}>
           <Route path="/" element={<Body />}></Route>
           <Route path="/products" element={<Products />}></Route>
           <Route path="/product/:id" element={<SingleProduct />}></Route>
@@ -160,7 +167,7 @@ function App() {
           />
 
           <Route
-            path="/order/me"
+            path="/orders"
             element={
               <ProtectedRoute>
                 <MyOrders />

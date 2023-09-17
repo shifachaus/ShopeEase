@@ -15,7 +15,6 @@ import { useNewOrderMutation } from "../utils/orderApi";
 
 const Payment = () => {
   const [newOrder] = useNewOrderMutation();
-  // console.log(newOrder, "OR");
 
   const orderInfo = JSON.parse(sessionStorage.getItem("orderInfo"));
   const payBtn = useRef(null);
@@ -57,7 +56,7 @@ const Payment = () => {
         withCredentials: true,
       };
       const { data } = await axios.post(
-        "http://localhost:4000/api/v1/payment/process",
+        "https://shopease-backend.onrender.com/api/v1/payment/process",
         paymentData,
         config
       );
@@ -133,7 +132,7 @@ const Payment = () => {
             type="submit"
             value={`Pay - ${orderInfo && formatPrice(orderInfo.totalPrice)}`}
             ref={payBtn}
-            className=" bg-[#252323]  text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+            className=" bg-[#252323]  text-white font-bold py-2 px-4  focus:outline-none focus:shadow-outline"
           />
         </form>
       </div>

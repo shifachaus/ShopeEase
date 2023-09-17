@@ -1,4 +1,3 @@
-import { useRef } from "react";
 import Sidebar from "./Sidebar";
 import { Doughnut, Line } from "react-chartjs-2";
 import {
@@ -53,9 +52,9 @@ const Dashboard = () => {
       {
         label: "TOTAL AMOUNT",
         data: [0, totalAmount / 100],
-        backgroundColor: "#c8b1e4",
-        borderColor: "#8351a8",
-        borderWidth: 1,
+        backgroundColor: "#7166F9",
+        borderColor: "#9B75FC",
+        borderWidth: 2,
       },
     ],
   };
@@ -73,7 +72,8 @@ const Dashboard = () => {
     labels: ["Out of Stock", "InStock"],
     datasets: [
       {
-        backgroundColor: ["#c8b1e4", "#8351a8"],
+        backgroundColor: ["#DFEEDB", "#A6D997"],
+
         data: [outOfStock, productData?.products?.length - outOfStock],
       },
     ],
@@ -83,9 +83,9 @@ const Dashboard = () => {
     <section>
       <Sidebar />
 
-      <main className="p-6 sm:ml-64 bg-stone-50">
-        <div className=" p-2 text-gray-900 ">
-          <p className="ml-3 text-xl font-medium text-gray-600">Dashboard</p>
+      <main className="p-6 sm:ml-64 ">
+        <div className=" p-2 ">
+          <p className="ml-3 text-xl font-medium text-[#252323]">Dashboard</p>
         </div>
 
         <div className="flex flex-col gap-8">
@@ -120,10 +120,10 @@ const Dashboard = () => {
           </div>
 
           <div className="p-4  flex flex-col  gap-6 md:grid md:grid-flow-col  ">
-            <div className=" bg-white  text-black p-4 shadow-md rounded col-span-10">
+            <div className=" text-black p-4 shadow-md rounded-lg col-span-10">
               <Line data={data} options={options} />
             </div>
-            <div className="flex flex-col justify-center col-span-2 p-2 bg-white shadow-md rounded">
+            <div className="flex flex-col justify-center col-span-2 p-2  shadow-md rounded-lg">
               <Doughnut data={doughnutState} />
             </div>
           </div>

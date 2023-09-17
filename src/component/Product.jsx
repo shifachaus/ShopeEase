@@ -56,14 +56,17 @@ const Product = ({ displayImage, singleProductItem, setDisplay, display }) => {
   };
 
   return (
-    <section>
-      <div className="grid grid-cols-1 gap-6 md:gap-8 md:grid-cols-2">
+    <section className="mt-14">
+      <div className="grid grid-cols-1 gap-6 md:gap-[6rem] md:grid-cols-2">
         <div className="flex flex-col gap-6 ">
-          <img
-            src={images?.[display]?.url}
-            alt="image"
-            className="w-full h-[300px] object-cover object-center group-hover:opacity-75 bg-gray-100"
-          />
+          <div className="bg-gray-100   ">
+            <img
+              src={images?.[display]?.url}
+              alt="product_image"
+              className="h-full w-full border object-cover object-center p-8 mix-blend-darken xl:h-full "
+            />
+          </div>
+
           <div className="grid grid-cols-5 gap-2">
             {images?.map((img, index) => (
               <img
@@ -71,50 +74,48 @@ const Product = ({ displayImage, singleProductItem, setDisplay, display }) => {
                 alt="image"
                 key={img._id}
                 className={`${
-                  display === index && "border-2 border-purple-600"
-                } w-full object-cover object-center h-16 cursor-pointer rounded bg-gray-100`}
+                  display === index && "border-2 border-[#a99985]"
+                } object-cover object-center h-20 w-20 cursor-pointer rounded bg-gray-100`}
                 onClick={() => setDisplay(index)}
               />
             ))}
           </div>
         </div>
 
-        <div className="flex flex-col gap-4">
-          <h2 className="font-bold capitalize text-slate-700 text-4xl ">
-            {name}
-          </h2>
+        <div className="flex flex-col gap-6">
+          <div>
+            {Stock > 0 ? (
+              <span className="  rounded border border-green-500 px-4 py-2 text-center text-xs font-medium capitalize text-green-500 ">
+                In stock
+              </span>
+            ) : (
+              <span className="  rounded border  border-red-300 px-4 py-2 text-xs font-medium capitalize text-red-300 ">
+                Out of stock
+              </span>
+            )}
+          </div>
+          <div className="flex flex-col gap-3">
+            <h2 className="capitalize  text-2xl md:text-3xl lg:text-4xl font-medium ">
+              {name}
+            </h2>
 
-          <div className="flex gap-2">
-            <Rating stars={ratings} />
-            <p className="font-normal text-sm">
-              {" "}
-              ({reviews.length} customer reviews)
-            </p>
+            <div className="flex gap-2   space-x-2  text-sm hover:cursor-pointer">
+              <p className="flex border-r-2 border-black pr-2  font-semibold ">
+                <Rating stars={ratings} />
+              </p>
+
+              <p className="text-gray-500">{reviews.length} Reviews</p>
+            </div>
           </div>
 
-          <p className="font-medium capitalize text-purple-900 text-sm ">
+          <p className="font-medium text-xl md:text-2xl ">
             {formatPrice(price)}
           </p>
 
-          <p className="text-md text-slate-600 mb-4">{description}</p>
+          <p className="font-light text-slate-500 mb-4">{description}</p>
 
-          <div className="flex flex-col max-w-xs gap-4">
-            <div className="grid grid-cols-2 ">
-              <p className="text-md text-slate-900 font-medium">Available : </p>
-              <span className="text-md text-slate-900 ">
-                {Stock > 1 ? " In Stock" : "Out of Stock"}
-              </span>
-            </div>
-            <div className="grid grid-cols-2">
-              <p className="text-md text-slate-900 font-medium">Brand :</p>
-              <span className="text-md text-slate-900 ">
-                {singleProductItem?.company}
-              </span>
-            </div>
-          </div>
-
-          <div className="border border-slate-200"></div>
-          <div className="flex flex-col gap-4  mb-4 max-w-[150px]">
+          {/* <div className="border border-slate-200"></div> */}
+          <div className="flex flex-col gap-4  mb-4 w-1/3">
             <div className="flex gap-4 justify-center mb-4">
               <button
                 className="text-3xl font-medium cursor-pointer"
@@ -133,7 +134,7 @@ const Product = ({ displayImage, singleProductItem, setDisplay, display }) => {
             <button
               onClick={() => onAddToCart()}
               disabled={Stock < 1 ? true : false}
-              className="bg-purple-800 p-2 px-4 cursor-pointer rounded text-white border border-purple-800 hover:shadow-md "
+              className=" bg-[#252323] hover:bg-[#a99985]  p-2 px-4 cursor-pointer  text-white border border-[#252323] hover:border-[#a99985]  hover:shadow-md uppercase "
             >
               Add to cart
             </button>

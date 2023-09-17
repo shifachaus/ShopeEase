@@ -11,7 +11,7 @@ const Search = ({ setInputKeyword, inputKeyword }) => {
           setInputKeyword(e.target.value);
         }}
         value={inputKeyword}
-        className="border-b border-l border-t rounded-l-md border-gray-300 py-1 px-1  outline-0"
+        className="border-b border-l border-t rounded-l-md border-gray-300 py-1 px-1  outline-0 w-8/12"
       />
 
       <button

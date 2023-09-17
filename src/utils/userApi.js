@@ -3,7 +3,7 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react"; // Upd
 export const userApi = createApi({
   reducerPath: "userApi",
   baseQuery: fetchBaseQuery({
-    baseUrl: "http://localhost:4000/api/v1/",
+    baseUrl: "https://shopease-backend.onrender.com/api/v1/",
     credentials: "include",
   }),
   endpoints: (builder) => ({
@@ -144,6 +144,7 @@ export const userApi = createApi({
 export const {
   useLoginUserMutation,
   useRegisterUserMutation,
+  useLazyGetUserQuery,
   useGetUserQuery,
   useLogoutUserMutation,
   useUpdateUserMutation,

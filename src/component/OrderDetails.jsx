@@ -105,7 +105,7 @@ const OrderDetails = () => {
                 key={item._id}
                 className="grid grid-cols-3 gap-2 items-center"
               >
-                <img src={item?.image} alt={item.name} />
+                <img src={item?.image} alt={item.name} className="h-16 w-20" />
                 <Link to={`/product/${item.product}`}>{item.name}</Link>
                 <p>
                   {/* {item.qty} X {formatPrice(item.price)} ={" "} */}

@@ -32,7 +32,7 @@ const Cart = () => {
     <section>
       <PageHero title={"cart"} />
 
-      <div className="mx-auto max-w-6xl  p-6 lg:px-8 ">
+      <div className="mx-auto max-w-6xl  p-6 lg:px-8 md:h-screen">
         {cartItems?.length === 0 ? (
           <div className="max-w-sx flex flex-col items-center  p-3  w-full h-screen">
             <h2 className="font-medium text-2xl mb-6 text-slate-700">
@@ -50,15 +50,15 @@ const Cart = () => {
           </div>
         ) : (
           <div
-            className={`flex flex-col gap-10 ${
+            className={`flex flex-col gap-10 md:grid md:grid-flow-col ${
               cartItems?.length === 1 && "h-screen"
             }`}
           >
-            <div>
-              <div className="hidden sm:grid grid-cols-3 items-center gap-8  border-b text-black  py-4 px-2">
-                <p className="text-md font-medium capitalize">Product</p>
-                <p className="text-md font-medium capitalize">Quantity</p>
-                <p className="text-md font-medium capitalize">Price</p>
+            <div className="col-span-8">
+              <div className="hidden items-center gap-8  border-b  py-4 px-2 grid-cols-3  md:grid text-sm tracking-widest mt-10    text-gray-500 uppercase">
+                <p className="text-md  uppercase">PRODUCT DETAILS</p>
+                <p className="text-md  uppercase">Quantity</p>
+                <p className="text-md  uppercase">Price</p>
               </div>
               <div className="flex flex-col gap-4  ">
                 {cartItems?.map((item) => {
@@ -66,38 +66,50 @@ const Cart = () => {
                   return (
                     <div
                       key={item?._id}
-                      className="grid grid-cols-3 items-center gap-8 shadow-sm border-b py-4 px-2"
+                      className="flex items-center
+                       md:grid md:grid-cols-3 md:items-center gap-4 py-4 px-2"
                     >
                       <div className="flex flex-col gap-2 sm:grid sm:grid-cols-2 sm:items-center">
                         <img
                           src={item?.image}
                           alt="image"
-                          className="w-24 h-16 object-cover object-center  cursor-pointer rounded "
+                          className="w-40 h-40   cursor-pointer rounded "
                         />
-
-                        <p className="text-sm capitalize">{item?.name}</p>
-                      </div>
-                      <div className="flex gap-4  items-center">
-                        <button
-                          className="text-lg font-medium cursor-pointer"
-                          onClick={() => removeQty(item)}
-                        >
-                          -
-                        </button>
-                        <p className="text-md font-bold">{item?.qty}</p>
-                        <button
-                          className="text-lg font-medium cursor-pointer"
-                          onClick={() => addQty(item)}
-                        >
-                          +
-                        </button>
-                      </div>
-                      <div className="flex flex-col items-end sm:grid sm:grid-cols-2">
-                        <p className="text-md font-bold">
-                          {formatPrice(item.price)}
+                        <p className="hidden md:block text-gray-500">
+                          {item?.name}
                         </p>
-                        <p className="justify-self-end">
-                          <AiOutlineDelete className="text-xl" />
+                      </div>
+
+                      <div className="flex flex-col gap-3">
+                        <p className="md:font-medium text-md md:hidden text-gray-500">
+                          {item?.name}
+                        </p>
+                        <div className="flex gap-4  items-center">
+                          <button
+                            className="text-lg font-medium cursor-pointer"
+                            onClick={() => removeQty(item)}
+                          >
+                            -
+                          </button>
+                          <p className="text-md font-medium bg-black text-white px-2 ">
+                            {item?.qty}
+                          </p>
+                          <button
+                            className="text-lg font-medium cursor-pointer"
+                            onClick={() => addQty(item)}
+                          >
+                            +
+                          </button>
+                        </div>
+                        <div className="md:hidden flex flex-col items-end sm:grid sm:grid-cols-2">
+                          <p className="text-md font-bold">
+                            {formatPrice(item.price)}
+                          </p>
+                        </div>
+                      </div>
+                      <div className="hidden   md:flex md:flex-col">
+                        <p className="text-md font-medium text-gray-500">
+                          {formatPrice(item.price)}
                         </p>
                       </div>
                     </div>
@@ -106,10 +118,11 @@ const Cart = () => {
               </div>
             </div>
 
-            <div className="flex flex-col gap-4 sm:items-end ">
-              <div className=" sm:w-96 shadow-md">
+            <div className="flex flex-col gap-4  md:mt-10 md:col-span-4">
+              <h2 className=" text-xl ">Cart Totals</h2>
+
+              <div className="md:w-80 bg-[#f5f1ed]">
                 <div className=" flex flex-col  gap-4 rounded p-5 h-fit">
-                  <h2 className="font-bold text-xl text-center">Cart Totals</h2>
                   <div className=" flex flex-col  gap-2 mb-4">
                     <div className="flex justify-between gap-2 items-center">
                       <p className="font-medium text-md">Subtotals</p>
@@ -131,7 +144,7 @@ const Cart = () => {
                 to={
                   user?.success || user?.data?.success ? "/shipping" : "/login"
                 }
-                className="border border-purple-800 rounded-md text-center py-1 px-4 bg-[#252323] "
+                className="border border-[#252323] mt-2 mb-8 text-center py-1 px-4 bg-[#252323] "
               >
                 <p className="text-lg font-medium  text-white">Check Out</p>
               </Link>

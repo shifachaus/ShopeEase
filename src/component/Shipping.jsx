@@ -34,7 +34,7 @@ const Shipping = () => {
   };
 
   return (
-    <div className="mx-auto max-w-7xl  p-6 lg:px-8">
+    <div className="mx-auto max-w-7xl  p-6 lg:px-8 md:h-screen">
       <CheckoutStep activeStep={0} />
       <div className="max-w-md mt-6 mx-auto">
         <h2 className="text-2xl font-medium mb-2 text-center  text-gray-600">

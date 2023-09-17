@@ -29,7 +29,7 @@ const ConfirmOrder = () => {
   };
 
   return (
-    <div className="mx-auto max-w-7xl  p-6 lg:px-8">
+    <div className="mx-auto max-w-7xl  p-6 lg:px-8 md:h-screen">
       <CheckoutStep activeStep={1} />
 
       <div className=" flex flex-col gap-6 md:grid md:grid-flow-col mt-6 ">
@@ -107,7 +107,7 @@ const ConfirmOrder = () => {
               <span>{formatPrice(totalPrice)}</span>
             </div>
             <button
-              className=" bg-[#252323] mt-6 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+              className=" bg-[#252323] mt-6 text-white font-bold py-2 px-4  focus:outline-none focus:shadow-outline"
               onClick={proceedToPayment}
             >
               Proceed To Payment

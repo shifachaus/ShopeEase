@@ -73,13 +73,16 @@ const UsersList = () => {
     <section>
       <Sidebar />
       <main>
-        <div className="p-4 sm:ml-64 bg-stone-50">
-          <div className="mx-auto max-w-7xl p-6 lg:px-8 h-screen">
-            <h2 className="text-xl font-medium text-gray-600 mb-6 text-center ">
-              ALL USERS
-            </h2>
+        <div className="p-4 sm:ml-64 ">
+          <div className="mx-auto max-w-7xl p-6 lg:px-8 ">
+            <div className=" p-2 ">
+              <h2 className="text-xl font-medium text-[#252323] mb-6 text-center ">
+                ALL USERS
+              </h2>
+            </div>
+
             {/* Render your table using the 'rows' and 'headerGroups' */}
-            <div className=" overflow-x-auto shadow-md sm:rounded-lg">
+            <div className="overflow-x-scroll  no-scrollbar shadow-md sm:rounded-lg">
               <table
                 {...getTableProps()}
                 className="w-full text-sm text-left text-gray-500 "

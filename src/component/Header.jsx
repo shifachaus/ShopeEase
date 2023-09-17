@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { BsCart4 } from "react-icons/bs";
 import { useGetUserQuery, useLogoutUserMutation } from "../utils/userApi";
@@ -12,20 +12,15 @@ const Header = () => {
   const cartItems = useSelector((store) => store.cart.items);
   const userData = useSelector((store) => store.user);
   const dispatch = useDispatch();
-
-  // console.log(userData, "HEADER");
-  // console.log(
-  //   userData?.success === "undefined" || userData?.data?.success === "undefined"
-  // ? "login"
-  //     : "logout"
-  // );
-
+  const navigate = useNavigate();
   const signOut = async () => {
-    await logoutUser();
+    const data = await logoutUser();
+    console.log(data);
     dispatch(logout());
-    await getUserQuery.refetch();
+    navigate("/");
   };
 
+  // console.log(userData, "HEASE", getUserQuery);
   return (
     <header className=" bg-[#a99985]">
       <nav
@@ -33,10 +28,10 @@ const Header = () => {
         aria-label="Global"
       >
         <Link to={"/"} className="flex md:flex-1">
-          <p className="font-medium text-lg ">
+          <h1 className="font-black tracking-wider text-xl">
             <span className="text-white">Shop</span>
             <span>Ease</span>
-          </p>
+          </h1>
         </Link>
 
         {/* hamburger menu */}
@@ -46,7 +41,6 @@ const Header = () => {
             className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700"
             onClick={() => setShowMenu(true)}
           >
-            <span className="sr-only">Open main menu</span>
             <svg
               className="h-6 w-6"
               fill="none"
@@ -78,12 +72,14 @@ const Header = () => {
           >
             Shop
           </Link>
-          <Link
-            to={"/account"}
-            className="text-sm font-semibold leading-6 text-gray-900"
-          >
-            Profile
-          </Link>
+          {userData !== null && (
+            <Link
+              to={"/account"}
+              className="text-sm font-semibold leading-6 text-gray-900"
+            >
+              Profile
+            </Link>
+          )}
         </div>
 
         <div className="hidden md:flex md:flex-1 md:justify-end md:items-center gap-4">
@@ -126,10 +122,10 @@ const Header = () => {
         <div className="fixed inset-y-0 right-0 z-10 w-7/12 overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
           <div className="flex items-center justify-between">
             <div className="flex lg:flex-1">
-              <p className="font-medium text-lg ">
-                <span className="text-purple-800">Shop</span>
-                <span>Ease</span>
-              </p>
+              <h1 className="font-black tracking-wider text-xl">
+                <span className="text-[#a99985]">Shop</span>
+                <span className="text-[#252323]">Ease</span>
+              </h1>
             </div>
             <button
               type="button"
@@ -168,12 +164,14 @@ const Header = () => {
                 >
                   Shop
                 </Link>
-                <Link
-                  to={"/account"}
-                  className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
-                >
-                  Profile
-                </Link>
+                {userData !== null && (
+                  <Link
+                    to={"/account"}
+                    className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                  >
+                    Profile
+                  </Link>
+                )}
                 <div className="flex items-center gap-3">
                   <Link
                     to={"/cart"}

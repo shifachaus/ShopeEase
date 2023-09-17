@@ -54,7 +54,7 @@ const ProductList = () => {
       Cell: ({ row }) => {
         // console.log(row.original._id, "ROW");
         return (
-          <div className="flex gap-2">
+          <div className="flex gap-2 ">
             <Link to={`/admin/product/${row?.original?._id}`}>
               <FiEdit2 className="text-lg hover:text-purple-800" />
             </Link>
@@ -79,13 +79,15 @@ const ProductList = () => {
     <section>
       <Sidebar />
       <main>
-        <div className="p-4 sm:ml-64 bg-stone-50">
-          <div className="mx-auto max-w-7xl p-6 lg:px-8 h-screen">
-            <h2 className="text-xl font-medium text-gray-600 mb-6 text-center ">
-              ALL PRODUCTS
-            </h2>
+        <div className="p-4 sm:ml-64 ">
+          <div className="mx-auto max-w-7xl p-6 lg:px-8 ">
+            <div className=" p-2 ">
+              <h2 className="text-xl font-medium text-[#252323] mb-6 text-center ">
+                ALL PRODUCTS
+              </h2>
+            </div>
             {/* Render your table using the 'rows' and 'headerGroups' */}
-            <div className=" overflow-x-auto shadow-md sm:rounded-lg">
+            <div className=" shadow-md sm:rounded-lg overflow-x-scroll  no-scrollbar">
               <table
                 {...getTableProps()}
                 className="w-full text-sm text-left text-gray-500 "

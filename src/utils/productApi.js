@@ -4,7 +4,7 @@ export const productsApi = createApi({
   reducerPath: "productsApi",
 
   baseQuery: fetchBaseQuery({
-    baseUrl: "http://localhost:4000/api/v1/",
+    baseUrl: "https://shopease-backend.onrender.com/api/v1/",
     credentials: "include",
   }),
   endpoints: (builder) => ({
@@ -117,6 +117,16 @@ export const productsApi = createApi({
     getAllProductsReviews: builder.query({
       query: (id) => `reviews?id=${id}`,
     }),
+
+    deleteProductReview: builder.mutation({
+      query: (review) => {
+        console.log(review, "API");
+        return {
+          url: `reviews?id=${review.id}&productId=${review.productId}`,
+          method: "DELETE",
+        };
+      },
+    }),
   }),
 });
 
@@ -129,5 +139,6 @@ export const {
   useNewProductMutation,
   useDeleteProductMutation,
   useUpdateProductMutation,
-  useGetAllProductsReviewsQuery,
+  useLazyGetAllProductsReviewsQuery,
+  useDeleteProductReviewMutation,
 } = productsApi;

@@ -10,7 +10,7 @@ import { useDispatch } from "react-redux";
 
 const LoginSignUp = () => {
   const getUserQuery = useGetUserQuery();
-  // console.log(getUserQuery, "MY ACCOUNT");
+  console.log(getUserQuery, "MY ACCOUNT");
 
   const [switchTabs, setSwitchTabs] = useState("login");
   const navigate = useNavigate();
@@ -50,7 +50,7 @@ const LoginSignUp = () => {
       const data = await loginUser(user);
       dispatch(login(data));
 
-      // console.log(data, "DATA LOGIN");
+      console.log(data, "DATA LOGIN");
       await getUserQuery.refetch();
 
       if (data?.data?.success) {
@@ -72,6 +72,7 @@ const LoginSignUp = () => {
     try {
       const data = await registerUser(user);
       console.log(data);
+      dispatch(login(data));
       navigate("/");
     } catch (err) {
       console.error("Register error:", err);
@@ -85,12 +86,12 @@ const LoginSignUp = () => {
   }, [getUserQuery, navigate, dispatch]);
 
   return (
-    <div className="mx-auto max-w-md mt-6 p-6 lg:px-8 ">
-      <div className=" bg-white shadow-lg shadow-purple-100 rounded  mb-4">
+    <div className="mx-auto max-w-md mt-8  lg:mt-12 p-6 lg:px-8 h-screen">
+      <div className=" bg-white shadow-lg shadow-[#f5f1ed] rounded  mb-4">
         <div className="grid grid-cols-2 mb-4 ">
           <p
             className={`text-center ${
-              switchTabs == "login" && "border-b border-purple-500 "
+              switchTabs == "login" && "border-b border-[#a99985] "
             } p-2 cursor-pointer`}
             onClick={() => setSwitchTabs("login")}
           >
@@ -98,7 +99,7 @@ const LoginSignUp = () => {
           </p>
           <p
             className={`text-center ${
-              switchTabs == "register" && "border-b border-purple-500 "
+              switchTabs == "register" && "border-b border-[#a99985] "
             } p-2 cursor-pointer`}
             onClick={() => setSwitchTabs("register")}
           >
@@ -147,7 +148,7 @@ const LoginSignUp = () => {
             </div>
             <div className="flex flex-col">
               <button
-                className=" bg-purple-500 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                className=" bg-[#252323] text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                 type="submit"
               >
                 Sign In
@@ -240,7 +241,7 @@ const LoginSignUp = () => {
 
             <div className="flex flex-col">
               <button
-                className=" bg-purple-500 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                className=" bg-[#252323] text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                 type="submit"
               >
                 Sign In

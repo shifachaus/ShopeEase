@@ -1,9 +1,9 @@
 import { useState } from "react";
-import { useEditPasswordMutation, useGetUserQuery } from "../utils/userApi";
+import { useEditPasswordMutation, useLazyGetUserQuery } from "../utils/userApi";
 
 const UpdatePassword = () => {
   const [editPassword] = useEditPasswordMutation();
-  const getUserQuery = useGetUserQuery();
+  const [getUser, results] = useLazyGetUserQuery();
 
   const [oldPassword, setOldPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
@@ -15,7 +15,7 @@ const UpdatePassword = () => {
     console.log(user, "USER PASSWORD");
     try {
       const data = await editPassword(user);
-      await getUserQuery.refetch();
+      await getUser();
       console.log(data);
     } catch (err) {
       console.error("Update Password error:", err);
@@ -80,7 +80,7 @@ const UpdatePassword = () => {
 
           <div className="flex flex-col">
             <button
-              className=" bg-purple-500 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+              className=" bg-[#252323] text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
               type="submit"
             >
               Sign In

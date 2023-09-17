@@ -33,25 +33,25 @@ const Sidebar = () => {
         className="fixed top-0 left-0 z-40 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0"
         aria-label="Sidebar"
       >
-        <div className="h-full px-3 py-4 overflow-y-auto shadow-sm ">
+        <div className="h-full px-3 py-4 overflow-y-auto shadow-md bg-[#FCFCFC] ">
           <Link
             to="/"
             className="flex lg:flex-1 items-center p-2 text-gray-900 rounded-lg  group mb-10"
           >
-            <p className="font-medium text-xl ">
-              <span className="text-purple-800">Shop</span>
-              <span className="text-gray-800">Ease</span>
-            </p>
+            <h1 className="font-black tracking-wider text-xl">
+              <span className="text-[#a99985]">Shop</span>
+              <span className="text-[#252323]">Ease</span>
+            </h1>
           </Link>
 
-          <ul className="space-y-8 font-medium">
+          <ul className="space-y-6 font-medium">
             <li>
               <NavLink
                 to="/admin/dashboard"
                 className={({ isActive }) =>
                   isActive
-                    ? "bg-purple-100 flex items-center p-2 text-gray-900 rounded-lg  hover:bg-purple-100 group"
-                    : "flex items-center p-2 text-gray-900 rounded-lg  hover:bg-purple-100 group"
+                    ? "bg-[#F3F3F3] flex items-center p-2 text-gray-900 rounded-lg  hover:bg-[#F3F3F3] group"
+                    : "flex items-center p-2 text-gray-900 rounded-lg  hover:bg-bg-[#F3F3F3] group"
                 }
               >
                 <svg
@@ -70,7 +70,7 @@ const Sidebar = () => {
             </li>
 
             <li onClick={() => setOpen(!open)} className="cursor-pointer">
-              <span className="flex items-center p-2 text-gray-900 rounded-lg  hover:bg-purple-100 group">
+              <span className="flex items-center p-2 text-gray-900 rounded-lg  hover:bg-[#F3F3F3] group">
                 <svg
                   className="flex-shrink-0 w-5 h-5 text-gray-700 transition duration-75  group-hover:text-gray-900 "
                   aria-hidden="true"
@@ -87,29 +87,29 @@ const Sidebar = () => {
             <ul
               className={
                 open
-                  ? "ml-4  font-medium flex flex-col  text-gray-900"
+                  ? "ml-4  font-medium flex flex-col  text-gray-900 "
                   : "hidden"
               }
             >
-              <li className="hover:bg-purple-100 flex-1 ml-3 whitespace-nowrap rounded-lg">
+              <li className="hover:bg-[#F3F3F3] flex-1 ml-3 whitespace-nowrap rounded-lg">
                 <NavLink
                   to="/admin/products"
                   className={({ isActive }) =>
                     isActive
-                      ? "bg-purple-100 flex items-center p-2 text-gray-900 rounded-lg  hover:bg-purple-100 group"
-                      : "flex items-center p-2 text-gray-900 rounded-lg  hover:bg-purple-100 group"
+                      ? "bg-[#F3F3F3] flex items-center p-2 text-gray-900 rounded-lg  hover:bg-[#F3F3F3] group"
+                      : "flex items-center p-2 text-gray-900 rounded-lg  hover:bg-bg-[#F3F3F3] group"
                   }
                 >
                   All
                 </NavLink>
               </li>
-              <li className="hover:bg-purple-100 flex-1 ml-3 whitespace-nowrap   rounded-lg">
+              <li className="hover:bg-[#f3f3f3] flex-1 ml-3 whitespace-nowrap   rounded-lg">
                 <NavLink
                   to="/admin/product"
                   className={({ isActive }) =>
                     isActive
-                      ? "bg-purple-100 flex items-center p-2 text-gray-900 rounded-lg  hover:bg-purple-100 group"
-                      : "flex items-center p-2 text-gray-900 rounded-lg  hover:bg-purple-100 group"
+                      ? "bg-[#F3F3F3] flex items-center p-2 text-gray-900 rounded-lg  hover:bg-[#F3F3F3] group"
+                      : "flex items-center p-2 text-gray-900 rounded-lg  hover:bg-bg-[#F3F3F3] group"
                   }
                 >
                   Create
@@ -122,8 +122,8 @@ const Sidebar = () => {
                 to="/admin/users"
                 className={({ isActive }) =>
                   isActive
-                    ? "bg-purple-100 flex items-center p-2 text-gray-900 rounded-lg  hover:bg-purple-100 group"
-                    : "flex items-center p-2 text-gray-900 rounded-lg  hover:bg-purple-100 group"
+                    ? "bg-[#F3F3F3] flex items-center p-2 text-gray-900 rounded-lg  hover:bg-[#F3F3F3] group"
+                    : "flex items-center p-2 text-gray-900 rounded-lg  hover:bg-bg-[#F3F3F3] group"
                 }
               >
                 <svg
@@ -144,8 +144,8 @@ const Sidebar = () => {
                 to="/admin/orders"
                 className={({ isActive }) =>
                   isActive
-                    ? "bg-purple-100 flex items-center p-2 text-gray-900 rounded-lg  hover:bg-purple-100 group"
-                    : "flex items-center p-2 text-gray-900 rounded-lg  hover:bg-purple-100 group"
+                    ? "bg-[#F3F3F3] flex items-center p-2 text-gray-900 rounded-lg  hover:bg-[#F3F3F3] group"
+                    : "flex items-center p-2 text-gray-900 rounded-lg  hover:bg-bg-[#F3F3F3] group"
                 }
               >
                 <svg
@@ -166,8 +166,8 @@ const Sidebar = () => {
                 to="/admin/reviews"
                 className={({ isActive }) =>
                   isActive
-                    ? "bg-purple-100 flex items-center p-2 text-gray-900 rounded-lg  hover:bg-purple-100 group"
-                    : "flex items-center p-2 text-gray-900 rounded-lg  hover:bg-purple-100 group"
+                    ? "bg-[#F3F3F3] flex items-center p-2 text-gray-900 rounded-lg  hover:bg-[#F3F3F3] group"
+                    : "flex items-center p-2 text-gray-900 rounded-lg  hover:bg-bg-[#F3F3F3] group"
                 }
               >
                 <svg

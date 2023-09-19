@@ -40,12 +40,12 @@ const ConfirmOrder = () => {
             </h2>
             <div className="flex flex-col gap-2 p-4">
               <p className="text-md font-medium">
-                Name: <span className="text-sm font-normal">{user.name}</span>
+                Name: <span className="text-sm font-normal">{user?.name}</span>
               </p>
               <p className="text-md font-medium">
                 Phone:{" "}
                 <span className="text-sm font-normal">
-                  {shippingInfo.phoneNo}
+                  {shippingInfo?.phoneNo}
                 </span>
               </p>
               <p className="text-md font-medium">

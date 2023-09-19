@@ -24,7 +24,7 @@ const Filters = ({
     <aside className=" sticky top-0  hidden h-full  flex-col space-y-8 border p-8 font-light  md:flex ">
       <div className="flex justify-between mb-6">
         <h2 className="text-xl uppercase ">Filter by</h2>
-        <button className="text-sm capitalize text-primary text-[#a99985]">
+        <button className="text-sm capitalize text-primary text-[#565E60]">
           Clear all
         </button>
       </div>
@@ -40,7 +40,7 @@ const Filters = ({
                   <li
                     className={
                       category == cat
-                        ? "text-[#a99985]  text-lg font-normal capitalize cursor-pointer"
+                        ? "text-[#565E60]  text-lg font-normal capitalize cursor-pointer"
                         : `text-md capitalize cursor-pointer font-normal`
                     }
                     key={cat}

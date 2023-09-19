@@ -30,7 +30,7 @@ const SidebarFilter = ({
     >
       <div className="flex justify-between mb-6">
         <h2 className="text-xl uppercase ">Filter by</h2>
-        <button className="text-sm capitalize text-primary text-[#a99985]">
+        <button className="text-sm capitalize text-primary text-[#565E60]">
           Clear all
         </button>
       </div>
@@ -46,7 +46,7 @@ const SidebarFilter = ({
                   <li
                     className={
                       category == cat
-                        ? "text-[#a99985]  text-lg font-normal capitalize cursor-pointer"
+                        ? "text-[#565E60]  text-lg font-normal capitalize cursor-pointer"
                         : `text-md capitalize cursor-pointer font-normal`
                     }
                     key={cat}

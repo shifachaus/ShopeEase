@@ -7,8 +7,8 @@ const FeaturedProducts = ({ item }) => {
   // console.log(images);
 
   return (
-    <Link to={`/product/${_id}`} className="flex flex-col gap-4">
-      <div className=" border border-gray-200/50  p-3 flex items-center justify-center">
+    <Link to={`/product/${_id}`} className="flex flex-col gap-4  ">
+      <div className="p-3 flex items-center justify-center bg-gray-100 ">
         <img
           src={images[0]?.url}
           alt="image"
@@ -17,7 +17,7 @@ const FeaturedProducts = ({ item }) => {
           className="h-40 md:h-56  xl:h-72 xl:p-8  mix-blend-darken transition-all delay-75 duration-300 ease-linear group-hover:scale-110 "
         />
       </div>
-      <div className="flex flex-col justify-between">
+      <div className="flex flex-col justify-between ">
         <p className=" font-medium capitalize transition-all duration-100 ease-linear ">
           {name}
         </p>

@@ -108,7 +108,7 @@ const ProductReviews = () => {
                     deleteReviewHandler(row?.original?._id, review._id)
                   }
                 >
-                  <AiOutlineDelete className="text-lg hover:text-purple-800" />
+                  <AiOutlineDelete className="text-lg hover:text-[#565E60]" />
                 </button>
               </div>
             ))}

@@ -8,7 +8,7 @@ const ProductList = ({ item }) => {
 
   return (
     <Link to={`/product/${_id}`} className="flex flex-col gap-4">
-      <div className=" border border-gray-200/50  p-3 flex items-center justify-center">
+      <div className=" bg-gray-100 p-3 flex items-center justify-center">
         <img
           src={images[0]?.url}
           alt="image"

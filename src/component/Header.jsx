@@ -22,7 +22,7 @@ const Header = () => {
 
   // console.log(userData, "HEASE", getUserQuery);
   return (
-    <header className=" bg-[#a99985]">
+    <header className=" bg-[#828D91]">
       <nav
         className="mx-auto flex max-w-7xl items-center justify-between p-6 md:pb-8 md:pt-8 lg:px-8"
         aria-label="Global"
@@ -38,7 +38,7 @@ const Header = () => {
         <div className="flex md:hidden">
           <button
             type="button"
-            className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700"
+            className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-neutral-100"
             onClick={() => setShowMenu(true)}
           >
             <svg
@@ -58,24 +58,24 @@ const Header = () => {
           </button>
         </div>
 
-        {/* Navbar */}
+        {/*Desktop  Navbar */}
         <div className="hidden md:flex md:gap-x-12">
           <Link
             to={"/"}
-            className="text-sm font-semibold leading-6 text-gray-900"
+            className="text-sm font-medium leading-6 text-neutral-100"
           >
             Home
           </Link>
           <Link
             to={"/products"}
-            className="text-sm font-semibold leading-6 text-gray-900"
+            className="text-sm font-medium leading-6 text-neutral-100"
           >
             Shop
           </Link>
           {userData !== null && (
             <Link
               to={"/account"}
-              className="text-sm font-semibold leading-6 text-gray-900"
+              className="text-sm font-medium leading-6 text-neutral-100"
             >
               Profile
             </Link>
@@ -86,14 +86,14 @@ const Header = () => {
           {userData?.success || userData?.data?.success ? (
             <p
               onClick={signOut}
-              className="cursor-pointer text-sm font-semibold leading-6 text-gray-900 ml-8"
+              className="cursor-pointer text-sm font-medium leading-6 text-neutral-100 ml-8"
             >
               Logout
             </p>
           ) : (
             <Link
               to={"/login"}
-              className="cursor-pointer text-sm font-semibold leading-6 text-gray-900 ml-8"
+              className="cursor-pointer text-sm font-medium leading-6 text-neutral-100 ml-8"
             >
               Log in <span aria-hidden="true">&rarr;</span>
             </Link>
@@ -101,11 +101,11 @@ const Header = () => {
 
           <Link
             to={"/cart"}
-            className="text-sm font-semibold leading-6 text-gray-900"
+            className="text-sm font-medium leading-6 text-neutral-100"
           >
             <p className="relative ">
               <BsCart4 className="text-xl " />
-              <span className="absolute text-sm text-black font-medium -top-1 left-4 bg-white rounded-[50%]  w-full text-center">
+              <span className="absolute text-sm text-white font-medium -top-1 left-4 bg-black rounded-[50%]  w-full text-center">
                 {cartItems.length}
               </span>
             </p>
@@ -113,17 +113,19 @@ const Header = () => {
         </div>
       </nav>
 
+      {/*MObile  Navbar */}
       <div
-        className={showMenu ? "lg:hidden" : "hidden"}
+        className={` fixed inset-y-0 right-0 z-10 overflow-y-auto bg-white px-6 py-6  w-1/2  h-screen transition-transform ${
+          showMenu ? "translate-x-1" : "translate-x-full"
+        } `}
         role="dialog"
         aria-modal="true"
       >
-        <div className="fixed inset-0 z-10"></div>
-        <div className="fixed inset-y-0 right-0 z-10 w-7/12 overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
+        <div className="">
           <div className="flex items-center justify-between">
             <div className="flex lg:flex-1">
               <h1 className="font-black tracking-wider text-xl">
-                <span className="text-[#a99985]">Shop</span>
+                <span className="text-[#828D91]">Shop</span>
                 <span className="text-[#252323]">Ease</span>
               </h1>
             </div>
@@ -179,7 +181,7 @@ const Header = () => {
                   >
                     <p className="relative ">
                       <BsCart4 className="text-xl " />
-                      <span className="absolute text-sm text-white font-medium -top-1 left-4 bg-purple-800 rounded-[50%]  w-full text-center">
+                      <span className="absolute text-sm text-white font-medium -top-1 left-4 bg-[#828D91] rounded-[50%]  w-full text-center">
                         {cartItems.length}
                       </span>
                     </p>

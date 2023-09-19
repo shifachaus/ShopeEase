@@ -3,6 +3,7 @@ import { useGetAllFeaturedProductsQuery } from "../utils/productApi";
 import heroImage from "../assets/Cloudsofa.png";
 import chair from "../assets/chair.png";
 import planet from "../assets/planet.png";
+import lamp from "../assets/lamp1.png";
 import FeaturedProducts from "./FeaturedProducts";
 
 const Body = () => {
@@ -10,28 +11,33 @@ const Body = () => {
   // console.log(product?.products.length);
 
   return (
-    <section>
-      <div className=" bg-[#a99985] md:h-[30rem] overflow-hidden">
-        <div className="relative  mx-auto max-w-7xl p-6 lg:px-8  flex flex-col md:grid  md:grid-flow-col">
-          <div className="flex flex-col pt-14  md:col-span-8 md:w-[500px] lg:w-[800px] w-2/3 ">
-            <h1 className="text-3xl leading-normal font-bold tracking-normal text-black sm:text-4xl md:text-5xl">
-              Crafting Cozy Homes Where Relaxation Begins
-            </h1>
-            <p className="mt-6 border-b border-black py-1 text-[10px] font-medium uppercase tracking-wider w-16">
-              Shop Now
-            </p>
+    <main className="bg-gray-100">
+      <section className=" bg-[#828D91] h-80 md:h-[39rem] lg:h-[45rem]   overflow-hidden">
+        <div className="relative max-w-7xl mx-auto flex flex-col ">
+          <div className="max-w-7xl mx-auto z-10  h-80 md:h-72 p-4  flex flex-col items-start sm:items-center pt-10 md:pt-20   ">
+            <div className="flex flex-col  gap-2  p-4  items-start md:items-center pt-10 md:pt-20 ">
+              <h1 className="text-3xl font-bold tracking-normal text-white sm:text-4xl md:text-5xl">
+                Elevate Your Home Comfort
+              </h1>
+              <p className=" text-md sm:text-lg font-medium text-white">
+                Massive Discounts Arriving Shortly.
+              </p>
+              <p className="text-white mt-4 text-left border-b border-white py-1 text-[10px] uppercase font-medium tracking-wider hover:border-b-primary hover:text-primary">
+                View Now
+              </p>
+            </div>
           </div>
 
-          <div className="absolute -top-10  md:-right-[30rem] lg:-right-[44rem] w-full h-[500px] md:col-span-4">
-            <img
-              src={heroImage}
-              alt={heroImage}
-              className="hidden md:inline-block  h-full object-contain "
-            />
-          </div>
+          <div className="mx-auto max-w-7xl  md:h-[385px] md:w-[1025px] lg:h-[510px] lg:w-[1200px]   md:bg-[url('./assets/Cloudsofa.png')] bg-cover bg-center"></div>
+          <img
+            src={lamp}
+            alt={heroImage}
+            className=" absolute -top-10  -right-[0] sm:-right-[0]   md:-left-[0] lg:-left-[0%] xl:-left-[0%]  w-[10.5rem] h-80  "
+          />
         </div>
-      </div>
-      <div className="mx-auto max-w-7xl  p-6  lg:px-8  pt-12 pb-12    mt-10 px-5 py-5 md:mt-20  md:py-8 lg:py-10 xl:px-28 xl:py-16">
+      </section>
+
+      <section className="mx-auto max-w-7xl  p-6  lg:px-8  pt-12    pb-12  mt-10 md:mt-20 px-5 py-5   md:py-8 lg:py-10 xl:px-28 xl:py-16">
         <h2 className="text-2xl sm:text-3xl font-medium mb-6 mt-6  text-black text-center">
           Featured Product
         </h2>
@@ -48,14 +54,14 @@ const Body = () => {
             })}
           </div>
         )}
-      </div>
+      </section>
 
-      <section className="  mx-auto mt-10 bg-gray-100 px-5 py-5 md:mt-20 md:py-8 lg:py-10 xl:px-28 xl:py-16  ">
-        <main className="mx-auto mt-20 max-w-7xl p-4 pb-10 max-auto mb-10 gap-5 columns-1 lg:columns-2 space-x-5">
+      <section className="mx-auto  bg-gray-100 px-5 py-5 pt-12 mt-10 md:mt-20 md:py-8 lg:py-10 xl:px-28 xl:py-16  ">
+        <main className="mx-auto mt-20 max-w-7xl  pb-10 max-auto mb-10 gap-5 columns-1 lg:columns-2 space-x-5">
           <div className="flex flex-col items-start gap-2 ">
             <img src={planet} alt=" chair" />
             <h2 className=" flex flex-col  font-light uppercase tracking-widest md:w-full md:text-2xl xl:text-4xl ">
-              <span className="font-black "> The Minimal </span> Circus Wood
+              <span className="font-black "> The Minimal </span> Planet Chair
               Chair
             </h2>
             <span className=" text-left border-b border-black py-1 text-[10px] uppercase tracking-wider hover:border-b-primary hover:text-primary">
@@ -64,7 +70,7 @@ const Body = () => {
           </div>
           <div className="flex flex-col items-end gap-2 xsm:mt-5 ">
             <h2 className=" text-right flex flex-col font-light uppercase tracking-widest md:w-full md:text-2xl xl:text-4xl">
-              <span className="font-black "> The Minimal </span> Planet Chair
+              <span className="font-black "> The Minimal </span>Circus Wood
             </h2>
             <span className=" text-right border-b  border-black py-1 text-[10px] uppercase tracking-wider hover:border-b-primary hover:text-primary ">
               View Now
@@ -74,8 +80,8 @@ const Body = () => {
         </main>
       </section>
 
-      <div className="h-64 md:h-80 md:bg-[url('./assets/footerimage.png')] bg-[url('./assets/mobile.png')] bg-cover bg-center">
-        <div className="w-full h-full flex  justify-center items-center backdrop-brightness-75">
+      <section className="mx-auto max-w-7xl mt-10 md:mt-20  h-64 md:h-80 md:bg-[url('./assets/footerimage.png')] bg-[url('./assets/mobile.png')] bg-cover bg-center">
+        <div className="w-full   h-full flex  justify-center items-center backdrop-brightness-75">
           <div className=" flex flex-col h-full items-center justify-center text-white">
             <h2 className="mb-4  text-4xl font-semibold  sm:text-4xl text-center">
               Our Instagram
@@ -94,8 +100,8 @@ const Body = () => {
             </button>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </main>
   );
 };
 

@@ -3,14 +3,16 @@ import { Link, NavLink } from "react-router-dom";
 
 const Sidebar = () => {
   const [open, setOpen] = useState(false);
+  const [show, setShow] = useState(false);
   return (
     <section>
       <button
+        onClick={() => setShow(true)}
         data-drawer-target="default-sidebar"
         data-drawer-toggle="default-sidebar"
         aria-controls="default-sidebar"
         type="button"
-        className="inline-flex items-center p-2 mt-2 ml-3 text-sm text-gray-500 rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+        className=" inline-flex items-center p-2 mt-2 ml-3 text-sm text-gray-500 rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 "
       >
         <span className="sr-only">Open sidebar</span>
         <svg
@@ -30,16 +32,42 @@ const Sidebar = () => {
 
       <aside
         id="default-sidebar"
-        className="fixed top-0 left-0 z-40 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0"
+        className={`fixed top-0 left-0 z-40 w-64 h-screen transition-transform ${
+          show ? "translate-x-1" : "-translate-x-full"
+        } sm:translate-x-0`}
         aria-label="Sidebar"
       >
+        <button
+          onClick={() => setShow(false)}
+          data-drawer-target="default-sidebar"
+          data-drawer-toggle="default-sidebar"
+          aria-controls="default-sidebar"
+          type="button"
+          className=" inline-flex items-center p-2 mt-2 ml-3 text-sm text-gray-500 rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 "
+        >
+          <span className="sr-only">Open sidebar</span>
+          <svg
+            className="w-6 h-6"
+            aria-hidden="true"
+            fill="currentColor"
+            viewBox="0 0 20 20"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              clipRule="evenodd"
+              fillRule="evenodd"
+              d="M2 4.75A.75.75 0 012.75 4h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 4.75zm0 10.5a.75.75 0 01.75-.75h7.5a.75.75 0 010 1.5h-7.5a.75.75 0 01-.75-.75zM2 10a.75.75 0 01.75-.75h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 10z"
+            ></path>
+          </svg>
+        </button>
+
         <div className="h-full px-3 py-4 overflow-y-auto shadow-md bg-[#FCFCFC] ">
           <Link
             to="/"
             className="flex lg:flex-1 items-center p-2 text-gray-900 rounded-lg  group mb-10"
           >
             <h1 className="font-black tracking-wider text-xl">
-              <span className="text-[#a99985]">Shop</span>
+              <span className="text-[#565E60]">Shop</span>
               <span className="text-[#252323]">Ease</span>
             </h1>
           </Link>
@@ -50,7 +78,7 @@ const Sidebar = () => {
                 to="/admin/dashboard"
                 className={({ isActive }) =>
                   isActive
-                    ? "bg-[#F3F3F3] flex items-center p-2 text-gray-900 rounded-lg  hover:bg-[#F3F3F3] group"
+                    ? "bg-gray-100  flex items-center p-2 text-gray-900 rounded-lg  hover:bg-[#F3F3F3] group"
                     : "flex items-center p-2 text-gray-900 rounded-lg  hover:bg-bg-[#F3F3F3] group"
                 }
               >
@@ -70,7 +98,7 @@ const Sidebar = () => {
             </li>
 
             <li onClick={() => setOpen(!open)} className="cursor-pointer">
-              <span className="flex items-center p-2 text-gray-900 rounded-lg  hover:bg-[#F3F3F3] group">
+              <span className="flex items-center p-2 text-gray-900 rounded-lg  hover:bg-gray-100  group">
                 <svg
                   className="flex-shrink-0 w-5 h-5 text-gray-700 transition duration-75  group-hover:text-gray-900 "
                   aria-hidden="true"
@@ -91,24 +119,24 @@ const Sidebar = () => {
                   : "hidden"
               }
             >
-              <li className="hover:bg-[#F3F3F3] flex-1 ml-3 whitespace-nowrap rounded-lg">
+              <li className="hover:bg-gray-100  flex-1 ml-3 whitespace-nowrap rounded-lg">
                 <NavLink
                   to="/admin/products"
                   className={({ isActive }) =>
                     isActive
-                      ? "bg-[#F3F3F3] flex items-center p-2 text-gray-900 rounded-lg  hover:bg-[#F3F3F3] group"
+                      ? "bg-gray-100  flex items-center p-2 text-gray-900 rounded-lg  hover:bg-[#F3F3F3] group"
                       : "flex items-center p-2 text-gray-900 rounded-lg  hover:bg-bg-[#F3F3F3] group"
                   }
                 >
                   All
                 </NavLink>
               </li>
-              <li className="hover:bg-[#f3f3f3] flex-1 ml-3 whitespace-nowrap   rounded-lg">
+              <li className="bg-gray-100  flex-1 ml-3 whitespace-nowrap   rounded-lg">
                 <NavLink
                   to="/admin/product"
                   className={({ isActive }) =>
                     isActive
-                      ? "bg-[#F3F3F3] flex items-center p-2 text-gray-900 rounded-lg  hover:bg-[#F3F3F3] group"
+                      ? "bg-gray-100  flex items-center p-2 text-gray-900 rounded-lg  hover:bg-[#F3F3F3] group"
                       : "flex items-center p-2 text-gray-900 rounded-lg  hover:bg-bg-[#F3F3F3] group"
                   }
                 >
@@ -122,7 +150,7 @@ const Sidebar = () => {
                 to="/admin/users"
                 className={({ isActive }) =>
                   isActive
-                    ? "bg-[#F3F3F3] flex items-center p-2 text-gray-900 rounded-lg  hover:bg-[#F3F3F3] group"
+                    ? "bg-gray-100  flex items-center p-2 text-gray-900 rounded-lg  hover:bg-[#F3F3F3] group"
                     : "flex items-center p-2 text-gray-900 rounded-lg  hover:bg-bg-[#F3F3F3] group"
                 }
               >
@@ -144,7 +172,7 @@ const Sidebar = () => {
                 to="/admin/orders"
                 className={({ isActive }) =>
                   isActive
-                    ? "bg-[#F3F3F3] flex items-center p-2 text-gray-900 rounded-lg  hover:bg-[#F3F3F3] group"
+                    ? "bg-gray-100  flex items-center p-2 text-gray-900 rounded-lg  hover:bg-[#F3F3F3] group"
                     : "flex items-center p-2 text-gray-900 rounded-lg  hover:bg-bg-[#F3F3F3] group"
                 }
               >
@@ -166,7 +194,7 @@ const Sidebar = () => {
                 to="/admin/reviews"
                 className={({ isActive }) =>
                   isActive
-                    ? "bg-[#F3F3F3] flex items-center p-2 text-gray-900 rounded-lg  hover:bg-[#F3F3F3] group"
+                    ? "bg-gray-100  flex items-center p-2 text-gray-900 rounded-lg  hover:bg-[#F3F3F3] group"
                     : "flex items-center p-2 text-gray-900 rounded-lg  hover:bg-bg-[#F3F3F3] group"
                 }
               >

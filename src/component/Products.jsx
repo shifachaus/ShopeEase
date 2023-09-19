@@ -89,7 +89,7 @@ const Products = () => {
                     // lastPageText="Last"
                     itemClass="inline-block px-3 py-1 rounded-md border border-gray-300 mr-1 md:mr-6"
                     linkClass="text-gray-500 hover:text-gray-700 cursor-pointer"
-                    activeClass="bg-[#a99985] !text-white"
+                    activeClass="bg-[#565E60] !text-white"
                     activeLinkClass="!text-white"
                   />
                 </div>

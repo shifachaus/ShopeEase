@@ -121,7 +121,7 @@ const Cart = () => {
             <div className="flex flex-col gap-4  md:mt-10 md:col-span-4">
               <h2 className=" text-xl ">Cart Totals</h2>
 
-              <div className="md:w-80 bg-[#f5f1ed]">
+              <div className="md:w-80 bg-gray-100">
                 <div className=" flex flex-col  gap-4 rounded p-5 h-fit">
                   <div className=" flex flex-col  gap-2 mb-4">
                     <div className="flex justify-between gap-2 items-center">

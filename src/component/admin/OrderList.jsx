@@ -52,10 +52,10 @@ const OrderList = () => {
         return (
           <div className="flex gap-2">
             <Link to={`/admin/order/${row?.original?._id}`}>
-              <FiEdit2 className="text-lg hover:text-purple-800" />
+              <FiEdit2 className="text-lg hover:text-[#565E60]" />
             </Link>
             <button onClick={() => deleteOrderHandler(row?.original?._id)}>
-              <AiOutlineDelete className="text-lg hover:text-purple-800" />
+              <AiOutlineDelete className="text-lg hover:text-[#565E60]" />
             </button>
           </div>
         );

@@ -32,7 +32,7 @@ const Cart = () => {
     <section>
       <PageHero title={"cart"} />
 
-      <div className="mx-auto max-w-6xl  p-6 lg:px-8 md:h-screen">
+      <div className="mx-auto max-w-6xl  my-10   p-6 lg:px-8 md:h-screen">
         {cartItems?.length === 0 ? (
           <div className="max-w-sx flex flex-col items-center  p-3  w-full h-screen">
             <h2 className="font-medium text-2xl mb-6 text-slate-700">
@@ -43,7 +43,7 @@ const Cart = () => {
             </p>
             <Link
               to="/"
-              className="text-purple-800 font-medium text-md hover:shadow  px-4 py-2 rounded border border-purple-200"
+              className="text-slate-900 font-medium text-md hover:shadow  px-4 py-2 rounded border border-[#565e6048]"
             >
               Start Shopping
             </Link>

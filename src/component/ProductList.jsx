@@ -14,7 +14,7 @@ const ProductList = ({ item }) => {
           alt="image"
           height={200}
           width={200}
-          className="h-40 md:h-56  xl:h-72 xl:p-8  mix-blend-darken transition-all delay-75 duration-300 ease-linear group-hover:scale-110 "
+          className="h-20 sm:h-40 md:h-56  xl:h-72 xl:p-8  mix-blend-darken transition-all delay-75 duration-300 ease-linear group-hover:scale-110 "
         />
       </div>
       <div className="flex flex-col justify-between">

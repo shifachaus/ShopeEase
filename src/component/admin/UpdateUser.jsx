@@ -3,7 +3,6 @@ import Sidebar from "./Sidebar";
 import {
   useGetAllUserQuery,
   useGetSingleUserQuery,
-  useUpdateUserMutation,
   useUpdateUserRoleMutation,
 } from "../../utils/userApi";
 import { useEffect, useState } from "react";
@@ -14,8 +13,6 @@ const UpdateUser = () => {
   const [updateUserRole, { isLoading, isError, error }] =
     useUpdateUserRoleMutation();
   const getAllUserQuery = useGetAllUserQuery();
-
-  const navigate = useNavigate();
 
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");

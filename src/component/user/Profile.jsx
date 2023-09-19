@@ -6,7 +6,7 @@ const Profile = () => {
   console.log(data, "MY PROFILE");
 
   return (
-    <div className="mx-auto max-w-6xl mt-6 p-6 lg:px-8 h-full md:h-screen">
+    <div className="mx-auto max-w-6xl  my-10 p-6 lg:px-8 h-full md:h-screen">
       <h2 className="text-2xl font-medium mb-6 text-center md:text-left ">
         My Profile
       </h2>
@@ -45,13 +45,13 @@ const Profile = () => {
 
           <div className="flex flex-col md:grid md:grid-cols-2 gap-4 mt-10">
             <Link
-              className="flex justify-center bg-[#252323] hover:bg-[#a99985] border-[#252323] hover:border-[#a99985] p-2 px-4 cursor-pointer  text-white border hover:shadow-md "
+              className="flex justify-center bg-[#252323] hover:bg-[#565E60] border-[#252323] hover:border-[#a99985] p-2 px-4 cursor-pointer  text-white border hover:shadow-md "
               to="/orders"
             >
               My Orders
             </Link>
             <Link
-              className="flex justify-center bg-[#252323] hover:bg-[#a99985] border-[#252323] hover:border-[#a99985] p-2 px-4 cursor-pointer  text-white border hover:shadow-md "
+              className="flex justify-center bg-[#252323] hover:bg-[#565E60] border-[#252323] hover:border-[#a99985] p-2 px-4 cursor-pointer  text-white border hover:shadow-md "
               to="/password/update"
             >
               Change Password

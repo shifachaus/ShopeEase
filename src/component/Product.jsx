@@ -56,7 +56,7 @@ const Product = ({ displayImage, singleProductItem, setDisplay, display }) => {
   };
 
   return (
-    <section className="mt-14">
+    <section className="my-10">
       <div className="grid grid-cols-1 gap-6 md:gap-[6rem] md:grid-cols-2">
         <div className="flex flex-col gap-6 ">
           <div className="bg-gray-100   ">
@@ -134,7 +134,7 @@ const Product = ({ displayImage, singleProductItem, setDisplay, display }) => {
             <button
               onClick={() => onAddToCart()}
               disabled={Stock < 1 ? true : false}
-              className=" bg-[#252323] hover:bg-[#a99985]  p-2 px-4 cursor-pointer  text-white border border-[#252323] hover:border-[#a99985]  hover:shadow-md uppercase "
+              className=" bg-[#252323] hover:bg-[#565E60]  p-2 px-4 cursor-pointer  text-white border border-[#252323] hover:border-[#a99985]  hover:shadow-md uppercase "
             >
               Add to cart
             </button>

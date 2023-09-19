@@ -7,8 +7,6 @@ import Sidebar from "./Sidebar";
 import { useMemo } from "react";
 import { useTable } from "react-table";
 import { AiOutlineDelete } from "react-icons/ai";
-import { FiEdit2 } from "react-icons/fi";
-import { Link } from "react-router-dom";
 
 const ProductReviews = () => {
   const [arrayOfObjects, setArrayOfObjects] = useState([]);
@@ -108,7 +106,7 @@ const ProductReviews = () => {
                     deleteReviewHandler(row?.original?._id, review._id)
                   }
                 >
-                  <AiOutlineDelete className="text-lg hover:text-[#565E60]" />
+                  <AiOutlineDelete className="text-lg hover:text-[#828D91]" />
                 </button>
               </div>
             ))}

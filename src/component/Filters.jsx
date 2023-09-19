@@ -21,12 +21,12 @@ const Filters = ({
 
   const [open, setOpen] = useState(false);
   return (
-    <aside className=" sticky top-0  hidden h-full  flex-col space-y-8 border p-8 font-light  md:flex ">
+    <aside className="border rounded  sticky top-0  hidden h-fit  flex-col space-y-8  p-8 font-light  md:flex ">
       <div className="flex justify-between mb-6">
         <h2 className="text-xl uppercase ">Filter by</h2>
-        <button className="text-sm capitalize text-primary text-[#565E60]">
+        {/* <button className="text-sm capitalize text-primary text-[#565E60]">
           Clear all
-        </button>
+        </button> */}
       </div>
 
       <div className="col-span-1 mb-4">

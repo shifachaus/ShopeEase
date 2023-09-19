@@ -30,9 +30,9 @@ const SidebarFilter = ({
     >
       <div className="flex justify-between mb-6">
         <h2 className="text-xl uppercase ">Filter by</h2>
-        <button className="text-sm capitalize text-primary text-[#565E60]">
+        {/* <button className="text-sm capitalize text-primary text-[#565E60]">
           Clear all
-        </button>
+        </button> */}
       </div>
 
       <div className="col-span-1 mb-4">

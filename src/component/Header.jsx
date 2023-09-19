@@ -115,7 +115,7 @@ const Header = () => {
 
       {/*MObile  Navbar */}
       <div
-        className={` fixed inset-y-0 right-0 z-10 overflow-y-auto bg-white px-6 py-6  w-1/2  h-screen transition-transform ${
+        className={`z-50 fixed inset-y-0 right-0 overflow-y-auto bg-white px-6 py-6  w-1/2  h-screen transition-transform ${
           showMenu ? "translate-x-1" : "translate-x-full"
         } `}
         role="dialog"

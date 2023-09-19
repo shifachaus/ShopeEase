@@ -67,7 +67,7 @@ const Sidebar = () => {
             className="flex lg:flex-1 items-center p-2 text-gray-900 rounded-lg  group mb-10"
           >
             <h1 className="font-black tracking-wider text-xl">
-              <span className="text-[#565E60]">Shop</span>
+              <span className="text-[#828D91]">Shop</span>
               <span className="text-[#252323]">Ease</span>
             </h1>
           </Link>

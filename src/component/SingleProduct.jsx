@@ -1,6 +1,5 @@
 import { useParams } from "react-router-dom";
-import { single_product_url } from "../utils/constants";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import ShimmerSingleProduct from "./ShimmerSingleProduct";
 import Product from "./Product";
 import { useGetProductQuery } from "../utils/productApi";

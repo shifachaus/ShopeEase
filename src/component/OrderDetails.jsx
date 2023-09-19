@@ -9,7 +9,7 @@ const OrderDetails = () => {
   console.log(orderData, "orderData");
   return (
     <Fragment>
-      <div className="mx-auto max-w-7xl  p-6 lg:px-8">
+      <div className="mx-auto max-w-7xl  my-10  p-6 lg:px-8">
         <div className=" flex flex-col gap-6  mt-6 ">
           <h2 className="text-xl font-medium mb-2  text-gray-500 sm:text-2xl md:text-3xl">
             Order ID #{orderData?.order?._id}

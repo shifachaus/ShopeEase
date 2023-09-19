@@ -11,7 +11,7 @@ const Body = () => {
   // console.log(product?.products.length);
 
   return (
-    <main className="bg-gray-100">
+    <div className="bg-gray-100">
       <section className=" bg-[#828D91] h-80 md:h-[39rem] lg:h-[45rem]   overflow-hidden">
         <div className="relative max-w-7xl mx-auto flex flex-col ">
           <div className="max-w-7xl mx-auto z-10  h-80 md:h-72 p-4  flex flex-col items-start sm:items-center pt-10 md:pt-20   ">
@@ -37,8 +37,8 @@ const Body = () => {
         </div>
       </section>
 
-      <section className="mx-auto max-w-7xl  p-6  lg:px-8  pt-12    pb-12  mt-10 md:mt-20 px-5 py-5   md:py-8 lg:py-10 xl:px-28 xl:py-16">
-        <h2 className="text-2xl sm:text-3xl font-medium mb-6 mt-6  text-black text-center">
+      <section className="mx-auto max-w-7xl  p-6  lg:px-8  pt-12      mt-10 md:mt-20 px-5 py-5   md:py-8 lg:py-10 ">
+        <h2 className="tracking-tight text-2xl sm:text-3xl font-medium  text-black text-center ">
           Featured Product
         </h2>
         {error ? (
@@ -48,7 +48,7 @@ const Body = () => {
         ) : isLoading ? (
           <Shimmer />
         ) : (
-          <div className=" grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4 pt-12 pb-12">
+          <div className=" grid grid-cols-2 gap-4  lg:grid-cols-4 pt-12 pb-12">
             {product?.products.slice(0, 4)?.map((item) => {
               return <FeaturedProducts key={item?._id} item={item} />;
             })}
@@ -56,8 +56,8 @@ const Body = () => {
         )}
       </section>
 
-      <section className="mx-auto  bg-gray-100 px-5 py-5 pt-12 mt-10 md:mt-20 md:py-8 lg:py-10 xl:px-28 xl:py-16  ">
-        <main className="mx-auto mt-20 max-w-7xl  pb-10 max-auto mb-10 gap-5 columns-1 lg:columns-2 space-x-5">
+      <section className="mx-auto  bg-gray-100 px-5 py-5  md:py-8 lg:py-10  ">
+        <main className="mx-auto max-w-7xl  pb-10 max-auto mb-10 gap-5 columns-1 lg:columns-2 space-x-5">
           <div className="flex flex-col items-start gap-2 ">
             <img src={planet} alt=" chair" />
             <h2 className=" flex flex-col  font-light uppercase tracking-widest md:w-full md:text-2xl xl:text-4xl ">
@@ -101,7 +101,7 @@ const Body = () => {
           </div>
         </div>
       </section>
-    </main>
+    </div>
   );
 };
 

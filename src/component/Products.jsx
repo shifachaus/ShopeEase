@@ -35,7 +35,7 @@ const Products = () => {
 
   return (
     <section>
-      <div className="mx-auto max-w-7xl  p-6 lg:px-8 md:grid md:grid-flow-col gap-4 ">
+      <div className="mx-auto max-w-7xl  p-6 my-10  lg:px-8 md:grid md:grid-flow-col gap-4 ">
         {/* DESKTOP */}
         <Filters
           setInputKeyword={setInputKeyword}
@@ -62,7 +62,7 @@ const Products = () => {
           category={category}
         />
 
-        <div className="col-span-11 p-4">
+        <div className="col-span-11 px-4">
           {error ? (
             <p className="text-center font-medium mt-5 capitalize h-screen">
               oops! something went wrong...

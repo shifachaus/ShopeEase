@@ -3,7 +3,7 @@ import { Navigate } from "react-router-dom";
 
 const ProtectedRoute = ({ isAdmin, children }) => {
   const { data, isLoading } = useGetUserQuery();
-  console.log(data, "PROTECTED ROUTE");
+  // console.log(data, "PROTECTED ROUTE");
   if (isLoading) {
     return <div>Loading...</div>;
   }

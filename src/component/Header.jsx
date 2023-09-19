@@ -8,14 +8,13 @@ import { logout } from "../utils/userSlice";
 const Header = () => {
   const [showMenu, setShowMenu] = useState(false);
   const [logoutUser] = useLogoutUserMutation();
-  const getUserQuery = useGetUserQuery();
   const cartItems = useSelector((store) => store.cart.items);
   const userData = useSelector((store) => store.user);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const signOut = async () => {
     const data = await logoutUser();
-    console.log(data);
+    // console.log(data);
     dispatch(logout());
     navigate("/");
   };
@@ -134,7 +133,6 @@ const Header = () => {
               className="-m-2.5 rounded-md p-2.5 text-gray-700"
               onClick={() => setShowMenu(false)}
             >
-              <span className="sr-only">Close menu</span>
               <svg
                 className="h-6 w-6"
                 fill="none"
@@ -172,6 +170,15 @@ const Header = () => {
                     className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                   >
                     Profile
+                  </Link>
+                )}
+
+                {userData !== null && userData?.user?.role === "admin" && (
+                  <Link
+                    to={"/admin/dashboard"}
+                    className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                  >
+                    Dashboard
                   </Link>
                 )}
                 <div className="flex items-center gap-3">

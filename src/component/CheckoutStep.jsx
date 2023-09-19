@@ -1,5 +1,3 @@
-import React from "react";
-
 const CheckoutStep = ({ activeStep }) => {
   const steps = [
     { label: "Shipping Details" },

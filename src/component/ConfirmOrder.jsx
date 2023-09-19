@@ -19,7 +19,7 @@ const ConfirmOrder = () => {
 
   // console.log(items);
 
-  const address = `${shippingInfo.address}, ${shippingInfo.city}, ${shippingInfo.state}, ${shippingInfo.pinCode}, ${shippingInfo.country}`;
+  const address = `${shippingInfo?.address}, ${shippingInfo?.city}, ${shippingInfo?.state}, ${shippingInfo?.pinCode}, ${shippingInfo?.country}`;
 
   const proceedToPayment = () => {
     const data = { subTotal, shippingCharges, tax, totalPrice };

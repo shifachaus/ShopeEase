@@ -1,4 +1,4 @@
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { formatPrice } from "../../utils/helper";
 import Sidebar from "./Sidebar";
 import {
@@ -16,8 +16,6 @@ const ProcessOrder = () => {
   } = useGetOrderDetailsQuery(id);
   const [updateOrder, { isLoading, isError, error }] = useUpdateOrderMutation();
   const [status, setStatus] = useState("");
-
-  const navigate = useNavigate("");
 
   const address = `${orderData?.order?.shippingInfo.address}, ${orderData?.order?.shippingInfo.city}, ${orderData?.order?.shippingInfo.state}, ${orderData?.order?.shippingInfo.pinCode}, ${orderData?.order?.shippingInfo.country}`;
 
@@ -88,8 +86,8 @@ const ProcessOrder = () => {
                     <div className="flex gap-2">
                       <p>Amount:</p>
                       <span>
-                        {orderData?.order.totalPrice &&
-                          formatPrice(orderData?.order.totalPrice)}
+                        {orderData?.order?.totalPrice &&
+                          formatPrice(orderData?.order?.totalPrice)}
                       </span>
                     </div>
                   </div>
@@ -103,14 +101,14 @@ const ProcessOrder = () => {
                   <div className="pl-4 pb-4">
                     <p
                       className={
-                        orderData?.order.orderStatus &&
-                        orderData?.order.orderStatus === "Delivered"
+                        orderData?.order?.orderStatus &&
+                        orderData?.order?.orderStatus === "Delivered"
                           ? "text-green-500"
                           : "text-red-500"
                       }
                     >
-                      {orderData?.order.orderStatus &&
-                        orderData?.order.orderStatus}
+                      {orderData?.order?.orderStatus &&
+                        orderData?.order?.orderStatus}
                     </p>
                   </div>
                 </div>
@@ -122,37 +120,37 @@ const ProcessOrder = () => {
 
                   <div className="mt-6 p-2">
                     {orderData?.order?.orderItems?.map((item) => {
-                      console.log(item.product, "CONFIRM oRDER");
+                      // console.log(item.product, "CONFIRM oRDER");
                       return (
                         <div
-                          key={item._id}
+                          key={item?._id}
                           className="grid grid-cols-3 gap-2 items-center"
                         >
                           <img
                             src={item?.image}
-                            alt={item.name}
+                            alt={item?.name}
                             className="h-16 w-20"
                           />
-                          <Link to={`/product/${item.product}`}>
+                          <Link to={`/product/${item?.product}`}>
                             {item.name}
                           </Link>
                           <p>
-                            {item.qty} X {formatPrice(item.price)} ={" "}
-                            <b>{formatPrice(item.price * item.qty)}</b>
+                            {item.qty} X {formatPrice(item?.price)} ={" "}
+                            <b>{formatPrice(item?.price * item?.qty)}</b>
                           </p>
                         </div>
                       );
                     })}
                   </div>
                 </div>
-                {orderData?.order.orderStatus !== "Delivered" && (
+                {orderData?.order?.orderStatus !== "Delivered" && (
                   <div className="md:absolute md:border-r md:border-gray-200 md:w-10 md:h-full md:top-0 md:left-[90%]"></div>
                 )}
               </div>
 
               <div
                 className={
-                  orderData?.order.orderStatus === "Delivered"
+                  orderData?.order?.orderStatus === "Delivered"
                     ? "hidden"
                     : "mt-8 md:col-span-4 "
                 }
@@ -166,11 +164,11 @@ const ProcessOrder = () => {
                     className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                   >
                     <option value="">Choose Category</option>
-                    {orderData?.order.orderStatus === "Processing" && (
+                    {orderData?.order?.orderStatus === "Processing" && (
                       <option value="Shipped">Shipped</option>
                     )}
 
-                    {orderData?.order.orderStatus === "Shipped" && (
+                    {orderData?.order?.orderStatus === "Shipped" && (
                       <option value="Delivered">Delivered</option>
                     )}
                   </select>

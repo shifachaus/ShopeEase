@@ -14,7 +14,6 @@ const Products = () => {
 
   const [price] = useState([0, 2500000]);
   const [priceV, setPriceV] = useState(4000000);
-  const [open, setOpen] = useState(false);
 
   const {
     data: product,

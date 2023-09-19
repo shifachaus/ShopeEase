@@ -197,15 +197,6 @@ const NewProduct = () => {
                   </div>
                 </div>
 
-                {/* <div className="flex flex-col">
-                  <button
-                    className=" bg-[#252323] text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-                    type="submit"
-                  >
-                    <Spinner />
-                  </button>
-                </div> */}
-
                 <div className="flex flex-col">
                   <button
                     disabled=""

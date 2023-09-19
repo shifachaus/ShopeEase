@@ -13,7 +13,7 @@ const Review = ({ setOpen, open }) => {
     try {
       const review = { comment, rating, id };
       const data = await newReview(review);
-      console.log(data, "SUCCESS");
+      // console.log(data, "SUCCESS");
       setOpen(false);
     } catch (err) {
       console.log(err, "REVIEW ERROR");
@@ -24,8 +24,7 @@ const Review = ({ setOpen, open }) => {
       className={
         open
           ? "flex flex-col gap-3 m-auto fixed top-0 left-0 right-0 z-50 h-screen w-screen  p-4 overflow-x-hidden overflow-y-auto  max-h-full backdrop-blur-sm"
-          : //   "flex flex-col gap-3 m-auto  rounded fixed h-screen w-screen place-items-center bg-opacity-60  backdrop-blur-sm  z-[999] transition-opacity duration-300"
-            "hidden opacity-0 "
+          : "hidden opacity-0 "
       }
     >
       <div className="bg-[#f5f1ed]  px-4 py-8 fixed top-0 left-0 right-0 z-50 h-screen w-screen  p-4 overflow-x-hidden">

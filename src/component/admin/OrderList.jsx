@@ -21,7 +21,7 @@ const OrderList = () => {
     try {
       const data = await deleteOrder(id);
       refetch();
-      console.log(data, "DELETE");
+      // console.log(data, "DELETE");
     } catch (err) {
       console.log(err);
     }
@@ -89,9 +89,9 @@ const OrderList = () => {
                 className="w-full text-sm text-left text-gray-500 "
               >
                 <thead className="text-xs text-gray-700 uppercase bg-gray-100">
-                  {headerGroups.map((headerGroup, i) => (
+                  {headerGroups?.map((headerGroup, i) => (
                     <tr key={i} {...headerGroup.getHeaderGroupProps()}>
-                      {headerGroup.headers.map((column, i) => (
+                      {headerGroup?.headers?.map((column, i) => (
                         <th
                           key={i}
                           {...column.getHeaderProps()}
@@ -105,11 +105,11 @@ const OrderList = () => {
                 </thead>
 
                 <tbody {...getTableBodyProps()}>
-                  {rows.map((row, i) => {
+                  {rows?.map((row, i) => {
                     prepareRow(row);
                     return (
                       <tr key={i} {...row.getRowProps()} className="border-b">
-                        {row.cells.map((cell, i) => {
+                        {row?.cells.map((cell, i) => {
                           return (
                             <td
                               key={i}

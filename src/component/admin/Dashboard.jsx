@@ -44,7 +44,7 @@ const Dashboard = () => {
       totalAmount += item.totalPrice;
     });
 
-  console.log(orderData?.orders, totalAmount, "DASH");
+  // console.log(orderData?.orders, totalAmount, "DASH");
 
   const data = {
     labels: ["Initial Amount", "Amount Earned"],

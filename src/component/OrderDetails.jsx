@@ -6,7 +6,7 @@ import { Fragment } from "react";
 const OrderDetails = () => {
   const { id } = useParams();
   const { data: orderData, error, isLoading } = useGetOrderDetailsQuery(id);
-  console.log(orderData, "orderData");
+  // console.log(orderData, "orderData");
   return (
     <Fragment>
       <div className="mx-auto max-w-7xl  my-10  p-6 lg:px-8">

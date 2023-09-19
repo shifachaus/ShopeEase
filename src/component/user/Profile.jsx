@@ -3,7 +3,7 @@ import { useGetUserQuery } from "../../utils/userApi";
 
 const Profile = () => {
   const { data } = useGetUserQuery();
-  console.log(data, "MY PROFILE");
+  // console.log(data, "MY PROFILE");
 
   return (
     <div className="mx-auto max-w-6xl  my-10 p-6 lg:px-8 h-full md:h-screen">

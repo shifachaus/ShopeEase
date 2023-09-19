@@ -74,15 +74,15 @@ const Product = ({ displayImage, singleProductItem, setDisplay, display }) => {
                 alt="image"
                 key={img._id}
                 className={`${
-                  display === index && "border-2 border-[#a99985]"
-                } object-cover object-center h-20 w-20 cursor-pointer rounded bg-gray-100`}
+                  display === index && "border-2 border-[#828D91]"
+                } object-cover object-center h-10 w-10 sm:h-20 sm:w-20 cursor-pointer rounded bg-gray-100`}
                 onClick={() => setDisplay(index)}
               />
             ))}
           </div>
         </div>
 
-        <div className="flex flex-col gap-6">
+        <div className="flex flex-col gap-6 mt-10 md:mt-0">
           <div>
             {Stock > 0 ? (
               <span className="  rounded border border-green-500 px-4 py-2 text-center text-xs font-medium capitalize text-green-500 ">
@@ -114,7 +114,6 @@ const Product = ({ displayImage, singleProductItem, setDisplay, display }) => {
 
           <p className="font-light text-slate-500 mb-4">{description}</p>
 
-          {/* <div className="border border-slate-200"></div> */}
           <div className="flex flex-col gap-4  mb-4 w-1/3">
             <div className="flex gap-4 justify-center mb-4">
               <button
@@ -134,7 +133,7 @@ const Product = ({ displayImage, singleProductItem, setDisplay, display }) => {
             <button
               onClick={() => onAddToCart()}
               disabled={Stock < 1 ? true : false}
-              className=" bg-[#252323] hover:bg-[#565E60]  p-2 px-4 cursor-pointer  text-white border border-[#252323] hover:border-[#a99985]  hover:shadow-md uppercase "
+              className="w-40 sm:w-60  bg-[#252323] hover:bg-[#565E60]  p-2 px-4 cursor-pointer  text-white border border-[#252323] hover:border-[#828D91]  hover:shadow-md uppercase "
             >
               Add to cart
             </button>

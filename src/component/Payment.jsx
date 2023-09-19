@@ -19,7 +19,6 @@ const Payment = () => {
   const orderInfo = JSON.parse(sessionStorage.getItem("orderInfo"));
   const payBtn = useRef(null);
   const navigate = useNavigate();
-  const dispatch = useDispatch();
   const stripe = useStripe();
   const elements = useElements();
   const {
@@ -31,16 +30,16 @@ const Payment = () => {
   // console.log(orderInfo, shippingInfo, items, user, "USER DATA PAYMENT");
 
   const paymentData = {
-    amount: orderInfo.totalPrice,
+    amount: orderInfo?.totalPrice,
   };
 
   const order = {
     shippingInfo,
     orderItems: items,
-    itemsPrice: orderInfo.subTotal,
-    taxPrice: orderInfo.tax,
-    shippingPrice: orderInfo.shippingCharges,
-    totalPrice: orderInfo.totalPrice,
+    itemsPrice: orderInfo?.subTotal,
+    taxPrice: orderInfo?.tax,
+    shippingPrice: orderInfo?.shippingCharges,
+    totalPrice: orderInfo?.totalPrice,
   };
 
   const handlePayment = async (e) => {
@@ -61,7 +60,7 @@ const Payment = () => {
         config
       );
 
-      const client_secret = data.client_secret;
+      const client_secret = data?.client_secret;
 
       if (!stripe || !elements) return;
 
@@ -69,31 +68,31 @@ const Payment = () => {
         payment_method: {
           card: elements.getElement(CardNumberElement),
           billing_details: {
-            name: user.name,
-            email: user.email,
+            name: user?.name,
+            email: user?.email,
             address: {
-              line1: shippingInfo.address,
-              city: shippingInfo.city,
-              state: shippingInfo.state,
-              postal_code: shippingInfo.pinCode,
-              country: shippingInfo.country,
+              line1: shippingInfo?.address,
+              city: shippingInfo?.city,
+              state: shippingInfo?.state,
+              postal_code: shippingInfo?.pinCode,
+              country: shippingInfo?.country,
             },
           },
         },
       });
 
-      if (result.error) {
+      if (result?.error) {
         payBtn.current.disabled = false;
-        alert(result.error.message);
+        alert(result?.error?.message);
       } else {
-        if (result.paymentIntent.status === "succeeded") {
+        if (result?.paymentIntent?.status === "succeeded") {
           order.paymentInfo = {
-            id: result.paymentIntent.id,
-            status: result.paymentIntent.status,
+            id: result?.paymentIntent?.id,
+            status: result?.paymentIntent?.status,
           };
 
           const data = await newOrder(order);
-          console.log(data);
+          // console.log(data);
           navigate("/success");
         } else {
           alert("There's some issue while processing payment");
@@ -130,7 +129,7 @@ const Payment = () => {
           </div>
           <input
             type="submit"
-            value={`Pay - ${orderInfo && formatPrice(orderInfo.totalPrice)}`}
+            value={`Pay - ${orderInfo && formatPrice(orderInfo?.totalPrice)}`}
             ref={payBtn}
             className=" bg-[#252323]  text-white font-bold py-2 px-4  focus:outline-none focus:shadow-outline"
           />

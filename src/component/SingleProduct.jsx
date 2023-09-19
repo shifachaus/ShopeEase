@@ -12,10 +12,6 @@ const SingleProduct = () => {
   // console.log(product, "PRODUCT");
   const [display, setDisplay] = useState(0);
 
-  // useEffect(() => {
-  //   setDisplay(product?.product?.images[0]?._id);
-  // }, [product]);
-
   return (
     <section>
       <PageHero title={product?.product?.name} product={product?.product} />

@@ -43,10 +43,10 @@ const ProductReviews = () => {
     {
       Header: "ID",
       accessor: (row) => {
-        if (row.reviews) {
-          return row.reviews
+        if (row?.reviews) {
+          return row?.reviews
             .map((review) => {
-              return review._id;
+              return review?._id;
             })
             .join(", ");
         }
@@ -69,10 +69,10 @@ const ProductReviews = () => {
     {
       Header: "Comment",
       accessor: (row) => {
-        if (row.reviews) {
-          return row.reviews
+        if (row?.reviews) {
+          return row?.reviews
             .map((review) => {
-              return review.comment;
+              return review?.comment;
             })
             .join(", ");
         }
@@ -82,10 +82,10 @@ const ProductReviews = () => {
     {
       Header: "Rating",
       accessor: (row) => {
-        if (row.reviews) {
-          return row.reviews
+        if (row?.reviews) {
+          return row?.reviews
             .map((review) => {
-              return review.rating;
+              return review?.rating;
             })
             .join(", ");
         }
@@ -161,9 +161,9 @@ const ProductReviews = () => {
                     className="w-full text-sm text-left text-gray-500 "
                   >
                     <thead className="text-xs text-gray-700 uppercase bg-gray-100">
-                      {headerGroups.map((headerGroup, i) => (
+                      {headerGroups?.map((headerGroup, i) => (
                         <tr key={i} {...headerGroup.getHeaderGroupProps()}>
-                          {headerGroup.headers.map((column, i) => (
+                          {headerGroup?.headers?.map((column, i) => (
                             <th
                               key={i}
                               {...column.getHeaderProps()}
@@ -177,7 +177,7 @@ const ProductReviews = () => {
                     </thead>
 
                     <tbody {...getTableBodyProps()}>
-                      {rows.map((row, i) => {
+                      {rows?.map((row, i) => {
                         prepareRow(row);
                         return (
                           <tr
@@ -185,7 +185,7 @@ const ProductReviews = () => {
                             {...row.getRowProps()}
                             className="border-b"
                           >
-                            {row.cells.map((cell, i) => {
+                            {row?.cells?.map((cell, i) => {
                               return (
                                 <td
                                   key={i}

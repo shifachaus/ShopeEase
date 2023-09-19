@@ -47,8 +47,8 @@ const UpdateProduct = () => {
 
       reader.onload = () => {
         if (reader.readyState === 2) {
-          setImagesPreview((old) => [...old, reader.result]);
-          setImages((old) => [...old, reader.result]);
+          setImagesPreview((old) => [...old, reader?.result]);
+          setImages((old) => [...old, reader?.result]);
         }
       };
 

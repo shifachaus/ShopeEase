@@ -9,7 +9,7 @@ import PageHero from "./PageHero";
 const Cart = () => {
   const cartItems = useSelector((store) => store.cart.items);
   const user = useSelector((store) => store.user);
-  console.log(user?.success);
+  // console.log(user?.success);
   const dispatch = useDispatch();
   const [qty] = useState(1);
 

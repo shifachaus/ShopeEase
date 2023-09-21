@@ -21,7 +21,7 @@ const Header = () => {
 
   // console.log(userData, "HEASE", getUserQuery);
   return (
-    <header className=" bg-[#828D91]">
+    <header className=" bg-[#688272]">
       <nav
         className="mx-auto flex max-w-7xl items-center justify-between p-6 md:pb-8 md:pt-8 lg:px-8"
         aria-label="Global"
@@ -79,6 +79,14 @@ const Header = () => {
               Profile
             </Link>
           )}
+          {userData !== null && userData?.user?.role === "admin" && (
+            <Link
+              to={"/admin/dashboard"}
+              className="text-sm font-medium leading-6 text-neutral-100"
+            >
+              Dashboard
+            </Link>
+          )}
         </div>
 
         <div className="hidden md:flex md:flex-1 md:justify-end md:items-center gap-4">
@@ -124,7 +132,7 @@ const Header = () => {
           <div className="flex items-center justify-between">
             <div className="flex lg:flex-1">
               <h1 className="font-black tracking-wider text-xl">
-                <span className="text-[#828D91]">Shop</span>
+                <span className="text-[#688272]">Shop</span>
                 <span className="text-[#252323]">Ease</span>
               </h1>
             </div>
@@ -188,7 +196,7 @@ const Header = () => {
                   >
                     <p className="relative ">
                       <BsCart4 className="text-xl " />
-                      <span className="absolute text-sm text-white font-medium -top-1 left-4 bg-[#828D91] rounded-[50%]  w-full text-center">
+                      <span className="absolute text-sm text-white font-medium -top-1 left-4 bg-[#688272] rounded-[50%]  w-full text-center">
                         {cartItems.length}
                       </span>
                     </p>

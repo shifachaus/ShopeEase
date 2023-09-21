@@ -46,14 +46,13 @@ const UsersList = () => {
       Header: "ACTION",
       accessor: "Action",
       Cell: ({ row }) => {
-        // console.log(row.original._id, "ROW");
         return (
           <div className="flex gap-2">
             <Link to={`/admin/user/${row?.original?._id}`}>
-              <FiEdit2 className="text-lg hover:text-[#828D91]" />
+              <FiEdit2 className="text-lg hover:text-[#688272]" />
             </Link>
             <button onClick={() => deleteUserHandler(row?.original?._id)}>
-              <AiOutlineDelete className="text-lg hover:text-[#828D91]" />
+              <AiOutlineDelete className="text-lg hover:text-[#688272]" />
             </button>
           </div>
         );
@@ -76,7 +75,7 @@ const UsersList = () => {
         <div className="p-4 sm:ml-64 ">
           <div className="mx-auto max-w-7xl p-6 lg:px-8 ">
             <div className=" p-2 ">
-              <h2 className="text-xl font-medium text-[#252323] mb-6 text-center ">
+              <h2 className="text-xl font-medium mb-6 tracking-tight sm:text-2xl  text-black text-center ">
                 ALL USERS
               </h2>
             </div>

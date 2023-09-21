@@ -85,36 +85,46 @@ const Dashboard = () => {
 
       <main className="p-6 sm:ml-64 ">
         <div className=" p-2 ">
-          <p className="ml-3 text-xl font-medium text-[#252323]">Dashboard</p>
+          <h2 className="ml-3 text-xl md:text-2xl font-medium text-[#252323]  mb-6 tracking-tight  ">
+            Dashboard
+          </h2>
         </div>
 
         <div className="flex flex-col gap-8">
           <div className="p-4  ">
             <div className="sm:grid sm:grid-cols-2 md:grid-cols-4 gap-4 md:gap-6  flex flex-col">
               <div className=" bg-white mb-4 text-black p-4 shadow-md rounded">
-                <span className="text-sm font-bold bg-blue-200 rounded  px-2 py-1 ">
+                <span className="text-sm font-bold bg-blue-200 rounded  px-2 py-1  ">
                   Total Amount
                 </span>
-                <p className="text-2xl mt-2">{totalAmount / 100}</p>
+                <p className="text-2xl md:text-3xl  mt-4">
+                  {totalAmount / 100}
+                </p>
               </div>
 
               <div className=" bg-white mb-4 text-black p-4 shadow-md rounded">
                 <span className="text-sm font-bold bg-green-200 rounded  px-2 py-1 ">
                   Product
                 </span>
-                <p className="text-2xl mt-2">{productData?.products?.length}</p>
+                <p className="text-2xl md:text-3xl  mt-4">
+                  {productData?.products?.length}
+                </p>
               </div>
               <div className=" bg-white mb-4 text-black p-4 shadow-md rounded">
                 <span className="text-sm font-bold bg-purple-200 rounded  px-2 py-1">
                   Orders
                 </span>
-                <p className="text-2xl mt-2">{orderData?.orders?.length}</p>
+                <p className="text-2xl md:text-3xl  mt-4">
+                  {orderData?.orders?.length}
+                </p>
               </div>
               <div className="  bg-white mb-4 text-black p-4 shadow-md rounded">
                 <span className="text-sm font-bold bg-yellow-100 rounded  px-2 py-1 ">
                   Users
                 </span>
-                <p className="text-2xl mt-2">{userData?.users?.length}</p>
+                <p className="text-2xl md:text-3xl  mt-4">
+                  {userData?.users?.length}
+                </p>
               </div>
             </div>
           </div>

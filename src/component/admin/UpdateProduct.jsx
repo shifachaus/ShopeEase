@@ -77,7 +77,7 @@ const UpdateProduct = () => {
         <div className="p-4 sm:ml-64 ">
           <div className="mx-auto max-w-lg mt-6  p-6 lg:px-8 h-screen">
             <div className=" p-2 ">
-              <h2 className="text-xl font-medium text-[#252323] mb-6 text-center ">
+              <h2 className="text-xl font-medium mb-6 tracking-tight sm:text-2xl  text-black text-center ">
                 UPDATE PRODUCT
               </h2>
             </div>

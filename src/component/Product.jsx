@@ -74,7 +74,7 @@ const Product = ({ displayImage, singleProductItem, setDisplay, display }) => {
                 alt="image"
                 key={img._id}
                 className={`${
-                  display === index && "border-2 border-[#828D91]"
+                  display === index && "border-2 border-[#688272]"
                 } object-cover object-center h-10 w-10 sm:h-20 sm:w-20 cursor-pointer rounded bg-gray-100`}
                 onClick={() => setDisplay(index)}
               />
@@ -133,7 +133,7 @@ const Product = ({ displayImage, singleProductItem, setDisplay, display }) => {
             <button
               onClick={() => onAddToCart()}
               disabled={Stock < 1 ? true : false}
-              className="w-40 sm:w-60  bg-[#252323] hover:bg-[#565E60]  p-2 px-4 cursor-pointer  text-white border border-[#252323] hover:border-[#828D91]  hover:shadow-md uppercase "
+              className="w-40 sm:w-60  bg-[#252323] hover:bg-[#688272]  p-2 px-4 cursor-pointer  text-white border border-[#252323] hover:border-[#828D91]  hover:shadow-md uppercase "
             >
               Add to cart
             </button>

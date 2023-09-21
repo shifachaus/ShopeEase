@@ -106,7 +106,7 @@ const ProductReviews = () => {
                     deleteReviewHandler(row?.original?._id, review._id)
                   }
                 >
-                  <AiOutlineDelete className="text-lg hover:text-[#828D91]" />
+                  <AiOutlineDelete className="text-lg hover:text-[#688272]" />
                 </button>
               </div>
             ))}
@@ -131,7 +131,7 @@ const ProductReviews = () => {
         <div className="p-4 sm:ml-64 ">
           <div className="mx-auto max-w-7xl p-6 lg:px-8 ">
             <div className=" p-2 ">
-              <h2 className="text-xl font-medium text-[#252323]  text-center ">
+              <h2 className="text-xl font-medium mb-6 tracking-tight sm:text-2xl  text-black text-center ">
                 PRODUCT REVIEWS
               </h2>
             </div>

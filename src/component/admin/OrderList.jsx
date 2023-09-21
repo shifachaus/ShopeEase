@@ -52,10 +52,10 @@ const OrderList = () => {
         return (
           <div className="flex gap-2">
             <Link to={`/admin/order/${row?.original?._id}`}>
-              <FiEdit2 className="text-lg hover:text-[#828D91]" />
+              <FiEdit2 className="text-lg hover:text-[#688272]" />
             </Link>
             <button onClick={() => deleteOrderHandler(row?.original?._id)}>
-              <AiOutlineDelete className="text-lg hover:text-[#828D91]" />
+              <AiOutlineDelete className="text-lg hover:text-[#688272]" />
             </button>
           </div>
         );
@@ -78,7 +78,7 @@ const OrderList = () => {
         <div className="p-4 sm:ml-64 ">
           <div className="mx-auto max-w-7xl p-6 lg:px-8 ">
             <div className=" p-2 ">
-              <h2 className="text-xl font-medium text-[#252323] mb-6 text-center ">
+              <h2 className="text-xl font-medium mb-6 tracking-tight sm:text-2xl  text-black text-center ">
                 ALL ORDERS
               </h2>
             </div>

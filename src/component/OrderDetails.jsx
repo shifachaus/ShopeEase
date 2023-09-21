@@ -8,17 +8,17 @@ const OrderDetails = () => {
   const { data: orderData, error, isLoading } = useGetOrderDetailsQuery(id);
   // console.log(orderData, "orderData");
   return (
-    <Fragment>
-      <div className="mx-auto max-w-7xl  my-10  p-6 lg:px-8">
+    <section className="mt-10 md:mt-20 mb-10 ">
+      <main className=" mx-auto max-w-7xl  my-10  p-6 lg:px-8">
         <div className=" flex flex-col gap-6  mt-6 ">
-          <h2 className="text-xl font-medium mb-2  text-gray-500 sm:text-2xl md:text-3xl">
+          <p className="text-xl font-medium mb-2  text-black sm:text-2xl md:text-3xl">
             Order ID #{orderData?.order?._id}
-          </h2>
-          <div>
-            <h2 className="text-2xl font-medium mb-2  text-gray-600">
+          </p>
+          <div className="mb-4">
+            <h2 className="text-xl font-medium mb-2    tracking-tight sm:text-2xl  text-black ">
               Shipping Info
             </h2>
-            <div className="flex flex-col gap-2 p-4">
+            <div className="flex flex-col gap-2 p-4 bg-gray-100 md:w-3/4">
               <p className="text-md font-medium">
                 Name:{" "}
                 <span className="text-sm font-normal">
@@ -41,10 +41,10 @@ const OrderDetails = () => {
             </div>
           </div>
 
-          <div>
-            <h2 className="text-2xl font-medium mb-2  text-gray-600">
+          <div className="mb-4">
+            <h3 className="text-lg font-medium mb-2 tracking-tight sm:text-xl  text-black ">
               Payment
-            </h2>
+            </h3>
 
             <div className="p-4 ">
               <p
@@ -71,12 +71,12 @@ const OrderDetails = () => {
             </div>
           </div>
 
-          <div>
-            <h2 className="text-2xl font-medium mb-2  text-gray-600">
+          <div className="mb-4">
+            <h3 className="text-lg font-medium mb-6 tracking-tight sm:text-xl   text-black ">
               Order Status
-            </h2>
+            </h3>
 
-            <div className="pl-4 pb-4">
+            <div className="pl-4 ">
               <p
                 className={
                   orderData?.order.orderStatus &&
@@ -90,12 +90,12 @@ const OrderDetails = () => {
             </div>
           </div>
         </div>
-      </div>
+      </main>
 
       <div className="border-t mx-auto max-w-7xl  p-6 lg:px-8">
-        <h2 className="text-2xl font-medium mb-2  text-gray-600">
+        <h3 className="text-lg font-medium mb-6 tracking-tight sm:text-xl   text-black ">
           Your Cart Items:
-        </h2>
+        </h3>
 
         <div className="mt-6 p-2">
           {orderData?.order?.orderItems?.map((item) => {
@@ -116,7 +116,7 @@ const OrderDetails = () => {
           })}
         </div>
       </div>
-    </Fragment>
+    </section>
   );
 };
 

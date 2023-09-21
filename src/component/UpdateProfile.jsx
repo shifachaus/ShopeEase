@@ -52,7 +52,7 @@ const UpdateProfile = () => {
 
   return (
     <div className="mx-auto max-w-md mt-6 p-6 lg:px-8 h-screen">
-      <div className=" bg-white shadow-lg shadow-purple-100 rounded  mb-4 ">
+      <div className=" bg-white shadow-lg rounded  mb-4 ">
         <h2 className="text-2xl font-medium mb-2 text-center text-gray-600">
           Update Profile
         </h2>

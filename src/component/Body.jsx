@@ -12,7 +12,7 @@ const Body = () => {
 
   return (
     <div className="bg-gray-100">
-      <section className=" bg-[#828D91] h-80 md:h-[39rem] lg:h-[45rem]   overflow-hidden">
+      <section className=" bg-[#688272] h-80 md:h-[39rem] lg:h-[45rem]   overflow-hidden">
         <div className="relative max-w-7xl mx-auto flex flex-col ">
           <div className="max-w-7xl mx-auto z-10  h-80 md:h-72 p-4  flex flex-col items-start sm:items-center pt-10 md:pt-20   ">
             <div className="flex flex-col  gap-2  p-4  items-start md:items-center pt-10 md:pt-20 ">
@@ -48,15 +48,22 @@ const Body = () => {
         ) : isLoading ? (
           <Shimmer />
         ) : (
-          <div className=" grid grid-cols-2 gap-4  lg:grid-cols-4 pt-12 pb-12">
-            {product?.products.slice(0, 4)?.map((item) => {
-              return <FeaturedProducts key={item?._id} item={item} />;
-            })}
+          <div>
+            <div className=" grid grid-cols-2 gap-4  lg:grid-cols-4 pt-12 pb-12">
+              {product?.products.slice(0, 4)?.map((item) => {
+                return <FeaturedProducts key={item?._id} item={item} />;
+              })}
+            </div>
+            <div className="flex items-center justify-center">
+              <p className=" border-b-2 py-1  border-black  text-[11px] uppercase tracking-wider hover:border-b-primary hover:text-primary hover:cursor-pointer ">
+                View Now
+              </p>
+            </div>
           </div>
         )}
       </section>
 
-      <section className="mx-auto  bg-gray-100 px-5 py-5  md:py-8 lg:py-10  ">
+      <section className="mx-auto  bg-gray-100 px-5 py-5  mt-10 md:mt-20 md:py-8 lg:py-10  ">
         <main className="mx-auto max-w-7xl  pb-10 max-auto mb-10 gap-5 columns-1 lg:columns-2 space-x-5">
           <div className="flex flex-col items-start gap-2 ">
             <img src={planet} alt=" chair" />
@@ -83,13 +90,12 @@ const Body = () => {
       <section className="mx-auto max-w-7xl mt-10 md:mt-20  h-64 md:h-80 md:bg-[url('./assets/footerimage.png')] bg-[url('./assets/mobile.png')] bg-cover bg-center">
         <div className="w-full   h-full flex  justify-center items-center backdrop-brightness-75">
           <div className=" flex flex-col h-full items-center justify-center text-white">
-            <h2 className="mb-4  text-4xl font-semibold  sm:text-4xl text-center">
+            <h4 className="mb-4  text-4xl font-semibold  sm:text-4xl text-center">
               Our Instagram
-            </h2>
-            <h4 className="mb-6 text-xl font-semibold">
-              {" "}
-              Follow our store on Instagram
             </h4>
+            <p className="mb-6 text-xl font-medium">
+              Follow our store on Instagram
+            </p>
             <button
               type="button"
               className="rounded shadow-md border-2 border-neutral-100 px-7 pb-[8px] pt-[10px] text-sm font-medium uppercase leading-normal  transition duration-150 ease-in-out hover:border-white hover:bg-neutral-500 hover:bg-opacity-10  focus:border-neutral-100 focus:text-neutral-100 focus:outline-none focus:ring-0 active:border-neutral-200 active:text-neutral-200 "

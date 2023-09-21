@@ -108,8 +108,8 @@ const Payment = () => {
   return (
     <div className="mx-auto max-w-7xl  p-6 lg:px-8">
       <CheckoutStep activeStep={2} />
-      <div className="max-w-md mt-8 mx-auto h-screen">
-        <h2 className="text-2xl font-medium mb-2 text-center  text-gray-600">
+      <div className="max-w-md mt-10 md:mt-20 mx-auto h-screen">
+        <h2 className="text-xl font-medium mb-2 text-center   tracking-tight sm:text-2xl  text-black  ">
           Card Info
         </h2>
         <form
@@ -131,7 +131,7 @@ const Payment = () => {
             type="submit"
             value={`Pay - ${orderInfo && formatPrice(orderInfo?.totalPrice)}`}
             ref={payBtn}
-            className=" bg-[#252323]  text-white font-bold py-2 px-4  focus:outline-none focus:shadow-outline"
+            className="text-white bg-[#252323] mt-4  focus:outline-none  font-medium rounded text-sm px-5 py-2.5 text-center  "
           />
         </form>
       </div>

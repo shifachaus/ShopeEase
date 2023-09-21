@@ -1,5 +1,13 @@
 import { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
+import { BsBox2Fill } from "react-icons/bs";
+import { MdRateReview } from "react-icons/md";
+import { HiUsers } from "react-icons/hi";
+import { FaShoppingBag } from "react-icons/fa";
+import { BiSolidDashboard } from "react-icons/bi";
+import { AiOutlineDown } from "react-icons/ai";
+import { MdCreate } from "react-icons/md";
+import { HiOutlineMenuAlt2 } from "react-icons/hi";
 
 const Sidebar = () => {
   const [open, setOpen] = useState(false);
@@ -12,9 +20,8 @@ const Sidebar = () => {
         data-drawer-toggle="default-sidebar"
         aria-controls="default-sidebar"
         type="button"
-        className=" inline-flex items-center p-2 mt-2 ml-3 text-sm text-gray-500 rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 "
+        className=" inline-flex items-center p-2 mt-2 ml-3 text-sm text-gray-900 rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 "
       >
-        <span className="sr-only">Open sidebar</span>
         <svg
           className="w-6 h-6"
           aria-hidden="true"
@@ -33,41 +40,27 @@ const Sidebar = () => {
       <aside
         id="default-sidebar"
         className={`fixed top-0 left-0 z-40 w-64 h-screen transition-transform ${
-          show ? "translate-x-1" : "-translate-x-full"
+          show ? "translate-x-0" : "-translate-x-full"
         } sm:translate-x-0`}
         aria-label="Sidebar"
       >
-        <button
-          onClick={() => setShow(false)}
-          data-drawer-target="default-sidebar"
-          data-drawer-toggle="default-sidebar"
-          aria-controls="default-sidebar"
-          type="button"
-          className=" inline-flex items-center p-2 mt-2 ml-3 text-sm text-gray-500 rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 "
-        >
-          <span className="sr-only">Open sidebar</span>
-          <svg
-            className="w-6 h-6"
-            aria-hidden="true"
-            fill="currentColor"
-            viewBox="0 0 20 20"
-            xmlns="http://www.w3.org/2000/svg"
+        <div className="h-full px-3 py-4 overflow-y-auto shadow-md bg-[#688272] ">
+          <button
+            onClick={() => setShow(false)}
+            data-drawer-target="default-sidebar"
+            data-drawer-toggle="default-sidebar"
+            aria-controls="default-sidebar"
+            type="button"
+            className=" inline-flex items-center p-2   text-sm text-gray-900 rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 "
           >
-            <path
-              clipRule="evenodd"
-              fillRule="evenodd"
-              d="M2 4.75A.75.75 0 012.75 4h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 4.75zm0 10.5a.75.75 0 01.75-.75h7.5a.75.75 0 010 1.5h-7.5a.75.75 0 01-.75-.75zM2 10a.75.75 0 01.75-.75h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 10z"
-            ></path>
-          </svg>
-        </button>
-
-        <div className="h-full px-3 py-4 overflow-y-auto shadow-md bg-[#FCFCFC] ">
+            <HiOutlineMenuAlt2 className="w-6 h-6" />
+          </button>
           <Link
             to="/"
             className="flex lg:flex-1 items-center p-2 text-gray-900 rounded-lg  group mb-10"
           >
             <h1 className="font-black tracking-wider text-xl">
-              <span className="text-[#828D91]">Shop</span>
+              <span className="text-white">Shop</span>
               <span className="text-[#252323]">Ease</span>
             </h1>
           </Link>
@@ -78,36 +71,19 @@ const Sidebar = () => {
                 to="/admin/dashboard"
                 className={({ isActive }) =>
                   isActive
-                    ? "bg-gray-100  flex items-center p-2 text-gray-900 rounded-lg  hover:bg-[#F3F3F3] group"
-                    : "flex items-center p-2 text-gray-900 rounded-lg  hover:bg-bg-[#F3F3F3] group"
+                    ? "bg-gray-100  flex items-center p-2  text-gray-900 rounded-lg   group"
+                    : "flex items-center p-2 hover:text-gray-900 rounded-lg text-neutral-100  hover:bg-gray-100 group"
                 }
               >
-                <svg
-                  className="flex-shrink-0 w-5 h-5 text-gray-700 transition duration-75  group-hover:text-gray-900 "
-                  aria-hidden="true"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="currentColor"
-                  viewBox="0 0 22 21"
-                >
-                  <path d="M16.975 11H10V4.025a1 1 0 0 0-1.066-.998 8.5 8.5 0 1 0 9.039 9.039.999.999 0 0 0-1-1.066h.002Z" />
-                  <path d="M12.5 0c-.157 0-.311.01-.565.027A1 1 0 0 0 11 1.02V10h8.975a1 1 0 0 0 1-.935c.013-.188.028-.374.028-.565A8.51 8.51 0 0 0 12.5 0Z" />
-                </svg>
+                <BiSolidDashboard className="flex-shrink-0 w-5 h-5 text-gray-900 transition duration-75   " />
 
                 <span className="flex-1 ml-3 whitespace-nowrap">Dashboard</span>
               </NavLink>
             </li>
 
-            <li onClick={() => setOpen(!open)} className="cursor-pointer">
-              <span className="flex items-center p-2 text-gray-900 rounded-lg  hover:bg-gray-100  group">
-                <svg
-                  className="flex-shrink-0 w-5 h-5 text-gray-700 transition duration-75  group-hover:text-gray-900 "
-                  aria-hidden="true"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="currentColor"
-                  viewBox="0 0 18 20"
-                >
-                  <path d="M17 5.923A1 1 0 0 0 16 5h-3V4a4 4 0 1 0-8 0v1H2a1 1 0 0 0-1 .923L.086 17.846A2 2 0 0 0 2.08 20h13.84a2 2 0 0 0 1.994-2.153L17 5.923ZM7 9a1 1 0 0 1-2 0V7h2v2Zm0-5a2 2 0 1 1 4 0v1H7V4Zm6 5a1 1 0 1 1-2 0V7h2v2Z" />
-                </svg>
+            <li onClick={() => setOpen(true)} className="cursor-pointer">
+              <span className="flex items-center p-2 text-neutral-100 hover:text-gray-900 rounded-lg  hover:bg-gray-100  group">
+                <AiOutlineDown className="flex-shrink-0 w-5 h-5 text-gray-900 transition duration-75   " />
                 <span className="flex-1 ml-3 whitespace-nowrap">Products</span>
               </span>
             </li>
@@ -115,32 +91,34 @@ const Sidebar = () => {
             <ul
               className={
                 open
-                  ? "ml-4  font-medium flex flex-col  text-gray-900 "
+                  ? "ml-4  font-medium flex flex-col  text-neutral-100 "
                   : "hidden"
               }
             >
-              <li className="hover:bg-gray-100  flex-1 ml-3 whitespace-nowrap rounded-lg">
+              <li>
                 <NavLink
                   to="/admin/products"
                   className={({ isActive }) =>
                     isActive
-                      ? "bg-gray-100  flex items-center p-2 text-gray-900 rounded-lg  hover:bg-[#F3F3F3] group"
-                      : "flex items-center p-2 text-gray-900 rounded-lg  hover:bg-bg-[#F3F3F3] group"
+                      ? "bg-gray-100  flex items-center p-2  text-gray-900 rounded-lg   group"
+                      : "flex items-center p-2 hover:text-gray-900 rounded-lg text-neutral-100  hover:bg-gray-100 group"
                   }
                 >
-                  All
+                  <FaShoppingBag className="flex-shrink-0 w-5 h-5 text-gray-900 transition duration-75  " />
+                  <span className="flex-1 ml-3 whitespace-nowrap">All</span>
                 </NavLink>
               </li>
-              <li className="bg-gray-100  flex-1 ml-3 whitespace-nowrap   rounded-lg">
+              <li>
                 <NavLink
                   to="/admin/product"
                   className={({ isActive }) =>
                     isActive
-                      ? "bg-gray-100  flex items-center p-2 text-gray-900 rounded-lg  hover:bg-[#F3F3F3] group"
-                      : "flex items-center p-2 text-gray-900 rounded-lg  hover:bg-bg-[#F3F3F3] group"
+                      ? "bg-gray-100  flex items-center p-2  text-gray-900 rounded-lg   group"
+                      : "flex items-center p-2 hover:text-gray-900 rounded-lg text-neutral-100  hover:bg-gray-100 group"
                   }
                 >
-                  Create
+                  <MdCreate className="flex-shrink-0 w-5 h-5 text-gray-900 transition duration-75  " />
+                  <span className="flex-1 ml-3 whitespace-nowrap">Create</span>
                 </NavLink>
               </li>
             </ul>
@@ -150,19 +128,11 @@ const Sidebar = () => {
                 to="/admin/users"
                 className={({ isActive }) =>
                   isActive
-                    ? "bg-gray-100  flex items-center p-2 text-gray-900 rounded-lg  hover:bg-[#F3F3F3] group"
-                    : "flex items-center p-2 text-gray-900 rounded-lg  hover:bg-bg-[#F3F3F3] group"
+                    ? "bg-gray-100  flex items-center p-2  text-gray-900 rounded-lg   group"
+                    : "flex items-center p-2 hover:text-gray-900 rounded-lg text-neutral-100  hover:bg-gray-100 group"
                 }
               >
-                <svg
-                  className="flex-shrink-0 w-5 h-5 text-gray-700 transition duration-75  group-hover:text-gray-900 "
-                  aria-hidden="true"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="currentColor"
-                  viewBox="0 0 20 18"
-                >
-                  <path d="M14 2a3.963 3.963 0 0 0-1.4.267 6.439 6.439 0 0 1-1.331 6.638A4 4 0 1 0 14 2Zm1 9h-1.264A6.957 6.957 0 0 1 15 15v2a2.97 2.97 0 0 1-.184 1H19a1 1 0 0 0 1-1v-1a5.006 5.006 0 0 0-5-5ZM6.5 9a4.5 4.5 0 1 0 0-9 4.5 4.5 0 0 0 0 9ZM8 10H5a5.006 5.006 0 0 0-5 5v2a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1v-2a5.006 5.006 0 0 0-5-5Z" />
-                </svg>
+                <HiUsers className="flex-shrink-0 w-5 h-5 text-gray-900 transition duration-75  " />
                 <span className="flex-1 ml-3 whitespace-nowrap">Users</span>
               </NavLink>
             </li>
@@ -172,19 +142,11 @@ const Sidebar = () => {
                 to="/admin/orders"
                 className={({ isActive }) =>
                   isActive
-                    ? "bg-gray-100  flex items-center p-2 text-gray-900 rounded-lg  hover:bg-[#F3F3F3] group"
-                    : "flex items-center p-2 text-gray-900 rounded-lg  hover:bg-bg-[#F3F3F3] group"
+                    ? "bg-gray-100  flex items-center p-2  text-gray-900 rounded-lg   group"
+                    : "flex items-center p-2 hover:text-gray-900 rounded-lg text-neutral-100  hover:bg-gray-100 group"
                 }
               >
-                <svg
-                  className="flex-shrink-0 w-5 h-5 text-gray-700 transition duration-75  group-hover:text-gray-900 "
-                  aria-hidden="true"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="currentColor"
-                  viewBox="0 0 20 18"
-                >
-                  <path d="M14 2a3.963 3.963 0 0 0-1.4.267 6.439 6.439 0 0 1-1.331 6.638A4 4 0 1 0 14 2Zm1 9h-1.264A6.957 6.957 0 0 1 15 15v2a2.97 2.97 0 0 1-.184 1H19a1 1 0 0 0 1-1v-1a5.006 5.006 0 0 0-5-5ZM6.5 9a4.5 4.5 0 1 0 0-9 4.5 4.5 0 0 0 0 9ZM8 10H5a5.006 5.006 0 0 0-5 5v2a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1v-2a5.006 5.006 0 0 0-5-5Z" />
-                </svg>
+                <BsBox2Fill className="flex-shrink-0 w-5 h-5 text-gray-900 transition duration-75   " />
                 <span className="flex-1 ml-3 whitespace-nowrap">Orders</span>
               </NavLink>
             </li>
@@ -194,19 +156,11 @@ const Sidebar = () => {
                 to="/admin/reviews"
                 className={({ isActive }) =>
                   isActive
-                    ? "bg-gray-100  flex items-center p-2 text-gray-900 rounded-lg  hover:bg-[#F3F3F3] group"
-                    : "flex items-center p-2 text-gray-900 rounded-lg  hover:bg-bg-[#F3F3F3] group"
+                    ? "bg-gray-100  flex items-center p-2  text-gray-900 rounded-lg   group"
+                    : "flex items-center p-2 hover:text-gray-900 rounded-lg text-neutral-100  hover:bg-gray-100 group"
                 }
               >
-                <svg
-                  className="flex-shrink-0 w-5 h-5 text-gray-700 transition duration-75  group-hover:text-gray-900 "
-                  aria-hidden="true"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="currentColor"
-                  viewBox="0 0 20 18"
-                >
-                  <path d="M14 2a3.963 3.963 0 0 0-1.4.267 6.439 6.439 0 0 1-1.331 6.638A4 4 0 1 0 14 2Zm1 9h-1.264A6.957 6.957 0 0 1 15 15v2a2.97 2.97 0 0 1-.184 1H19a1 1 0 0 0 1-1v-1a5.006 5.006 0 0 0-5-5ZM6.5 9a4.5 4.5 0 1 0 0-9 4.5 4.5 0 0 0 0 9ZM8 10H5a5.006 5.006 0 0 0-5 5v2a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1v-2a5.006 5.006 0 0 0-5-5Z" />
-                </svg>
+                <MdRateReview className="flex-shrink-0 w-5 h-5 transition duration-75  text-gray-900 " />
                 <span className="flex-1 ml-3 whitespace-nowrap">Reviews</span>
               </NavLink>
             </li>

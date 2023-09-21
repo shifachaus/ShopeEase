@@ -29,16 +29,16 @@ const ConfirmOrder = () => {
   };
 
   return (
-    <div className="mx-auto max-w-7xl  p-6 lg:px-8 md:h-screen">
+    <section className="mx-auto max-w-7xl  p-6 lg:px-8 ">
       <CheckoutStep activeStep={1} />
 
-      <div className=" flex flex-col gap-6 md:grid md:grid-flow-col mt-6 ">
+      <main className="mt-10 md:mt-20 mb-10 flex flex-col gap-6 md:grid md:grid-flow-col ">
         <div className="md:col-span-9 relative">
-          <div>
-            <h2 className="text-2xl font-medium mb-2  text-gray-600">
+          <div className="mb-10">
+            <h2 className="text-xl font-medium mb-2    tracking-tight sm:text-2xl  text-black  ">
               Shipping Info
             </h2>
-            <div className="flex flex-col gap-2 p-4">
+            <div className="flex flex-col gap-2 p-4 bg-gray-100 md:w-3/4">
               <p className="text-md font-medium">
                 Name: <span className="text-sm font-normal">{user?.name}</span>
               </p>
@@ -54,10 +54,10 @@ const ConfirmOrder = () => {
             </div>
           </div>
 
-          <div>
-            <h2 className="text-2xl font-medium mb-2  text-gray-600">
+          <div className="mb-10 ">
+            <h3 className="text-lg font-medium mb-2 tracking-tight sm:text-xl  text-black ">
               Your Cart Items:
-            </h2>
+            </h3>
 
             <div className="mt-6 p-2">
               {items?.map((item) => {
@@ -86,10 +86,10 @@ const ConfirmOrder = () => {
         </div>
 
         <div className="mt-8 md:col-span-3">
-          <p className="text-2xl font-medium mb-2  text-gray-600 text-center">
+          <h4 className="text-lg font-medium mb-6 tracking-tight sm:text-xl   text-black text-center">
             Order Summery
-          </p>
-          <div className="flex flex-col gap-3 p-2 border-t ">
+          </h4>
+          <div className="flex flex-col gap-4 p-2 border-t ">
             <div className="flex justify-between">
               <p>Subtotal</p>
               <span>{formatPrice(subTotal)}</span>
@@ -107,15 +107,15 @@ const ConfirmOrder = () => {
               <span>{formatPrice(totalPrice)}</span>
             </div>
             <button
-              className=" bg-[#252323] mt-6 text-white font-bold py-2 px-4  focus:outline-none focus:shadow-outline"
+              className="text-white bg-[#252323] mt-4  focus:outline-none  font-medium rounded text-sm px-5 py-2.5 text-center  "
               onClick={proceedToPayment}
             >
               Proceed To Payment
             </button>
           </div>
         </div>
-      </div>
-    </div>
+      </main>
+    </section>
   );
 };
 

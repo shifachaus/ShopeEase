@@ -34,10 +34,10 @@ const Shipping = () => {
   };
 
   return (
-    <div className="mx-auto max-w-7xl  p-6 lg:px-8 md:h-screen">
+    <div className="mx-auto max-w-7xl  p-6 lg:px-8 ">
       <CheckoutStep activeStep={0} />
-      <div className="max-w-md mt-6 mx-auto">
-        <h2 className="text-2xl font-medium mb-2 text-center  text-gray-600">
+      <div className="max-w-md mt-10 md:mt-20 mb-10  mx-auto">
+        <h2 className="text-xl  mb-2 tracking-tight sm:text-2xl font-medium  text-black text-center ">
           Shipping Details
         </h2>
         <form onSubmit={(e) => shippingSubmint(e)} className="px-5 pt-6 pb-8">
@@ -156,7 +156,7 @@ const Shipping = () => {
 
           <div className="flex flex-col mt-8">
             <button
-              className="bg-[#252323]  text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+              className="text-white bg-[#252323]  focus:outline-none  font-medium rounded text-sm px-5 py-2.5 text-center  "
               type="submit"
               disabled={state ? false : true}
             >

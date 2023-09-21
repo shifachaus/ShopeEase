@@ -7,7 +7,7 @@ const Profile = () => {
 
   return (
     <div className="mx-auto max-w-6xl  my-10 p-6 lg:px-8 h-full md:h-screen">
-      <h2 className="text-2xl font-medium mb-6 text-center md:text-left ">
+      <h2 className="text-2xl font-medium mb-6 text-center md:text-left tracking-tight sm:text-3xl  ">
         My Profile
       </h2>
       <div className="flex flex-col items-center gap-8 md:grid md:grid-cols-2 md:gap-4">
@@ -18,7 +18,7 @@ const Profile = () => {
             alt={data?.user?.name}
           />
           <Link
-            className="flex justify-center border border-[#252323] hover:border-[#a99985] px-3 py-1"
+            className="flex justify-center border border-[#252323] hover:border-[#688272] hover:bg-[#688272] hover:text-white px-3 py-1"
             to="/me/update"
           >
             Edit Profile
@@ -45,13 +45,13 @@ const Profile = () => {
 
           <div className="flex flex-col md:grid md:grid-cols-2 gap-4 mt-10">
             <Link
-              className="flex justify-center bg-[#252323] hover:bg-[#565E60] border-[#252323] hover:border-[#a99985] p-2 px-4 cursor-pointer  text-white border hover:shadow-md "
+              className="flex justify-center bg-[#252323] hover:bg-[#688272] border-[#252323] hover:border-[#688272] p-2 px-4 cursor-pointer  text-white border hover:shadow-md "
               to="/orders"
             >
               My Orders
             </Link>
             <Link
-              className="flex justify-center bg-[#252323] hover:bg-[#565E60] border-[#252323] hover:border-[#a99985] p-2 px-4 cursor-pointer  text-white border hover:shadow-md "
+              className="flex justify-center bg-[#252323] hover:bg-[#688272] border-[#252323] hover:border-[#688272] p-2 px-4 cursor-pointer  text-white border hover:shadow-md "
               to="/password/update"
             >
               Change Password

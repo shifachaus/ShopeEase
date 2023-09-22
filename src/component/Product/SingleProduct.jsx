@@ -1,9 +1,9 @@
 import { useParams } from "react-router-dom";
 import { useState } from "react";
-import ShimmerSingleProduct from "./ShimmerSingleProduct";
+import ShimmerSingleProduct from "../ShimmerSingleProduct";
 import Product from "./Product";
-import { useGetProductQuery } from "../utils/productApi";
-import PageHero from "./PageHero";
+import { useGetProductQuery } from "../../utils/productApi";
+import PageHero from "../PageHero";
 
 const SingleProduct = () => {
   const { id } = useParams();

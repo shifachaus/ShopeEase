@@ -1,10 +1,9 @@
-import { useNavigate, useParams } from "react-router-dom";
-import { addItems } from "../utils/cartSlice";
-import { formatPrice } from "../utils/helper";
+import { useNavigate } from "react-router-dom";
+import { addItems } from "../../utils/cartSlice";
+import { formatPrice } from "../../utils/helper";
 import { useDispatch } from "react-redux";
 import { useState } from "react";
 import Rating from "./Rating";
-import { useNewReviewMutation } from "../utils/productApi";
 import Review from "./Review";
 
 const Product = ({ displayImage, singleProductItem, setDisplay, display }) => {
@@ -94,7 +93,7 @@ const Product = ({ displayImage, singleProductItem, setDisplay, display }) => {
               </span>
             )}
           </div>
-          <div className="flex flex-col gap-3">
+          <div className="flex flex-col gap-3 mt-6">
             <h2 className="capitalize  text-2xl md:text-3xl lg:text-4xl font-medium ">
               {name}
             </h2>
@@ -112,7 +111,7 @@ const Product = ({ displayImage, singleProductItem, setDisplay, display }) => {
             {formatPrice(price)}
           </p>
 
-          <p className="font-light text-slate-500 mb-4">{description}</p>
+          <p className="mb-4 text-md font-light text-gray-500">{description}</p>
 
           <div className="flex flex-col gap-4  mb-4 w-1/3">
             <div className="flex gap-4 justify-center mb-4">

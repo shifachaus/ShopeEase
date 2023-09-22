@@ -1,11 +1,12 @@
 import { useGetUserQuery } from "../utils/userApi";
 import { Navigate } from "react-router-dom";
+import Loading from "./Loading";
 
 const ProtectedRoute = ({ isAdmin, children }) => {
   const { data, isLoading } = useGetUserQuery();
   // console.log(data, "PROTECTED ROUTE");
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <Loading />;
   }
   if (!data) {
     return <Navigate to="/login" />;

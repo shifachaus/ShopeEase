@@ -44,17 +44,15 @@ const Dashboard = () => {
       totalAmount += item.totalPrice;
     });
 
-  // console.log(orderData?.orders, totalAmount, "DASH");
-
   const data = {
     labels: ["Initial Amount", "Amount Earned"],
     datasets: [
       {
         label: "TOTAL AMOUNT",
         data: [0, totalAmount / 100],
-        backgroundColor: "#7166F9",
-        borderColor: "#9B75FC",
-        borderWidth: 2,
+        backgroundColor: "#688272",
+        borderColor: "black",
+        borderWidth: 1,
       },
     ],
   };
@@ -94,7 +92,7 @@ const Dashboard = () => {
           <div className="p-4  ">
             <div className="sm:grid sm:grid-cols-2 md:grid-cols-4 gap-4 md:gap-6  flex flex-col">
               <div className=" bg-white mb-4 text-black p-4 shadow-md rounded">
-                <span className="text-sm font-bold bg-blue-200 rounded  px-2 py-1  ">
+                <span className="text-sm font-semibold bg-blue-200 rounded  px-2 py-1  ">
                   Total Amount
                 </span>
                 <p className="text-2xl md:text-3xl  mt-4">
@@ -103,7 +101,7 @@ const Dashboard = () => {
               </div>
 
               <div className=" bg-white mb-4 text-black p-4 shadow-md rounded">
-                <span className="text-sm font-bold bg-green-200 rounded  px-2 py-1 ">
+                <span className="text-sm font-semibold bg-green-200 rounded  px-2 py-1 ">
                   Product
                 </span>
                 <p className="text-2xl md:text-3xl  mt-4">
@@ -111,7 +109,7 @@ const Dashboard = () => {
                 </p>
               </div>
               <div className=" bg-white mb-4 text-black p-4 shadow-md rounded">
-                <span className="text-sm font-bold bg-purple-200 rounded  px-2 py-1">
+                <span className="text-sm font-semibold bg-purple-200 rounded  px-2 py-1">
                   Orders
                 </span>
                 <p className="text-2xl md:text-3xl  mt-4">
@@ -119,7 +117,7 @@ const Dashboard = () => {
                 </p>
               </div>
               <div className="  bg-white mb-4 text-black p-4 shadow-md rounded">
-                <span className="text-sm font-bold bg-yellow-100 rounded  px-2 py-1 ">
+                <span className="text-sm font-semibold bg-yellow-100 rounded  px-2 py-1 ">
                   Users
                 </span>
                 <p className="text-2xl md:text-3xl  mt-4">

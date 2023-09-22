@@ -1,80 +1,46 @@
 import { useState } from "react";
-import { useEditPasswordMutation, useLazyGetUserQuery } from "../utils/userApi";
+import { useForgotPasswordMutation } from "../../utils/userApi";
 
-const UpdatePassword = () => {
-  const [editPassword, { isLoading }] = useEditPasswordMutation();
-  const [getUser, results] = useLazyGetUserQuery();
+const ForgotPassword = () => {
+  const [forgotPassword, { isLoading }] = useForgotPasswordMutation();
+  const [email, setEmail] = useState();
 
-  const [oldPassword, setOldPassword] = useState("");
-  const [newPassword, setNewPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
-
-  const handleRegister = async (e) => {
+  const handleForgotPassword = async (e) => {
     e.preventDefault();
-    const user = { oldPassword, newPassword, confirmPassword };
-    console.log(user, "USER PASSWORD");
+
     try {
-      const data = await editPassword(user);
-      await getUser();
+      const user = { email };
+      const data = await forgotPassword(user);
       console.log(data);
     } catch (err) {
-      console.error("Update Password error:", err);
+      console.log("FORGOT PASSWORD", err);
     }
   };
 
   return (
     <div className="mx-auto max-w-md mt-6 p-6 lg:px-8 h-screen">
       <div className=" bg-white shadow-lg shadow-purple-100 rounded  mb-4">
-        <h2 className="text-2xl font-medium mb-2 text-center  text-gray-600">
+        <h2 className="text-2xl font-medium mb-2 text-center md:text-left text-gray-600">
           Reset Password
         </h2>
-        <form onSubmit={(e) => handleRegister(e)} className="px-5 pt-6 pb-8">
+        <form
+          onSubmit={(e) => handleForgotPassword(e)}
+          className="px-5 pt-6 pb-8"
+        >
           <div className="mb-6 flex flex-col">
             <label
               className="block text-gray-700 text-sm font-bold mb-2"
-              htmlFor="password"
+              htmlFor="email"
             >
-              Old Password
+              Email
             </label>
             <input
-              value={oldPassword}
-              onChange={(e) => setOldPassword(e.target.value)}
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               className="shadow appearance-none border  rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
-              id="password"
-              type="password"
-              placeholder="******************"
-            />
-          </div>
-          <div className="mb-6 flex flex-col">
-            <label
-              className="block text-gray-700 text-sm font-bold mb-2"
-              htmlFor="password"
-            >
-              New Password
-            </label>
-            <input
-              value={newPassword}
-              onChange={(e) => setNewPassword(e.target.value)}
-              className="shadow appearance-none border  rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
-              id="password"
-              type="password"
-              placeholder="******************"
-            />
-          </div>
-          <div className="mb-6 flex flex-col">
-            <label
-              className="block text-gray-700 text-sm font-bold mb-2"
-              htmlFor="password"
-            >
-              Confirm Password
-            </label>
-            <input
-              value={confirmPassword}
-              onChange={(e) => setConfirmPassword(e.target.value)}
-              className="shadow appearance-none border  rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
-              id="password"
-              type="password"
-              placeholder="******************"
+              id="email"
+              type="email"
+              placeholder="Email"
             />
           </div>
 
@@ -116,4 +82,4 @@ const UpdatePassword = () => {
   );
 };
 
-export default UpdatePassword;
+export default ForgotPassword;

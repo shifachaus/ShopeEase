@@ -1,5 +1,5 @@
 import { useMemo } from "react";
-import { useMyOrdersQuery } from "../utils/orderApi";
+import { useMyOrdersQuery } from "../../utils/orderApi";
 import { useTable } from "react-table";
 import { Link } from "react-router-dom";
 

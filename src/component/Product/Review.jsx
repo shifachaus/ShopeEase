@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Rating from "./Rating";
-import { useNewReviewMutation } from "../utils/productApi";
+import { useNewReviewMutation } from "../../utils/productApi";
 import { useParams } from "react-router-dom";
 
 const Review = ({ setOpen, open }) => {
@@ -27,11 +27,11 @@ const Review = ({ setOpen, open }) => {
           : "hidden opacity-0 "
       }
     >
-      <div className="bg-[#f5f1ed]  px-4 py-8 fixed top-0 left-0 right-0 z-50 h-screen w-screen  p-4 overflow-x-hidden">
-        <div className="p-3 w-6/12 md:w-[400px] m-auto flex flex-col gap-4">
-          <h2 className="text-xl font-medium text-[#252323] mb-6 text-center">
+      <div className="bg-gray-100  px-4 py-8 fixed top-0 left-0 right-0 z-50 h-screen w-screen  p-4 overflow-x-hidden">
+        <div className="p-3  md:w-[400px] m-auto flex flex-col gap-4">
+          <h4 className="text-2xl mb-6 text-center  md:text-3xl tracking-tight font-semibold lg:text-4xl">
             Rate and Review
-          </h2>
+          </h4>
           <div className="flex flex-col gap-2">
             <h2 className="text-md font-medium text-gray-500 ">Rate</h2>
             <Rating setRate={setRating} stars={rating} />

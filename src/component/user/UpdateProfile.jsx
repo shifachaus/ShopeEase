@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useGetUserQuery, useUpdateUserMutation } from "../utils/userApi";
+import { useGetUserQuery, useUpdateUserMutation } from "../../utils/userApi";
 
 const UpdateProfile = () => {
   const { data } = useGetUserQuery();

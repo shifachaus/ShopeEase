@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { BsCart4 } from "react-icons/bs";
 import { useGetUserQuery, useLogoutUserMutation } from "../utils/userApi";
 import { logout } from "../utils/userSlice";
+import { PiShoppingCartSimple } from "react-icons/pi";
 
 const Header = () => {
   const [showMenu, setShowMenu] = useState(false);
@@ -111,7 +112,7 @@ const Header = () => {
             className="text-sm font-medium leading-6 text-neutral-100"
           >
             <p className="relative ">
-              <BsCart4 className="text-xl " />
+              <PiShoppingCartSimple className="text-xl " />
               <span className="absolute text-sm text-white font-medium -top-1 left-4 bg-black rounded-[50%]  w-full text-center">
                 {cartItems.length}
               </span>
@@ -195,7 +196,7 @@ const Header = () => {
                     className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                   >
                     <p className="relative ">
-                      <BsCart4 className="text-xl " />
+                      <PiShoppingCartSimple className="text-xl " />
                       <span className="absolute text-sm text-white font-medium -top-1 left-4 bg-[#688272] rounded-[50%]  w-full text-center">
                         {cartItems.length}
                       </span>

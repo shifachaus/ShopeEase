@@ -1,6 +1,6 @@
 import { Link, useParams } from "react-router-dom";
-import { useGetOrderDetailsQuery } from "../utils/orderApi";
-import { formatPrice } from "../utils/helper";
+import { useGetOrderDetailsQuery } from "../../utils/orderApi";
+import { formatPrice } from "../../utils/helper";
 import { Fragment } from "react";
 
 const OrderDetails = () => {

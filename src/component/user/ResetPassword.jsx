@@ -1,19 +1,22 @@
 import { useState } from "react";
-import { useForgotPasswordMutation } from "../utils/userApi";
+import { useResetPasswordMutation } from "../../utils/userApi";
+import { useParams } from "react-router-dom";
 
-const ForgotPassword = () => {
-  const [forgotPassword, { isLoading }] = useForgotPasswordMutation();
-  const [email, setEmail] = useState();
+const ResetPassword = () => {
+  const { token } = useParams();
+  //   console.log(token);
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [resetPassword, { isLoading }] = useResetPasswordMutation();
 
-  const handleForgotPassword = async (e) => {
+  const handleResetPassword = async (e) => {
     e.preventDefault();
-
     try {
-      const user = { email };
-      const data = await forgotPassword(user);
-      console.log(data);
+      const user = { password, confirmPassword, token };
+      const data = await resetPassword(user);
+      console.log(user, data, "PASSWORD RESET");
     } catch (err) {
-      console.log("FORGOT PASSWORD", err);
+      console.log("RESET PASSWORD:", err);
     }
   };
 
@@ -24,23 +27,39 @@ const ForgotPassword = () => {
           Reset Password
         </h2>
         <form
-          onSubmit={(e) => handleForgotPassword(e)}
+          onSubmit={(e) => handleResetPassword(e)}
           className="px-5 pt-6 pb-8"
         >
           <div className="mb-6 flex flex-col">
             <label
               className="block text-gray-700 text-sm font-bold mb-2"
-              htmlFor="email"
+              htmlFor="password"
             >
-              Email
+              Password
             </label>
             <input
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
               className="shadow appearance-none border  rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
-              id="email"
-              type="email"
-              placeholder="Email"
+              id="password"
+              type="password"
+              placeholder="******************"
+            />
+          </div>
+          <div className="mb-6 flex flex-col">
+            <label
+              className="block text-gray-700 text-sm font-bold mb-2"
+              htmlFor="password"
+            >
+              Confirm Password
+            </label>
+            <input
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
+              className="shadow appearance-none border  rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
+              id="password"
+              type="password"
+              placeholder="******************"
             />
           </div>
 
@@ -82,4 +101,4 @@ const ForgotPassword = () => {
   );
 };
 
-export default ForgotPassword;
+export default ResetPassword;

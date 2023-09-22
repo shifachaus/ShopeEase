@@ -1,10 +1,11 @@
 import ProductList from "./ProductList";
-import Shimmer from "./Shimmer";
-import { useGetAllProductsQuery } from "../utils/productApi";
+import Shimmer from "../Shimmer";
+import { useGetAllProductsQuery } from "../../utils/productApi";
 import { useState } from "react";
 import Pagination from "react-js-pagination";
 import Filters from "./Filters";
 import SidebarFilter from "./SidebarFilter";
+import searchImage from "../../assets/search.png";
 
 const Products = () => {
   const [inputKeyword, setInputKeyword] = useState("");
@@ -67,7 +68,7 @@ const Products = () => {
               oops! something went wrong...
             </p>
           ) : isLoading ? (
-            <Shimmer />
+            <Shimmer box={8} />
           ) : product?.products?.length ? (
             <>
               <div className=" grid grid-cols-2 gap-4 md:grid-cols-3  ">
@@ -88,16 +89,24 @@ const Products = () => {
                     // lastPageText="Last"
                     itemClass="inline-block px-3 py-1 rounded-md border border-gray-300 mr-1 md:mr-6"
                     linkClass="text-gray-500 hover:text-gray-700 cursor-pointer"
-                    activeClass="bg-[#565E60] !text-white"
+                    activeClass="bg-[#688272] !text-white"
                     activeLinkClass="!text-white"
                   />
                 </div>
               )}
             </>
           ) : (
-            <p className="font-medium text-center text-md capitalize">
-              Sorry, no products matched your search.
-            </p>
+            <div>
+              <div className="mt-10 md:mt-20 max-w-sx flex flex-col items-center  p-3  w-full h-screen">
+                <h2 className="mb-4 text-2xl md:text-3xl tracking-tight font-medium ">
+                  No results found
+                </h2>
+                <p className="mb-4 text-lg font-light text-gray-500">
+                  try another keyword!
+                </p>
+                <img src={searchImage} alt="search image" />
+              </div>
+            </div>
           )}
         </div>
       </div>

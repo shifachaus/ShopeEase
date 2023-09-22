@@ -1,5 +1,5 @@
 import { BsSearch } from "react-icons/bs";
-import { useGetAllProductsQuery } from "../utils/productApi";
+import { useGetAllProductsQuery } from "../../utils/productApi";
 
 const Search = ({ setInputKeyword, inputKeyword }) => {
   return (

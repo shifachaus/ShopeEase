@@ -32,6 +32,7 @@ import UsersList from "./component/admin/UsersList";
 import UpdateUser from "./component/admin/UpdateUser";
 import SharedLayout from "./component/SharedLayout";
 import ProductReviews from "./component/admin/ProductReviews";
+import Error from "./component/Error";
 
 function App() {
   const [stripeApiKey, setStripeApiKey] = useState("");
@@ -267,6 +268,8 @@ function App() {
             </ProtectedRoute>
           }
         ></Route>
+
+        <Route path="*" element={<Error />} />
       </Routes>
     </div>
   );

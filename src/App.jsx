@@ -1,38 +1,44 @@
 import { Routes, Route, useNavigate } from "react-router-dom";
-import Body from "./component/Home/Body";
-import SingleProduct from "./component/Product/SingleProduct";
-import Cart from "./component/Cart/Cart";
-import Products from "./component/Product/Products";
-import LoginSignUp from "./component/user/LoginSignUp";
+
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect, useState } from "react";
-import Profile from "./component/user/Profile";
+import { lazy, Suspense, useEffect, useState } from "react";
+
 import { useLazyGetUserQuery } from "./utils/userApi";
 import { login, logout } from "./utils/userSlice";
 import ProtectedRoute from "./component/ProtectedRoute";
-import UpdateProfile from "./component/user/UpdateProfile";
-import UpdatePassword from "./component/user/UpdatePassword";
-import ForgotPassword from "./component/user/ForgotPassword";
-import ResetPassword from "./component/user/ResetPassword";
-import Shipping from "./component/Cart/Shipping";
-import ConfirmOrder from "./component/Cart/ConfirmOrder";
-import Payment from "./component/Cart/Payment";
+
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
-import Success from "./component/Cart/Success";
-import MyOrders from "./component/Order/MyOrders";
-import OrderDetails from "./component/Order/OrderDetails";
-import Dashboard from "./component/admin/Dashboard";
-import ProductList from "./component/admin/ProductList";
-import NewProduct from "./component/admin/NewProduct";
-import UpdateProduct from "./component/admin/UpdateProduct";
-import OrderList from "./component/admin/OrderList";
-import ProcessOrder from "./component/admin/ProcessOrder";
-import UsersList from "./component/admin/UsersList";
-import UpdateUser from "./component/admin/UpdateUser";
-import SharedLayout from "./component/SharedLayout";
-import ProductReviews from "./component/admin/ProductReviews";
-import Error from "./component/Error";
+import Loading from "./component/Loading";
+
+const SharedLayout = lazy(() => import("./component/SharedLayout"));
+const Body = lazy(() => import("./component/Home/Body"));
+const Products = lazy(() => import("./component/Product/Products"));
+const SingleProduct = lazy(() => import("./component/Product/SingleProduct"));
+const Cart = lazy(() => import("./component/Cart/Cart"));
+const LoginSignUp = lazy(() => import("./component/user/LoginSignUp"));
+const Profile = lazy(() => import("./component/user/Profile"));
+const UpdateProfile = lazy(() => import("./component/user/UpdateProfile"));
+const UpdatePassword = lazy(() => import("./component/user/UpdatePassword"));
+const ForgotPassword = lazy(() => import("./component/user/ForgotPassword"));
+const ResetPassword = lazy(() => import("./component/user/ResetPassword"));
+const Shipping = lazy(() => import("./component/Cart/Shipping"));
+const ConfirmOrder = lazy(() => import("./component/Cart/ConfirmOrder"));
+const Payment = lazy(() => import("./component/Cart/Payment"));
+const Success = lazy(() => import("./component/Cart/Success"));
+const MyOrders = lazy(() => import("./component/Order/MyOrders"));
+const OrderDetails = lazy(() => import("./component/Order/OrderDetails"));
+
+const Dashboard = lazy(() => import("./component/admin/Dashboard"));
+const ProductList = lazy(() => import("./component/admin/ProductList"));
+const NewProduct = lazy(() => import("./component/admin/NewProduct"));
+const UpdateProduct = lazy(() => import("./component/admin/UpdateProduct"));
+const OrderList = lazy(() => import("./component/admin/OrderList"));
+const ProcessOrder = lazy(() => import("./component/admin/ProcessOrder"));
+const UsersList = lazy(() => import("./component/admin/UsersList"));
+const UpdateUser = lazy(() => import("./component/admin/UpdateUser"));
+const ProductReviews = lazy(() => import("./component/admin/ProductReviews"));
+const Error = lazy(() => import("./component/Error"));
 
 function App() {
   const [stripeApiKey, setStripeApiKey] = useState("");
@@ -90,187 +96,114 @@ function App() {
 
   return (
     <div>
-      <Routes>
-        <Route path="/" element={<SharedLayout />}>
-          <Route path="/" element={<Body />}></Route>
-          <Route path="/products" element={<Products />}></Route>
-          <Route path="/product/:id" element={<SingleProduct />}></Route>
-          <Route path="/cart" element={<Cart />}></Route>
-          <Route path="/login" element={<LoginSignUp />}></Route>
-          <Route
-            path="/account"
-            element={
-              <ProtectedRoute>
-                <Profile />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/me/update"
-            element={
-              <ProtectedRoute>
-                <UpdateProfile />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/password/update"
-            element={
-              <ProtectedRoute>
-                <UpdatePassword />
-              </ProtectedRoute>
-            }
-          />
+      <Suspense fallback={<Loading />}>
+        <Routes>
+          <Route path="/" element={<SharedLayout />}>
+            <Route path="/" element={<Body />} />
+            <Route path="/products" element={<Products />} />
+            <Route path="/product/:id" element={<SingleProduct />} />
+            <Route path="/cart" element={<Cart />} />
+            <Route path="/login" element={<LoginSignUp />} />
+            <Route path="/account" element={<Profile />} />
+            <Route path="/me/update" element={<UpdateProfile />} />
+            <Route path="/password/update" element={<UpdatePassword />} />
+            <Route path="/password/forgot" element={<ForgotPassword />} />
+            <Route path="/password/reset/:token" element={<ResetPassword />} />
+            <Route path="/shipping" element={<Shipping />} />
+            <Route path="/order/confirm" element={<ConfirmOrder />} />
+            {stripeApiKey && (
+              <Route path="/process/payment" element={<Payment />} />
+            )}
+            <Route path="/success" element={<Success />} />
+            <Route path="/orders" element={<MyOrders />} />
+            <Route path="/order/:id" element={<OrderDetails />} />
+          </Route>
 
-          <Route path="/password/forgot" element={<ForgotPassword />}></Route>
+          {/* Admin Routes */}
           <Route
-            path="/password/reset/:token"
-            element={<ResetPassword />}
-          ></Route>
-
-          <Route
-            path="/shipping"
+            path="/admin/dashboard"
             element={
-              <ProtectedRoute>
-                <Shipping />
-              </ProtectedRoute>
-            }
-          />
-
-          <Route
-            path="/order/confirm"
-            element={
-              <ProtectedRoute>
-                <ConfirmOrder />
-              </ProtectedRoute>
-            }
-          />
-          {stripeApiKey && (
-            <Route
-              path="/process/payment"
-              element={
-                <Elements stripe={loadStripe(stripeApiKey)}>
-                  <ProtectedRoute>
-                    <Payment />
-                  </ProtectedRoute>
-                </Elements>
-              }
-            />
-          )}
-
-          <Route
-            path="/success"
-            element={
-              <ProtectedRoute>
-                <Success />
-              </ProtectedRoute>
-            }
-          />
-
-          <Route
-            path="/orders"
-            element={
-              <ProtectedRoute>
-                <MyOrders />
-              </ProtectedRoute>
-            }
-          />
-
-          <Route
-            path="/order/:id"
-            element={
-              <ProtectedRoute>
-                <OrderDetails />
+              <ProtectedRoute isAdmin={true}>
+                <Dashboard />
               </ProtectedRoute>
             }
           ></Route>
-        </Route>
 
-        {/* DASHBOARD */}
+          <Route
+            path="/admin/products"
+            element={
+              <ProtectedRoute isAdmin={true}>
+                <ProductList />
+              </ProtectedRoute>
+            }
+          ></Route>
 
-        <Route
-          path="/admin/dashboard"
-          element={
-            <ProtectedRoute isAdmin={true}>
-              <Dashboard />
-            </ProtectedRoute>
-          }
-        ></Route>
+          <Route
+            path="/admin/product"
+            element={
+              <ProtectedRoute isAdmin={true}>
+                <NewProduct />
+              </ProtectedRoute>
+            }
+          ></Route>
 
-        <Route
-          path="/admin/products"
-          element={
-            <ProtectedRoute isAdmin={true}>
-              <ProductList />
-            </ProtectedRoute>
-          }
-        ></Route>
+          <Route
+            path="/admin/product/:id"
+            element={
+              <ProtectedRoute isAdmin={true}>
+                <UpdateProduct />
+              </ProtectedRoute>
+            }
+          ></Route>
 
-        <Route
-          path="/admin/product"
-          element={
-            <ProtectedRoute isAdmin={true}>
-              <NewProduct />
-            </ProtectedRoute>
-          }
-        ></Route>
+          <Route
+            path="/admin/orders"
+            element={
+              <ProtectedRoute isAdmin={true}>
+                <OrderList />
+              </ProtectedRoute>
+            }
+          ></Route>
 
-        <Route
-          path="/admin/product/:id"
-          element={
-            <ProtectedRoute isAdmin={true}>
-              <UpdateProduct />
-            </ProtectedRoute>
-          }
-        ></Route>
+          <Route
+            path="/admin/order/:id"
+            element={
+              <ProtectedRoute isAdmin={true}>
+                <ProcessOrder />
+              </ProtectedRoute>
+            }
+          ></Route>
 
-        <Route
-          path="/admin/orders"
-          element={
-            <ProtectedRoute isAdmin={true}>
-              <OrderList />
-            </ProtectedRoute>
-          }
-        ></Route>
+          <Route
+            path="/admin/users"
+            element={
+              <ProtectedRoute isAdmin={true}>
+                <UsersList />
+              </ProtectedRoute>
+            }
+          ></Route>
 
-        <Route
-          path="/admin/order/:id"
-          element={
-            <ProtectedRoute isAdmin={true}>
-              <ProcessOrder />
-            </ProtectedRoute>
-          }
-        ></Route>
+          <Route
+            path="/admin/user/:id"
+            element={
+              <ProtectedRoute isAdmin={true}>
+                <UpdateUser />
+              </ProtectedRoute>
+            }
+          ></Route>
 
-        <Route
-          path="/admin/users"
-          element={
-            <ProtectedRoute isAdmin={true}>
-              <UsersList />
-            </ProtectedRoute>
-          }
-        ></Route>
+          <Route
+            path="/admin/reviews"
+            element={
+              <ProtectedRoute isAdmin={true}>
+                <ProductReviews />
+              </ProtectedRoute>
+            }
+          ></Route>
 
-        <Route
-          path="/admin/user/:id"
-          element={
-            <ProtectedRoute isAdmin={true}>
-              <UpdateUser />
-            </ProtectedRoute>
-          }
-        ></Route>
-
-        <Route
-          path="/admin/reviews"
-          element={
-            <ProtectedRoute isAdmin={true}>
-              <ProductReviews />
-            </ProtectedRoute>
-          }
-        ></Route>
-
-        <Route path="*" element={<Error />} />
-      </Routes>
+          <Route path="*" element={<Error />} />
+        </Routes>
+      </Suspense>
     </div>
   );
 }

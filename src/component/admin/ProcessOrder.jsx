@@ -17,7 +17,7 @@ const ProcessOrder = () => {
   const [updateOrder, { isLoading, isError, error }] = useUpdateOrderMutation();
   const [status, setStatus] = useState("");
 
-  const address = `${orderData?.order?.shippingInfo.address}, ${orderData?.order?.shippingInfo.city}, ${orderData?.order?.shippingInfo.state}, ${orderData?.order?.shippingInfo.pinCode}, ${orderData?.order?.shippingInfo.country}`;
+  const address = `${orderData?.order?.shippingInfo?.address}, ${orderData?.order?.shippingInfo?.city}, ${orderData?.order?.shippingInfo?.state}, ${orderData?.order?.shippingInfo?.pinCode}, ${orderData?.order?.shippingInfo?.country}`;
 
   const updateOrderStatus = async () => {
     try {

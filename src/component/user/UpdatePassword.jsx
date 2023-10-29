@@ -19,7 +19,7 @@ const UpdatePassword = () => {
     try {
       const data = await editPassword(user);
       await getUser();
-      console.log(data);
+      // console.log(data);
     } catch (err) {
       console.error("Update Password error:", err);
     }

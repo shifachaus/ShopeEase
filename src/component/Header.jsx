@@ -1,8 +1,7 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { BsCart4 } from "react-icons/bs";
-import { useGetUserQuery, useLogoutUserMutation } from "../utils/userApi";
+import { useLogoutUserMutation } from "../utils/userApi";
 import { logout } from "../utils/userSlice";
 import { PiShoppingCartSimple } from "react-icons/pi";
 

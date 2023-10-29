@@ -99,9 +99,9 @@ const Product = ({ displayImage, singleProductItem, setDisplay, display }) => {
             </h2>
 
             <div className="flex gap-2   space-x-2  text-sm hover:cursor-pointer">
-              <p className="flex border-r-2 border-black pr-2  font-semibold ">
+              <div className="flex border-r-2 border-black pr-2  font-semibold ">
                 <Rating stars={ratings} />
-              </p>
+              </div>
 
               <p className="text-gray-500">{reviews.length} Reviews</p>
             </div>
@@ -164,9 +164,11 @@ const Product = ({ displayImage, singleProductItem, setDisplay, display }) => {
                   className="px-3 py-6 shadow flex flex-col gap-4"
                 >
                   <Rating stars={review?.rating} />
-                  <p>{review?.comment}</p>
+                  <div>
+                    <p>{review?.comment}</p>
 
-                  <p className="text-md text-gray-600">{review?.name}</p>
+                    <p className="text-md text-gray-600">{review?.name}</p>
+                  </div>
                 </div>
               );
             })}

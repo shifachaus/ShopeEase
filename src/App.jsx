@@ -38,10 +38,9 @@ function App() {
   const [stripeApiKey, setStripeApiKey] = useState("");
   const [getUser, results] = useLazyGetUserQuery();
   const userData = useSelector((store) => store.user);
-  const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  console.log(results);
+  // console.log(results);
 
   const fetchUserData = async () => {
     try {
@@ -82,6 +81,7 @@ function App() {
         }
       );
       const data = await res.json();
+      // console.log(data, "Stripe Api Key");
       setStripeApiKey(data.stripeApiKey);
     } catch (error) {
       console.error("Error:", error);

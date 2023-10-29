@@ -10,7 +10,7 @@ import { useDispatch } from "react-redux";
 
 const LoginSignUp = () => {
   const getUserQuery = useGetUserQuery();
-  console.log(getUserQuery, "MY ACCOUNT");
+  // console.log(getUserQuery, "MY ACCOUNT");
 
   const [switchTabs, setSwitchTabs] = useState("login");
   const navigate = useNavigate();
@@ -22,8 +22,7 @@ const LoginSignUp = () => {
   const [avatar, setAvatar] = useState("");
   const [avatarPreview, setAvatarPreview] = useState("");
 
-  const [loginUser, { isLoading, isError, isSuccess, error }] =
-    useLoginUserMutation();
+  const [loginUser, { isLoading }] = useLoginUserMutation();
 
   const [registerUser, { isLoading: loading }] = useRegisterUserMutation();
 
@@ -50,7 +49,7 @@ const LoginSignUp = () => {
       const data = await loginUser(user);
       dispatch(login(data));
 
-      console.log(data, "DATA LOGIN");
+      // console.log(data, "DATA LOGIN");
       await getUserQuery.refetch();
 
       if (data?.data?.success) {

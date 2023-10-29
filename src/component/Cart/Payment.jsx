@@ -9,7 +9,7 @@ import {
 import axios from "axios";
 import { useRef } from "react";
 import { formatPrice } from "../../utils/helper";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { useNewOrderMutation } from "../../utils/orderApi";
 
@@ -26,8 +26,6 @@ const Payment = () => {
     items,
   } = useSelector((state) => state.cart);
   const { user } = useSelector((store) => store.user);
-
-  // console.log(orderInfo, shippingInfo, items, user, "USER DATA PAYMENT");
 
   const paymentData = {
     amount: orderInfo?.totalPrice,
@@ -92,7 +90,7 @@ const Payment = () => {
           };
 
           const data = await newOrder(order);
-          // console.log(data);
+          // console.log(data, "newOrder");
           navigate("/success");
         } else {
           alert("There's some issue while processing payment");

@@ -5,7 +5,7 @@ const UpdateProfile = () => {
   const { data } = useGetUserQuery();
 
   const getUserQuery = useGetUserQuery();
-  console.log(getUserQuery, "MY ACCOUNT", data);
+  // console.log(getUserQuery, "MY ACCOUNT", data);
 
   const [updateUser, { isLoading }] = useUpdateUserMutation();
 
@@ -33,7 +33,7 @@ const UpdateProfile = () => {
   const handleUpdateProfile = async (e) => {
     e.preventDefault();
     const user = { name, email, avatar };
-    console.log(user, "USER UPDATED");
+    // console.log(user, "USER UPDATED");
     try {
       const data = await updateUser(user);
       await getUserQuery.refetch();

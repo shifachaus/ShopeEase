@@ -2,7 +2,7 @@ const Footer = () => {
   const year = new Date().getFullYear();
   return (
     <footer className="  bg-gray-100  ">
-      <div className="mx-auto max-w-7xl  grid grid-cols-1 space-y-10 bg-primary px-5 py-8 pt-10 md:pt-20 tracking-wider text-black md:grid-cols-4 md:space-y-0 xl:px-28 xl:py-20 ">
+      <div className="mx-auto max-w-7xl  grid grid-cols-1 space-y-10 bg-primary px-5 py-8 pt-20  tracking-wider text-black md:grid-cols-4 md:space-y-0 xl:px-28 xl:py-20 ">
         <section className="space-y-4">
           <p className="w-2/3 text-sm font-light">
             400 University Drive Suite 200 Coral Gables, FL 33134 USA

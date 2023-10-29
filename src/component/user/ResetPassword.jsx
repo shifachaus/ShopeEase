@@ -14,7 +14,7 @@ const ResetPassword = () => {
     try {
       const user = { password, confirmPassword, token };
       const data = await resetPassword(user);
-      console.log(user, data, "PASSWORD RESET");
+      // console.log(user, data, "PASSWORD RESET");
     } catch (err) {
       console.log("RESET PASSWORD:", err);
     }

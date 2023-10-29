@@ -29,7 +29,7 @@ const Products = () => {
   });
 
   const setCurrentPageNo = (page) => {
-    console.log(page);
+    // console.log(page);
     setCurrentPage(page);
   };
 

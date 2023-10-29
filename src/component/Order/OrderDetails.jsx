@@ -1,12 +1,11 @@
 import { Link, useParams } from "react-router-dom";
 import { useGetOrderDetailsQuery } from "../../utils/orderApi";
 import { formatPrice } from "../../utils/helper";
-import { Fragment } from "react";
 
 const OrderDetails = () => {
   const { id } = useParams();
   const { data: orderData, error, isLoading } = useGetOrderDetailsQuery(id);
-  // console.log(orderData, "orderData");
+  console.log(orderData, "orderData");
   return (
     <section className="mt-10 md:mt-20 mb-10 ">
       <main className=" mx-auto max-w-7xl  my-10  p-6 lg:px-8">

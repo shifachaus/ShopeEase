@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { formatPrice } from "../../utils/helper";
-import { AiOutlineDelete } from "react-icons/ai";
 import { addItems, removeItems } from "../../utils/cartSlice";
 import { useState } from "react";
 import PageHero from "../PageHero";
@@ -64,7 +63,6 @@ const Cart = () => {
               </div>
               <div className="flex flex-col gap-4  ">
                 {cartItems?.map((item) => {
-                  console.log(item);
                   return (
                     <div
                       key={item?._id}

@@ -1,4 +1,4 @@
-import { createSlice, current } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 
 const cartSlice = createSlice({
   name: "cart",
@@ -50,9 +50,8 @@ const cartSlice = createSlice({
     },
 
     saveShippingInfo: (state, action) => {
-      const newState = { shippingInfo: action.payload };
-      console.log(current(state), newState);
-      localStorage.setItem("shippingInfo", JSON.stringify(newState));
+      state.shippingInfo = action.payload;
+      localStorage.setItem("shippingInfo", JSON.stringify(state.shippingInfo));
     },
   },
 });

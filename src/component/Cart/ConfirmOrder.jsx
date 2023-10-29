@@ -4,12 +4,10 @@ import { Link, useNavigate } from "react-router-dom";
 import { formatPrice } from "../../utils/helper";
 
 const ConfirmOrder = () => {
-  const {
-    shippingInfo: { shippingInfo },
-    items,
-  } = useSelector((state) => state.cart);
+  const { items } = useSelector((state) => state.cart);
+  const shippingInfo = useSelector((state) => state.cart.shippingInfo);
+  // const { user } = useSelector((store) => store.user);
 
-  const { user } = useSelector((store) => store.user);
   const navigate = useNavigate("");
 
   const subTotal = items?.reduce((acc, item) => acc + item.qty * item.price, 0);
@@ -17,13 +15,12 @@ const ConfirmOrder = () => {
   const tax = subTotal * 0.18;
   const totalPrice = subTotal + tax + shippingCharges;
 
-  // console.log(items);
+  console.log(shippingInfo, "shippingInfo");
 
   const address = `${shippingInfo?.address}, ${shippingInfo?.city}, ${shippingInfo?.state}, ${shippingInfo?.pinCode}, ${shippingInfo?.country}`;
 
   const proceedToPayment = () => {
     const data = { subTotal, shippingCharges, tax, totalPrice };
-    // console.log(data);
     sessionStorage.setItem("orderInfo", JSON.stringify(data));
     navigate("/process/payment");
   };
@@ -39,9 +36,9 @@ const ConfirmOrder = () => {
               Shipping Info
             </h2>
             <div className="flex flex-col gap-2 p-4 bg-gray-100 md:w-3/4">
-              <p className="text-md font-medium">
+              {/* <p className="text-md font-medium">
                 Name: <span className="text-sm font-normal">{user?.name}</span>
-              </p>
+              </p> */}
               <p className="text-md font-medium">
                 Phone:{" "}
                 <span className="text-sm font-normal">

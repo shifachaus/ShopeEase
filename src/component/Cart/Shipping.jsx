@@ -6,7 +6,7 @@ import { saveShippingInfo } from "../../utils/cartSlice";
 import { useNavigate } from "react-router-dom";
 
 const Shipping = () => {
-  const { shippingInfo } = useSelector((state) => state.cart.shippingInfo);
+  const shippingInfo = useSelector((state) => state.cart.shippingInfo);
 
   const disapatch = useDispatch();
   const navigate = useNavigate();

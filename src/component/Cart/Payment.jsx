@@ -21,10 +21,8 @@ const Payment = () => {
   const navigate = useNavigate();
   const stripe = useStripe();
   const elements = useElements();
-  const {
-    shippingInfo: { shippingInfo },
-    items,
-  } = useSelector((state) => state.cart);
+  const { items } = useSelector((state) => state.cart);
+  const shippingInfo = useSelector((state) => state.cart.shippingInfo);
   const { user } = useSelector((store) => store.user);
 
   const paymentData = {

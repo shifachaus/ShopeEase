@@ -14,7 +14,7 @@ const Products = () => {
   const [ratings, setRatings] = useState(0);
 
   const [price] = useState([0, 2500000]);
-  const [priceV, setPriceV] = useState(4000000);
+  const [priceV, setPriceV] = useState(3000000);
 
   const {
     data: product,

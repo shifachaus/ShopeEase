@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Search from "./Search";
 import { BsStarFill, BsStar } from "react-icons/bs";
+import { clearFilter } from "../../utils/helper";
 
 const categories = ["all", "Tables and Chairs", "Sofas", "Lighting", "Decor"];
 
@@ -24,15 +25,20 @@ const SidebarFilter = ({
     <aside
       className={
         open
-          ? "md:hidden bg-white p-4 md:p-8 h-full font-light md:border z-50 xsm:translate-x-full transform transition-all delay-150 duration-300 ease-out fixed top-0 right-0 w-8/12"
-          : "md:hidden bg-white z-50 md:p-8 translate-x-full transform transition-all delay-150 duration-300 ease-out h-full fixed top-0 right-0 w-8/12"
+          ? "md:hidden bg-white p-4 z-40  md:p-8 h-full font-light md:border xsm:translate-x-full transform transition-all delay-150 duration-300 ease-out fixed top-0 right-0 w-[240px] sm:w-5/12"
+          : "md:hidden bg-white z-40 md:p-8 translate-x-full transform transition-all delay-150 duration-300 ease-out h-full fixed top-0 right-0 w-[240px] sm:w-5/12"
       }
     >
       <div className="flex justify-between mb-6">
         <h2 className="text-xl uppercase ">Filter by</h2>
-        {/* <button className="text-sm capitalize text-primary text-[#565E60]">
+        <button
+          className="text-sm capitalize text-primary text-[#565E60]"
+          onClick={() => {
+            clearFilter(setInputKeyword, setCategory, setRatings, setPriceV);
+          }}
+        >
           Clear all
-        </button> */}
+        </button>
       </div>
 
       <div className="col-span-1 mb-4">

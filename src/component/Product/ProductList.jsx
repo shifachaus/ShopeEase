@@ -4,8 +4,6 @@ import { formatPrice } from "../../utils/helper";
 const ProductList = ({ item }) => {
   const { _id, name, images, price } = item;
 
-  // console.log(images);
-
   return (
     <Link to={`/product/${_id}`} className="flex flex-col gap-4">
       <div className=" bg-gray-100 p-3 flex items-center justify-center">

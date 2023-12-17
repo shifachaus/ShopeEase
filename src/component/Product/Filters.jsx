@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Search from "./Search";
 import { BsStarFill, BsStar } from "react-icons/bs";
+import { clearFilter } from "../../utils/helper";
 
 const categories = ["all", "Tables and Chairs", "Sofas", "Lighting", "Decor"];
 
@@ -24,9 +25,14 @@ const Filters = ({
     <aside className="border rounded  sticky top-0  hidden h-fit  flex-col space-y-8  p-8 font-light  md:flex ">
       <div className="flex justify-between mb-6">
         <h2 className="text-xl uppercase ">Filter by</h2>
-        {/* <button className="text-sm capitalize text-primary text-[#565E60]">
+        <button
+          className="text-sm capitalize text-primary text-[#565E60]"
+          onClick={() => {
+            clearFilter(setInputKeyword, setCategory, setRatings, setPriceV);
+          }}
+        >
           Clear all
-        </button> */}
+        </button>
       </div>
 
       <div className="col-span-1 mb-4">
@@ -90,7 +96,7 @@ const Filters = ({
               onChange={(e) => priceHandler(e)}
               className=" h-2 mb-6 rounded-lg  cursor-pointer range-sm bg-gray-700"
             />
-            <p className="text-end"> RS.{priceV} </p>
+            <p className="text-end"> RS.{priceV / 100} </p>
           </div>
         </div>
       </div>

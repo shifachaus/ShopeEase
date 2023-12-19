@@ -1,11 +1,10 @@
-import { Routes, Route, useNavigate } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 
 import { useDispatch, useSelector } from "react-redux";
-import { lazy, Suspense, useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 
 import { useLazyGetUserQuery } from "./utils/userApi";
 import { login, logout } from "./utils/userSlice";
-import ProtectedRoute from "./component/ProtectedRoute";
 
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
@@ -23,32 +22,36 @@ import {
   UsersList,
 } from "./pages/admin";
 
-const SharedLayout = lazy(() => import("./component/SharedLayout"));
-const Body = lazy(() => import("./component/Home/Body"));
-const Products = lazy(() => import("./component/Product/Products"));
-const SingleProduct = lazy(() => import("./component/Product/SingleProduct"));
-const Cart = lazy(() => import("./component/Cart/Cart"));
-const LoginSignUp = lazy(() => import("./component/user/LoginSignUp"));
-const Profile = lazy(() => import("./component/user/Profile"));
-const UpdateProfile = lazy(() => import("./component/user/UpdateProfile"));
-const UpdatePassword = lazy(() => import("./component/user/UpdatePassword"));
-const ForgotPassword = lazy(() => import("./component/user/ForgotPassword"));
-const ResetPassword = lazy(() => import("./component/user/ResetPassword"));
-const Shipping = lazy(() => import("./component/Cart/Shipping"));
-const ConfirmOrder = lazy(() => import("./component/Cart/ConfirmOrder"));
-const Payment = lazy(() => import("./component/Cart/Payment"));
-const Success = lazy(() => import("./component/Cart/Success"));
-const MyOrders = lazy(() => import("./component/Order/MyOrders"));
-const OrderDetails = lazy(() => import("./component/Order/OrderDetails"));
-const Error = lazy(() => import("./component/Error"));
+import {
+  Landing,
+  Shop,
+  SingleProduct,
+  Cart,
+  Shipping,
+  ConfirmOrder,
+  Payment,
+  Error,
+  Success,
+  SharedLayout,
+  ProtectedRoute,
+} from "./pages";
+
+import {
+  ForgotPassword,
+  Profile,
+  Register,
+  ResetPassword,
+  UpdatePassword,
+  UpdateProfile,
+} from "./pages/user";
+
+import { MyOrders, OrderDetails } from "./pages/Order";
 
 function App() {
   const [stripeApiKey, setStripeApiKey] = useState("");
   const [getUser, results] = useLazyGetUserQuery();
   const userData = useSelector((store) => store.user);
   const dispatch = useDispatch();
-
-  // console.log(results);
 
   const fetchUserData = async () => {
     try {
@@ -101,11 +104,21 @@ function App() {
       <Suspense fallback={<Loading />}>
         <Routes>
           <Route path="/" element={<SharedLayout />}>
-            <Route path="/" element={<Body />} />
-            <Route path="/products" element={<Products />} />
+            <Route index element={<Landing />} />
+            <Route path="/login" element={<Register />} />
+            <Route path="/products" element={<Shop />} />
             <Route path="/product/:id" element={<SingleProduct />} />
             <Route path="/cart" element={<Cart />} />
-            <Route path="/login" element={<LoginSignUp />} />
+          </Route>
+
+          <Route
+            path="/"
+            element={
+              <ProtectedRoute isUser={true}>
+                <SharedLayout />
+              </ProtectedRoute>
+            }
+          >
             <Route path="/account" element={<Profile />} />
             <Route path="/me/update" element={<UpdateProfile />} />
             <Route path="/password/update" element={<UpdatePassword />} />
@@ -114,7 +127,14 @@ function App() {
             <Route path="/shipping" element={<Shipping />} />
             <Route path="/order/confirm" element={<ConfirmOrder />} />
             {stripeApiKey && (
-              <Route path="/process/payment" element={<Payment />} />
+              <Route
+                path="/process/payment"
+                element={
+                  <Elements stripe={loadStripe(stripeApiKey)}>
+                    <Payment />
+                  </Elements>
+                }
+              />
             )}
             <Route path="/success" element={<Success />} />
             <Route path="/orders" element={<MyOrders />} />
@@ -122,15 +142,6 @@ function App() {
           </Route>
 
           {/* Admin Routes */}
-          {/* <Route
-            path="/admin/dashboard"
-            element={
-              <ProtectedRoute isAdmin={true}>
-                <Dashboard />
-              </ProtectedRoute>
-            }
-          ></Route> */}
-
           <Route
             path="/admin"
             element={

@@ -1,10 +1,10 @@
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { formatPrice } from "../../utils/helper";
-import { addItems, removeItems } from "../../utils/cartSlice";
+import { formatPrice } from "../utils/helper";
+import { addItems, removeItems } from "../utils/cartSlice";
 import { useState } from "react";
-import PageHero from "../PageHero";
-import cartImage from "../../assets/cart.png";
+import PageHero from "../component/PageHero";
+import cartImage from "../assets/cart.png";
 
 const Cart = () => {
   const cartItems = useSelector((store) => store.cart.items);

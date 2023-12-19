@@ -1,10 +1,10 @@
 import { useGetUserQuery } from "../utils/userApi";
 import { Navigate } from "react-router-dom";
-import Loading from "./Loading";
+import Loading from "../component/Loading";
 
-const ProtectedRoute = ({ isAdmin, children }) => {
+const ProtectedRoute = ({ isAdmin, isUser, children }) => {
   const { data, isLoading } = useGetUserQuery();
-  // console.log(data, "PROTECTED ROUTE");
+
   if (isLoading) {
     return <Loading />;
   }
@@ -18,6 +18,11 @@ const ProtectedRoute = ({ isAdmin, children }) => {
   if (isAdmin === true && data?.user?.role !== "admin") {
     return <Navigate to="/" />;
   }
+
+  if (isUser === true && data?.user?.role !== "user") {
+    return <Navigate to="/" />;
+  }
+
   return children;
 };
 

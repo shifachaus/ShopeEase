@@ -1,7 +1,7 @@
-import CheckoutStep from "./CheckoutStep";
+import CheckoutStep from "../component/CheckoutStep";
 import { useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import { formatPrice } from "../../utils/helper";
+import { formatPrice } from "../utils/helper";
 
 const ConfirmOrder = () => {
   const { items } = useSelector((state) => state.cart);

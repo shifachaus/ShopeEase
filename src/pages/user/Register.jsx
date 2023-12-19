@@ -8,9 +8,8 @@ import {
 } from "../../utils/userApi";
 import { useDispatch } from "react-redux";
 
-const LoginSignUp = () => {
+const Register = () => {
   const getUserQuery = useGetUserQuery();
-  // console.log(getUserQuery, "MY ACCOUNT");
 
   const [switchTabs, setSwitchTabs] = useState("login");
   const navigate = useNavigate();
@@ -67,7 +66,7 @@ const LoginSignUp = () => {
   const handleRegister = async (e) => {
     e.preventDefault();
     const user = { name, email, password, avatar };
-    // console.log(user, "USER REGISTER");
+
     try {
       const data = await registerUser(user);
       console.log(data);
@@ -298,4 +297,4 @@ const LoginSignUp = () => {
   );
 };
 
-export default LoginSignUp;
+export default Register;

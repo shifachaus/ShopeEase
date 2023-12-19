@@ -1,13 +1,12 @@
-import ProductList from "./ProductList";
-import Shimmer from "../Shimmer";
-import { useGetAllProductsQuery } from "../../utils/productApi";
 import { useState } from "react";
+import { ProductList, SidebarFilter, Filters } from "../component/Product";
+import Shimmer from "../component/Shimmer";
+import { useGetAllProductsQuery } from "../utils/productApi";
 import Pagination from "react-js-pagination";
-import Filters from "./Filters";
-import SidebarFilter from "./SidebarFilter";
-import searchImage from "../../assets/search.png";
 
-const Products = () => {
+import searchImage from "../assets/search.png";
+
+const Shop = () => {
   const [inputKeyword, setInputKeyword] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [category, setCategory] = useState("all");
@@ -110,4 +109,4 @@ const Products = () => {
   );
 };
 
-export default Products;
+export default Shop;

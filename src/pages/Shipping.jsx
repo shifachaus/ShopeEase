@@ -1,8 +1,8 @@
 import { Country, State } from "country-state-city";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import CheckoutStep from "./CheckoutStep";
-import { saveShippingInfo } from "../../utils/cartSlice";
+import CheckoutStep from "../component/CheckoutStep";
+import { saveShippingInfo } from "../utils/cartSlice";
 import { useNavigate } from "react-router-dom";
 
 const Shipping = () => {

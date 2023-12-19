@@ -1,7 +1,7 @@
 import { Outlet } from "react-router-dom";
 import { Suspense, lazy } from "react";
-import Footer from "./Footer";
-const LazyHeader = lazy(() => import("./Header"));
+import Footer from "../component/Footer";
+const LazyHeader = lazy(() => import("../component/Header"));
 
 const SharedLayout = () => {
   return (

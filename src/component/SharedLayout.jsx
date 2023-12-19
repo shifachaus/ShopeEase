@@ -5,15 +5,13 @@ const LazyHeader = lazy(() => import("./Header"));
 
 const SharedLayout = () => {
   return (
-    <main>
-      <main>
-        <Suspense fallback={<div>Loading...</div>}>
-          <LazyHeader />
-        </Suspense>
-        <Outlet />
-        <Footer />
-      </main>
-    </main>
+    <>
+      <Suspense fallback={<div>Loading...</div>}>
+        <LazyHeader />
+      </Suspense>
+      <Outlet />
+      <Footer />
+    </>
   );
 };
 

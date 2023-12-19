@@ -10,6 +10,18 @@ import ProtectedRoute from "./component/ProtectedRoute";
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 import Loading from "./component/Loading";
+import {
+  Dashboard,
+  NewProduct,
+  OrderList,
+  ProcessOrder,
+  ProductList,
+  ProductReviews,
+  SharedLayoutDashboard,
+  UpdateProduct,
+  UpdateUser,
+  UsersList,
+} from "./pages/admin";
 
 const SharedLayout = lazy(() => import("./component/SharedLayout"));
 const Body = lazy(() => import("./component/Home/Body"));
@@ -28,16 +40,6 @@ const Payment = lazy(() => import("./component/Cart/Payment"));
 const Success = lazy(() => import("./component/Cart/Success"));
 const MyOrders = lazy(() => import("./component/Order/MyOrders"));
 const OrderDetails = lazy(() => import("./component/Order/OrderDetails"));
-
-const Dashboard = lazy(() => import("./component/admin/Dashboard"));
-const ProductList = lazy(() => import("./component/admin/ProductList"));
-const NewProduct = lazy(() => import("./component/admin/NewProduct"));
-const UpdateProduct = lazy(() => import("./component/admin/UpdateProduct"));
-const OrderList = lazy(() => import("./component/admin/OrderList"));
-const ProcessOrder = lazy(() => import("./component/admin/ProcessOrder"));
-const UsersList = lazy(() => import("./component/admin/UsersList"));
-const UpdateUser = lazy(() => import("./component/admin/UpdateUser"));
-const ProductReviews = lazy(() => import("./component/admin/ProductReviews"));
 const Error = lazy(() => import("./component/Error"));
 
 function App() {
@@ -120,86 +122,38 @@ function App() {
           </Route>
 
           {/* Admin Routes */}
-          <Route
+          {/* <Route
             path="/admin/dashboard"
             element={
               <ProtectedRoute isAdmin={true}>
                 <Dashboard />
               </ProtectedRoute>
             }
-          ></Route>
+          ></Route> */}
 
           <Route
-            path="/admin/products"
+            path="/admin"
             element={
               <ProtectedRoute isAdmin={true}>
-                <ProductList />
+                <SharedLayoutDashboard />
               </ProtectedRoute>
             }
-          ></Route>
+          >
+            <Route path="/admin/dashboard" element={<Dashboard />} />
+            <Route path="/admin/products" element={<ProductList />} />
+            <Route path="/admin/product" element={<NewProduct />} />
+            <Route path="/admin/product/:id" element={<UpdateProduct />} />
 
-          <Route
-            path="/admin/product"
-            element={
-              <ProtectedRoute isAdmin={true}>
-                <NewProduct />
-              </ProtectedRoute>
-            }
-          ></Route>
+            <Route path="/admin/orders" element={<OrderList />} />
 
-          <Route
-            path="/admin/product/:id"
-            element={
-              <ProtectedRoute isAdmin={true}>
-                <UpdateProduct />
-              </ProtectedRoute>
-            }
-          ></Route>
+            <Route path="/admin/order/:id" element={<ProcessOrder />} />
 
-          <Route
-            path="/admin/orders"
-            element={
-              <ProtectedRoute isAdmin={true}>
-                <OrderList />
-              </ProtectedRoute>
-            }
-          ></Route>
+            <Route path="/admin/users" element={<UsersList />} />
 
-          <Route
-            path="/admin/order/:id"
-            element={
-              <ProtectedRoute isAdmin={true}>
-                <ProcessOrder />
-              </ProtectedRoute>
-            }
-          ></Route>
+            <Route path="/admin/user/:id" element={<UpdateUser />} />
 
-          <Route
-            path="/admin/users"
-            element={
-              <ProtectedRoute isAdmin={true}>
-                <UsersList />
-              </ProtectedRoute>
-            }
-          ></Route>
-
-          <Route
-            path="/admin/user/:id"
-            element={
-              <ProtectedRoute isAdmin={true}>
-                <UpdateUser />
-              </ProtectedRoute>
-            }
-          ></Route>
-
-          <Route
-            path="/admin/reviews"
-            element={
-              <ProtectedRoute isAdmin={true}>
-                <ProductReviews />
-              </ProtectedRoute>
-            }
-          ></Route>
+            <Route path="/admin/reviews" element={<ProductReviews />} />
+          </Route>
 
           <Route path="*" element={<Error />} />
         </Routes>

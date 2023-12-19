@@ -4,7 +4,6 @@ import { useGetAllFeaturedProductsQuery } from "../../utils/productApi";
 
 const Product = () => {
   const { data: product, error, isLoading } = useGetAllFeaturedProductsQuery();
-  // console.log(product?.products.length);
 
   return (
     <section className="mx-auto max-w-7xl  p-6  lg:px-8  pt-12      mt-10 md:mt-20 px-5 py-5   md:py-8 lg:py-10 ">

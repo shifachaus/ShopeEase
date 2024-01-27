@@ -1,9 +1,9 @@
 import { useState } from "react";
-import Rating from "./Rating";
+import Rating from "../Product/Rating";
 import { useNewReviewMutation } from "../../utils/productApi";
 import { useParams } from "react-router-dom";
 
-const Review = ({ setOpen, open }) => {
+const ReviewPopup = ({ setOpen, open }) => {
   const { id } = useParams();
   const [newReview] = useNewReviewMutation();
   const [comment, setComment] = useState("");
@@ -13,12 +13,12 @@ const Review = ({ setOpen, open }) => {
     try {
       const review = { comment, rating, id };
       const data = await newReview(review);
-      // console.log(data, "SUCCESS");
       setOpen(false);
     } catch (err) {
       console.log(err, "REVIEW ERROR");
     }
   };
+
   return (
     <div
       className={
@@ -73,4 +73,4 @@ const Review = ({ setOpen, open }) => {
   );
 };
 
-export default Review;
+export default ReviewPopup;

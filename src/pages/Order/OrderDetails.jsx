@@ -5,7 +5,7 @@ import { formatPrice } from "../../utils/helper";
 const OrderDetails = () => {
   const { id } = useParams();
   const { data: orderData, error, isLoading } = useGetOrderDetailsQuery(id);
-  console.log(orderData, "orderData");
+
   return (
     <section className="mt-10 md:mt-20 mb-10 ">
       <main className=" mx-auto max-w-7xl  my-10  p-6 lg:px-8">

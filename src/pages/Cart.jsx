@@ -9,17 +9,12 @@ import cartImage from "../assets/cart.png";
 const Cart = () => {
   const cartItems = useSelector((store) => store.cart.items);
   const user = useSelector((store) => store.user);
-  // console.log(user?.success);
   const dispatch = useDispatch();
   const [qty] = useState(1);
-
-  // console.log(cartItems);
 
   const total = cartItems?.reduce((acc, cur) => {
     return acc + cur.price * cur.qty;
   }, 0);
-
-  // console.log(total, "to");
 
   const removeQty = (item) => {
     dispatch(removeItems(item));
@@ -28,6 +23,7 @@ const Cart = () => {
   const addQty = (item) => {
     dispatch(addItems({ ...item, qty }));
   };
+
   return (
     <section>
       <PageHero title={"cart"} />

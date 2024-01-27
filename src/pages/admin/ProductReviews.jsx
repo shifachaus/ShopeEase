@@ -26,13 +26,11 @@ const ProductReviews = () => {
     }
   }, [results]);
 
-  console.log(results?.data);
   const deleteReviewHandler = async (productId, id) => {
     try {
       const review = { productId, id };
       const data = await deleteProductReview(review);
       await getReview(productId);
-      console.log(data);
     } catch (err) {
       console.log(err);
     }

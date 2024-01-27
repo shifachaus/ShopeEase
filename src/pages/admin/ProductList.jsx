@@ -22,7 +22,6 @@ const ProductList = () => {
     try {
       const data = await deleteProduct(id);
       refetch();
-      // console.log(data, "DELETE");
     } catch (err) {
       console.log(err);
     }
@@ -50,7 +49,6 @@ const ProductList = () => {
       Header: "ACTION",
       accessor: "Action",
       Cell: ({ row }) => {
-        // console.log(row.original._id, "ROW");
         return (
           <div className="flex gap-2 ">
             <Link to={`/admin/product/${row?.original?._id}`}>
@@ -82,7 +80,7 @@ const ProductList = () => {
               ALL PRODUCTS
             </h2>
           </div>
-          {/* Render your table using the 'rows' and 'headerGroups' */}
+
           <div className=" shadow-md sm:rounded-lg overflow-x-scroll  no-scrollbar">
             <table
               {...getTableProps()}

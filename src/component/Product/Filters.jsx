@@ -20,7 +20,6 @@ const Filters = ({
     setPriceV(e.target.value);
   };
 
-  const [open, setOpen] = useState(false);
   return (
     <aside className="border rounded  sticky top-0  hidden h-fit  flex-col space-y-8  p-8 font-light  md:flex ">
       <div className="flex justify-between mb-6">

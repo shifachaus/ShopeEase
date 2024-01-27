@@ -88,7 +88,6 @@ const Payment = () => {
           };
 
           const data = await newOrder(order);
-          // console.log(data, "newOrder");
           navigate("/success");
         } else {
           alert("There's some issue while processing payment");

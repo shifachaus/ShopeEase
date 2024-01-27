@@ -48,7 +48,6 @@ const NewProduct = () => {
       const data = await newProduct(product);
       await getAdminProductsQuery.refetch();
       navigate("/admin/products");
-      console.log(data, "SUCCESS");
     } catch (err) {
       console.log(err, "NEW PRODUCT ERROR");
     }

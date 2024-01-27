@@ -4,6 +4,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { useLogoutUserMutation } from "../utils/userApi";
 import { logout } from "../utils/userSlice";
 import { PiShoppingCartSimple } from "react-icons/pi";
+import NavbarMobile from "./NavbarMobile";
+import NavbarDesk from "./NavbarDesk";
 
 const Header = () => {
   const [showMenu, setShowMenu] = useState(false);
@@ -14,12 +16,11 @@ const Header = () => {
   const navigate = useNavigate();
   const signOut = async () => {
     const data = await logoutUser();
-    // console.log(data);
+
     dispatch(logout());
     navigate("/");
   };
 
-  // console.log(userData, "HEASE", getUserQuery);
   return (
     <header className=" bg-[#688272]">
       <nav
@@ -57,173 +58,24 @@ const Header = () => {
           </button>
         </div>
 
-        {/*Desktop  Navbar */}
-        <div className="hidden md:flex md:gap-x-12">
-          <Link
-            to={"/"}
-            className="text-sm font-medium leading-6 text-neutral-100"
-          >
-            Home
-          </Link>
-          <Link
-            to={"/products"}
-            className="text-sm font-medium leading-6 text-neutral-100"
-          >
-            Shop
-          </Link>
-          {userData !== null && (
-            <Link
-              to={"/account"}
-              className="text-sm font-medium leading-6 text-neutral-100"
-            >
-              Profile
-            </Link>
-          )}
-          {userData !== null && userData?.user?.role === "admin" && (
-            <Link
-              to={"/admin/dashboard"}
-              className="text-sm font-medium leading-6 text-neutral-100"
-            >
-              Dashboard
-            </Link>
-          )}
-        </div>
-
-        <div className="hidden md:flex md:flex-1 md:justify-end md:items-center gap-4">
-          {userData?.success || userData?.data?.success ? (
-            <p
-              onClick={signOut}
-              className="cursor-pointer text-sm font-medium leading-6 text-neutral-100 ml-8"
-            >
-              Logout
-            </p>
-          ) : (
-            <Link
-              to={"/login"}
-              className="cursor-pointer text-sm font-medium leading-6 text-neutral-100 ml-8"
-            >
-              Log in <span aria-hidden="true">&rarr;</span>
-            </Link>
-          )}
-
-          <Link
-            to={"/cart"}
-            className="text-sm font-medium leading-6 text-neutral-100"
-          >
-            <p className="relative ">
-              <PiShoppingCartSimple className="text-xl " />
-              <span className="absolute text-sm text-white font-medium -top-1 left-4 bg-black rounded-[50%]  w-full text-center">
-                {cartItems.length}
-              </span>
-            </p>
-          </Link>
-        </div>
+        {/* Desktop */}
+        <NavbarDesk
+          showMenu={showMenu}
+          setShowMenu={setShowMenu}
+          userData={userData}
+          cartItems={cartItems}
+          signOut={signOut}
+        />
       </nav>
 
-      {/*MObile  Navbar */}
-      <div
-        className={`z-50 fixed inset-y-0 right-0 overflow-y-auto bg-white px-6 py-6  w-[240px]  h-screen transition-transform ${
-          showMenu ? "translate-x-1" : "translate-x-full"
-        } `}
-        role="dialog"
-        aria-modal="true"
-      >
-        <div className="">
-          <div className="flex items-center justify-between">
-            <div className="flex lg:flex-1">
-              <h1 className="font-black tracking-wider text-xl">
-                <span className="text-[#688272]">Shop</span>
-                <span className="text-[#252323]">Ease</span>
-              </h1>
-            </div>
-            <button
-              type="button"
-              className="-m-2.5 rounded-md p-2.5 text-gray-700"
-              onClick={() => setShowMenu(false)}
-            >
-              <svg
-                className="h-6 w-6"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth="1.5"
-                stroke="currentColor"
-                aria-hidden="true"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M6 18L18 6M6 6l12 12"
-                />
-              </svg>
-            </button>
-          </div>
-          <div className="mt-6 flow-root ">
-            <div className="-my-6 divide-y divide-gray-500/10 ">
-              <div className="flex flex-col space-y-2 py-6 h-[500px]">
-                <Link
-                  to={"/"}
-                  className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
-                >
-                  Home
-                </Link>
-                <Link
-                  to={"/products"}
-                  className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
-                >
-                  Shop
-                </Link>
-                {userData !== null && (
-                  <Link
-                    to={"/account"}
-                    className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
-                  >
-                    Profile
-                  </Link>
-                )}
-
-                {userData !== null && userData?.user?.role === "admin" && (
-                  <Link
-                    to={"/admin/dashboard"}
-                    className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
-                  >
-                    Dashboard
-                  </Link>
-                )}
-                <div className="flex items-center gap-3">
-                  <Link
-                    to={"/cart"}
-                    className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
-                  >
-                    <p className="relative ">
-                      <PiShoppingCartSimple className="text-xl " />
-                      <span className="absolute text-sm text-white font-medium -top-1 left-4 bg-[#688272] rounded-[50%]  w-full text-center">
-                        {cartItems.length}
-                      </span>
-                    </p>
-                  </Link>
-                </div>
-              </div>
-              <div className="py-6">
-                {userData?.success || userData?.data?.success ? (
-                  <p
-                    onClick={signOut}
-                    className="cursor-pointer text-sm font-semibold leading-6 text-gray-900 "
-                  >
-                    Logout
-                  </p>
-                ) : (
-                  <Link
-                    to={"/login"}
-                    className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
-                  >
-                    Log in <span aria-hidden="true">&rarr;</span>
-                  </Link>
-                )}
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+      {/*Mobile  Navbar */}
+      <NavbarMobile
+        showMenu={showMenu}
+        setShowMenu={setShowMenu}
+        userData={userData}
+        cartItems={cartItems}
+        signOut={signOut}
+      />
     </header>
   );
 };

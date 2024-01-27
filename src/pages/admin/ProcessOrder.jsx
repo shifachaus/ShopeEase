@@ -22,7 +22,6 @@ const ProcessOrder = () => {
       const order = { id, status };
       const data = await updateOrder(order);
       refetch();
-      console.log(data, "ORDER STATUS");
     } catch (err) {
       console.log(err);
     }

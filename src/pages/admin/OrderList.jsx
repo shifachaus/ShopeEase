@@ -14,13 +14,11 @@ const OrderList = () => {
   const [deleteOrder] = useDeleteOrderMutation();
 
   const orders = orderData ? orderData?.orders : []; // Extract the data array
-  // console.log(orders, "DATA");
 
   const deleteOrderHandler = async (id) => {
     try {
       const data = await deleteOrder(id);
       refetch();
-      // console.log(data, "DELETE");
     } catch (err) {
       console.log(err);
     }
@@ -47,7 +45,6 @@ const OrderList = () => {
       Header: "ACTION",
       accessor: "Action",
       Cell: ({ row }) => {
-        // console.log(row.original._id, "ROW");
         return (
           <div className="flex gap-2">
             <Link to={`/admin/order/${row?.original?._id}`}>

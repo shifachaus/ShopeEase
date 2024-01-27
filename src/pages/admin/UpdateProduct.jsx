@@ -63,7 +63,6 @@ const UpdateProduct = () => {
       const data = await updateProduct(product);
       await getAdminProductsQuery.refetch();
       navigate("/admin/products");
-      console.log(data, "UPDATE PRODUCT");
     } catch (err) {
       console.log(err);
     }

@@ -5,7 +5,7 @@ const Rating = ({ stars, setRate }) => {
     <div className="flex items-center gap-1">
       {Array?.from({ length: 5 }).map((_, index) => {
         const number = index + 0.5;
-        // console.log(stars, index, number);
+
         return (
           <span key={index}>
             {stars > number ? (

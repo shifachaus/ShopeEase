@@ -109,21 +109,13 @@ function App() {
             <Route path="/products" element={<Shop />} />
             <Route path="/product/:id" element={<SingleProduct />} />
             <Route path="/cart" element={<Cart />} />
-          </Route>
 
-          <Route
-            path="/"
-            element={
-              <ProtectedRoute isUser={true}>
-                <SharedLayout />
-              </ProtectedRoute>
-            }
-          >
             <Route path="/account" element={<Profile />} />
             <Route path="/me/update" element={<UpdateProfile />} />
             <Route path="/password/update" element={<UpdatePassword />} />
             <Route path="/password/forgot" element={<ForgotPassword />} />
             <Route path="/password/reset/:token" element={<ResetPassword />} />
+
             <Route path="/shipping" element={<Shipping />} />
             <Route path="/order/confirm" element={<ConfirmOrder />} />
             {stripeApiKey && (

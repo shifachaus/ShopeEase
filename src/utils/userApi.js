@@ -82,6 +82,7 @@ export const userApi = createApi({
 
     forgotPassword: builder.mutation({
       query: (user) => {
+        console.log(user);
         const formData = new FormData();
         formData.append("email", user.email);
 

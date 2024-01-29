@@ -9,10 +9,10 @@ const FeaturedProducts = ({ item }) => {
       <div className="p-3 flex items-center justify-center bg-gray-100 ">
         <img
           src={images[0]?.url}
-          alt="image"
-          height={200}
+          alt={name}
           width={200}
-          className="h-20 sm:h-40 md:h-56  xl:h-72 xl:p-8  mix-blend-darken transition-all delay-75 duration-300 ease-linear hover:scale-110 "
+          className="w-20 sm:w-40 md:w-56 xl:w-72 h-auto xl:p-8 mix-blend-darken transition-all delay-75 duration-300 ease-linear hover:scale-110"
+          loading="lazy"
         />
       </div>
       <div className="flex flex-col gap-1 items-center ">

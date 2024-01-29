@@ -6,13 +6,13 @@ const Hero = () => {
       <div className="relative max-w-7xl mx-auto flex flex-col ">
         <div className="max-w-7xl mx-auto z-10  h-80 md:h-72 p-4  flex flex-col items-start sm:items-center pt-10 md:pt-20   ">
           <div className="flex flex-col  gap-2  p-4  items-start md:items-center pt-10 md:pt-20 ">
-            <h1 className="text-primary-600 text-3xl font-bold tracking-normal text-white sm:text-4xl md:text-5xl">
+            <h1 className="text-primary-600 text-3xl font-bold tracking-normal text-dark sm:text-4xl md:text-5xl">
               Elevate Your Home Comfort
             </h1>
-            <p className=" text-md sm:text-lg font-medium text-white">
+            <p className=" text-md sm:text-lg font-medium text-dark">
               Massive Discounts Arriving Shortly.
             </p>
-            <p className="text-white mt-4 text-left border-b border-white py-1 text-[10px] uppercase font-medium tracking-wider hover:border-b-primary hover:text-primary">
+            <p className="text-dark mt-4 text-left border-b border-white py-1 text-[10px] uppercase font-medium tracking-wider hover:border-b-primary hover:text-primary">
               View Now
             </p>
           </div>

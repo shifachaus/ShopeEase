@@ -9,7 +9,6 @@ const cartSlice = createSlice({
 
   reducers: {
     addItems: (state, action) => {
-      console.log(action.payload, "ACTION");
       const exists = state.items?.find(
         (item) => item._id === action.payload._id
       );
@@ -27,7 +26,6 @@ const cartSlice = createSlice({
     },
 
     removeItems: (state, action) => {
-      console.log(action.payload);
       const exists = state.items.find(
         (item) => item._id === action.payload._id
       );

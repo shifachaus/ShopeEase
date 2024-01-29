@@ -15,8 +15,9 @@ const NavbarMobile = ({
       } `}
       role="dialog"
       aria-modal="true"
+      aria-label="Menu Navigation"
     >
-      <div className="">
+      <div>
         <div className="flex items-center justify-between">
           <div className="flex lg:flex-1">
             <h1 className="font-black tracking-wider text-xl">
@@ -26,6 +27,7 @@ const NavbarMobile = ({
           </div>
           <button
             type="button"
+            aria-label="Close Menu"
             className="-m-2.5 rounded-md p-2.5 text-gray-700"
             onClick={() => setShowMenu(false)}
           >

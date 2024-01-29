@@ -1,6 +1,4 @@
 import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
-import { formatPrice } from "../../utils/helper";
 import Address from "./Address";
 import CartItems from "./CartItems";
 

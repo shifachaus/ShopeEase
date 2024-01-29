@@ -1,10 +1,9 @@
-import React from "react";
-
-const FormButton = ({ isLoading, name }) => {
+const FormButton = ({ isLoading, name, onClick }) => {
   return (
     <div className="flex flex-col">
       <button
-        disabled=""
+        onClick={onClick}
+        disabled={isLoading}
         type="submit"
         className="text-white bg-[#252323]  focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded text-sm px-5 py-2.5 text-center  "
       >

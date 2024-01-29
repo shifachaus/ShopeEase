@@ -3,7 +3,6 @@ import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useLogoutUserMutation } from "../utils/userApi";
 import { logout } from "../utils/userSlice";
-import { PiShoppingCartSimple } from "react-icons/pi";
 import NavbarMobile from "./NavbarMobile";
 import NavbarDesk from "./NavbarDesk";
 
@@ -25,7 +24,9 @@ const Header = () => {
     <header className=" bg-[#688272]">
       <nav
         className="mx-auto flex max-w-7xl items-center justify-between p-6 md:pb-8 md:pt-8 lg:px-8"
-        aria-label="Global"
+        role="dialog"
+        aria-modal="true"
+        aria-label="Menu Navigation"
       >
         <Link to={"/"} className="flex md:flex-1">
           <h1 className="font-black tracking-wider text-xl">
@@ -37,6 +38,7 @@ const Header = () => {
         {/* hamburger menu */}
         <div className="flex md:hidden">
           <button
+            aria-label="Open Menu"
             type="button"
             className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-neutral-100"
             onClick={() => setShowMenu(true)}

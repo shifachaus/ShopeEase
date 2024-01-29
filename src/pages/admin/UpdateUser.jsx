@@ -5,37 +5,48 @@ import {
   useUpdateUserRoleMutation,
 } from "../../utils/userApi";
 import { useEffect, useState } from "react";
+import { FormRow } from "../../component";
+
+const initialValue = {
+  name: "",
+  email: "",
+  role: "",
+};
 
 const UpdateUser = () => {
+  const [values, setValues] = useState(initialValue);
+
   const { id } = useParams();
   const { data: userData } = useGetSingleUserQuery(id);
-  const [updateUserRole, { isLoading, isError, error }] =
-    useUpdateUserRoleMutation();
+  const [updateUserRole, { isLoading }] = useUpdateUserRoleMutation();
   const getAllUserQuery = useGetAllUserQuery();
 
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [role, setRole] = useState("");
-
-  useEffect(() => {
-    setName(userData?.user?.name);
-    setEmail(userData?.user?.email);
-    setRole(userData?.user?.role);
-  }, [userData]);
+  const handleChange = (e) => {
+    const name = e.target.name;
+    const value = e.target.value;
+    setValues({ ...values, [name]: value });
+  };
 
   const updateUserHandler = async (e) => {
     e.preventDefault();
+    const { name, email, role } = values;
     const user = { id, name, email, role };
-    console.log(user);
+
     try {
       const data = await updateUserRole(user);
       await getAllUserQuery.refetch();
-      // navigate("/admin/users");
-      console.log(data, "UPDATE USERS");
     } catch (err) {
       console.log(err);
     }
   };
+
+  useEffect(() => {
+    setValues({
+      name: userData?.user?.name || "",
+      email: userData?.user?.email || "",
+      role: userData?.user?.role || "",
+    });
+  }, [userData]);
 
   return (
     <section>
@@ -52,39 +63,18 @@ const UpdateUser = () => {
               onSubmit={(e) => updateUserHandler(e)}
               className="px-5 pt-6 pb-8"
             >
-              <div className="mb-4">
-                <label
-                  className="block text-gray-700 text-sm font-bold mb-2"
-                  htmlFor="name"
-                >
-                  Name
-                </label>
-                <input
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                  id="name"
-                  type="text"
-                  placeholder="Name"
-                />
-              </div>
-
-              <div className="mb-4">
-                <label
-                  className="block text-gray-700 text-sm font-bold mb-2"
-                  htmlFor="email"
-                >
-                  Email
-                </label>
-                <input
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                  id="email"
-                  type="email"
-                  placeholder="Email"
-                />
-              </div>
+              <FormRow
+                type="text"
+                name="name"
+                value={values.name}
+                handleChange={handleChange}
+              />
+              <FormRow
+                type="email"
+                name="email"
+                value={values.email}
+                handleChange={handleChange}
+              />
 
               <div className="mb-4">
                 <label
@@ -95,10 +85,11 @@ const UpdateUser = () => {
                 </label>
                 <select
                   id="role"
-                  onChange={(e) => setRole(e.target.value)}
+                  name="role"
+                  onChange={handleChange}
                   className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 >
-                  <option value={role}>{role}</option>
+                  <option value={values.role}>{values.role}</option>
                   <option value="admin">Admin</option>
                   <option value="user">User</option>
                 </select>

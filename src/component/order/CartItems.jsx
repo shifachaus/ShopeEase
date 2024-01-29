@@ -1,4 +1,3 @@
-import React from "react";
 import { Link } from "react-router-dom";
 import { formatPrice } from "../../utils/helper";
 
@@ -11,7 +10,6 @@ const CartItems = ({ items }) => {
 
       <div className="mt-6 p-2">
         {items?.map((item) => {
-          console.log(item.product, "CONFIRM oRDER");
           return (
             <div key={item._id} className="grid grid-cols-3 gap-2 items-center">
               <img src={item?.image} alt={item.name} className="h-16 w-20" />

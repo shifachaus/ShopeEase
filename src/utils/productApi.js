@@ -34,7 +34,6 @@ export const productsApi = createApi({
         }
 
         const queryString = new URLSearchParams(queryParams).toString();
-        console.log(queryString, "API", category);
 
         return `/products?${queryString}`;
       },
@@ -46,7 +45,6 @@ export const productsApi = createApi({
 
     newReview: builder.mutation({
       query: (review) => {
-        console.log(review, "review API");
         const formData = new FormData();
         formData.append("productId", review.id);
         formData.append("comment", review.comment);
@@ -66,7 +64,6 @@ export const productsApi = createApi({
 
     newProduct: builder.mutation({
       query: (product) => {
-        console.log(product, "product API", product.images);
         const formData = new FormData();
         formData.append("name", product.name);
         formData.append("description", product.description);
@@ -120,7 +117,6 @@ export const productsApi = createApi({
 
     deleteProductReview: builder.mutation({
       query: (review) => {
-        console.log(review, "API");
         return {
           url: `reviews?id=${review.id}&productId=${review.productId}`,
           method: "DELETE",

@@ -46,7 +46,7 @@ export const orderApi = createApi({
       query: (order) => {
         const formData = new FormData();
         formData.append("status", order?.status);
-        console.log(order, "ORDER");
+
         return {
           url: `admin/order/${order.id}`,
           method: "PUT",

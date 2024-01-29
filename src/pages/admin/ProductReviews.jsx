@@ -6,6 +6,7 @@ import {
 import { useMemo } from "react";
 import { useTable } from "react-table";
 import { AiOutlineDelete } from "react-icons/ai";
+import Table from "../../component/Table";
 
 const ProductReviews = () => {
   const [arrayOfObjects, setArrayOfObjects] = useState([]);
@@ -151,47 +152,13 @@ const ProductReviews = () => {
           {results?.data?.success ? (
             <div className="overflow-x-scroll  no-scrollbar shadow-md sm:rounded-lg">
               {results?.data?.product?.reviews.length > 0 ? (
-                <table
-                  {...getTableProps()}
-                  className="w-full text-sm text-left text-gray-500 "
-                >
-                  <thead className="text-xs text-gray-700 uppercase bg-gray-100">
-                    {headerGroups?.map((headerGroup, i) => (
-                      <tr key={i} {...headerGroup.getHeaderGroupProps()}>
-                        {headerGroup?.headers?.map((column, i) => (
-                          <th
-                            key={i}
-                            {...column.getHeaderProps()}
-                            className="px-6 py-3"
-                          >
-                            {column.render("Header")}
-                          </th>
-                        ))}
-                      </tr>
-                    ))}
-                  </thead>
-
-                  <tbody {...getTableBodyProps()}>
-                    {rows?.map((row, i) => {
-                      prepareRow(row);
-                      return (
-                        <tr key={i} {...row.getRowProps()} className="border-b">
-                          {row?.cells?.map((cell, i) => {
-                            return (
-                              <td
-                                key={i}
-                                {...cell.getCellProps()}
-                                className="px-6 py-4  text-gray-900 whitespace-nowrap"
-                              >
-                                {cell.render("Cell")}
-                              </td>
-                            );
-                          })}
-                        </tr>
-                      );
-                    })}
-                  </tbody>
-                </table>
+                <Table
+                  getTableBodyProps={getTableBodyProps}
+                  getTableProps={getTableProps}
+                  rows={rows}
+                  headerGroups={headerGroups}
+                  prepareRow={prepareRow}
+                />
               ) : (
                 <p className="text-SM font-medium text-[#252323]   p-4">
                   No Reviews{" "}
@@ -199,7 +166,9 @@ const ProductReviews = () => {
               )}
             </div>
           ) : (
-            <p>RESUTL</p>
+            <p className="text-lg font-medium mb-6 tracking-tight  text-black text-center">
+              Search Results...
+            </p>
           )}
         </div>
       </div>

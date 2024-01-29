@@ -9,7 +9,6 @@ export const userApi = createApi({
   endpoints: (builder) => ({
     registerUser: builder.mutation({
       query: (user) => {
-        console.log(user);
         const formData = new FormData();
         formData.append("name", user.name);
         formData.append("email", user.email);
@@ -82,7 +81,6 @@ export const userApi = createApi({
 
     forgotPassword: builder.mutation({
       query: (user) => {
-        console.log(user);
         const formData = new FormData();
         formData.append("email", user.email);
 
@@ -96,7 +94,6 @@ export const userApi = createApi({
 
     resetPassword: builder.mutation({
       query: (user) => {
-        console.log(user, "PAS");
         const formData = new FormData();
         formData.append("password", user.password);
         formData.append("confirmPassword", user.confirmPassword);
@@ -126,7 +123,6 @@ export const userApi = createApi({
 
     updateUserRole: builder.mutation({
       query: (user) => {
-        console.log(user, "ROLE");
         const formData = new FormData();
         formData.append("name", user.name);
         formData.append("email", user.email);

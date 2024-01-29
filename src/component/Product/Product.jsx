@@ -62,7 +62,7 @@ const Product = ({ displayImage, singleProductItem, setDisplay, display }) => {
           <div className="bg-gray-100   ">
             <img
               src={images?.[display]?.url}
-              alt="product_image"
+              alt={name}
               className="h-full w-full border object-cover object-center p-8 mix-blend-darken xl:h-full "
             />
           </div>
@@ -71,7 +71,7 @@ const Product = ({ displayImage, singleProductItem, setDisplay, display }) => {
             {images?.map((img, index) => (
               <img
                 src={img.url}
-                alt="image"
+                alt={`image-${index + 1}`}
                 key={img._id}
                 className={`${
                   display === index && "border-2 border-[#688272]"

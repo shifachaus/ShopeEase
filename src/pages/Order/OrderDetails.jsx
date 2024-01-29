@@ -1,8 +1,7 @@
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useGetOrderDetailsQuery } from "../..//utils/orderApi";
 import { formatPrice } from "../../utils/helper";
-import Address from "../../component/order/Address";
-import CartItems from "../../component/order/CartItems";
+import { Address, CartItems } from "../../component/order";
 
 const OrderDetails = () => {
   const { id } = useParams();
@@ -50,6 +49,7 @@ const OrderDetails = () => {
                   {orderData?.order.totalPrice &&
                     formatPrice(orderData?.order.totalPrice)}
                 </span>
+                <span className="text-xs text-red-500">*tax included</span>
               </div>
             </div>
           </div>

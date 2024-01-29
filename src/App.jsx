@@ -92,7 +92,7 @@ function App() {
         }
       );
       const data = await res.json();
-      // console.log(data, "Stripe Api Key");
+
       setStripeApiKey(data.stripeApiKey);
     } catch (error) {
       console.error("Error:", error);

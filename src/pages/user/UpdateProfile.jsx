@@ -15,9 +15,6 @@ const UpdateProfile = () => {
   const [updateUser, { isLoading }] = useUpdateUserMutation();
   const getUserQuery = useGetUserQuery();
 
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [avatar, setAvatar] = useState("");
   const [avatarPreview, setAvatarPreview] = useState("");
 
   const handleChange = (e) => {

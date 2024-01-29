@@ -3,9 +3,9 @@ const FormRow = ({ type, name, value, handleChange, labelText }) => {
     <div className="mb-4">
       <label
         className="block text-gray-700 text-sm font-bold mb-2"
-        htmlFor={name}
+        htmlFor={labelText ? labelText : name}
       >
-        {name}
+        {labelText ? labelText : name}
       </label>
       <input
         type={type}

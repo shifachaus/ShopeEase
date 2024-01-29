@@ -1,44 +1,28 @@
 import { Link, useParams } from "react-router-dom";
 import { useGetOrderDetailsQuery } from "../..//utils/orderApi";
 import { formatPrice } from "../../utils/helper";
+import Address from "../../component/order/Address";
+import CartItems from "../../component/order/CartItems";
 
 const OrderDetails = () => {
   const { id } = useParams();
   const { data: orderData, error, isLoading } = useGetOrderDetailsQuery(id);
 
+  let address = `${orderData?.order.shippingInfo.address}, ${orderData?.order.shippingInfo.city}, ${orderData?.order.shippingInfo.state}, ${orderData?.order.shippingInfo.pinCode}, ${orderData?.order.shippingInfo.country}`;
+
   return (
     <section className="mt-10 md:mt-20 mb-10 ">
-      <main className=" mx-auto max-w-7xl  my-10  p-6 lg:px-8">
+      <div className=" mx-auto max-w-7xl  my-10  p-6 lg:px-8">
         <div className=" flex flex-col gap-6  mt-6 ">
           <p className="text-xl font-medium mb-2  text-black sm:text-2xl md:text-3xl">
             Order ID #{orderData?.order?._id}
           </p>
-          <div className="mb-4">
-            <h2 className="text-xl font-medium mb-2    tracking-tight sm:text-2xl  text-black ">
-              Shipping Info
-            </h2>
-            <div className="flex flex-col gap-2 p-4 bg-gray-100 md:w-3/4">
-              <p className="text-md font-medium">
-                Name:{" "}
-                <span className="text-sm font-normal">
-                  {orderData?.order?.user?.name}
-                </span>
-              </p>
-              <p className="text-md font-medium">
-                Phone:{" "}
-                <span className="text-sm font-normal">
-                  {orderData?.order?.shippingInfo?.phoneNo}
-                </span>
-              </p>
-              <p className="text-md font-medium">
-                Address:{" "}
-                <span className="text-sm font-normal">
-                  {orderData?.order.shippingInfo &&
-                    `${orderData?.order.shippingInfo.address}, ${orderData?.order.shippingInfo.city}, ${orderData?.order.shippingInfo.state}, ${orderData?.order.shippingInfo.pinCode}, ${orderData?.order.shippingInfo.country}`}
-                </span>
-              </p>
-            </div>
-          </div>
+
+          <Address
+            orderData={orderData}
+            address={address}
+            shippingInfo={orderData?.order?.shippingInfo}
+          />
 
           <div className="mb-4">
             <h3 className="text-lg font-medium mb-2 tracking-tight sm:text-xl  text-black ">
@@ -70,7 +54,7 @@ const OrderDetails = () => {
             </div>
           </div>
 
-          <div className="mb-4">
+          <div className="mb-1">
             <h3 className="text-lg font-medium mb-6 tracking-tight sm:text-xl   text-black ">
               Order Status
             </h3>
@@ -89,31 +73,10 @@ const OrderDetails = () => {
             </div>
           </div>
         </div>
-      </main>
+      </div>
 
       <div className="border-t mx-auto max-w-7xl  p-6 lg:px-8">
-        <h3 className="text-lg font-medium mb-6 tracking-tight sm:text-xl   text-black ">
-          Your Cart Items:
-        </h3>
-
-        <div className="mt-6 p-2">
-          {orderData?.order?.orderItems?.map((item) => {
-            console.log(item, "CONFIRM oRDER");
-            return (
-              <div
-                key={item._id}
-                className="grid grid-cols-3 gap-2 items-center"
-              >
-                <img src={item?.image} alt={item.name} className="h-16 w-20" />
-                <Link to={`/product/${item.product}`}>{item.name}</Link>
-                <p>
-                  {/* {item.qty} X {formatPrice(item.price)} ={" "} */}
-                  <b>{formatPrice(item.price * item.qty)}</b>
-                </p>
-              </div>
-            );
-          })}
-        </div>
+        <CartItems items={orderData?.order?.orderItems} />
       </div>
     </section>
   );

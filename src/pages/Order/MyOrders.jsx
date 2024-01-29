@@ -5,9 +5,8 @@ import { Link } from "react-router-dom";
 
 const MyOrders = () => {
   const { data: ordersData, error, isLoading } = useMyOrdersQuery();
-  console.log(ordersData);
+
   const orders = ordersData ? ordersData?.orders : [];
- 
 
   const tableColumn = [
     {

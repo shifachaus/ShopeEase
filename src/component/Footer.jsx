@@ -15,18 +15,10 @@ const Footer = () => {
             <div className="w-1/6 border-t"></div>
           </div>
           <div className="flex flex-col space-y-4 text-sm font-light">
-            <a href="#" className="hover:text-white/80">
-              Home
-            </a>
-            <a href="#" className="hover:text-white/80">
-              Shop
-            </a>
-            <a href="#" className="hover:text-white/80">
-              About
-            </a>
-            <a href="#" className="hover:text-white/80">
-              Contact
-            </a>
+            <a href="#">Home</a>
+            <a href="#">Shop</a>
+            <a href="#">About</a>
+            <a href="#">Contact</a>
           </div>
         </section>
 
@@ -36,9 +28,7 @@ const Footer = () => {
             <div className="w-1/6 border-t"></div>
           </div>
           <div className="flex flex-col space-y-4 text-sm font-light">
-            <a href="#" className="hover:text-white/80">
-              Privacy Policies
-            </a>
+            <a href="#">Privacy Policies</a>
           </div>
         </section>
 

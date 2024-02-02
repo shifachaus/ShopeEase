@@ -1,7 +1,7 @@
 import { Routes, Route } from "react-router-dom";
 
 import { useDispatch, useSelector } from "react-redux";
-import { Suspense, useEffect, useState } from "react";
+import { Suspense, lazy, useEffect, useState } from "react";
 
 import { useLazyGetUserQuery } from "./utils/userApi";
 import { login, logout } from "./utils/userSlice";
@@ -9,43 +9,39 @@ import { login, logout } from "./utils/userSlice";
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 import Loading from "./component/Loading";
-import {
-  Dashboard,
-  NewProduct,
-  OrderList,
-  ProcessOrder,
-  ProductList,
-  ProductReviews,
-  SharedLayoutDashboard,
-  UpdateProduct,
-  UpdateUser,
-  UsersList,
-} from "./pages/admin";
 
-import {
-  Landing,
-  Shop,
-  SingleProduct,
-  Cart,
-  Shipping,
-  ConfirmOrder,
-  Payment,
-  Error,
-  Success,
-  SharedLayout,
-  ProtectedRoute,
-} from "./pages";
+import { SharedLayout, ProtectedRoute } from "./pages";
 
-import {
-  ForgotPassword,
-  Profile,
-  Register,
-  ResetPassword,
-  UpdatePassword,
-  UpdateProfile,
-} from "./pages/user";
+import { Register } from "./pages/user";
 
-import { MyOrders, OrderDetails } from "./pages/Order";
+const Landing = lazy(() => import("./pages/Landing"));
+const Shop = lazy(() => import("./pages/Shop"));
+const SingleProduct = lazy(() => import("./pages/SingleProduct"));
+const Cart = lazy(() => import("./pages/Cart"));
+const Profile = lazy(() => import("./pages/user/Profile"));
+const UpdateProfile = lazy(() => import("./pages/user/UpdateProfile"));
+const UpdatePassword = lazy(() => import("./pages/user/UpdatePassword"));
+const ForgotPassword = lazy(() => import("./pages/user/ForgotPassword"));
+const ResetPassword = lazy(() => import("./pages/user/ResetPassword"));
+const Shipping = lazy(() => import("./pages/Shipping"));
+const ConfirmOrder = lazy(() => import("./pages/ConfirmOrder"));
+const Payment = lazy(() => import("./pages/Payment"));
+const Success = lazy(() => import("./pages/Success"));
+const MyOrders = lazy(() => import("./pages/Order/MyOrders"));
+const OrderDetails = lazy(() => import("./pages/Order/OrderDetails"));
+const Dashboard = lazy(() => import("./pages/admin/Dashboard"));
+const ProductList = lazy(() => import("./pages/admin/ProductList"));
+const NewProduct = lazy(() => import("./pages/admin/NewProduct"));
+const UpdateProduct = lazy(() => import("./pages/admin/UpdateProduct"));
+const OrderList = lazy(() => import("./pages/admin/OrderList"));
+const ProcessOrder = lazy(() => import("./pages/admin/ProcessOrder"));
+const UsersList = lazy(() => import("./pages/admin/UsersList"));
+const UpdateUser = lazy(() => import("./pages/admin/UpdateUser"));
+const ProductReviews = lazy(() => import("./pages/admin/ProductReviews"));
+const SharedLayoutDashboard = lazy(() =>
+  import("./pages/admin/SharedLayoutDashboard")
+);
+const Error = lazy(() => import("./pages/Error"));
 
 function App() {
   const [stripeApiKey, setStripeApiKey] = useState("");

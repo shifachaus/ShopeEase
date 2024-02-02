@@ -13,8 +13,7 @@ const NavbarMobile = ({
       className={`z-50 fixed inset-y-0 right-0 overflow-y-auto bg-white px-6 py-6  w-[240px]  h-screen transition-transform ${
         showMenu ? "translate-x-1" : "translate-x-full"
       } `}
-      role="dialog"
-      aria-modal="true"
+      role="navigation"
       aria-label="Menu Navigation"
     >
       <div>

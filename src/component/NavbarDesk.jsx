@@ -53,7 +53,7 @@ const NavbarDesk = ({ userData, cartItems, signOut }) => {
           <p className="relative ">
             <PiShoppingCartSimple className="text-xl " />
             <span className="absolute text-sm text-dark font-medium -top-1 left-4 bg-white rounded-[50%]  w-full text-center">
-              {cartItems.length}
+              {cartItems?.length}
             </span>
           </p>
         </Link>

@@ -24,8 +24,7 @@ const Header = () => {
     <header className=" bg-[#688272]">
       <nav
         className="mx-auto flex max-w-7xl items-center justify-between p-6 md:pb-8 md:pt-8 lg:px-8"
-        role="dialog"
-        aria-modal="true"
+        role="navigation"
         aria-label="Menu Navigation"
       >
         <Link to={"/"} className="flex md:flex-1">

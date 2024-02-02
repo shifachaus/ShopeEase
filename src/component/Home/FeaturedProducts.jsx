@@ -10,7 +10,6 @@ const FeaturedProducts = ({ item }) => {
         <img
           src={images[0]?.url}
           alt={name}
-          width={200}
           className="w-20 sm:w-40 md:w-56 xl:w-72 h-auto xl:p-8 mix-blend-darken transition-all delay-75 duration-300 ease-linear hover:scale-110"
           loading="lazy"
         />

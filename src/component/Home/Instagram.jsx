@@ -1,6 +1,6 @@
 const Instagram = () => {
   return (
-    <section className="mx-auto max-w-7xl mt-10 md:mt-20  h-64 md:h-80 md:bg-[url('./assets/footerimage.png')] bg-[url('./assets/mobile.png')] bg-cover bg-center ">
+    <section className="mx-auto max-w-7xl mt-10 md:mt-20  h-64 md:h-80 md:bg-[url('./assets/footerimage.webp')] bg-[url('./assets/mobile.webp')] bg-cover bg-center ">
       <div className="w-full   h-full flex  justify-center items-center backdrop-brightness-75">
         <div className=" flex flex-col h-full items-center justify-center text-white">
           <h3 className="mb-4  text-4xl font-semibold  sm:text-4xl text-center">

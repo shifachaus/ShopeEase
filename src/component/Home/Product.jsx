@@ -1,13 +1,19 @@
 import Shimmer from "../Shimmer";
 import FeaturedProducts from "./FeaturedProducts";
 import { useGetAllFeaturedProductsQuery } from "../../utils/productApi";
+import { useMemo } from "react";
 
 const Product = () => {
   const { data: product, error, isLoading } = useGetAllFeaturedProductsQuery();
 
+  const featuredProducts = useMemo(
+    () => product?.products.slice(0, 4) || [],
+    [product]
+  );
+
   return (
     <section className="mx-auto max-w-7xl  p-6  lg:px-8  pt-12      mt-10 md:mt-20 px-5 py-5   md:py-8 lg:py-10 ">
-      <h2 className="tracking-tight text-2xl sm:text-3xl font-medium  text-black text-center ">
+      <h2 className="tracking-tight text-2xl  font-medium  text-black text-center ">
         Featured Product
       </h2>
       {error ? (
@@ -18,8 +24,11 @@ const Product = () => {
         <Shimmer box={4} />
       ) : (
         <div>
-          <div className=" grid grid-cols-2 gap-4  lg:grid-cols-4 pt-12 pb-12">
-            {product?.products.slice(0, 4)?.map((item) => {
+          <div
+            className=" grid grid-cols-2 gap-4  lg:grid-cols-4 pt-12 pb-12"
+            style={{ height: "auto" }}
+          >
+            {featuredProducts?.map((item) => {
               return <FeaturedProducts key={item?._id} item={item} />;
             })}
           </div>

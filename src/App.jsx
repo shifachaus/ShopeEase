@@ -49,7 +49,7 @@ import { useStripeApiKey } from "./hooks/useStripeApiKey";
 const Shop = lazy(() => import("./pages/Shop"));
 const SingleProduct = lazy(() => import("./pages/SingleProduct"));
 const ConfirmOrder = lazy(() => import("./pages/ConfirmOrder"));
-const Dashboard = lazy(() => import("./pages/admin"));
+const Dashboard = lazy(() => import("./pages/admin/Dashboard"));
 
 function App() {
   const { userData, fetchUserData } = useAuth();

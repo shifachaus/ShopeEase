@@ -3,7 +3,7 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react"; // Upd
 export const userApi = createApi({
   reducerPath: "userApi",
   baseQuery: fetchBaseQuery({
-    baseUrl: "https://shopease-backend.onrender.com/api/v1/",
+    baseUrl: import.meta.env.VITE_API_URL,
     credentials: "include",
   }),
   endpoints: (builder) => ({

@@ -10,14 +10,10 @@ import { FiEdit2 } from "react-icons/fi";
 import Table from "../../component/Table";
 
 const ProductList = () => {
-  const {
-    data: productData,
-
-    refetch,
-  } = useGetAdminProductsQuery();
+  const { data: productData, refetch } = useGetAdminProductsQuery();
   const [deleteProduct] = useDeleteProductMutation();
 
-  const products = productData ? productData?.products : []; // Extract the data array
+  const products = productData ? productData?.products : [];
 
   const deleteProductHandler = async (id) => {
     try {

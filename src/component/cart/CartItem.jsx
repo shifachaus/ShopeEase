@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import { useState } from "react";
 
 const CartItem = ({ item }) => {
-  const [qty] = useState(1);
+  const [qty, setQty] = useState(1);
   const dispatch = useDispatch();
 
   const removeQty = (item) => {
@@ -12,6 +12,7 @@ const CartItem = ({ item }) => {
   };
 
   const addQty = (item) => {
+    if (item?.qty === item?.stock) return;
     dispatch(addItems({ ...item, qty }));
   };
 

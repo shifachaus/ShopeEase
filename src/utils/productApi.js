@@ -4,7 +4,7 @@ export const productsApi = createApi({
   reducerPath: "productsApi",
 
   baseQuery: fetchBaseQuery({
-    baseUrl: "https://shopease-backend.onrender.com/api/v1/",
+    baseUrl: import.meta.env.VITE_API_URL,
     credentials: "include",
   }),
   endpoints: (builder) => ({

@@ -51,7 +51,7 @@ const Payment = () => {
         withCredentials: true,
       };
       const { data } = await axios.post(
-        "https://shopease-backend.onrender.com/api/v1/payment/process",
+        `${import.meta.env.VITE_API_URL}payment/process`,
         paymentData,
         config
       );

@@ -81,12 +81,9 @@ function App() {
 
   async function getStripeApiKey() {
     try {
-      const res = await fetch(
-        "https://shopease-backend.onrender.com/api/v1/stripeapikey",
-        {
-          credentials: "include",
-        }
-      );
+      const res = await fetch(`${import.meta.env.VITE_API_URL}stripeapikey`, {
+        credentials: "include",
+      });
       const data = await res.json();
 
       setStripeApiKey(data.stripeApiKey);

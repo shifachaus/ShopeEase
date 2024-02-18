@@ -10,38 +10,44 @@ import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 import Loading from "./component/Loading";
 
-import { SharedLayout, ProtectedRoute } from "./pages";
+import {
+  Landing,
+  Cart,
+  Shipping,
+  Payment,
+  Error,
+  Success,
+  SharedLayout,
+  ProtectedRoute,
+} from "./pages";
 
-import { Register } from "./pages/user";
+import {
+  ForgotPassword,
+  Profile,
+  Register,
+  ResetPassword,
+  UpdatePassword,
+  UpdateProfile,
+} from "./pages/user";
 
-const Landing = lazy(() => import("./pages/Landing"));
+import {
+  NewProduct,
+  OrderList,
+  ProcessOrder,
+  ProductList,
+  ProductReviews,
+  SharedLayoutDashboard,
+  UpdateProduct,
+  UpdateUser,
+  UsersList,
+} from "./pages/admin";
+
+import { MyOrders, OrderDetails } from "./pages/Order";
+
 const Shop = lazy(() => import("./pages/Shop"));
 const SingleProduct = lazy(() => import("./pages/SingleProduct"));
-const Cart = lazy(() => import("./pages/Cart"));
-const Profile = lazy(() => import("./pages/user/Profile"));
-const UpdateProfile = lazy(() => import("./pages/user/UpdateProfile"));
-const UpdatePassword = lazy(() => import("./pages/user/UpdatePassword"));
-const ForgotPassword = lazy(() => import("./pages/user/ForgotPassword"));
-const ResetPassword = lazy(() => import("./pages/user/ResetPassword"));
-const Shipping = lazy(() => import("./pages/Shipping"));
 const ConfirmOrder = lazy(() => import("./pages/ConfirmOrder"));
-const Payment = lazy(() => import("./pages/Payment"));
-const Success = lazy(() => import("./pages/Success"));
-const MyOrders = lazy(() => import("./pages/Order/MyOrders"));
-const OrderDetails = lazy(() => import("./pages/Order/OrderDetails"));
-const Dashboard = lazy(() => import("./pages/admin/Dashboard"));
-const ProductList = lazy(() => import("./pages/admin/ProductList"));
-const NewProduct = lazy(() => import("./pages/admin/NewProduct"));
-const UpdateProduct = lazy(() => import("./pages/admin/UpdateProduct"));
-const OrderList = lazy(() => import("./pages/admin/OrderList"));
-const ProcessOrder = lazy(() => import("./pages/admin/ProcessOrder"));
-const UsersList = lazy(() => import("./pages/admin/UsersList"));
-const UpdateUser = lazy(() => import("./pages/admin/UpdateUser"));
-const ProductReviews = lazy(() => import("./pages/admin/ProductReviews"));
-const SharedLayoutDashboard = lazy(() =>
-  import("./pages/admin/SharedLayoutDashboard")
-);
-const Error = lazy(() => import("./pages/Error"));
+const Dashboard = lazy(() => import("./pages/admin"));
 
 function App() {
   const [stripeApiKey, setStripeApiKey] = useState("");

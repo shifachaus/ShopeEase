@@ -12,6 +12,7 @@ import {
 import { useGetAdminProductsQuery } from "../../utils/productApi";
 import { useAllOrdersQuery } from "../../utils/orderApi";
 import { useGetAllUserQuery } from "../../utils/userApi";
+import Summary from "../../component/Summary";
 
 Chartjs.register(
   LineElement,
@@ -24,7 +25,7 @@ Chartjs.register(
 );
 
 const Dashboard = () => {
-  const { data: productData, error, isLoading } = useGetAdminProductsQuery();
+  const { data: productData } = useGetAdminProductsQuery();
   const { data: orderData } = useAllOrdersQuery();
   const { data: userData } = useGetAllUserQuery();
 
@@ -85,41 +86,12 @@ const Dashboard = () => {
       </div>
 
       <div className="flex flex-col gap-8">
-        <div className="p-4  ">
-          <div className="sm:grid sm:grid-cols-2 md:grid-cols-4 gap-4 md:gap-6  flex flex-col">
-            <div className=" bg-white mb-4 text-black p-4 shadow-md rounded">
-              <span className="text-sm font-semibold bg-blue-200 rounded  px-2 py-1  ">
-                Total Amount
-              </span>
-              <p className="text-2xl md:text-3xl  mt-4">{totalAmount / 100}</p>
-            </div>
-
-            <div className=" bg-white mb-4 text-black p-4 shadow-md rounded">
-              <span className="text-sm font-semibold bg-green-200 rounded  px-2 py-1 ">
-                Product
-              </span>
-              <p className="text-2xl md:text-3xl  mt-4">
-                {productData?.products?.length}
-              </p>
-            </div>
-            <div className=" bg-white mb-4 text-black p-4 shadow-md rounded">
-              <span className="text-sm font-semibold bg-purple-200 rounded  px-2 py-1">
-                Orders
-              </span>
-              <p className="text-2xl md:text-3xl  mt-4">
-                {orderData?.orders?.length}
-              </p>
-            </div>
-            <div className="  bg-white mb-4 text-black p-4 shadow-md rounded">
-              <span className="text-sm font-semibold bg-yellow-100 rounded  px-2 py-1 ">
-                Users
-              </span>
-              <p className="text-2xl md:text-3xl  mt-4">
-                {userData?.users?.length}
-              </p>
-            </div>
-          </div>
-        </div>
+        <Summary
+          productData={productData}
+          userData={userData}
+          orderData={orderData}
+          totalAmount={totalAmount}
+        />
 
         <div className="p-4  flex flex-col  gap-6 md:grid md:grid-flow-col  ">
           <div className=" text-black p-4 shadow-md rounded-lg col-span-10">

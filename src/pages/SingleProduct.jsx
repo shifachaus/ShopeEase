@@ -8,8 +8,6 @@ import PageHero from "../component/PageHero";
 const SingleProduct = () => {
   const { id } = useParams();
   const { data: product, error, isLoading } = useGetProductQuery(id);
-
-  // console.log(product, "PRODUCT");
   const [display, setDisplay] = useState(0);
 
   return (

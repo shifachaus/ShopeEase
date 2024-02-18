@@ -43,6 +43,8 @@ import {
 } from "./pages/admin";
 
 import { MyOrders, OrderDetails } from "./pages/Order";
+import useAuth from "./hooks/useAuth";
+import { useStripeApiKey } from "./hooks/useStripeApiKey";
 
 const Shop = lazy(() => import("./pages/Shop"));
 const SingleProduct = lazy(() => import("./pages/SingleProduct"));
@@ -50,53 +52,16 @@ const ConfirmOrder = lazy(() => import("./pages/ConfirmOrder"));
 const Dashboard = lazy(() => import("./pages/admin"));
 
 function App() {
-  const [stripeApiKey, setStripeApiKey] = useState("");
-  const [getUser, results] = useLazyGetUserQuery();
-  const userData = useSelector((store) => store.user);
-  const dispatch = useDispatch();
-
-  const fetchUserData = async () => {
-    try {
-      await getUser();
-    } catch (error) {
-      console.error("Error fetching user data:", error);
-    }
-  };
+  const { userData, fetchUserData } = useAuth();
+  const stripeApiKey = useStripeApiKey();
 
   useEffect(() => {
-    if (results?.data?.success) {
-      dispatch(login(results?.data));
-    } else {
-      dispatch(logout());
-    }
-
-    return () => {
-      dispatch(login(null));
-    };
-  }, [dispatch, getUser, results?.data]);
-
-  useEffect(() => {
-    getStripeApiKey();
-  }, []);
-
-  useEffect(() => {
-    if (userData === null) {
-      fetchUserData();
-    }
+    fetchUserData();
   }, [userData]);
 
-  async function getStripeApiKey() {
-    try {
-      const res = await fetch(`${import.meta.env.VITE_API_URL}stripeapikey`, {
-        credentials: "include",
-      });
-      const data = await res.json();
-
-      setStripeApiKey(data.stripeApiKey);
-    } catch (error) {
-      console.error("Error:", error);
-    }
-  }
+  // useEffect(() => {
+  //   console.log("Stripe API Key:", stripeApiKey);
+  // }, [stripeApiKey]);
 
   return (
     <div>

@@ -30,7 +30,6 @@ const MyOrders = () => {
       Header: "ACTION",
       accessor: "Action",
       Cell: ({ row }) => {
-        console.log(row.values._id, "ROW");
         return <Link to={`/order/${row?.values?._id}`}>🔗</Link>;
       },
     },

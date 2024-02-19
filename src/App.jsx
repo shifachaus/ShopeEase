@@ -59,10 +59,6 @@ function App() {
     fetchUserData();
   }, [userData]);
 
-  // useEffect(() => {
-  //   console.log("Stripe API Key:", stripeApiKey);
-  // }, [stripeApiKey]);
-
   return (
     <div>
       <Suspense fallback={<Loading />}>

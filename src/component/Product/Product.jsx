@@ -61,9 +61,10 @@ const Product = ({ displayImage, singleProductItem, setDisplay, display }) => {
         <div className="flex flex-col gap-6 ">
           <div className="bg-gray-100   ">
             <img
+              style={{ width: "100%" }}
               src={images?.[display]?.url}
               alt={name}
-              className="h-full w-full border object-cover object-center p-8 mix-blend-darken xl:h-full "
+              className="h-full w-full border object-cover object-center p-8 mix-blend-darken "
             />
           </div>
 
@@ -140,6 +141,7 @@ const Product = ({ displayImage, singleProductItem, setDisplay, display }) => {
           </div>
         </div>
       </div>
+
       <div>
         <ReviewPopup setOpen={setOpen} open={open} />
 

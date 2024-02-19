@@ -17,13 +17,13 @@ const Hero = () => {
         </div>
 
         <div
-          className="mx-auto  bg-contain bg-center md:bg-[url('./assets/Cloudsofa.webp')]"
-          style={{ height: 510, width: 1200 }}
+          className="mx-auto bg-no-repeat  bg-contain bg-center lg:bg-[url('./assets/Cloudsofa.webp')]"
+          style={{ height: 510, width: "100%", maxWidth: "1200px" }}
         ></div>
 
         <img
           src={lamp}
-          style={{ width: 171, height: 331 }}
+          style={{ height: 331, width: "100%", maxWidth: "171px" }}
           alt="hero Image"
           className="absolute -top-16 hidden md:inline-block -left-0 "
         />

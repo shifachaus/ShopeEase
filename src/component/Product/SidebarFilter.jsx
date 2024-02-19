@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Search from "./Search";
 import { BsStarFill, BsStar } from "react-icons/bs";
-import { clearFilter } from "../../utils/helper";
+import { clearFilter, debounce } from "../../utils/helper";
 
 const categories = ["all", "Tables and Chairs", "Sofas", "Lighting", "Decor"];
 
@@ -16,8 +16,13 @@ const SidebarFilter = ({
   ratings,
   category,
 }) => {
+  const debouncedPriceHandler = debounce((value) => {
+    setPriceV(value);
+  }, 300);
+
   const priceHandler = (e) => {
-    setPriceV(e.target.value);
+    const value = e.target.value;
+    debouncedPriceHandler(value);
   };
 
   const [open, setOpen] = useState(false);

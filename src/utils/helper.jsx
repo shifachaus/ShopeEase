@@ -19,7 +19,8 @@ export const clearFilter = (
 
 export const debounce = (func, delay) => {
   let timeoutId;
-  return function (...args) {
+
+  const debouncedFunction = function (...args) {
     if (timeoutId) {
       clearTimeout(timeoutId);
     }
@@ -27,4 +28,10 @@ export const debounce = (func, delay) => {
       func.apply(this, args);
     }, delay);
   };
+
+  debouncedFunction.cancel = function () {
+    clearTimeout(timeoutId);
+  };
+
+  return debouncedFunction;
 };

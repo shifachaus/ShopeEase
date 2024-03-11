@@ -15,11 +15,6 @@ const Shop = () => {
   const [price] = useState([0, 2500000]);
   const [priceV, setPriceV] = useState(3000000);
 
-  useEffect(() => {
-    const debouncedInputKeyword = debounce(setDebouncedKeyword, 300);
-    debouncedInputKeyword(inputKeyword);
-  }, [inputKeyword]);
-
   const {
     data: product,
     error,
@@ -31,6 +26,15 @@ const Shop = () => {
     category: category,
     ratings: ratings,
   });
+
+  useEffect(() => {
+    const debouncedInputKeyword = debounce(setDebouncedKeyword, 1000);
+    debouncedInputKeyword(inputKeyword);
+
+    return () => {
+      debouncedInputKeyword.cancel();
+    };
+  }, [inputKeyword]);
 
   const setCurrentPageNo = (page) => {
     setCurrentPage(page);

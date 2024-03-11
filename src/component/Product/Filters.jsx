@@ -1,6 +1,7 @@
 import Search from "./Search";
 import { BsStarFill, BsStar } from "react-icons/bs";
 import { clearFilter, debounce } from "../../utils/helper";
+import { useEffect } from "react";
 
 const categories = ["all", "Tables and Chairs", "Sofas", "Lighting", "Decor"];
 
@@ -23,6 +24,13 @@ const Filters = ({
     const value = e.target.value;
     debouncedPriceHandler(value);
   };
+
+  useEffect(() => {
+    // Cleanup function
+    return () => {
+      debouncedPriceHandler.cancel();
+    };
+  }, []);
 
   return (
     <aside className="border rounded  sticky top-0  hidden h-fit  flex-col space-y-8  p-8 font-light  md:flex ">

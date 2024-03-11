@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Search from "./Search";
 import { BsStarFill, BsStar } from "react-icons/bs";
 import { clearFilter, debounce } from "../../utils/helper";
@@ -24,6 +24,12 @@ const SidebarFilter = ({
     const value = e.target.value;
     debouncedPriceHandler(value);
   };
+
+  useEffect(() => {
+    return () => {
+      debouncedPriceHandler.cancel();
+    };
+  }, []);
 
   const [open, setOpen] = useState(false);
   return (

@@ -56,9 +56,18 @@ const UpdateProduct = () => {
 
   const updateProductHandler = async (e) => {
     e.preventDefault();
-    const { id, name, price, stock, description, category } = values;
+    const { name, price, stock, description, category } = values; // Remove id from here
 
-    const product = { id, name, price, stock, description, images, category };
+    const product = {
+      productId: id,
+      name,
+      price,
+      stock,
+      description,
+      images,
+      category,
+    };
+
     try {
       const data = await updateProduct(product);
       await getAdminProductsQuery.refetch();

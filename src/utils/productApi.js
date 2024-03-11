@@ -103,8 +103,9 @@ export const productsApi = createApi({
           formData.append("images", image);
         });
 
+        console.log(product);
         return {
-          url: `product/${product.id}`,
+          url: `product/${product.productId}`,
           method: "PUT",
           body: formData,
         };

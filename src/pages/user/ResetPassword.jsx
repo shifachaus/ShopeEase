@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { useResetPasswordMutation } from "../../utils/userApi";
+import { useResetPasswordMutation } from "../../features/users/userApi";
 import { useNavigate, useParams } from "react-router-dom";
-import { FormButton, FormRow } from "../../component";
+import { FormButton, FormRow } from "../../component/admin/form/index";
 
 const initialValue = {
   password: "",

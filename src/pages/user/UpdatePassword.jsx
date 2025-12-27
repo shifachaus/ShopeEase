@@ -2,8 +2,8 @@ import { useState } from "react";
 import {
   useEditPasswordMutation,
   useLazyGetUserQuery,
-} from "../../utils/userApi";
-import { FormButton, FormRow } from "../../component";
+} from "../../features/users/userApi";
+import { FormButton, FormRow } from "../../component/admin/form/index";
 
 const initialValue = {
   oldPassword: "",

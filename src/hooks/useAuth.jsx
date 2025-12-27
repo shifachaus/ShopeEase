@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import { useLazyGetUserQuery } from "../utils/userApi";
+import { useLazyGetUserQuery } from "../features/users/userApi";
 import { useSelector, useDispatch } from "react-redux";
-import { login, logout } from "../utils/userSlice";
+import { login, logout } from "../features/users/userSlice";
 
 const useAuth = () => {
   const [userDataFetched, setUserDataFetched] = useState(false);

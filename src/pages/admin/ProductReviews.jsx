@@ -2,11 +2,11 @@ import { useEffect, useState } from "react";
 import {
   useDeleteProductReviewMutation,
   useLazyGetAllProductsReviewsQuery,
-} from "../../utils/productApi";
+} from "../../features/products/productApi";
 import { useMemo } from "react";
 import { useTable } from "react-table";
 import { AiOutlineDelete } from "react-icons/ai";
-import Table from "../../component/Table";
+import Table from "../../component/ui/Table";
 
 const ProductReviews = () => {
   const [arrayOfObjects, setArrayOfObjects] = useState([]);

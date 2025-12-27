@@ -1,11 +1,11 @@
 import { useNavigate } from "react-router-dom";
-import { addItems } from "../../utils/cartSlice";
+import { addItems } from "../../features/cart/cartSlice";
 import { formatPrice } from "../../utils/helper";
 import { useDispatch } from "react-redux";
 import { useState } from "react";
 import Rating from "./Rating";
-import ReviewPopup from "../Review/ReviewPopup";
-import ReviewContainer from "../Review/ReviewContainer";
+import ReviewPopup from "../review/ReviewPopup";
+import ReviewContainer from "../review/ReviewContainer";
 
 const Product = ({ displayImage, singleProductItem, setDisplay, display }) => {
   const dispatch = useDispatch();

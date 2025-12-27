@@ -3,9 +3,9 @@ import {
   useGetAllUserQuery,
   useGetSingleUserQuery,
   useUpdateUserRoleMutation,
-} from "../../utils/userApi";
+} from "../../features/users/userApi";
 import { useEffect, useState } from "react";
-import { FormRow } from "../../component";
+import { FormRow } from "../../component/admin/form";
 
 const initialValue = {
   name: "",

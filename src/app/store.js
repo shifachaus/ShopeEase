@@ -1,10 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { productsApi } from "./productApi";
-import cartSlice from "./cartSlice";
-import { userApi } from "./userApi";
-import userSlice from "./userSlice";
-import orderSlice from "./orderSlice";
-import { orderApi } from "./orderApi";
+import { productsApi } from "../features/products/productApi";
+import cartSlice from "../features/cart/cartSlice";
+import { userApi } from "../features/users/userApi";
+import userSlice from "../features/users/userSlice";
+import orderSlice from "../features/orders/orderSlice";
+import { orderApi } from "../features/orders/orderApi";
 
 const store = configureStore({
   reducer: {

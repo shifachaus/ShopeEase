@@ -1,13 +1,17 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { FormRow, FormButton, FormImageRow } from "../../component";
-import { login } from "../../utils/userSlice";
+import {
+  FormRow,
+  FormButton,
+  FormImageRow,
+} from "../../component/admin/form/index";
+import { login } from "../../features/users/userSlice";
 import {
   useGetUserQuery,
   useLoginUserMutation,
   useRegisterUserMutation,
-} from "../../utils/userApi";
+} from "../../features/users/userApi";
 
 const initialValue = {
   name: "",

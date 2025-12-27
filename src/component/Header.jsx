@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { useLogoutUserMutation } from "../utils/userApi";
-import { logout } from "../utils/userSlice";
-import NavbarMobile from "./NavbarMobile";
-import NavbarDesk from "./NavbarDesk";
+import { useLogoutUserMutation } from "../features/users/userApi";
+import { logout } from "../features/users/userSlice";
+import NavbarMobile from "./ui/NavbarMobile";
+import NavbarDesk from "./ui/NavbarDesk";
 
 const Header = () => {
   const [showMenu, setShowMenu] = useState(false);

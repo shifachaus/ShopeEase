@@ -1,14 +1,11 @@
+import { useState } from "react";
 import {
   useGetOrderDetailsQuery,
   useUpdateOrderMutation,
-} from "../../utils/orderApi";
-import { useState } from "react";
+} from "../../features/orders/orderApi";
 import { Address, CartItems } from "../../component/order";
-import FormButton from "../../component/FormButton";
-import OrderStatus from "../../component/OrderStatus";
-import Payment from "../../component/Payment";
+import { Payment, Proceed, OrderStatus } from "../../component/Payment";
 import { useParams } from "react-router-dom";
-import Proceed from "../../component/Proceed";
 
 const ProcessOrder = () => {
   const { id } = useParams();

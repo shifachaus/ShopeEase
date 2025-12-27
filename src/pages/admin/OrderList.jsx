@@ -1,13 +1,13 @@
 import {
   useAllOrdersQuery,
   useDeleteOrderMutation,
-} from "../../utils/orderApi";
+} from "../../features/orders/orderApi";
 import { useMemo } from "react";
 import { useTable } from "react-table";
 import { AiOutlineDelete } from "react-icons/ai";
 import { FiEdit2 } from "react-icons/fi";
 import { Link } from "react-router-dom";
-import Table from "../../component/Table";
+import Table from "../../component/ui/Table";
 
 const OrderList = () => {
   const { data: orderData, error, isLoading, refetch } = useAllOrdersQuery();

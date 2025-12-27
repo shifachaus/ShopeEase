@@ -1,10 +1,10 @@
 import { Country, State } from "country-state-city";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import CheckoutStep from "../component/CheckoutStep";
-import { saveShippingInfo } from "../utils/cartSlice";
+import { CheckoutStep } from "../../component/payment";
+import { saveShippingInfo } from "../../features/cart/cartSlice";
 import { useNavigate } from "react-router-dom";
-import { FormRow } from "../component";
+import { FormRow } from "../../component/admin/form";
 
 const initialValue = {
   address: "",

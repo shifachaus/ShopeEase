@@ -1,6 +1,13 @@
 import { useEffect, useState } from "react";
-import { useGetUserQuery, useUpdateUserMutation } from "../../utils/userApi";
-import { FormButton, FormImageRow, FormRow } from "../../component";
+import {
+  useGetUserQuery,
+  useUpdateUserMutation,
+} from "../../features/users/userApi";
+import {
+  FormButton,
+  FormImageRow,
+  FormRow,
+} from "../../component/admin/form/index";
 
 const initialValue = {
   name: "",

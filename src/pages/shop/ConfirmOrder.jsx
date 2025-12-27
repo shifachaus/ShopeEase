@@ -1,5 +1,5 @@
-import CheckoutStep from "../component/CheckoutStep";
-import { OrderSummery, ShoppingInfo } from "../component/order";
+import { CheckoutStep } from "../../component/payment";
+import { OrderSummery, ShoppingInfo } from "../../component/order";
 
 const ConfirmOrder = () => {
   return (

@@ -2,9 +2,9 @@ import { useState } from "react";
 import {
   useGetAdminProductsQuery,
   useNewProductMutation,
-} from "../../utils/productApi";
+} from "../../features/products/productApi";
 import { useNavigate } from "react-router-dom";
-import ProductForm from "../../component/ProductForm";
+import ProductForm from "../../component/admin/form/ProductForm";
 
 const initialValue = {
   name: "",

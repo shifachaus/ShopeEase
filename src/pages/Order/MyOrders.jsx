@@ -1,8 +1,8 @@
 import { useMemo } from "react";
-import { useMyOrdersQuery } from "../../utils/orderApi";
+import { useMyOrdersQuery } from "../../features/orders/orderApi";
 import { useTable } from "react-table";
 import { Link } from "react-router-dom";
-import Table from "../../component/Table";
+import Table from "../../component/ui/Table";
 
 const MyOrders = () => {
   const { data: ordersData } = useMyOrdersQuery();

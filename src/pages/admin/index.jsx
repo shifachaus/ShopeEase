@@ -7,7 +7,6 @@ import ProcessOrder from "./ProcessOrder";
 import UsersList from "./UsersList";
 import UpdateUser from "./UpdateUser";
 import ProductReviews from "./ProductReviews";
-import SharedLayoutDashboard from "./SharedLayoutDashboard";
 
 export {
   Dashboard,
@@ -19,5 +18,4 @@ export {
   UsersList,
   UpdateUser,
   ProductReviews,
-  SharedLayoutDashboard,
 };

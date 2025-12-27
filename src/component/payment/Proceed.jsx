@@ -1,4 +1,4 @@
-import FormButton from "./FormButton";
+import FormButton from "../admin/form/FormButton";
 
 const Proceed = ({ orderData, setStatus, isLoading, updateOrderStatus }) => {
   return (

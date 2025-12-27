@@ -1,4 +1,4 @@
-import CheckoutStep from "../component/CheckoutStep";
+import { CheckoutStep } from "../../component/payment";
 import {
   CardNumberElement,
   CardCvcElement,
@@ -8,10 +8,10 @@ import {
 } from "@stripe/react-stripe-js";
 import axios from "axios";
 import { useRef } from "react";
-import { formatPrice } from "../utils/helper";
+import { formatPrice } from "../../utils/helper";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { useNewOrderMutation } from "../utils/orderApi";
+import { useNewOrderMutation } from "../../features/orders/orderApi";
 
 const Payment = () => {
   const [newOrder] = useNewOrderMutation();

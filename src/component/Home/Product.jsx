@@ -1,6 +1,6 @@
-import Shimmer from "../Shimmer";
+import Shimmer from "../skeletons/Shimmer";
 import FeaturedProducts from "./FeaturedProducts";
-import { useGetAllFeaturedProductsQuery } from "../../utils/productApi";
+import { useGetAllFeaturedProductsQuery } from "../../features/products/productApi";
 import { useMemo } from "react";
 
 const Product = () => {

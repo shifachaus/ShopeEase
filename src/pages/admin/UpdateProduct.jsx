@@ -3,9 +3,9 @@ import {
   useGetAdminProductsQuery,
   useGetProductQuery,
   useUpdateProductMutation,
-} from "../../utils/productApi";
+} from "../../features/products/productApi";
 import { useNavigate, useParams } from "react-router-dom";
-import ProductForm from "../../component/ProductForm";
+import ProductForm from "../../component/admin/form/ProductForm";
 
 const initialValue = {
   name: "",

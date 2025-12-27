@@ -1,4 +1,4 @@
-import { formatPrice } from "../utils/helper";
+import { formatPrice } from "../../utils/helper";
 
 const Payment = ({ orderData }) => {
   return (

@@ -1,4 +1,4 @@
-import { DisplayProduct, Hero, Instagram, Product } from "../component/Home";
+import { DisplayProduct, Hero, Instagram, Product } from "../../component/Home";
 
 const Landing = () => {
   return (

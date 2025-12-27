@@ -3,8 +3,11 @@ import { useTable } from "react-table";
 import { Link } from "react-router-dom";
 import { AiOutlineDelete } from "react-icons/ai";
 import { FiEdit2 } from "react-icons/fi";
-import { useDeleteUserMutation, useGetAllUserQuery } from "../../utils/userApi";
-import Table from "../../component/Table";
+import {
+  useDeleteUserMutation,
+  useGetAllUserQuery,
+} from "../../features/users/userApi";
+import Table from "../../component/ui/Table";
 
 const UsersList = () => {
   const { data: userData, error, isLoading, refetch } = useGetAllUserQuery();

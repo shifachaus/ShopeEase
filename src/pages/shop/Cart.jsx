@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 
-import PageHero from "../component/PageHero";
-import cartImage from "../assets/cart.png";
-import { CartContent } from "../component/cart";
+import PageHero from "../../component/PageHero";
+import cartImage from "../../assets/cart.png";
+import { CartContent } from "../../component/cart";
 
 const Cart = () => {
   const cartItems = useSelector((store) => store.cart.items);

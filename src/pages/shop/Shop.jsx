@@ -1,10 +1,10 @@
 import { useState, useMemo, useEffect } from "react";
-import { ProductList, SidebarFilter, Filters } from "../component/Product";
-import Shimmer from "../component/Shimmer";
-import { useGetAllProductsQuery } from "../utils/productApi";
+import { ProductList, SidebarFilter, Filters } from "../../component/Product";
+import Shimmer from "../../component/skeletons/Shimmer";
+import { useGetAllProductsQuery } from "../../features/products/productApi";
 import Pagination from "react-js-pagination";
-import searchImage from "../assets/search.png";
-import { debounce } from "../utils/helper";
+import searchImage from "../../assets/search.png";
+import { debounce } from "../../utils/helper";
 
 const Shop = () => {
   const [inputKeyword, setInputKeyword] = useState("");

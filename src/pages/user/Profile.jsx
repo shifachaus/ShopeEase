@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { useGetUserQuery } from "../../utils/userApi";
+import { useGetUserQuery } from "../../features/users/userApi";
 
 const Profile = () => {
   const { data } = useGetUserQuery();

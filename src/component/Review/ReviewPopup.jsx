@@ -1,6 +1,6 @@
 import { useState } from "react";
-import Rating from "../Product/Rating";
-import { useNewReviewMutation } from "../../utils/productApi";
+import Rating from "../product/Rating";
+import { useNewReviewMutation } from "../../features/products/productApi";
 import { useParams } from "react-router-dom";
 
 const ReviewPopup = ({ setOpen, open }) => {

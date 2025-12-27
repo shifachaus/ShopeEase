@@ -1,13 +1,13 @@
+import { useMemo } from "react";
 import { Link } from "react-router-dom";
 import {
   useDeleteProductMutation,
   useGetAdminProductsQuery,
-} from "../../utils/productApi";
-import { useMemo } from "react";
+} from "../../features/products/productApi";
 import { useTable } from "react-table";
 import { AiOutlineDelete } from "react-icons/ai";
 import { FiEdit2 } from "react-icons/fi";
-import Table from "../../component/Table";
+import Table from "../../component/ui/Table";
 
 const ProductList = () => {
   const { data: productData, refetch } = useGetAdminProductsQuery();

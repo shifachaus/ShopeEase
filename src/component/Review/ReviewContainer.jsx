@@ -1,4 +1,4 @@
-import Rating from "../Product/Rating";
+import Rating from "../product/Rating";
 
 const ReviewContainer = ({ setOpen, reviews }) => {
   return (

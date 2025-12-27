@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { useForgotPasswordMutation } from "../../utils/userApi";
-import { FormButton, FormRow } from "../../component";
+import { useForgotPasswordMutation } from "../../features/users/userApi";
+import { FormButton, FormRow } from "../../component/admin/form/index";
 
 const ForgotPassword = () => {
   const [forgotPassword, { isLoading }] = useForgotPasswordMutation();

@@ -9,10 +9,10 @@ import {
   Tooltip,
   Legend,
 } from "chart.js";
-import { useGetAdminProductsQuery } from "../../utils/productApi";
-import { useAllOrdersQuery } from "../../utils/orderApi";
-import { useGetAllUserQuery } from "../../utils/userApi";
-import Summary from "../../component/Summary";
+import { useGetAdminProductsQuery } from "../../features/products/productApi";
+import { useAllOrdersQuery } from "../../features/orders/orderApi";
+import { useGetAllUserQuery } from "../../features/users/userApi";
+import Summary from "../../component/ui/Summary";
 
 Chartjs.register(
   LineElement,

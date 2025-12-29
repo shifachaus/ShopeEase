@@ -37,29 +37,17 @@ export const productsApi = createApi({
 
         return `/products?${queryString}`;
       },
+      providesTags: ["Products"],
     }),
 
     getProduct: builder.query({
       query: (product) => `product/${product}`,
-    }),
-
-    newReview: builder.mutation({
-      query: (review) => {
-        const formData = new FormData();
-        formData.append("productId", review.id);
-        formData.append("comment", review.comment);
-        formData.append("rating", review.rating);
-
-        return {
-          url: "review",
-          method: "PUT",
-          body: formData,
-        };
-      },
+      providesTags: (result, error, product) => [{ type: "Products", product }],
     }),
 
     getAdminProducts: builder.query({
       query: () => "/admin/products",
+      providesTags: ["Products"],
     }),
 
     newProduct: builder.mutation({
@@ -81,6 +69,7 @@ export const productsApi = createApi({
           body: formData,
         };
       },
+      invalidatesTags: ["Products"],
     }),
 
     deleteProduct: builder.mutation({
@@ -98,7 +87,7 @@ export const productsApi = createApi({
         formData.append("price", product.price);
         formData.append("category", product.category);
         formData.append("Stock", product.stock);
-
+        console.log(formData, product);
         product.images.forEach((image) => {
           formData.append("images", image);
         });
@@ -109,10 +98,33 @@ export const productsApi = createApi({
           body: formData,
         };
       },
+      invalidatesTags: (result, error, product) => [
+        "Products",
+        { type: "Products", id: product.id },
+      ],
+    }),
+
+    newReview: builder.mutation({
+      query: (review) => {
+        const formData = new FormData();
+        formData.append("productId", review.id);
+        formData.append("comment", review.comment);
+        formData.append("rating", review.rating);
+
+        return {
+          url: "review",
+          method: "PUT",
+          body: formData,
+        };
+      },
+      invalidatesTags: (result, error, arg) => [
+        { type: "Reviews", id: arg.id },
+      ],
     }),
 
     getAllProductsReviews: builder.query({
       query: (id) => `reviews?id=${id}`,
+      providesTags: (result, error, arg) => [{ type: "Reviews", id: arg }],
     }),
 
     deleteProductReview: builder.mutation({
@@ -122,6 +134,9 @@ export const productsApi = createApi({
           method: "DELETE",
         };
       },
+      invalidatesTags: (result, error, arg) => [
+        { type: "Reviews", id: arg.productId },
+      ],
     }),
   }),
 });

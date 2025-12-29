@@ -4,7 +4,7 @@ const CartTotals = ({ total }) => {
   return (
     <>
       <h2 className=" text-xl ">Cart Totals</h2>
-      <div className="md:w-80 bg-gray-100">
+      <div className="md: bg-gray-100">
         <div className=" flex flex-col  gap-4 rounded p-5 h-fit">
           <div className=" flex flex-col  gap-2 mb-4">
             <div className="flex justify-between gap-2 items-center">

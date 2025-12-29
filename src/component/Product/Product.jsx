@@ -1,7 +1,7 @@
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { addItems } from "../../features/cart/cartSlice";
 import { formatPrice } from "../../utils/helper";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 import Rating from "./Rating";
 import ReviewPopup from "../review/ReviewPopup";
@@ -12,6 +12,8 @@ const Product = ({ displayImage, singleProductItem, setDisplay, display }) => {
   const navigate = useNavigate();
   const [qty, setQty] = useState(1);
   const [open, setOpen] = useState(false);
+
+  const user = useSelector((store) => store.user);
 
   const {
     name,
@@ -58,17 +60,8 @@ const Product = ({ displayImage, singleProductItem, setDisplay, display }) => {
   return (
     <section className="my-10">
       <div className="grid grid-cols-1 gap-6 md:gap-[6rem] md:grid-cols-2">
-        <div className="flex flex-col gap-6 ">
-          <div className="bg-gray-100   ">
-            <img
-              style={{ width: "100%" }}
-              src={images?.[display]?.url}
-              alt={name}
-              className="h-full w-full border object-cover object-center p-8 mix-blend-darken "
-            />
-          </div>
-
-          <div className="grid grid-cols-5 gap-2">
+        <div className="flex  gap-6 ">
+          <div className="flex flex-col gap-4">
             {images?.map((img, index) => (
               <img
                 src={img.url}
@@ -80,6 +73,14 @@ const Product = ({ displayImage, singleProductItem, setDisplay, display }) => {
                 onClick={() => setDisplay(index)}
               />
             ))}
+          </div>
+          <div className="bg-gray-100   ">
+            <img
+              style={{ width: "100%" }}
+              src={images?.[display]?.url}
+              alt={name}
+              className="h-full w-full border object-cover object-center p-8 mix-blend-darken "
+            />
           </div>
         </div>
 
@@ -115,26 +116,27 @@ const Product = ({ displayImage, singleProductItem, setDisplay, display }) => {
 
           <p className="mb-4 text-md font-light text-gray-500">{description}</p>
 
-          <div className="flex flex-col gap-4  mb-4 w-1/3">
-            <div className="flex gap-4 justify-center mb-4">
+          <div className="flex gap-4  mb-4  items-center">
+            <div className="flex gap-4 justify-center items-center rounded-xl border border-[#7c7c7c] py-2 px-4 ">
               <button
-                className="text-3xl font-medium cursor-pointer"
+                className="font-medium cursor-pointer"
                 onClick={() => removeQty()}
               >
                 -
               </button>
-              <p className="text-4xl font-bold">{qty}</p>
+              <p className="text-sm ">{qty}</p>
               <button
-                className="text-3xl font-medium cursor-pointer"
+                className=" font-medium cursor-pointer"
                 onClick={() => addQty()}
               >
                 +
               </button>
             </div>
+
             <button
               onClick={() => onAddToCart()}
               disabled={Stock < 1 ? true : false}
-              className="w-40 sm:w-60  bg-[#252323]  p-2 px-4 cursor-pointer  text-white border border-[#252323] hover:border-[#828D91]  hover:shadow-md uppercase "
+              className="w-40 sm:w-60    p-2 px-4 cursor-pointer  rounded-xl border border-[#252323] hover:border-[#828D91]  hover:shadow-md uppercase "
             >
               Add to cart
             </button>
@@ -142,9 +144,33 @@ const Product = ({ displayImage, singleProductItem, setDisplay, display }) => {
         </div>
       </div>
 
-      <div>
-        <ReviewPopup setOpen={setOpen} open={open} />
+      <div className="mt-20 ">
+        <div className="flex flex-col items-center ">
+          <h2 className="text-xl font-medium mb-4 text-black">
+            Review this product
+          </h2>
+          <p className="text-base mb-2 text-gray-800">
+            Share your thoughts with other customers
+          </p>
 
+          {user?.success || user?.data?.success ? (
+            <button
+              onClick={() => setOpen(true)}
+              className="border  cursor-pointer rounded-xl  px-4 py-2 shadow"
+            >
+              Write a product review
+            </button>
+          ) : (
+            <Link
+              to={"/login"}
+              className="border cursor-pointer rounded-xl  px-4 py-2 shadow "
+            >
+              <p className="text-lg font-medium"> Write a product review</p>
+            </Link>
+          )}
+        </div>
+
+        <ReviewPopup setOpen={setOpen} open={open} />
         <ReviewContainer setOpen={setOpen} reviews={reviews} />
       </div>
     </section>

@@ -20,10 +20,10 @@ const CartContent = () => {
       <div className="col-span-8">
         <CartColumns />
 
-        <div className="flex flex-col gap-4  ">
-          {cartItems?.map((item) => {
-            return <CartItem key={item._id} item={item} />;
-          })}
+        <div className="flex flex-col gap-4 overflow-y-auto max-h-[70vh] pr-2 no-scrollbar cursor-grab active:cursor-grabbing border-b pb-2">
+          {cartItems?.map((item) => (
+            <CartItem key={item._id} item={item} />
+          ))}
         </div>
       </div>
 
@@ -31,9 +31,9 @@ const CartContent = () => {
         <CartTotals total={total} />
         <Link
           to={user?.success || user?.data?.success ? "/shipping" : "/login"}
-          className="border border-[#252323] mt-2 mb-8 text-center py-1 px-4 bg-[#252323] "
+          className="border border-[#252323] mt-2 mb-8 text-center py-1 px-4 rounded-xl "
         >
-          <p className="text-lg font-medium  text-white">Check Out</p>
+          <p className="text-lg font-medium">Check Out</p>
         </Link>
       </div>
     </div>

@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import {
-  useGetAdminProductsQuery,
   useGetProductQuery,
   useUpdateProductMutation,
 } from "../../features/products/productApi";
@@ -20,7 +19,6 @@ const UpdateProduct = () => {
   const { id } = useParams();
   const { data: product } = useGetProductQuery(id);
   const [updateProduct, { isLoading }] = useUpdateProductMutation();
-  const getAdminProductsQuery = useGetAdminProductsQuery();
   const navigate = useNavigate();
 
   const [oldImages, setOldImages] = useState([]);
@@ -56,12 +54,11 @@ const UpdateProduct = () => {
 
   const updateProductHandler = async (e) => {
     e.preventDefault();
-    const { id, name, price, stock, description, category } = values;
+    const { name, price, stock, description, category } = values;
 
     const product = { id, name, price, stock, description, images, category };
     try {
-      const data = await updateProduct(product);
-      await getAdminProductsQuery.refetch();
+      await updateProduct(product).unwrap();
       navigate("/admin/products");
     } catch (err) {
       console.log(err);
@@ -69,15 +66,16 @@ const UpdateProduct = () => {
   };
 
   useEffect(() => {
-    setValues({
-      name: product?.product?.name || "",
-      price: product?.product?.price || "",
-      stock: product?.product?.Stock || "",
-      category: product?.product?.category || "",
-      description: product?.product?.description || "",
-    });
-
-    setOldImages(product?.product?.images);
+    if (product?.product) {
+      setValues({
+        name: product.product.name,
+        price: product.product.price,
+        stock: product.product.Stock,
+        category: product.product.category,
+        description: product.product.description,
+      });
+      setOldImages(product?.product?.images);
+    }
   }, [product]);
 
   return (

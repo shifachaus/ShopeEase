@@ -11,9 +11,6 @@ const Product = ({ displayImage, singleProductItem, setDisplay, display }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [qty, setQty] = useState(1);
-  const [open, setOpen] = useState(false);
-
-  const user = useSelector((store) => store.user);
 
   const {
     name,
@@ -142,36 +139,6 @@ const Product = ({ displayImage, singleProductItem, setDisplay, display }) => {
             </button>
           </div>
         </div>
-      </div>
-
-      <div className="mt-20 ">
-        <div className="flex flex-col items-center ">
-          <h2 className="text-xl font-medium mb-4 text-black">
-            Review this product
-          </h2>
-          <p className="text-base mb-2 text-gray-800">
-            Share your thoughts with other customers
-          </p>
-
-          {user?.success || user?.data?.success ? (
-            <button
-              onClick={() => setOpen(true)}
-              className="border  cursor-pointer rounded-xl  px-4 py-2 shadow"
-            >
-              Write a product review
-            </button>
-          ) : (
-            <Link
-              to={"/login"}
-              className="border cursor-pointer rounded-xl  px-4 py-2 shadow "
-            >
-              <p className="text-lg font-medium"> Write a product review</p>
-            </Link>
-          )}
-        </div>
-
-        <ReviewPopup setOpen={setOpen} open={open} />
-        <ReviewContainer setOpen={setOpen} reviews={reviews} />
       </div>
     </section>
   );

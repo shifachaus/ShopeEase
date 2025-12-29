@@ -2,16 +2,19 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 export const productsApi = createApi({
   reducerPath: "productsApi",
+  tagTypes: ["Products", "Reviews"],
 
   baseQuery: fetchBaseQuery({
     baseUrl: import.meta.env.VITE_API_URL,
     credentials: "include",
   }),
+
   endpoints: (builder) => ({
     getAllFeaturedProducts: builder.query({
       query: () => {
         return `/products`;
       },
+      providesTags: [{ type: "Products", id: "LIST" }],
     }),
 
     getAllProducts: builder.query({
@@ -37,17 +40,19 @@ export const productsApi = createApi({
 
         return `/products?${queryString}`;
       },
-      providesTags: ["Products"],
+      providesTags: [{ type: "Products", id: "LIST" }],
     }),
 
     getProduct: builder.query({
-      query: (product) => `product/${product}`,
-      providesTags: (result, error, product) => [{ type: "Products", product }],
+      query: (id) => `product/${id}`,
+      providesTags: (result, error, id) => [
+        { type: "Products", id: String(id) },
+      ],
     }),
 
     getAdminProducts: builder.query({
       query: () => "/admin/products",
-      providesTags: ["Products"],
+      providesTags: [{ type: "Products", id: "LIST" }],
     }),
 
     newProduct: builder.mutation({
@@ -69,7 +74,7 @@ export const productsApi = createApi({
           body: formData,
         };
       },
-      invalidatesTags: ["Products"],
+      providesTags: [{ type: "Products", id: "LIST" }],
     }),
 
     deleteProduct: builder.mutation({
@@ -77,6 +82,7 @@ export const productsApi = createApi({
         url: `product/${id}`,
         method: "DELETE",
       }),
+      providesTags: [{ type: "Products", id: "LIST" }],
     }),
 
     updateProduct: builder.mutation({
@@ -99,8 +105,8 @@ export const productsApi = createApi({
         };
       },
       invalidatesTags: (result, error, product) => [
-        "Products",
-        { type: "Products", id: product.id },
+        { type: "Products", id: "LIST" },
+        { type: "Products", id: String(product.id) },
       ],
     }),
 
@@ -117,14 +123,17 @@ export const productsApi = createApi({
           body: formData,
         };
       },
-      invalidatesTags: (result, error, arg) => [
-        { type: "Reviews", id: arg.id },
+      invalidatesTags: (result, error, { id }) => [
+        { type: "Products", id: String(id) },
+        { type: "Reviews", id: String(id) },
       ],
     }),
 
     getAllProductsReviews: builder.query({
       query: (id) => `reviews?id=${id}`,
-      providesTags: (result, error, arg) => [{ type: "Reviews", id: arg }],
+      providesTags: (result, error, id) => [
+        { type: "Reviews", id: String(id) },
+      ],
     }),
 
     deleteProductReview: builder.mutation({
@@ -134,8 +143,9 @@ export const productsApi = createApi({
           method: "DELETE",
         };
       },
-      invalidatesTags: (result, error, arg) => [
-        { type: "Reviews", id: arg.productId },
+      invalidatesTags: (result, error, { productId }) => [
+        { type: "Products", id: String(productId) },
+        { type: "Reviews", id: String(productId) },
       ],
     }),
   }),
@@ -150,6 +160,6 @@ export const {
   useNewProductMutation,
   useDeleteProductMutation,
   useUpdateProductMutation,
-  useLazyGetAllProductsReviewsQuery,
   useDeleteProductReviewMutation,
+  useGetAllProductsReviewsQuery,
 } = productsApi;

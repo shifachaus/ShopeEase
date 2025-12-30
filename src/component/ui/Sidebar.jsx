@@ -5,163 +5,97 @@ import { MdRateReview } from "react-icons/md";
 import { HiUsers } from "react-icons/hi";
 import { FaShoppingBag } from "react-icons/fa";
 import { BiSolidDashboard } from "react-icons/bi";
-import { AiOutlineDown } from "react-icons/ai";
 import { MdCreate } from "react-icons/md";
 import { HiOutlineMenuAlt2 } from "react-icons/hi";
+import { IoMdClose } from "react-icons/io";
 
 const Sidebar = () => {
-  const [open, setOpen] = useState(false);
-  const [show, setShow] = useState(false);
+  const [open, setOpen] = useState(false); // Products dropdown
+  const [show, setShow] = useState(false); // Mobile sidebar
+
+  const navLinkClass = ({ isActive }) =>
+    isActive
+      ? "bg-gray-200 text-gray-900 flex items-center p-2 rounded-lg transition"
+      : "text-gray-100 hover:text-gray-900 hover:bg-gray-200 flex items-center p-2 rounded-lg transition";
+
   return (
     <section>
+      {/* Mobile toggle button */}
       <button
         onClick={() => setShow(true)}
-        data-drawer-target="default-sidebar"
-        data-drawer-toggle="default-sidebar"
-        aria-controls="default-sidebar"
-        type="button"
-        className=" inline-flex items-center p-2 mt-2 ml-3 text-sm text-gray-900 rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 "
+        className="md:hidden inline-flex items-center p-2 m-2 text-gray-900 rounded-lg hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200"
       >
-        <svg
-          className="w-6 h-6"
-          aria-hidden="true"
-          fill="currentColor"
-          viewBox="0 0 20 20"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            clipRule="evenodd"
-            fillRule="evenodd"
-            d="M2 4.75A.75.75 0 012.75 4h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 4.75zm0 10.5a.75.75 0 01.75-.75h7.5a.75.75 0 010 1.5h-7.5a.75.75 0 01-.75-.75zM2 10a.75.75 0 01.75-.75h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 10z"
-          ></path>
-        </svg>
+        <HiOutlineMenuAlt2 className="w-6 h-6" />
       </button>
 
+      {/* Sidebar */}
       <aside
-        id="default-sidebar"
-        className={`fixed top-0 left-0 z-40 w-64 h-screen transition-transform ${
-          show ? "translate-x-0" : "-translate-x-full"
-        } sm:translate-x-0`}
-        aria-label="Sidebar"
+        className={`
+    fixed top-0 left-0 z-40 h-screen bg-[#497c5c] shadow-lg
+    transition-transform duration-300
+    ${show ? "translate-x-0" : "-translate-x-full"}
+    w-64 md:w-20 lg:w-64
+    md:translate-x-0
+  `}
       >
-        <div className="h-full px-3 py-4 overflow-y-auto shadow-md bg-[#688272] ">
-          <button
-            onClick={() => setShow(false)}
-            data-drawer-target="default-sidebar"
-            data-drawer-toggle="default-sidebar"
-            aria-controls="default-sidebar"
-            type="button"
-            className=" inline-flex items-center p-2   text-sm text-gray-900 rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 "
-          >
-            <HiOutlineMenuAlt2 className="w-6 h-6" />
-          </button>
-          <Link
-            to="/"
-            className="flex lg:flex-1 items-center p-2 text-gray-900 rounded-lg  group mb-10"
-          >
-            <h1 className="font-black tracking-wider text-xl">
-              <span className="text-white">Shop</span>
-              <span className="text-[#252323]">Ease</span>
-            </h1>
-          </Link>
-
-          <ul className="space-y-6 font-medium">
-            <li>
-              <NavLink
-                to="/admin/dashboard"
-                className={({ isActive }) =>
-                  isActive
-                    ? "bg-gray-100  flex items-center p-2  text-gray-900 rounded-lg   group"
-                    : "flex items-center p-2 hover:text-gray-900 rounded-lg text-neutral-100  hover:bg-gray-100 group"
-                }
-              >
-                <BiSolidDashboard className="flex-shrink-0 w-5 h-5 text-gray-900 transition duration-75   " />
-
-                <span className="flex-1 ml-3 whitespace-nowrap">Dashboard</span>
-              </NavLink>
-            </li>
-
-            <li onClick={() => setOpen(true)} className="cursor-pointer">
-              <span className="flex items-center p-2 text-neutral-100 hover:text-gray-900 rounded-lg  hover:bg-gray-100  group">
-                <AiOutlineDown className="flex-shrink-0 w-5 h-5 text-gray-900 transition duration-75   " />
-                <span className="flex-1 ml-3 whitespace-nowrap">Products</span>
-              </span>
-            </li>
-
-            <ul
-              className={
-                open
-                  ? "ml-4  font-medium flex flex-col  text-neutral-100 "
-                  : "hidden"
-              }
+        <div className="h-full px-3 py-6 flex flex-col">
+          {/* Mobile Close Button */}
+          <div className="flex items-center justify-between mb-6">
+            {/* Logo */}
+            <Link to="/" className="flex items-center ">
+              <h1 className="text-lg font-black tracking-wider text-white md:hidden lg:inline">
+                Shop<span className="text-gray-900">Ease</span>
+              </h1>
+            </Link>
+            <button
+              onClick={() => setShow(false)}
+              className="md:hidden mb-2 p-2 rounded-full bg-white/20 text-white"
             >
-              <li>
-                <NavLink
-                  to="/admin/products"
-                  className={({ isActive }) =>
-                    isActive
-                      ? "bg-gray-100  flex items-center p-2  text-gray-900 rounded-lg   group"
-                      : "flex items-center p-2 hover:text-gray-900 rounded-lg text-neutral-100  hover:bg-gray-100 group"
-                  }
-                >
-                  <FaShoppingBag className="flex-shrink-0 w-5 h-5 text-gray-900 transition duration-75  " />
-                  <span className="flex-1 ml-3 whitespace-nowrap">All</span>
-                </NavLink>
-              </li>
-              <li>
-                <NavLink
-                  to="/admin/product"
-                  className={({ isActive }) =>
-                    isActive
-                      ? "bg-gray-100  flex items-center p-2  text-gray-900 rounded-lg   group"
-                      : "flex items-center p-2 hover:text-gray-900 rounded-lg text-neutral-100  hover:bg-gray-100 group"
-                  }
-                >
-                  <MdCreate className="flex-shrink-0 w-5 h-5 text-gray-900 transition duration-75  " />
-                  <span className="flex-1 ml-3 whitespace-nowrap">Create</span>
-                </NavLink>
-              </li>
-            </ul>
+              <IoMdClose className="w-6 h-6" />
+            </button>
+          </div>
 
-            <li>
-              <NavLink
-                to="/admin/users"
-                className={({ isActive }) =>
-                  isActive
-                    ? "bg-gray-100  flex items-center p-2  text-gray-900 rounded-lg   group"
-                    : "flex items-center p-2 hover:text-gray-900 rounded-lg text-neutral-100  hover:bg-gray-100 group"
-                }
-              >
-                <HiUsers className="flex-shrink-0 w-5 h-5 text-gray-900 transition duration-75  " />
-                <span className="flex-1 ml-3 whitespace-nowrap">Users</span>
+          {/* Navigation */}
+          <ul className="flex-1 space-y-2 font-medium">
+            <li className="md:flex md:items-center  md:justify-center lg:inline">
+              <NavLink to="/admin/dashboard" className={navLinkClass}>
+                <BiSolidDashboard className="w-5 h-5 mx-auto lg:mx-0 sm:mx-0" />
+                {/* Text only on large */}
+                <span className="md:hidden  lg:inline ml-3">Dashboard</span>
               </NavLink>
             </li>
 
-            <li>
-              <NavLink
-                to="/admin/orders"
-                className={({ isActive }) =>
-                  isActive
-                    ? "bg-gray-100  flex items-center p-2  text-gray-900 rounded-lg   group"
-                    : "flex items-center p-2 hover:text-gray-900 rounded-lg text-neutral-100  hover:bg-gray-100 group"
-                }
-              >
-                <BsBox2Fill className="flex-shrink-0 w-5 h-5 text-gray-900 transition duration-75   " />
-                <span className="flex-1 ml-3 whitespace-nowrap">Orders</span>
+            <li className="md:flex md:items-center  md:justify-center lg:inline">
+              <NavLink to="/admin/products" className={navLinkClass}>
+                <FaShoppingBag className="w-4 h-4" />
+                <span className="md:hidden lg:inline ml-3">All Products</span>
+              </NavLink>
+            </li>
+            <li className="md:flex md:items-center  md:justify-center lg:inline">
+              <NavLink to="/admin/product" className={navLinkClass}>
+                <MdCreate className="w-4 h-4" />
+                <span className="md:hidden lg:inline ml-3">Create Product</span>
               </NavLink>
             </li>
 
-            <li>
-              <NavLink
-                to="/admin/reviews"
-                className={({ isActive }) =>
-                  isActive
-                    ? "bg-gray-100  flex items-center p-2  text-gray-900 rounded-lg   group"
-                    : "flex items-center p-2 hover:text-gray-900 rounded-lg text-neutral-100  hover:bg-gray-100 group"
-                }
-              >
-                <MdRateReview className="flex-shrink-0 w-5 h-5 transition duration-75  text-gray-900 " />
-                <span className="flex-1 ml-3 whitespace-nowrap">Reviews</span>
+            <li className="md:flex md:items-center  md:justify-center lg:inline">
+              <NavLink to="/admin/users" className={navLinkClass}>
+                <HiUsers className="w-5 h-5 mx-auto lg:mx-0 sm:mx-0" />
+                <span className="md:hidden lg:inline ml-3">Users</span>
+              </NavLink>
+            </li>
+
+            <li className="md:flex md:items-center  md:justify-center lg:inline">
+              <NavLink to="/admin/orders" className={navLinkClass}>
+                <BsBox2Fill className="w-5 h-5 mx-auto lg:mx-0 sm:mx-0" />
+                <span className="md:hidden lg:inline ml-3">Orders</span>
+              </NavLink>
+            </li>
+
+            <li className="md:flex md:items-center  md:justify-center lg:inline">
+              <NavLink to="/admin/reviews" className={navLinkClass}>
+                <MdRateReview className="w-5 h-5 mx-auto lg:mx-0 sm:mx-0" />
+                <span className="md:hidden lg:inline ml-3">Reviews</span>
               </NavLink>
             </li>
           </ul>

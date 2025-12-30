@@ -78,7 +78,7 @@ const Dashboard = () => {
   };
 
   return (
-    <main className="p-6 sm:ml-64 ">
+    <main className="p-6 md:ml-20 lg:ml-64 ">
       <div className=" p-2 ">
         <h2 className="ml-3 text-xl md:text-2xl font-medium text-[#252323]  mb-6 tracking-tight  ">
           Dashboard
@@ -93,7 +93,7 @@ const Dashboard = () => {
           totalAmount={totalAmount}
         />
 
-        <div className="p-4  flex flex-col  gap-6 md:grid md:grid-flow-col  ">
+        <div className="p-4  flex flex-col  gap-6 lg:grid lg:grid-flow-col  ">
           <div className=" text-black p-4 shadow-md rounded-lg col-span-10">
             <Line data={data} options={options} />
           </div>

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import {
   useDeleteProductReviewMutation,
-  useGetAllProductsReviewsQuery,
+  useLazyGetAllProductsReviewsQuery,
 } from "../../features/products/productApi";
 import { useMemo } from "react";
 import { useTable } from "react-table";
@@ -11,7 +11,8 @@ import Table from "../../component/ui/Table";
 const ProductReviews = () => {
   const [arrayOfObjects, setArrayOfObjects] = useState([]);
   const [productId, setProductId] = useState("");
-  const [getReview, results] = useGetAllProductsReviewsQuery();
+  const [getReview, results] = useLazyGetAllProductsReviewsQuery();
+
   const [deleteProductReview] = useDeleteProductReviewMutation();
 
   const handleSearch = async () => {

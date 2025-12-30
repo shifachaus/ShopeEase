@@ -162,4 +162,5 @@ export const {
   useUpdateProductMutation,
   useDeleteProductReviewMutation,
   useGetAllProductsReviewsQuery,
+  useLazyGetAllProductsReviewsQuery,
 } = productsApi;

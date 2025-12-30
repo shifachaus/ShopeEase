@@ -1,8 +1,5 @@
 import { useState } from "react";
-import {
-  useGetAdminProductsQuery,
-  useNewProductMutation,
-} from "../../features/products/productApi";
+import { useNewProductMutation } from "../../features/products/productApi";
 import { useNavigate } from "react-router-dom";
 import ProductForm from "../../component/admin/form/ProductForm";
 
@@ -15,8 +12,6 @@ const initialValue = {
 };
 const NewProduct = () => {
   const [values, setValues] = useState(initialValue);
-
-  const getAdminProductsQuery = useGetAdminProductsQuery();
   const [newProduct, { isLoading }] = useNewProductMutation();
   const navigate = useNavigate();
 
@@ -54,9 +49,7 @@ const NewProduct = () => {
     const { name, description, stock, category, price } = values;
     const product = { name, description, stock, category, price, images };
     try {
-      const data = await newProduct(product);
-      await getAdminProductsQuery.refetch();
-
+      await newProduct(product);
       navigate("/admin/products");
     } catch (err) {
       console.log(err, "NEW PRODUCT ERROR");
@@ -64,22 +57,29 @@ const NewProduct = () => {
   };
 
   return (
-    <section>
-      <div className="p-6 md:ml-20 lg:ml-64 ">
-        <div className="mx-auto max-w-lg mt-6  p-6 lg:px-8 h-screen">
-          <div className=" p-2 ">
-            <h2 className="text-xl font-medium mb-6 tracking-tight sm:text-2xl  text-black text-center ">
-              CREATE PRODUCT
+    <section className=" min-h-screen">
+      <div className="p-6 md:ml-20 lg:ml-64">
+        <div className="mx-auto max-w-3xl mt-6">
+          {/* Header */}
+          <div className="mb-6">
+            <h2 className="text-2xl font-semibold text-gray-900 text-center">
+              Create Product
             </h2>
+            <p className="text-sm text-gray-500 text-center mt-1">
+              Add a new product, upload images, and fill in all details.
+            </p>
           </div>
-          <ProductForm
-            handlerSubmit={createProduct}
-            handleChange={handleChange}
-            values={values}
-            createProductImagesChange={createProductImagesChange}
-            imagesPreview={imagesPreview}
-            isLoading={isLoading}
-          />
+
+          <div className="px-6 py-6 lg:px-8">
+            <ProductForm
+              handlerSubmit={createProduct}
+              handleChange={handleChange}
+              values={values}
+              createProductImagesChange={createProductImagesChange}
+              imagesPreview={imagesPreview}
+              isLoading={isLoading}
+            />
+          </div>
         </div>
       </div>
     </section>

@@ -79,24 +79,30 @@ const UpdateProduct = () => {
   }, [product]);
 
   return (
-    <section>
-      <div className="p-6 md:ml-20 lg:ml-64  ">
-        <div className="mx-auto max-w-lg mt-6  p-6 lg:px-8 h-screen">
-          <div className=" p-2 ">
-            <h2 className="text-xl font-medium mb-6 tracking-tight sm:text-2xl  text-black text-center ">
-              UPDATE PRODUCT
+    <section className=" min-h-screen">
+      <div className="p-6 md:ml-20 lg:ml-64">
+        <div className="mx-auto max-w-3xl mt-6">
+          {/* Header */}
+          <div className="mb-6">
+            <h2 className="text-2xl font-semibold text-gray-900 text-center">
+              Update Product
             </h2>
+            <p className="text-sm text-gray-500 text-center mt-1">
+              Modify details, upload new images, or update inventory.
+            </p>
           </div>
 
-          <ProductForm
-            handlerSubmit={updateProductHandler}
-            handleChange={handleChange}
-            values={values}
-            createProductImagesChange={updateProductImagesChange}
-            imagesPreview={imagesPreview}
-            isLoading={isLoading}
-            oldImages={oldImages}
-          />
+          <div className="px-6 py-6 lg:px-8">
+            <ProductForm
+              handlerSubmit={updateProductHandler}
+              handleChange={handleChange}
+              values={values}
+              createProductImagesChange={updateProductImagesChange}
+              imagesPreview={imagesPreview}
+              isLoading={isLoading}
+              oldImages={oldImages}
+            />
+          </div>
         </div>
       </div>
     </section>

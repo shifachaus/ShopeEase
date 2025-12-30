@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import {
   useDeleteProductReviewMutation,
   useLazyGetAllProductsReviewsQuery,
@@ -9,150 +9,124 @@ import { AiOutlineDelete } from "react-icons/ai";
 import Table from "../../component/ui/Table";
 
 const ProductReviews = () => {
-  const [arrayOfObjects, setArrayOfObjects] = useState([]);
   const [productId, setProductId] = useState("");
-  const [getReview, results] = useLazyGetAllProductsReviewsQuery();
 
-  const [deleteProductReview] = useDeleteProductReviewMutation();
+  const [getReview, { data, isFetching, isError }] =
+    useLazyGetAllProductsReviewsQuery();
+
+  const [deleteProductReview, { isLoading: deleting }] =
+    useDeleteProductReviewMutation();
 
   const handleSearch = async () => {
-    if (productId.length === 24) await getReview(productId);
-  };
-
-  const reviews = results?.data && arrayOfObjects ? arrayOfObjects : [];
-
-  useEffect(() => {
-    if (results?.data?.product) {
-      const newData = results?.data?.product;
-      setArrayOfObjects([newData]);
+    if (productId.length === 24) {
+      await getReview(productId);
     }
-  }, [results]);
+  };
 
   const deleteReviewHandler = async (productId, id) => {
-    try {
-      const review = { productId, id };
-      const data = await deleteProductReview(review);
-      await getReview(productId);
-    } catch (err) {
-      console.log(err);
-    }
+    await deleteProductReview({ productId, id });
+    await getReview(productId);
   };
+
+  const reviews = data?.product ? [data.product] : [];
 
   const tableColumn = [
     {
       Header: "ID",
-      accessor: (row) => {
-        if (row?.reviews) {
-          return row?.reviews
-            .map((review) => {
-              return review?._id;
-            })
-            .join(", ");
-        }
-        return "";
-      },
+      accessor: (row) => row?.reviews?.map((r) => r._id).join(", ") || "",
     },
     {
       Header: "Name",
-      accessor: (row) => {
-        if (row.reviews) {
-          return row.reviews
-            .map((review) => {
-              return review.name;
-            })
-            .join(", ");
-        }
-        return "";
-      },
+      accessor: (row) => row?.reviews?.map((r) => r.name).join(", ") || "",
     },
     {
       Header: "Comment",
-      accessor: (row) => {
-        if (row?.reviews) {
-          return row?.reviews
-            .map((review) => {
-              return review?.comment;
-            })
-            .join(", ");
-        }
-        return "";
-      },
+      accessor: (row) => row?.reviews?.map((r) => r.comment).join(", ") || "",
     },
     {
       Header: "Rating",
-      accessor: (row) => {
-        if (row?.reviews) {
-          return row?.reviews
-            .map((review) => {
-              return review?.rating;
-            })
-            .join(", ");
-        }
-        return "";
-      },
+      accessor: (row) => row?.reviews?.map((r) => r.rating).join(", ") || "",
     },
-
     {
-      Header: "ACTION",
-      accessor: "Action",
-      Cell: ({ row }) => {
-        return (
-          <div>
-            {row.original.reviews.map((review, index) => (
-              <div key={index}>
-                <button
-                  onClick={() =>
-                    deleteReviewHandler(row?.original?._id, review._id)
-                  }
-                >
-                  <AiOutlineDelete className="text-lg hover:text-[#688272]" />
-                </button>
-              </div>
-            ))}
-          </div>
-        );
-      },
+      Header: "Action",
+      Cell: ({ row }) => (
+        <div className="flex gap-2 flex-wrap">
+          {row.original.reviews?.map((review, i) => (
+            <button
+              key={i}
+              disabled={deleting}
+              onClick={() => deleteReviewHandler(row.original._id, review._id)}
+              className="p-1 text-red-600 hover:text-red-700 disabled:opacity-50"
+            >
+              <AiOutlineDelete className="text-lg" />
+            </button>
+          ))}
+        </div>
+      ),
     },
   ];
 
   const columns = useMemo(() => tableColumn, []);
-
   const { getTableBodyProps, getTableProps, rows, headerGroups, prepareRow } =
-    useTable({
-      columns: columns,
-      data: reviews,
-    });
+    useTable({ columns, data: reviews });
 
   return (
-    <section>
-      <div className="p-6 md:ml-20 lg:ml-64 ">
-        <div className="mx-auto max-w-7xl p-6 lg:px-8 ">
-          <div className=" p-2 ">
-            <h2 className="text-xl font-medium mb-6 tracking-tight sm:text-2xl  text-black text-center ">
-              PRODUCT REVIEWS
-            </h2>
-          </div>
+    <section className="min-h-screen">
+      <div className="p-6 md:ml-20 lg:ml-64">
+        <div className="mx-auto max-w-7xl p-6 lg:px-8">
+          <h2 className="text-2xl font-semibold text-center mb-8">
+            Product Reviews
+          </h2>
 
-          <div className="flex flex-col gap-4 mb-8  mx-auto max-w-md  p-6 lg:px-8 ">
+          {/* Search Box Card */}
+          <div className="max-w-md mx-auto mb-10 bg-white border rounded-2xl shadow p-6">
+            <label className="text-sm font-medium">Product ID</label>
+
             <input
               type="text"
               value={productId}
               onChange={(e) => setProductId(e.target.value)}
-              placeholder="Enter search query"
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              placeholder="Enter 24-character Product ID"
+              className="w-full mt-2 border rounded-lg px-3 py-2 focus:ring-2 focus:ring-black outline-none"
             />
 
             <button
-              className=" bg-[#252323]  text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
               onClick={handleSearch}
+              disabled={productId.length !== 24 || isFetching}
+              className="mt-4 w-full bg-black text-white py-2.5 rounded-lg font-semibold disabled:opacity-50"
             >
-              Search
+              {isFetching ? "Searching…" : "Search Reviews"}
             </button>
+
+            {productId && productId.length !== 24 && (
+              <p className="text-xs text-red-500 mt-2">
+                Product ID must be 24 characters
+              </p>
+            )}
           </div>
 
-          {results?.data?.success ? (
-            <div className="overflow-x-scroll  no-scrollbar shadow-md sm:rounded-lg">
-              {results?.data?.product?.reviews.length > 0 ? (
+          {/* Results Card */}
+          <div className="bg-white border rounded-2xl shadow overflow-hidden">
+            {!data && !isFetching && (
+              <p className="p-6 text-center text-gray-500">
+                Enter a Product ID to view reviews
+              </p>
+            )}
+
+            {isError && (
+              <p className="p-6 text-center text-red-500">
+                Failed to load reviews. Try again.
+              </p>
+            )}
+
+            {data?.product?.reviews?.length === 0 && (
+              <p className="p-6 text-center text-gray-600">
+                No reviews found for this product
+              </p>
+            )}
+
+            {data?.product?.reviews?.length > 0 && (
+              <div className="overflow-x-auto">
                 <Table
                   getTableBodyProps={getTableBodyProps}
                   getTableProps={getTableProps}
@@ -160,17 +134,9 @@ const ProductReviews = () => {
                   headerGroups={headerGroups}
                   prepareRow={prepareRow}
                 />
-              ) : (
-                <p className="text-SM font-medium text-[#252323]   p-4">
-                  No Reviews{" "}
-                </p>
-              )}
-            </div>
-          ) : (
-            <p className="text-lg font-medium mb-6 tracking-tight  text-black text-center">
-              Search Results...
-            </p>
-          )}
+              </div>
+            )}
+          </div>
         </div>
       </div>
     </section>

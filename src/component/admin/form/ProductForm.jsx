@@ -13,44 +13,60 @@ const ProductForm = ({
   oldImages,
 }) => {
   return (
-    <div className="bg-white shadow-lg rounded">
-      <form onSubmit={(e) => handlerSubmit(e)} className="px-5 pt-6 pb-8">
-        <FormRow
-          type="text"
-          name="name"
-          value={values.name}
-          handleChange={handleChange}
-          labelText={"Product Name"}
-        />
-        <FormRow
-          type="number"
-          name="price"
-          value={values.price}
-          handleChange={handleChange}
-          labelText={"Product Price"}
-        />
+    <div className="bg-white shadow-sm rounded-2xl border border-gray-100">
+      <form onSubmit={handlerSubmit} className="px-6 pt-8 pb-10 space-y-6">
+        <h3 className="text-lg font-semibold text-gray-800 text-center">
+          Product Details
+        </h3>
 
-        <div className="mb-4">
-          <label
-            className="block text-gray-700 text-sm font-bold mb-2"
-            htmlFor="category"
-          >
-            Category
-          </label>
-          <select
-            id="category"
-            onChange={handleChange}
-            name="category"
-            value={values?.category}
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-          >
-            <option value="">Choose Category</option>
-            {categories.map((cate) => (
-              <option key={cate} value={cate}>
-                {cate}
-              </option>
-            ))}
-          </select>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+          <FormRow
+            type="text"
+            name="name"
+            value={values.name}
+            handleChange={handleChange}
+            labelText="Product Name"
+          />
+
+          <FormRow
+            type="number"
+            name="price"
+            value={values.price}
+            handleChange={handleChange}
+            labelText="Product Price"
+          />
+
+          <div className="mb-2">
+            <label
+              htmlFor="category"
+              className="block text-sm font-semibold text-gray-700 mb-1"
+            >
+              Category
+            </label>
+
+            <select
+              id="category"
+              name="category"
+              value={values.category}
+              onChange={handleChange}
+              className="w-full rounded-lg border-gray-300 text-gray-700 shadow-sm focus:ring-2 focus:ring-gray-800 focus:border-gray-800 py-2 px-3"
+            >
+              <option value="">Choose Category</option>
+              {categories.map((cate) => (
+                <option key={cate} value={cate}>
+                  {cate}
+                </option>
+              ))}
+            </select>
+          </div>
+
+          <FormRow
+            type="number"
+            name="stock"
+            value={values.stock}
+            handleChange={handleChange}
+            labelText="Stock Quantity"
+          />
         </div>
 
         <FormRow
@@ -58,65 +74,70 @@ const ProductForm = ({
           name="description"
           value={values.description}
           handleChange={handleChange}
-          labelText={"Product Description"}
-        />
-        <FormRow
-          type="number"
-          name="stock"
-          value={values.stock}
-          handleChange={handleChange}
-          labelText={"Stock"}
+          labelText="Product Description"
         />
 
-        <div className="mb-8 flex flex-col gap-2  items-center ">
+        {/* Upload Section */}
+        <div className="bg-gray-50 border border-dashed rounded-xl p-5">
           <label
             htmlFor="dropzone-file"
-            className="flex flex-col items-center justify-center
-	   w-full h-10  border-gray-300 
-	   shadow appearance-none border
-		rounded-lg cursor-pointer bg-gray-50 
-		"
+            className="flex flex-col items-center justify-center gap-1 cursor-pointer"
           >
-            <p className="text-sm font-semibold text-gray-600">
-              Click to upload
+            <p className="text-sm font-semibold text-gray-700">
+              Upload Product Images
             </p>
+            <p className="text-xs text-gray-500">
+              Click to upload — you can select multiple files
+            </p>
+
+            <div className="mt-3 w-full h-11 flex items-center justify-center rounded-lg border border-gray-300 bg-white hover:bg-gray-100 transition">
+              <span className="text-sm text-gray-700 font-medium">
+                Choose Files
+              </span>
+            </div>
 
             <input
               id="dropzone-file"
-              className="hidden"
               type="file"
-              name="avatar"
+              className="hidden"
               accept="image/*"
               onChange={createProductImagesChange}
               multiple
             />
           </label>
 
-          <div className="flex gap-2">
-            {imagesPreview?.map((image, index) => (
-              <img
-                key={index}
-                src={image}
-                alt="Product Preview"
-                className="h-16 w-16 overflow-x-scroll"
-              />
-            ))}
-          </div>
-
-          <div className="flex gap-2">
-            {oldImages &&
-              oldImages.map((image, index) => (
+          {/* New Images */}
+          {imagesPreview?.length > 0 && (
+            <div className="mt-4 flex flex-wrap gap-3">
+              {imagesPreview.map((image, i) => (
                 <img
-                  key={index}
-                  src={image.url}
-                  alt="Old Product Preview"
-                  className="h-16 w-16 overflow-x-scroll"
+                  key={i}
+                  src={image}
+                  alt="Preview"
+                  className="h-16 w-16 rounded-lg object-cover border"
                 />
               ))}
-          </div>
+            </div>
+          )}
+
+          {/* Old Images */}
+          {oldImages?.length > 0 && (
+            <div className="mt-3 flex flex-wrap gap-3">
+              {oldImages.map((image, i) => (
+                <img
+                  key={i}
+                  src={image.url}
+                  alt="Existing"
+                  className="h-16 w-16 rounded-lg object-cover border"
+                />
+              ))}
+            </div>
+          )}
         </div>
 
-        <FormButton isLoading={isLoading} name={"Create"} />
+        <div className="pt-2">
+          <FormButton isLoading={isLoading} name="Save Product" />
+        </div>
       </form>
     </div>
   );

@@ -1,12 +1,12 @@
 import { useParams } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import ShimmerSingleProduct from "../../component/skeletons/ShimmerSingleProduct";
 import Product from "../../component/product/Product.jsx";
 import {
   useGetAllProductsReviewsQuery,
   useGetProductQuery,
 } from "../../features/products/productApi";
-import PageHero from "../../component/PageHero";
+import PageHero from "../../component/Breadcrumb.jsx";
 import ProductReviewSection from "../../component/review/ProductReviewSection.jsx";
 
 const SingleProduct = () => {

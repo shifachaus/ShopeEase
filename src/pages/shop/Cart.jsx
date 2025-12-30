@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
-
-import PageHero from "../../component/PageHero";
+import PageHero from "../../component/Breadcrumb";
 import cartImage from "../../assets/cart.png";
 import { CartContent } from "../../component/cart";
 

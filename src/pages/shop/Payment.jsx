@@ -25,10 +25,6 @@ const Payment = () => {
   const shippingInfo = useSelector((state) => state.cart.shippingInfo);
   const { user } = useSelector((store) => store.user);
 
-  const paymentData = {
-    amount: orderInfo?.totalPrice,
-  };
-
   const order = {
     shippingInfo,
     orderItems: items,
@@ -41,62 +37,66 @@ const Payment = () => {
   const handlePayment = async (e) => {
     e.preventDefault();
 
-    payBtn.current.disabled = true;
+    if (!stripe || !elements || !shippingInfo) return;
+
+    const cardElement = elements.getElement(CardNumberElement);
+    if (!cardElement) return;
+
+    if (payBtn.current) payBtn.current.disabled = true;
 
     try {
-      const config = {
-        headers: {
-          "Content-Type": "application/json",
-        },
-        withCredentials: true,
-      };
+      console.log(shippingInfo);
       const { data } = await axios.post(
         `${import.meta.env.VITE_API_URL}payment/process`,
-        paymentData,
-        config
+        {
+          amount: orderInfo?.totalPrice,
+          shippingInfo,
+          description: "Ecommerce Order Payment",
+        },
+        { withCredentials: true }
       );
 
-      const client_secret = data?.client_secret;
-
-      if (!stripe || !elements) return;
-
-      const result = await stripe.confirmCardPayment(client_secret, {
+      const result = await stripe.confirmCardPayment(data.client_secret, {
         payment_method: {
-          card: elements.getElement(CardNumberElement),
+          card: cardElement,
           billing_details: {
-            name: user?.name,
-            email: user?.email,
+            name: user.name,
+            email: user.email,
             address: {
-              line1: shippingInfo?.address,
-              city: shippingInfo?.city,
-              state: shippingInfo?.state,
-              postal_code: shippingInfo?.pinCode,
-              country: shippingInfo?.country,
+              line1: shippingInfo.address,
+              city: shippingInfo.city,
+              state: shippingInfo.state,
+              postal_code: shippingInfo.pinCode,
+              country: shippingInfo.country,
             },
           },
         },
       });
 
-      if (result?.error) {
-        payBtn.current.disabled = false;
-        alert(result?.error?.message);
-      } else {
-        if (result?.paymentIntent?.status === "succeeded") {
-          order.paymentInfo = {
-            id: result?.paymentIntent?.id,
-            status: result?.paymentIntent?.status,
-          };
+      if (result.error) {
+        if (payBtn.current) payBtn.current.disabled = false;
+        alert(result.error.message);
+        return;
+      }
 
-          const data = await newOrder(order);
-          navigate("/success");
-        } else {
-          alert("There's some issue while processing payment");
-        }
+      if (result.paymentIntent.status === "succeeded") {
+        const finalOrder = {
+          ...order,
+          paymentInfo: {
+            id: result.paymentIntent.id,
+            status: result.paymentIntent.status,
+          },
+        };
+
+        await newOrder(finalOrder).unwrap();
+        sessionStorage.removeItem("orderInfo");
+        navigate("/success");
+      } else {
+        alert("Payment processing failed");
       }
     } catch (err) {
-      console.log(err);
-      payBtn.current.disabled = false;
-      alert(err.response.data.message);
+      if (payBtn.current) payBtn.current.disabled = false;
+      alert(err?.response?.data?.message || "Something went wrong");
     }
   };
 

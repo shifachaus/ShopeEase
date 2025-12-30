@@ -5,32 +5,76 @@ import { Payment, OrderStatus } from "../../component/Payment";
 
 const OrderDetails = () => {
   const { id } = useParams();
-  const { data: orderData } = useGetOrderDetailsQuery(id);
+  const { data: orderData, isLoading, isError } = useGetOrderDetailsQuery(id);
 
-  let address = `${orderData?.order.shippingInfo.address}, ${orderData?.order.shippingInfo.city}, ${orderData?.order.shippingInfo.state}, ${orderData?.order.shippingInfo.pinCode}, ${orderData?.order.shippingInfo.country}`;
+  const order = orderData?.order;
+
+  const address = order
+    ? `${order.shippingInfo.address}, ${order.shippingInfo.city}, ${order.shippingInfo.state}, ${order.shippingInfo.pinCode}, ${order.shippingInfo.country}`
+    : "";
+
+  if (isLoading)
+    return (
+      <div className="min-h-[60vh] flex items-center justify-center">
+        <p className="text-gray-600 text-lg">Loading order…</p>
+      </div>
+    );
+
+  if (isError || !order)
+    return (
+      <div className="min-h-[60vh] flex items-center justify-center">
+        <p className="text-red-600 text-lg font-medium">
+          Order not found or failed to load.
+        </p>
+      </div>
+    );
 
   return (
-    <section className="mt-10 md:mt-20 mb-10 ">
-      <div className=" mx-auto max-w-7xl  my-10  p-6 lg:px-8">
-        <div className=" flex flex-col gap-6  mt-6 ">
-          <p className="text-xl font-medium mb-2  text-black sm:text-2xl md:text-3xl">
-            Order ID #{orderData?.order?._id}
-          </p>
+    <section className="mt-10 md:mt-14 mb-10">
+      <div className="max-w-5xl mx-auto p-6 space-y-6">
+        {/* Order Header */}
+        <div className="bg-white border rounded-xl shadow-sm p-5">
+          <p className="text-sm text-gray-500">Order ID</p>
+          <h1 className="text-xl md:text-2xl font-semibold text-gray-900">
+            #{order._id}
+          </h1>
+        </div>
 
+        {/* Order Status */}
+        <div className="bg-white border rounded-xl shadow-sm p-5">
+          <h2 className="text-lg font-semibold text-gray-900 mb-2">
+            Current Status
+          </h2>
+          <OrderStatus orderData={orderData} />
+        </div>
+
+        {/* Address */}
+        <div className="bg-white border rounded-xl shadow-sm p-5">
+          <h2 className="text-lg font-semibold text-gray-900 mb-2">
+            Delivery Address
+          </h2>
           <Address
             orderData={orderData}
             address={address}
-            shippingInfo={orderData?.order?.shippingInfo}
+            shippingInfo={order?.shippingInfo}
           />
-
-          <Payment orderData={orderData} />
-
-          <OrderStatus orderData={orderData} />
         </div>
-      </div>
 
-      <div className="border-t mx-auto max-w-7xl  p-6 lg:px-8">
-        <CartItems items={orderData?.order?.orderItems} />
+        {/* Payment */}
+        <div className="bg-white border rounded-xl shadow-sm p-5">
+          <h2 className="text-lg font-semibold text-gray-900 mb-2">
+            Payment Summery
+          </h2>
+          <Payment orderData={orderData} />
+        </div>
+
+        {/* Cart Items */}
+        <div className="bg-white border rounded-xl shadow-sm p-5">
+          <h2 className="text-lg font-semibold text-gray-900 mb-3">
+            Items in this Order
+          </h2>
+          <CartItems items={order?.orderItems} />
+        </div>
       </div>
     </section>
   );

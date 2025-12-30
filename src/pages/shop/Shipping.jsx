@@ -18,138 +18,139 @@ const initialValue = {
 const Shipping = () => {
   const [values, setValues] = useState(initialValue);
   const shippingInfo = useSelector((state) => state.cart.shippingInfo);
-
-  const disapatch = useDispatch();
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const handleChange = (e) => {
-    const name = e.target.name;
-    const value = e.target.value;
+    const { name, value } = e.target;
     setValues({ ...values, [name]: value });
   };
 
-  const shippingSubmint = (e) => {
+  const shippingSubmit = (e) => {
     e.preventDefault();
-
-    if (values.phoneNo.length < 10 || values.phoneNo.length > 10) {
-      alert("Phone Number should be 10 digits long");
+    if (values.phoneNo.length !== 10) {
+      alert("Phone Number must be 10 digits");
       return;
     }
-
-    disapatch(saveShippingInfo(values));
-
+    dispatch(saveShippingInfo(values));
     navigate("/order/confirm");
   };
 
   useEffect(() => {
+    if (!shippingInfo) return;
     setValues({
-      address: shippingInfo?.address,
-      city: shippingInfo?.city,
-      state: shippingInfo?.state,
-      country: shippingInfo?.country,
-      pinCode: shippingInfo?.pincode,
-      phoneNo: shippingInfo?.phoneNo,
+      address: shippingInfo.address || "",
+      city: shippingInfo.city || "",
+      state: shippingInfo.state || "",
+      country: shippingInfo.country || "",
+      pinCode: shippingInfo.pinCode || shippingInfo.pincode || "",
+      phoneNo: shippingInfo.phoneNo || "",
     });
   }, [shippingInfo]);
 
   return (
-    <div className="mx-auto max-w-7xl  p-6 lg:px-8 ">
+    <div className="mx-auto max-w-7xl px-6 py-10 lg:px-8 my-12">
       <CheckoutStep activeStep={0} />
-      <div className="max-w-md mt-10 md:mt-20 mb-10  mx-auto">
-        <h2 className="text-xl  mb-2 tracking-tight sm:text-2xl font-medium  text-black text-center ">
-          Shipping Details
-        </h2>
-        <form onSubmit={(e) => shippingSubmint(e)} className="px-5 pt-6 pb-8">
+
+      <div className="mt-12 grid gap-10 md:grid-cols-2">
+        {/* Left Info Panel */}
+        <div className=" p-6  flex flex-col ">
+          <h2 className="text-2xl font-semibold mb-4">Shipping Info</h2>
+          <p className="text-gray-600 leading-relaxed">
+            Fill out your shipping details carefully. Make sure your address is
+            correct to ensure smooth delivery.
+          </p>
+          <p className="text-gray-500 mt-4 text-sm">
+            You will be able to review your order in the next step before
+            confirming.
+          </p>
+        </div>
+
+        {/* Right Form Panel */}
+        <form
+          onSubmit={shippingSubmit}
+          className="bg-white border rounded-2xl shadow-md p-6 flex flex-col gap-4"
+        >
+          <h2 className="text-xl font-semibold mb-4">Enter Shipping Details</h2>
+
           <FormRow
             type="text"
             name="address"
             value={values.address}
             handleChange={handleChange}
-            labelText={"Address"}
+            labelText="Address"
           />
           <FormRow
             type="text"
             name="city"
             value={values.city}
             handleChange={handleChange}
-            labelText={"City"}
+            labelText="City"
           />
           <FormRow
             type="number"
-            name="pincode"
+            name="pinCode"
             value={values.pinCode}
             handleChange={handleChange}
-            labelText={"Pin Code"}
+            labelText="Pin Code"
           />
           <FormRow
             type="number"
             name="phoneNo"
             value={values.phoneNo}
             handleChange={handleChange}
-            labelText={"Phone Number"}
+            labelText="Phone Number"
           />
 
-          <div className="mb-4">
-            <label
-              className="block text-gray-700 text-sm font-bold mb-2"
-              htmlFor="address"
-            >
+          <div>
+            <label className="text-gray-700 font-medium text-sm mb-1 block">
               Country
             </label>
             <select
               required
-              value={values.country}
               name="country"
-              id="country"
+              value={values.country}
               onChange={handleChange}
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              className="w-full border rounded-lg px-3 py-2 focus:ring-2 focus:ring-[#688272] focus:outline-none"
             >
-              <option value="">Country</option>
-              {Country &&
-                Country.getAllCountries().map((item) => (
-                  <option key={item.isoCode} value={item.isoCode}>
-                    {item.name}
-                  </option>
-                ))}
+              <option value="">Select Country</option>
+              {Country.getAllCountries().map((item) => (
+                <option key={item.isoCode} value={item.isoCode}>
+                  {item.name}
+                </option>
+              ))}
             </select>
           </div>
 
           {values.country && (
-            <div className="mb-4">
-              <label
-                className="block text-gray-700 text-sm font-bold mb-2"
-                htmlFor="address"
-              >
+            <div>
+              <label className="text-gray-700 font-medium text-sm mb-1 block">
                 State
               </label>
               <select
                 required
-                value={values.state}
                 name="state"
-                id="state"
+                value={values.state}
                 onChange={handleChange}
-                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                className="w-full border rounded-lg px-3 py-2 focus:ring-2 focus:ring-[#688272] focus:outline-none"
               >
-                <option value="">State</option>
-                {State &&
-                  State.getStatesOfCountry(values.country).map((item) => (
-                    <option key={item.isoCode} value={item.isoCode}>
-                      {item.name}
-                    </option>
-                  ))}
+                <option value="">Select State</option>
+                {State.getStatesOfCountry(values.country).map((item) => (
+                  <option key={item.isoCode} value={item.isoCode}>
+                    {item.name}
+                  </option>
+                ))}
               </select>
             </div>
           )}
 
-          <div className="flex flex-col mt-8">
-            <button
-              className="text-white bg-[#252323]  focus:outline-none  font-medium rounded text-sm px-5 py-2.5 text-center  "
-              type="submit"
-              disabled={values.state ? false : true}
-            >
-              Continue
-            </button>
-          </div>
+          <button
+            type="submit"
+            disabled={!values.state}
+            className="mt-6 py-3 rounded-lg bg-black text-white font-semibold  disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
+          >
+            Continue
+          </button>
         </form>
       </div>
     </div>

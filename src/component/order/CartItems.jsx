@@ -3,25 +3,42 @@ import { formatPrice } from "../../utils/helper";
 
 const CartItems = ({ items }) => {
   return (
-    <div className="mb-10 ">
-      <h3 className="text-lg font-medium mb-2 tracking-tight sm:text-xl  text-black ">
-        Your Cart Items:
-      </h3>
+    <div className="mt-4 divide-y">
+      {items?.map((item) => (
+        <div key={item._id} className="flex items-center gap-4 p-4">
+          {/* Product Image */}
+          <div className="h-16 w-16 rounded-lg overflow-hidden border bg-gray-50">
+            <img
+              src={item?.image}
+              alt={item?.name}
+              className="h-full w-full object-cover"
+            />
+          </div>
 
-      <div className="mt-6 p-2">
-        {items?.map((item) => {
-          return (
-            <div key={item._id} className="grid grid-cols-3 gap-2 items-center">
-              <img src={item?.image} alt={item.name} className="h-16 w-20" />
-              <Link to={`/product/${item.product}`}>{item.name}</Link>
-              <p>
-                {item.qty} X {formatPrice(item.price)} ={" "}
-                <b>{formatPrice(item.price * item.qty)}</b>
-              </p>
-            </div>
-          );
-        })}
-      </div>
+          {/* Product Info */}
+          <div className="flex-1">
+            <Link
+              to={`/product/${item.product}`}
+              className="text-sm font-medium text-gray-900 hover:underline"
+            >
+              {item.name}
+            </Link>
+
+            <p className="text-xs text-gray-500 mt-0.5">Qty: {item.qty}</p>
+          </div>
+
+          {/* Price */}
+          <div className="text-right text-sm">
+            <p className="text-gray-700">
+              {formatPrice(item.price)} × {item.qty}
+            </p>
+
+            <p className="font-semibold text-gray-900">
+              {formatPrice(item.price * item.qty)}
+            </p>
+          </div>
+        </div>
+      ))}
     </div>
   );
 };

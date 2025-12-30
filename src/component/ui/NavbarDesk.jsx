@@ -1,26 +1,47 @@
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { PiShoppingCartSimple } from "react-icons/pi";
 
 const NavbarDesk = ({ userData, cartItems, signOut }) => {
   return (
     <>
       <div className="hidden md:flex md:gap-x-12">
-        <Link to={"/"} className="text-sm font-medium leading-6 text-dark">
+        <NavLink
+          to="/"
+          className={({ isActive }) =>
+            `hover:underline ${
+              isActive
+                ? "text-white/90 text-sm font-medium leading-6 underline"
+                : "text-sm font-medium leading-6 text-dark"
+            }`
+          }
+        >
           Home
-        </Link>
-        <Link
-          to={"/products"}
-          className="text-sm font-medium leading-6 text-dark"
+        </NavLink>
+        <NavLink
+          to="/products"
+          className={({ isActive }) =>
+            `hover:underline ${
+              isActive
+                ? "text-white/90 text-sm font-medium leading-6 underline"
+                : "text-sm font-medium leading-6 text-dark"
+            }`
+          }
         >
           Shop
-        </Link>
+        </NavLink>
         {userData !== null && (
-          <Link
-            to={"/account"}
-            className="text-sm font-medium leading-6 text-dark"
+          <NavLink
+            to="/account"
+            className={({ isActive }) =>
+              `hover:underline ${
+                isActive
+                  ? "text-white/90 text-sm font-medium leading-6 underline"
+                  : "text-sm font-medium leading-6 text-dark"
+              }`
+            }
           >
             Profile
-          </Link>
+          </NavLink>
         )}
         {userData !== null && userData?.user?.role === "admin" && (
           <Link

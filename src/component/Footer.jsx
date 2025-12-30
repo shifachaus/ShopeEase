@@ -1,57 +1,87 @@
 const Footer = () => {
   const year = new Date().getFullYear();
+
   return (
-    <footer className=" border border-b w-full">
-      <div className="mx-auto max-w-7xl  grid grid-cols-1 space-y-10 bg-primary px-5 py-8 pt-20  tracking-wider text-black md:grid-cols-4 md:space-y-0 xl:px-28 xl:py-20 ">
-        <section className="space-y-4 md:mt-12">
-          <p className="w-2/3 text-sm font-light text-gray-400">
-            400 University Drive Suite 200 Coral Gables, FL 33134 USA
+    <footer className="w-full bg-white border-t">
+      <div className="mx-auto max-w-7xl px-6 py-14 grid gap-10 md:grid-cols-4">
+        {/* Address */}
+        <section className="space-y-3">
+          <h3 className="text-lg font-semibold tracking-tight">ShopEase</h3>
+          <p className="text-sm text-gray-500 leading-relaxed">
+            400 University Drive Suite 200
+            <br />
+            Coral Gables, FL 33134 ABC
           </p>
         </section>
 
-        <section className="space-y-6">
-          <div className="space-y-1">
-            <h2 className="capitalize text-gray-400 font-light"> links</h2>
-          </div>
-          <div className="flex flex-col space-y-4 text-sm font-medium">
-            <a href="#">Home</a>
-            <a href="#">Shop</a>
-            <a href="#">About</a>
-            <a href="#">Contact</a>
-          </div>
+        {/* Links */}
+        <section className="space-y-4">
+          <h4 className="text-sm uppercase tracking-wider text-gray-500">
+            Links
+          </h4>
+
+          <nav className="flex flex-col gap-2 text-sm font-medium">
+            <a href="#" className="hover:text-gray-900">
+              Home
+            </a>
+            <a href="#" className="hover:text-gray-900">
+              Shop
+            </a>
+            <a href="#" className="hover:text-gray-900">
+              About
+            </a>
+            <a href="#" className="hover:text-gray-900">
+              Contact
+            </a>
+          </nav>
         </section>
 
-        <section className="space-y-6">
-          <div className="space-y-1">
-            <h2 className="capitalize text-gray-400 font-light">Help</h2>
-          </div>
-          <div className="flex flex-col space-y-4 text-sm font-medium">
-            <a href="#">Privacy Policies</a>
-          </div>
+        {/* Help */}
+        <section className="space-y-4">
+          <h4 className="text-sm uppercase tracking-wider text-gray-500">
+            Help
+          </h4>
+
+          <nav className="flex flex-col gap-2 text-sm font-medium">
+            <a href="#" className="hover:text-gray-900">
+              Privacy Policy
+            </a>
+            <a href="#" className="hover:text-gray-900">
+              Terms & Conditions
+            </a>
+            <a href="#" className="hover:text-gray-900">
+              Support
+            </a>
+          </nav>
         </section>
 
-        <section className="space-y-6">
-          <div className="space-y-1">
-            <h2 className="capitalize text-gray-400 font-light">Newsletter</h2>
-          </div>
-          <div className="flex flex-col space-y-4 text-sm font-light">
-            <div className="flex gap-2 items-center">
-              <input
-                type="email"
-                placeholder="Enter Your Email Address"
-                className="appearance-none border-b border-black w-full py-1 px-1 leading-tight focus:outline-none focus:shadow-outline text-gray-700 "
-              />
-              <button className="border-b border-black font-medium leading-tight py-1 px-1">
-                SUBSCRIBE
-              </button>
-            </div>
+        {/* Newsletter */}
+        <section className="space-y-4">
+          <h4 className="text-sm uppercase tracking-wider text-gray-500">
+            Newsletter
+          </h4>
+
+          <p className="text-sm text-gray-500">
+            Subscribe to get updates and offers.
+          </p>
+
+          <div className="flex gap-2">
+            <input
+              type="email"
+              placeholder="Email address"
+              className="w-full border rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-gray-400"
+            />
+            <button className="px-4 py-2 rounded-lg border bg-gray-900 text-white hover:bg-gray-700">
+              Subscribe
+            </button>
           </div>
         </section>
       </div>
 
-      <div className="mx-auto max-w-7xl ">
-        <p className=" border-t  p-4 text-sm text-gray-800">
-          {year} ShopEase. All rights reverved
+      {/* Bottom Bar */}
+      <div className="border-t">
+        <p className="mx-auto max-w-7xl px-6 py-4 text-sm text-gray-600">
+          © {year} ShopEase — All rights reserved.
         </p>
       </div>
     </footer>

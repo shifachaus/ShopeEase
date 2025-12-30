@@ -1,24 +1,31 @@
+import { FiUser, FiPhone, FiMapPin } from "react-icons/fi";
+
 const Address = ({ address, shippingInfo, orderData }) => {
+  const name = orderData?.order?.user?.name;
+
   return (
-    <div className="mb-10">
-      <h2 className="text-xl font-medium mb-2    tracking-tight sm:text-2xl  text-black  ">
-        Shipping Info
-      </h2>
-      <div className="flex flex-col gap-2 p-4 bg-gray-100 md:w-3/4">
-        {orderData && (
-          <p className="text-md font-medium">
-            Name:{" "}
-            <span className="text-sm font-normal">
-              {orderData?.order?.user?.name}
-            </span>
+    <div className=" p-5 space-y-4">
+      {name && (
+        <div className="flex items-start gap-3">
+          <FiUser className="w-5 h-5 text-gray-500 mt-0.5" />
+          <p className="text-sm text-gray-700">
+            <span className="font-medium text-gray-900">Name:</span> {name}
           </p>
-        )}
-        <p className="text-md font-medium">
-          Phone:{" "}
-          <span className="text-sm font-normal">{shippingInfo?.phoneNo}</span>
+        </div>
+      )}
+
+      <div className="flex items-start gap-3">
+        <FiPhone className="w-5 h-5 text-gray-500 mt-0.5" />
+        <p className="text-sm text-gray-700">
+          <span className="font-medium text-gray-900">Phone:</span>{" "}
+          {shippingInfo?.phoneNo || "N/A"}
         </p>
-        <p className="text-md font-medium">
-          Address: <span className="text-sm font-normal">{address}</span>
+      </div>
+
+      <div className="flex items-start gap-3">
+        <FiMapPin className="w-5 h-5 text-gray-500 mt-0.5" />
+        <p className="text-sm text-gray-700 leading-relaxed">
+          <span className="font-medium text-gray-900">Address:</span> {address}
         </p>
       </div>
     </div>

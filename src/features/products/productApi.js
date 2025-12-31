@@ -10,11 +10,26 @@ export const productsApi = createApi({
   }),
 
   endpoints: (builder) => ({
-    getAllFeaturedProducts: builder.query({
-      query: () => {
-        return `/products`;
+    newProduct: builder.mutation({
+      query: (product) => {
+        const formData = new FormData();
+        formData.append("name", product.name);
+        formData.append("description", product.description);
+        formData.append("price", product.price);
+        formData.append("category", product.category);
+        formData.append("Stock", product.stock);
+
+        product.images.forEach((image) => {
+          formData.append("images", image);
+        });
+
+        return {
+          url: "product/new",
+          method: "POST",
+          body: formData,
+        };
       },
-      providesTags: [{ type: "Products", id: "LIST" }],
+      invalidatesTags: [{ type: "Products", id: "LIST" }],
     }),
 
     getAllProducts: builder.query({
@@ -43,11 +58,11 @@ export const productsApi = createApi({
       providesTags: [{ type: "Products", id: "LIST" }],
     }),
 
-    getProduct: builder.query({
-      query: (id) => `product/${id}`,
-      providesTags: (result, error, id) => [
-        { type: "Products", id: String(id) },
-      ],
+    getAllFeaturedProducts: builder.query({
+      query: () => {
+        return `/products`;
+      },
+      providesTags: [{ type: "Products", id: "LIST" }],
     }),
 
     getAdminProducts: builder.query({
@@ -55,34 +70,11 @@ export const productsApi = createApi({
       providesTags: [{ type: "Products", id: "LIST" }],
     }),
 
-    newProduct: builder.mutation({
-      query: (product) => {
-        const formData = new FormData();
-        formData.append("name", product.name);
-        formData.append("description", product.description);
-        formData.append("price", product.price);
-        formData.append("category", product.category);
-        formData.append("Stock", product.stock);
-
-        product.images.forEach((image) => {
-          formData.append("images", image);
-        });
-
-        return {
-          url: "product/new",
-          method: "POST",
-          body: formData,
-        };
-      },
-      providesTags: [{ type: "Products", id: "LIST" }],
-    }),
-
-    deleteProduct: builder.mutation({
-      query: (id) => ({
-        url: `product/${id}`,
-        method: "DELETE",
-      }),
-      providesTags: [{ type: "Products", id: "LIST" }],
+    getProduct: builder.query({
+      query: (id) => `product/${id}`,
+      providesTags: (result, error, id) => [
+        { type: "Products", id: String(id) },
+      ],
     }),
 
     updateProduct: builder.mutation({
@@ -110,6 +102,18 @@ export const productsApi = createApi({
       ],
     }),
 
+    deleteProduct: builder.mutation({
+      query: (id) => ({
+        url: `product/${id}`,
+        method: "DELETE",
+      }),
+      invalidatesTags: (result, error, id) => [
+        { type: "Products", id: "LIST" },
+        { type: "Products", id: String(id) },
+      ],
+    }),
+
+    // REVIEW
     newReview: builder.mutation({
       query: (review) => {
         const formData = new FormData();

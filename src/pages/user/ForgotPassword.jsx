@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useForgotPasswordMutation } from "../../features/users/userApi";
 import { FormButton, FormRow } from "../../component/admin/form/index";
+import { toast } from "sonner";
 
 const ForgotPassword = () => {
   const [forgotPassword, { isLoading }] = useForgotPasswordMutation();
@@ -12,32 +13,39 @@ const ForgotPassword = () => {
   const handleForgotPassword = async (e) => {
     e.preventDefault();
 
+    if (!email.trim()) {
+      return toast.warning("Please enter your email");
+    }
+
     try {
-      const user = { email };
-      const data = await forgotPassword(user);
+      await forgotPassword({ email }).unwrap();
+      toast.success("Password reset link sent to your email");
+      setEmail("");
     } catch (err) {
-      console.log("FORGOT PASSWORD", err);
+      console.error("FORGOT PASSWORD", err);
+      toast.error(err?.data?.message || "Failed to send reset email");
     }
   };
 
   return (
-    <div className="mx-auto max-w-md mt-6 p-6 lg:px-8 h-screen">
-      <div className=" bg-white shadow-lg shadow-purple-100 rounded  mb-4">
-        <h2 className="text-2xl font-medium mb-2 text-center md:text-left text-gray-600">
+    <div className="flex items-center justify-center min-h-screen  px-4">
+      <div className="w-full max-w-md bg-white rounded-xl shadow-md p-8">
+        <h2 className="text-2xl font-bold text-gray-700 text-center mb-6">
           Reset Password
         </h2>
-        <form
-          onSubmit={(e) => handleForgotPassword(e)}
-          className="px-5 pt-6 pb-8"
-        >
+        <form onSubmit={handleForgotPassword} className="space-y-5">
           <FormRow
             type="email"
             name="email"
             value={email}
             handleChange={handleChange}
+            placeholder="Enter your email"
           />
-
-          <FormButton isLoading={isLoading} name={"Reset"} />
+          <FormButton
+            isLoading={isLoading}
+            name="Send Reset Link"
+            className="w-full py-2 mt-2"
+          />
         </form>
       </div>
     </div>

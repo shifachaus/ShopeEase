@@ -3,6 +3,7 @@ import { useMyOrdersQuery } from "../../features/orders/orderApi";
 import { useTable } from "react-table";
 import { Link } from "react-router-dom";
 import Table from "../../component/ui/Table";
+import Breadcrumb from "../../component/Breadcrumb";
 
 const MyOrders = () => {
   const { data: ordersData } = useMyOrdersQuery();
@@ -44,17 +45,22 @@ const MyOrders = () => {
     });
 
   return (
-    <div className="mx-auto max-w-7xl p-6 lg:px-8 h-screen">
-      <h2 className="text-2xl font-medium text-gray-600 mb-6">My Orders</h2>
+    <section>
+      <Breadcrumb title={"Order"} profile={true} />
+      <div className="mx-auto max-w-7xl p-6 lg:px-8 h-screen">
+        <h2 className="text-2xl font-bold text-gray-700 text-center mb-6">
+          My Orders
+        </h2>
 
-      <Table
-        getTableBodyProps={getTableBodyProps}
-        getTableProps={getTableProps}
-        rows={rows}
-        headerGroups={headerGroups}
-        prepareRow={prepareRow}
-      />
-    </div>
+        <Table
+          getTableBodyProps={getTableBodyProps}
+          getTableProps={getTableProps}
+          rows={rows}
+          headerGroups={headerGroups}
+          prepareRow={prepareRow}
+        />
+      </div>
+    </section>
   );
 };
 

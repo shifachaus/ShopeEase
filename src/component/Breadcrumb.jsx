@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { FaChevronRight } from "react-icons/fa6";
 
-const Breadcrumbs = ({ title, product }) => {
+const Breadcrumb = ({ title, product, profile, order }) => {
   return (
     <nav className="mt-6">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
@@ -11,6 +11,29 @@ const Breadcrumbs = ({ title, product }) => {
           </Link>
 
           <FaChevronRight className="text-gray-400" size={10} />
+
+          {profile && (
+            <>
+              <Link
+                to="/account"
+                className="hover:text-black transition-colors"
+              >
+                Profile
+              </Link>
+
+              <FaChevronRight className="text-gray-400" size={10} />
+            </>
+          )}
+
+          {order && (
+            <>
+              <Link to="/orders" className="hover:text-black transition-colors">
+                Order
+              </Link>
+
+              <FaChevronRight className="text-gray-400" size={10} />
+            </>
+          )}
 
           {product && (
             <>
@@ -32,4 +55,4 @@ const Breadcrumbs = ({ title, product }) => {
   );
 };
 
-export default Breadcrumbs;
+export default Breadcrumb;

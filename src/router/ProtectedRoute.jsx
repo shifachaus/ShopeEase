@@ -3,24 +3,24 @@ import { Navigate } from "react-router-dom";
 import Loading from "../component/skeletons/Loading";
 
 const ProtectedRoute = ({ isAdmin, isUser, children }) => {
-  const { data, isLoading } = useGetUserQuery();
+  const { data, isLoading, isError } = useGetUserQuery();
 
   if (isLoading) {
     return <Loading />;
   }
-  if (!data) {
-    return <Navigate to="/login" />;
+
+  if (isError || !data?.user) {
+    return <Navigate to="/login" replace />;
   }
 
-  if (data === false) {
-    return <Navigate to="/" />;
-  }
-  if (isAdmin === true && data?.user?.role !== "admin") {
-    return <Navigate to="/" />;
+  const role = data.user.role;
+
+  if (isAdmin && role !== "admin") {
+    return <Navigate to="/" replace />;
   }
 
-  if (isUser === true && data?.user?.role !== "user") {
-    return <Navigate to="/" />;
+  if (isUser && role !== "user") {
+    return <Navigate to="/" replace />;
   }
 
   return children;

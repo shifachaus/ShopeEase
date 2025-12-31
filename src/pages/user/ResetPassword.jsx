@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useResetPasswordMutation } from "../../features/users/userApi";
 import { useNavigate, useParams } from "react-router-dom";
 import { FormButton, FormRow } from "../../component/admin/form/index";
+import { toast } from "sonner";
 
 const initialValue = {
   password: "",
@@ -27,35 +28,38 @@ const ResetPassword = () => {
     const { password, confirmPassword } = values;
 
     if (!password || !confirmPassword) {
-      alert("Please fill out all fields");
-      return;
+      return toast.warning("Please fill out all fields");
     }
-    const user = { password, confirmPassword, token };
 
+    if (password !== confirmPassword) {
+      return toast.error("Passwords do not match");
+    }
+
+    const user = { password, confirmPassword, token };
     try {
-      const data = await resetPassword(user);
-      navigate("/");
+      await resetPassword(user).unwrap();
+      toast.success("Password reset successfully");
+      setValues(initialValue);
+      navigate("/login");
     } catch (err) {
-      console.log("RESET PASSWORD:", err);
+      console.error("RESET PASSWORD:", err);
+      toast.error(err?.data?.message || "Failed to reset password");
     }
   };
 
   return (
-    <div className="mx-auto max-w-md mt-6 p-6 lg:px-8 h-screen">
-      <div className=" bg-white shadow-lg shadow-purple-100 rounded  mb-4">
-        <h2 className="text-2xl font-medium mb-2 text-center md:text-left text-gray-600">
+    <div className="flex items-center justify-center min-h-screen  px-4">
+      <div className="w-full max-w-md bg-white rounded-xl shadow-md p-8">
+        <h2 className="text-2xl font-bold text-gray-700 text-center mb-6">
           Reset Password
         </h2>
-        <form
-          onSubmit={(e) => handleResetPassword(e)}
-          className="px-5 pt-6 pb-8"
-        >
+        <form onSubmit={handleResetPassword} className="space-y-5">
           <FormRow
             type="password"
             name="password"
             value={values.password}
             handleChange={handleChange}
-            labelText={"Password"}
+            placeholder="New Password"
           />
 
           <FormRow
@@ -63,10 +67,14 @@ const ResetPassword = () => {
             name="confirmPassword"
             value={values.confirmPassword}
             handleChange={handleChange}
-            labelText={"Confirm Password"}
+            placeholder="Confirm New Password"
           />
 
-          <FormButton isLoading={isLoading} name={"Reset"} />
+          <FormButton
+            isLoading={isLoading}
+            name="Reset Password"
+            className="w-full py-2 mt-2"
+          />
         </form>
       </div>
     </div>

@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
-import PageHero from "../../component/Breadcrumb";
+import Breadcrumb from "../../component/Breadcrumb";
 import cartImage from "../../assets/cart.png";
 import { CartContent } from "../../component/cart";
 
@@ -9,7 +9,7 @@ const Cart = () => {
 
   return (
     <section>
-      <PageHero title={"cart"} />
+      <Breadcrumb title={"cart"} />
 
       <div className="mx-auto max-w-6xl  my-10   p-6 lg:px-8 md:h-screen">
         {cartItems?.length === 0 ? (

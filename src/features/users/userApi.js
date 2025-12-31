@@ -2,6 +2,7 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react"; // Upd
 
 export const userApi = createApi({
   reducerPath: "userApi",
+  tagTypes: ["AuthUser", "Users"],
   baseQuery: fetchBaseQuery({
     baseUrl: import.meta.env.VITE_API_URL,
     credentials: "include",
@@ -13,7 +14,9 @@ export const userApi = createApi({
         formData.append("name", user.name);
         formData.append("email", user.email);
         formData.append("password", user.password);
-        formData.append("avatar", user.avatar); // Assuming user.avatar is the File object
+        if (user.avatar) {
+          formData.append("avatar", user.avatar);
+        }
 
         return {
           url: "register",
@@ -22,6 +25,7 @@ export const userApi = createApi({
           body: formData,
         };
       },
+      invalidatesTags: [{ type: "AuthUser", id: "LIST" }],
     }),
 
     loginUser: builder.mutation({
@@ -29,24 +33,28 @@ export const userApi = createApi({
         url: "login",
         method: "POST",
         headers: {
-          "Access-Control-Allow-Origin": "*",
           "Content-Type": "application/json",
         },
         body: user,
       }),
+      invalidatesTags: [{ type: "AuthUser", id: "LIST" }],
     }),
 
     getUser: builder.query({
       query: () => {
         return `me`;
       },
+      providesTags: [{ type: "AuthUser", id: "LIST" }],
     }),
 
-    logoutUser: builder.mutation({
-      query: () => ({
-        url: "logout",
-        method: "POST",
-      }),
+    getAllUser: builder.query({
+      query: () => `admin/users`,
+      providesTags: [{ type: "Users", id: "LIST" }],
+    }),
+
+    getSingleUser: builder.query({
+      query: (id) => `/admin/user/${id}`,
+      providesTags: (result, error, id) => [{ type: "Users", id: String(id) }],
     }),
 
     updateUser: builder.mutation({
@@ -62,6 +70,23 @@ export const userApi = createApi({
           body: formData,
         };
       },
+      invalidatesTags: [{ type: "AuthUser", id: "LIST" }],
+    }),
+
+    updateUserRole: builder.mutation({
+      query: (user) => {
+        const formData = new FormData();
+        formData.append("name", user.name);
+        formData.append("email", user.email);
+        formData.append("role", user.role);
+
+        return {
+          url: `/admin/user/${user.id}`,
+          method: "PUT",
+          body: formData,
+        };
+      },
+      invalidatesTags: [{ type: "Users", id: "LIST" }],
     }),
 
     editPassword: builder.mutation({
@@ -77,6 +102,7 @@ export const userApi = createApi({
           body: formData,
         };
       },
+      invalidatesTags: [{ type: "AuthUser", id: "LIST" }],
     }),
 
     forgotPassword: builder.mutation({
@@ -106,34 +132,23 @@ export const userApi = createApi({
       },
     }),
 
-    getAllUser: builder.query({
-      query: () => `admin/users`,
+    logoutUser: builder.mutation({
+      query: () => ({
+        url: "logout",
+        method: "POST",
+      }),
+      invalidatesTags: [{ type: "AuthUser", id: "LIST" }],
     }),
 
     deleteUser: builder.mutation({
       query: (id) => ({
-        url: `admin/user/${id}`, // Use a parameter for the URL if needed
+        url: `admin/user/${id}`,
         method: "DELETE",
       }),
-    }),
-
-    getSingleUser: builder.query({
-      query: (user) => `/admin/user/${user}`,
-    }),
-
-    updateUserRole: builder.mutation({
-      query: (user) => {
-        const formData = new FormData();
-        formData.append("name", user.name);
-        formData.append("email", user.email);
-        formData.append("role", user.role);
-
-        return {
-          url: `/admin/user/${user.id}`,
-          method: "PUT",
-          body: formData,
-        };
-      },
+      invalidatesTags: (result, error, id) => [
+        { type: "Users", id: "LIST" },
+        { type: "Users", id: String(id) },
+      ],
     }),
   }),
 });

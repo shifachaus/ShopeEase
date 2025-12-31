@@ -2,6 +2,7 @@ import { useParams } from "react-router-dom";
 import { useGetOrderDetailsQuery } from "../../features/orders/orderApi";
 import { Address, CartItems } from "../../component/order";
 import { Payment, OrderStatus } from "../../component/Payment";
+import Breadcrumb from "../../component/Breadcrumb";
 
 const OrderDetails = () => {
   const { id } = useParams();
@@ -30,8 +31,9 @@ const OrderDetails = () => {
     );
 
   return (
-    <section className="mt-10 md:mt-14 mb-10">
-      <div className="max-w-5xl mx-auto p-6 space-y-6">
+    <section className="">
+      <Breadcrumb title={"Order status"} profile={true} order={true} />
+      <div className="max-w-5xl mx-auto p-6 space-y-6 mt-10 md:mt-12 mb-10">
         {/* Order Header */}
         <div className="bg-white border rounded-xl shadow-sm p-5">
           <p className="text-sm text-gray-500">Order ID</p>

@@ -8,6 +8,8 @@ import {
   FormImageRow,
   FormRow,
 } from "../../component/admin/form/index";
+import { toast } from "sonner";
+import Breadcrumb from "../../component/Breadcrumb";
 
 const initialValue = {
   name: "",
@@ -18,9 +20,8 @@ const initialValue = {
 const UpdateProfile = () => {
   const [values, setValues] = useState(initialValue);
 
-  const { data } = useGetUserQuery();
+  const { data, isLoading: userLoading } = useGetUserQuery();
   const [updateUser, { isLoading }] = useUpdateUserMutation();
-  const getUserQuery = useGetUserQuery();
 
   const [avatarPreview, setAvatarPreview] = useState("");
 
@@ -31,6 +32,9 @@ const UpdateProfile = () => {
   };
 
   const handleFileUpload = (e) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
     if (e.target.name === "avatar") {
       const reader = new FileReader();
 
@@ -51,18 +55,19 @@ const UpdateProfile = () => {
     const { email, name, avatar } = values;
 
     if (!email || !name || !avatar) {
-      alert("Please fill out all fields");
-      return;
+      return toast.warning("Please fill out all fields");
     }
     try {
-      const data = await updateUser(values);
-      await getUserQuery.refetch();
+      await updateUser(values).unwrap();
+      toast.success("Profile updated successfully");
     } catch (err) {
       console.error("Update Profile error:", err);
+      toast.error(err?.data?.message || "Failed to update profile");
     }
   };
 
   useEffect(() => {
+    if (!data?.user) return;
     setAvatarPreview(data?.user?.avatar?.url);
 
     setValues({
@@ -72,39 +77,44 @@ const UpdateProfile = () => {
     });
   }, [data]);
 
+  if (userLoading) return null;
+
   return (
-    <div className="mx-auto max-w-md mt-6 p-6 lg:px-8 h-screen">
-      <div className=" bg-white shadow-lg rounded  mb-4 ">
-        <h2 className="text-2xl font-medium mb-2 text-center text-gray-600">
-          Update Profile
-        </h2>
-        <form
-          onSubmit={(e) => handleUpdateProfile(e)}
-          className="px-5 pt-6 pb-8 "
-        >
-          <FormRow
-            type="text"
-            name="name"
-            value={values.name}
-            handleChange={handleChange}
-          />
+    <section>
+      <Breadcrumb title={"Update profile"} profile={true} />
+      <div className="flex items-center flex-col justify-center min-h-screen  px-4">
+        <div className="w-full max-w-md bg-white rounded-xl shadow-md p-8">
+          <h2 className="text-2xl font-bold text-gray-700 text-center mb-6">
+            Update Profile
+          </h2>
+          <form
+            onSubmit={(e) => handleUpdateProfile(e)}
+            className="px-5 pt-6 pb-8 "
+          >
+            <FormRow
+              type="text"
+              name="name"
+              value={values.name}
+              handleChange={handleChange}
+            />
 
-          <FormRow
-            type="email"
-            name="email"
-            value={values.email}
-            handleChange={handleChange}
-          />
+            <FormRow
+              type="email"
+              name="email"
+              value={values.email}
+              handleChange={handleChange}
+            />
 
-          <FormImageRow
-            handleFileUpload={handleFileUpload}
-            avatarPreview={avatarPreview}
-          />
+            <FormImageRow
+              handleFileUpload={handleFileUpload}
+              avatarPreview={avatarPreview}
+            />
 
-          <FormButton isLoading={isLoading} name={"Update"} />
-        </form>
+            <FormButton isLoading={isLoading} name="Update Profile" />
+          </form>
+        </div>
       </div>
-    </div>
+    </section>
   );
 };
 

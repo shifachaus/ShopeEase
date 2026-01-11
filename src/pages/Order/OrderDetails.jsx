@@ -33,7 +33,7 @@ const OrderDetails = () => {
   return (
     <section className="">
       <Breadcrumb title={"Order status"} profile={true} order={true} />
-      <div className="max-w-5xl mx-auto p-6 space-y-6 mt-10 md:mt-12 mb-10">
+      <div className="max-w-6xl mx-auto p-6 space-y-6 mt-10 md:mt-12 mb-10">
         {/* Order Header */}
         <div className="bg-white border rounded-xl shadow-sm p-5">
           <p className="text-sm text-gray-500">Order ID</p>

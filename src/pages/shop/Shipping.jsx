@@ -49,7 +49,7 @@ const Shipping = () => {
   }, [shippingInfo]);
 
   return (
-    <div className="mx-auto max-w-7xl px-6 py-10 lg:px-8 my-12">
+    <div className="mx-auto max-w-6xl  py-10  my-12 px-6 md:px-14 ">
       <CheckoutStep activeStep={0} />
 
       <div className="mt-12 grid gap-10 md:grid-cols-2">
@@ -111,7 +111,7 @@ const Shipping = () => {
               name="country"
               value={values.country}
               onChange={handleChange}
-              className="w-full border rounded-lg px-3 py-2 focus:ring-2 focus:ring-[#688272] focus:outline-none"
+              className="w-full border rounded-lg px-3 py-2 focus:ring-2 focus:ring-primary focus:outline-none"
             >
               <option value="">Select Country</option>
               {Country.getAllCountries().map((item) => (
@@ -132,7 +132,7 @@ const Shipping = () => {
                 name="state"
                 value={values.state}
                 onChange={handleChange}
-                className="w-full border rounded-lg px-3 py-2 focus:ring-2 focus:ring-[#688272] focus:outline-none"
+                className="w-full border rounded-lg px-3 py-2 focus:ring-2 focus:ring-primary focus:outline-none"
               >
                 <option value="">Select State</option>
                 {State.getStatesOfCountry(values.country).map((item) => (
@@ -147,7 +147,7 @@ const Shipping = () => {
           <button
             type="submit"
             disabled={!values.state}
-            className="mt-6 py-3 rounded-lg bg-black text-white font-semibold  disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
+            className="mt-6 py-3 rounded-sm bg-gray-900 text-white font-semibold  disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
           >
             Continue
           </button>

@@ -3,7 +3,7 @@ import { OrderSummery, ShoppingInfo } from "../../component/order";
 
 const ConfirmOrder = () => {
   return (
-    <section className="mx-auto max-w-7xl px-6 py-10 lg:px-8 mb-12">
+    <section className="mx-auto max-w-6xl py-10 lg:px-8 mb-12 px-6 md:px-14">
       <CheckoutStep activeStep={1} />
 
       <div className="mt-10  grid md:grid-cols-12 gap-8">

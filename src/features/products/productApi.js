@@ -59,8 +59,18 @@ export const productsApi = createApi({
     }),
 
     getAllFeaturedProducts: builder.query({
-      query: () => {
-        return `/products`;
+      query: (queryObj = {}) => {
+        const queryParams = {};
+
+        const { category } = queryObj;
+
+        // Only include category if it's not "all"
+        if (category && category.toLowerCase() !== "all") {
+          queryParams.category = category;
+        }
+
+        const queryString = new URLSearchParams(queryParams).toString();
+        return `/products?${queryString}`;
       },
       providesTags: [{ type: "Products", id: "LIST" }],
     }),

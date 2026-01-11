@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { PiShoppingCartSimple } from "react-icons/pi";
+import { HiOutlineShoppingBag } from "react-icons/hi";
 
 const NavbarMobile = ({
   showMenu,
@@ -20,8 +20,8 @@ const NavbarMobile = ({
         <div className="flex items-center justify-between">
           <div className="flex lg:flex-1">
             <h1 className="font-black tracking-wider text-xl">
-              <span className="text-[#688272]">Shop</span>
-              <span className="text-[#252323]">Ease</span>
+              <span className="text-primary">Shop</span>
+              <span className="text-gray-900">Ease</span>
             </h1>
           </div>
           <button
@@ -62,6 +62,14 @@ const NavbarMobile = ({
               >
                 Shop
               </Link>
+
+              <Link
+                to={"/blog"}
+                className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+              >
+                Blog
+              </Link>
+
               {userData !== null && (
                 <Link
                   to={"/account"}
@@ -81,15 +89,16 @@ const NavbarMobile = ({
               )}
               <div className="flex items-center gap-3">
                 <Link
-                  to={"/cart"}
-                  className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                  to="/cart"
+                  className="relative block rounded-lg px-3 py-2 text-gray-900 hover:bg-gray-50"
                 >
-                  <p className="relative ">
-                    <PiShoppingCartSimple className="text-xl " />
-                    <span className="absolute text-sm text-white font-medium -top-1 left-4 bg-[#688272] rounded-[50%]  w-full text-center">
+                  <HiOutlineShoppingBag className="text-2xl" />
+
+                  {cartItems.length > 0 && (
+                    <span className="absolute -bottom-1 flex h-5 w-5 items-center justify-center rounded-full bg-primary text-xs font-semibold text-white">
                       {cartItems.length}
                     </span>
-                  </p>
+                  )}
                 </Link>
               </div>
             </div>

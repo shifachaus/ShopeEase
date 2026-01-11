@@ -57,27 +57,35 @@ const Product = ({ displayImage, singleProductItem, setDisplay, display }) => {
   return (
     <section className="my-10">
       <div className="grid grid-cols-1 gap-6 md:gap-[6rem] md:grid-cols-2">
-        <div className="flex  gap-6 ">
-          <div className="flex flex-col gap-4">
-            {images?.map((img, index) => (
-              <img
-                src={img.url}
-                alt={`image-${index + 1}`}
-                key={img._id}
-                className={`${
-                  display === index && "border-2 border-[#688272]"
-                } object-cover object-center h-10 w-10 sm:h-20 sm:w-20 cursor-pointer rounded bg-gray-100`}
-                onClick={() => setDisplay(index)}
-              />
-            ))}
-          </div>
-          <div className="bg-gray-100   ">
+        <div className="flex flex-col gap-5">
+          <div className="bg-gray-100 rounded-xl overflow-hidden flex items-center justify-center">
             <img
-              style={{ width: "100%" }}
               src={images?.[display]?.url}
               alt={name}
-              className="h-full w-full border object-cover object-center p-8 mix-blend-darken "
+              className="h-[300px] sm:h-[420px] md:h-[480px] object-contain p-10 mix-blend-darken transition-transform duration-300 hover:scale-105"
             />
+          </div>
+
+          {/* Thumbnails */}
+          <div className="flex gap-3">
+            {images?.map((img, index) => (
+              <button
+                key={img._id}
+                onClick={() => setDisplay(index)}
+                className={`rounded-sm bg-gray-100 p-2 transition border
+          ${
+            display === index
+              ? "border-primary ring-2 ring-primary/40"
+              : "border-transparent hover:border-gray-300"
+          }`}
+              >
+                <img
+                  src={img.url}
+                  alt={`thumb-${index}`}
+                  className="h-16 w-16 object-contain mix-blend-darken"
+                />
+              </button>
+            ))}
           </div>
         </div>
 
@@ -93,28 +101,23 @@ const Product = ({ displayImage, singleProductItem, setDisplay, display }) => {
               </span>
             )}
           </div>
-          <div className="flex flex-col gap-3 mt-6">
-            <h2 className="capitalize  text-2xl md:text-3xl lg:text-4xl font-medium ">
-              {name}
-            </h2>
 
-            <div className="flex gap-2   space-x-2  text-sm hover:cursor-pointer">
-              <div className="flex border-r-2 border-black pr-2  font-semibold ">
-                <Rating stars={ratings} />
-              </div>
+          <h2 className="text-2xl md:text-3xl lg:text-4xl font-semibold capitalize leading-tight">
+            {name}
+          </h2>
 
-              <p className="text-gray-500">{reviews.length} Reviews</p>
-            </div>
+          <div className="flex items-center gap-3 text-sm">
+            <Rating stars={ratings} />
+            <span className="text-gray-500">({reviews.length} reviews)</span>
           </div>
 
-          <p className="font-medium text-xl md:text-2xl ">
+          <p className="text-2xl font-semibold text-gray-900">
             {formatPrice(price)}
           </p>
-
-          <p className="mb-4 text-md font-light text-gray-500">{description}</p>
+          <p className="text-gray-500 leading-relaxed">{description}</p>
 
           <div className="flex gap-4  mb-4  items-center">
-            <div className="flex gap-4 justify-center items-center rounded-xl border border-[#7c7c7c] py-2 px-4 ">
+            <div className="flex gap-4 justify-center items-center rounded-sm border border-gray-900 py-2 px-4 ">
               <button
                 className="font-medium cursor-pointer"
                 onClick={() => removeQty()}
@@ -133,7 +136,7 @@ const Product = ({ displayImage, singleProductItem, setDisplay, display }) => {
             <button
               onClick={() => onAddToCart()}
               disabled={Stock < 1 ? true : false}
-              className="w-40 sm:w-60    p-2 px-4 cursor-pointer  rounded-xl border border-[#252323] hover:border-[#828D91]  hover:shadow-md uppercase "
+              className="w-40 sm:w-60 p-2 px-4 cursor-pointer border border-gray-900 hover:shadow-md uppercase hover:bg-gray-900 hover:text-white hover:border-gray-900 transition rounded-sm "
             >
               Add to cart
             </button>

@@ -50,7 +50,7 @@ const Dashboard = () => {
       {
         label: "TOTAL AMOUNT",
         data: [0, totalAmount / 100],
-        backgroundColor: "#688272",
+        backgroundColor: "#DF6D4F",
         borderColor: "black",
         borderWidth: 1,
       },
@@ -70,7 +70,7 @@ const Dashboard = () => {
     labels: ["Out of Stock", "InStock"],
     datasets: [
       {
-        backgroundColor: ["#DFEEDB", "#A6D997"],
+        backgroundColor: ["#f3a693", "#e08169"],
 
         data: [outOfStock, productData?.products?.length - outOfStock],
       },
@@ -80,7 +80,7 @@ const Dashboard = () => {
   return (
     <main className="p-6 md:ml-20 lg:ml-64 ">
       <div className=" p-2 ">
-        <h2 className="ml-3 text-xl md:text-2xl font-medium text-[#252323]  mb-6 tracking-tight  ">
+        <h2 className="ml-3 text-xl md:text-2xl font-medium text-black  mb-6 tracking-tight  ">
           Dashboard
         </h2>
       </div>

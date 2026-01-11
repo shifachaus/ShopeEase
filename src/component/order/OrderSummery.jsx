@@ -46,7 +46,7 @@ const OrderSummery = () => {
 
         <button
           onClick={proceedToPayment}
-          className="mt-6 w-full py-3 rounded-lg bg-black text-white font-semibold "
+          className="mt-6 w-full py-3 rounded-sm bg-gray-900 text-white font-semibold "
         >
           Proceed To Payment
         </button>

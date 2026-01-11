@@ -3,7 +3,7 @@ const Footer = () => {
 
   return (
     <footer className="w-full bg-white border-t">
-      <div className="mx-auto max-w-7xl px-6 py-14 grid gap-10 md:grid-cols-4">
+      <div className="mx-auto max-w-6xl px-6 py-14 grid gap-10 md:grid-cols-4">
         {/* Address */}
         <section className="space-y-3">
           <h3 className="text-lg font-semibold tracking-tight">ShopEase</h3>
@@ -69,9 +69,9 @@ const Footer = () => {
             <input
               type="email"
               placeholder="Email address"
-              className="w-full border rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-gray-400"
+              className="w-full border rounded-sm px-4 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-gray-400"
             />
-            <button className="px-4 py-2 rounded-lg border bg-gray-900 text-white hover:bg-gray-700">
+            <button className="px-4 py-1 text-xs uppercase tracking-widest bg-gray-900 text-white rounded-sm">
               Subscribe
             </button>
           </div>

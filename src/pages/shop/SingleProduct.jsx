@@ -19,7 +19,7 @@ const SingleProduct = () => {
   return (
     <section>
       <PageHero title={product?.product?.name} product={product?.product} />
-      <div className="mx-auto max-w-7xl p-6 lg:px-8">
+      <div className="mx-auto max-w-6xl px-6 md:px-14 py-8">
         <div className="text-center">
           <p className="font-medium">{error?.data.message}</p>
         </div>
@@ -30,7 +30,6 @@ const SingleProduct = () => {
               setDisplay={setDisplay}
               display={display}
             />
-
             <ProductReviewSection reviews={productReview} />
           </>
         ) : (

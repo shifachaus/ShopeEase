@@ -13,7 +13,7 @@ const Profile = () => {
   const user = data?.user;
 
   return (
-    <div className="max-w-6xl mx-auto my-20 px-6 ">
+    <div className="max-w-6xl mx-auto my-20 px-6 md:px-14">
       <div className="flex flex-col md:flex-row  gap-6">
         <img
           src={user?.avatar?.url || "/placeholder-avatar.png"}
@@ -28,14 +28,14 @@ const Profile = () => {
           <div className="mt-4 flex flex-wrap gap-3">
             <Link
               to="/me/update"
-              className="px-4 py-2 rounded-lg border flex items-center gap-2 hover:bg-gray-100"
+              className="px-4 py-2 rounded-lg border flex items-center gap-2 "
             >
               <FiEdit3 /> Edit Profile
             </Link>
 
             <Link
               to="/password/update"
-              className="px-4 py-2 rounded-lg border flex items-center gap-2 hover:bg-gray-100"
+              className="px-4 py-2 rounded-lg border flex items-center gap-2 "
             >
               Change Password
             </Link>
@@ -75,15 +75,12 @@ const Profile = () => {
       <div className="grid md:grid-cols-2 gap-4 mt-10">
         <Link
           to="/orders"
-          className="px-4 py-3 rounded-xl bg-gray-900 text-white flex justify-center items-center gap-2 hover:bg-gray-700"
+          className="px-4 py-3 rounded-sm bg-gray-900 text-white flex justify-center items-center gap-2 "
         >
           <FiShoppingBag /> My Orders
         </Link>
 
-        <Link
-          to="/"
-          className="px-4 py-3 rounded-xl border text-center hover:bg-gray-100"
-        >
+        <Link to="/" className="px-4 py-3 rounded-sm border text-center ">
           Go to Home
         </Link>
       </div>

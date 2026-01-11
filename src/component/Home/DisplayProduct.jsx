@@ -3,7 +3,7 @@ import planet from "../../assets/planet.webp";
 
 const DisplayProduct = () => {
   return (
-    <section className="mx-auto  bg-gray-100 px-5 py-5  mt-10 md:m-20 md:py-8 lg:py-10  ">
+    <section className="mx-auto  bg-gray-100 px-5 py-5  mt-10 md:m-20 md:py-8 lg:py-10 p-6 lg:px-12  ">
       <div className="mx-auto max-w-7xl  py-10 max-auto my-10 gap-5 columns-1 lg:columns-2 space-x-5">
         <div className="flex flex-col items-start gap-2 ">
           <img

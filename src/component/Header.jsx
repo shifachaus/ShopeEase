@@ -13,24 +13,24 @@ const Header = () => {
   const userData = useSelector((store) => store.user);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const signOut = async () => {
-    const data = await logoutUser();
 
+  const signOut = async () => {
+    await logoutUser().unwrap();
     dispatch(logout());
     navigate("/");
   };
 
   return (
-    <header className=" bg-[#688272]">
+    <header className="">
       <nav
-        className="mx-auto flex max-w-7xl items-center justify-between p-6 md:pb-8 md:pt-8 lg:px-8"
+        className="mx-auto bg-primary max-w-6xl  flex  gap-8 lg:gap-36 items-center justify-between p-6  md:px-14"
         role="navigation"
         aria-label="Menu Navigation"
       >
-        <Link to={"/"} className="flex md:flex-1">
+        <Link to={"/"} className="flex ">
           <h1 className="font-black tracking-wider text-xl">
             <span className="text-white">Shop</span>
-            <span>Ease</span>
+            <span className="text-gray-900">Ease</span>
           </h1>
         </Link>
 

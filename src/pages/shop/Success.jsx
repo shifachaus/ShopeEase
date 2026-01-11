@@ -27,14 +27,14 @@ const Success = () => {
           <div className="pt-6 flex flex-col gap-3 w-full">
             <Link
               to="/orders"
-              className="w-full bg-gray-900 text-white rounded-lg py-2.5 font-medium hover:bg-black transition"
+              className="w-full bg-gray-900 text-white rounded-sm py-2.5 font-medium  transition"
             >
               View My Orders
             </Link>
 
             <Link
               to="/"
-              className="w-full border border-gray-300 rounded-lg py-2.5 font-medium hover:bg-gray-100 transition"
+              className="w-full border border-gray-900 rounded-sm py-2.5 font-medium hover:bg-gray-100 transition"
             >
               Back to Home
             </Link>

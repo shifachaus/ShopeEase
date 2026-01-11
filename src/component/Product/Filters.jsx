@@ -37,7 +37,7 @@ const Filters = ({
       <div className="flex justify-between mb-6">
         <h2 className="text-xl uppercase ">Filter by</h2>
         <button
-          className="text-sm capitalize text-primary text-[#565E60]"
+          className="text-sm capitalize text-primary "
           onClick={() => {
             clearFilter(setInputKeyword, setCategory, setRatings, setPriceV);
           }}
@@ -57,8 +57,8 @@ const Filters = ({
                   <li
                     className={
                       category == cat
-                        ? "text-[#565E60]  text-lg font-normal capitalize cursor-pointer"
-                        : `text-md capitalize cursor-pointer font-normal`
+                        ? "text-black"
+                        : "text-gray-500 hover:text-black"
                     }
                     key={cat}
                     onClick={() => setCategory(cat)}

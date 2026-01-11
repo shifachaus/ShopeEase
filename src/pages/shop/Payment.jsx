@@ -126,7 +126,7 @@ const Payment = () => {
             type="submit"
             value={`Pay - ${orderInfo && formatPrice(orderInfo?.totalPrice)}`}
             ref={payBtn}
-            className="text-white bg-[#252323] mt-4  focus:outline-none  font-medium rounded text-sm px-5 py-2.5 text-center  "
+            className="text-white bg-gray-900 mt-4 focus:outline-none  font-medium rounded-sm text-sm px-5 py-2.5 text-center  "
           />
         </form>
       </div>

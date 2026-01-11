@@ -1,31 +1,34 @@
 import lamp from "../../assets/lamp1.webp";
+import sofa from "../../assets/Cloudsofa.webp";
 
 const Hero = () => {
   return (
-    <section className="bg-[#688272] h-80 md:min-h-[25rem] lg:min-h-[45rem] overflow-hidden">
-      <div className="relative max-w-7xl mx-auto flex flex-col">
-        <div className="z-10 p-4 flex flex-col items-start md:items-center pt-10 md:pt-40">
-          <h1 className="text-primary-600 mb-2 font-bold tracking-normal text-dark text-3xl md:text-3xl lg:text-4xl">
+    <section>
+      <div className="relative max-w-6xl mx-auto overflow-hidden min-h-[420px] lg:min-h-[520px] bg-primary">
+        <div className="relative z-20 pt-16 md:pt-28 text-left md:text-center px-6">
+          <h1 className="text-white text-3xl md:text-4xl lg:text-5xl font-bold mb-5">
             Elevate Your Home Comfort
           </h1>
-          <p className="text-md md:text-lg mb-3 font-medium text-dark">
-            Massive Discounts Arriving Shortly.
+
+          <p className="text-white/90 mb-4 text-base md:text-lg">
+            Massive discounts arriving shortly.
           </p>
-          <p className="text-dark text-left border-b border-black py-1 text-xs uppercase font-medium tracking-wider hover:border-b-primary hover:text-primary">
-            View Now
-          </p>
+
+          <button className="inline-block border border-white px-8 py-3 text-xs uppercase tracking-widest text-white hover:bg-gray-900 hover:text-white hover:border-gray-900 transition rounded-sm">
+            Shop Now
+          </button>
         </div>
-
-        <div
-          className="mx-auto bg-no-repeat  bg-contain bg-center lg:bg-[url('./assets/Cloudsofa.webp')]"
-          style={{ height: 510, width: "100%", maxWidth: "1200px" }}
-        ></div>
-
+        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 h-[260px] hidden lg:flex w-full justify-center overflow-hidden">
+          <img
+            src={sofa}
+            alt="Modern sofa"
+            className="h-full w-[85%] max-w-none object-cover object-top"
+          />
+        </div>
         <img
           src={lamp}
-          style={{ height: 331, width: "100%", maxWidth: "171px" }}
-          alt="hero Image"
-          className="absolute -top-16 hidden md:inline-block -left-0 "
+          alt="Decorative lamp"
+          className="absolute top-0 left-6 hidden md:block w-[150px]"
         />
       </div>
     </section>

@@ -47,7 +47,7 @@ const MyOrders = () => {
   return (
     <section>
       <Breadcrumb title={"Order"} profile={true} />
-      <div className="mx-auto max-w-7xl p-6 lg:px-8 h-screen">
+      <div className="mx-auto max-w-6xl  h-screen py-10  px-6 md:px-14">
         <h2 className="text-2xl font-bold text-gray-700 text-center mb-6">
           My Orders
         </h2>

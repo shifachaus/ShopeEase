@@ -1,14 +1,21 @@
-import { DisplayProduct, Hero, Instagram, Product } from "../../component/Home";
+import {
+  Hero,
+  BrandBanner,
+  Product,
+  Categories,
+  StoreBenefits,
+  DealOfTheWeek,
+} from "../../component/home";
 
 const Landing = () => {
   return (
     <>
       <Hero />
+      <Categories />
+      <StoreBenefits />
       <Product />
-      <div className="bg-gray-100">
-        <DisplayProduct />
-        <Instagram />
-      </div>
+      <DealOfTheWeek />
+      <BrandBanner />
     </>
   );
 };

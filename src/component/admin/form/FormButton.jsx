@@ -5,7 +5,7 @@ const FormButton = ({ isLoading, name, onClick }) => {
         onClick={onClick}
         disabled={isLoading}
         type="submit"
-        className="text-white bg-[#252323]  focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded text-sm px-5 py-2.5 text-center  "
+        className="text-white bg-gray-900  focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-sm text-sm px-5 py-2.5 text-center  "
       >
         {isLoading ? (
           <span>

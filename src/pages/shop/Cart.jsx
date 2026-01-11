@@ -11,7 +11,7 @@ const Cart = () => {
     <section>
       <Breadcrumb title={"cart"} />
 
-      <div className="mx-auto max-w-6xl  my-10   p-6 lg:px-8 md:h-screen">
+      <div className="mx-auto max-w-6xl px-6 md:px-14 py-16 md:py-24 md:h-screen">
         {cartItems?.length === 0 ? (
           <div className="max-w-sx flex flex-col items-center  p-3  w-full h-screen">
             <h2 className="mb-4 text-2xl md:text-3xl tracking-tight font-medium ">

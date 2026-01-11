@@ -1,14 +1,25 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: ["./src/**/*.{html,js,ts,jsx,tsx}"],
+  content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
+
   theme: {
-    screens: {
-      sm: "480px",
-      md: "768px",
-      lg: "976px",
-      xl: "1440px",
+    extend: {
+      colors: {
+        primary: "#DF6D4F",
+      },
+
+      fontFamily: {
+        body: ["Poppins", "sans-serif"],
+        heading: ["Playfair Display", "serif"],
+      },
+
+      screens: {
+        sm: "480px",
+        md: "768px",
+        lg: "976px",
+        xl: "1440px",
+      },
     },
-    extend: {},
   },
   plugins: [],
 };

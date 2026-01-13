@@ -3,18 +3,18 @@ const FormRow = ({ type, name, value, handleChange, labelText }) => {
     <div className="mb-4">
       <label
         className="block text-gray-700 text-sm font-bold mb-2"
-        htmlFor={labelText ? labelText : name}
+        htmlFor={name}
       >
-        {labelText ? labelText : name}
+        {labelText || name}
       </label>
       <input
         type={type}
         name={name}
-        value={value}
+        value={value ?? ""}
         onChange={handleChange}
         className="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
         id={name}
-        placeholder={name}
+        placeholder={labelText || name}
       />
     </div>
   );

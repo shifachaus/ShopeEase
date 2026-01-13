@@ -4,7 +4,7 @@ import { FaChevronRight } from "react-icons/fa6";
 const Breadcrumb = ({ title, product, profile, order }) => {
   return (
     <nav className="mt-6">
-      <div className="mx-auto max-w-6xl px-6 lg:px-8">
+      <div className="mx-auto max-w-6xl px-6 lg:px-14">
         <div className="flex items-center gap-2 text-sm text-gray-600">
           <Link to="/" className="hover:text-black transition-colors">
             Home

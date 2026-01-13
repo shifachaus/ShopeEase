@@ -34,6 +34,7 @@ import {
 
 // Orders
 import { MyOrders, OrderDetails } from "../pages/Order";
+import Blog from "../pages/blog";
 
 // Lazy-loaded pages
 const Shop = lazy(() => import("../pages/Shop/Shop"));
@@ -50,6 +51,7 @@ const AppRoutes = ({ stripeApiKey }) => {
           <Route index element={<Landing />} />
           <Route path="/login" element={<Register />} />
           <Route path="/products" element={<Shop />} />
+          <Route path="/blog" element={<Blog />} />
           <Route path="/product/:id" element={<SingleProduct />} />
           <Route path="/cart" element={<Cart />} />
 

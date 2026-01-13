@@ -16,8 +16,18 @@ export const productsApi = createApi({
         formData.append("name", product.name);
         formData.append("description", product.description);
         formData.append("price", product.price);
+
+        if (product.originalPrice)
+          formData.append("originalPrice", product.originalPrice);
+
         formData.append("category", product.category);
         formData.append("Stock", product.stock);
+
+        if (product.tags) {
+          formData.append("tags[isFeatured]", product.tags.isFeatured);
+          formData.append("tags[isBestSeller]", product.tags.isBestSeller);
+          formData.append("tags[isSale]", product.tags.isSale);
+        }
 
         product.images.forEach((image) => {
           formData.append("images", image);
@@ -95,7 +105,16 @@ export const productsApi = createApi({
         formData.append("price", product.price);
         formData.append("category", product.category);
         formData.append("Stock", product.stock);
-        console.log(formData, product);
+
+        if (product.originalPrice) {
+          formData.append("originalPrice", product.originalPrice);
+        }
+
+        if (product.tags) {
+          formData.append("tags[isFeatured]", product.tags.isFeatured);
+          formData.append("tags[isBestSeller]", product.tags.isBestSeller);
+        }
+
         product.images.forEach((image) => {
           formData.append("images", image);
         });

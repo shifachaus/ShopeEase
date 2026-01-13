@@ -18,9 +18,9 @@ const Search = ({ setInputKeyword, inputKeyword }) => {
       />
 
       <button
+        aria-label="Search"
         type="submit"
         className="border-r border-t border-b rounded-r-md border-gray-300 py-1 px-4"
-        role="button"
       >
         <BsSearch className="text-gray-600" />
       </button>

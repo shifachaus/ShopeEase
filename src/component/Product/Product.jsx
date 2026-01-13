@@ -62,7 +62,7 @@ const Product = ({ displayImage, singleProductItem, setDisplay, display }) => {
             <img
               src={images?.[display]?.url}
               alt={name}
-              className="h-[300px] sm:h-[420px] md:h-[480px] object-contain p-10 mix-blend-darken transition-transform duration-300 hover:scale-105"
+              className="h-[300px] sm:h-[410px]  object-contain p-10 mix-blend-darken transition-transform duration-300 hover:scale-105"
             />
           </div>
 
@@ -108,7 +108,7 @@ const Product = ({ displayImage, singleProductItem, setDisplay, display }) => {
 
           <div className="flex items-center gap-3 text-sm">
             <Rating stars={ratings} />
-            <span className="text-gray-500">({reviews.length} reviews)</span>
+            <span className="text-gray-500">({numOfReviews} reviews)</span>
           </div>
 
           <p className="text-2xl font-semibold text-gray-900">

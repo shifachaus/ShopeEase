@@ -19,21 +19,28 @@ const ProductForm = ({
           Product Details
         </h3>
 
+        <FormRow
+          type="text"
+          name="name"
+          value={values.name}
+          handleChange={handleChange}
+          labelText="Product Name"
+        />
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-          <FormRow
-            type="text"
-            name="name"
-            value={values.name}
-            handleChange={handleChange}
-            labelText="Product Name"
-          />
-
           <FormRow
             type="number"
             name="price"
             value={values.price}
             handleChange={handleChange}
             labelText="Product Price"
+          />
+
+          <FormRow
+            type="number"
+            name="originalPrice"
+            value={values?.originalPrice}
+            handleChange={handleChange}
+            labelText="Product Original Price"
           />
 
           <div className="mb-2">
@@ -67,6 +74,43 @@ const ProductForm = ({
             handleChange={handleChange}
             labelText="Stock Quantity"
           />
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-2">
+          <label className="flex items-center gap-2 text-sm font-medium">
+            <input
+              type="checkbox"
+              name="tags.isFeatured"
+              checked={values?.tags?.isFeatured}
+              onChange={handleChange}
+              className="accent-black"
+            />
+            Featured
+          </label>
+
+          <label className="flex items-center gap-2 text-sm font-medium">
+            <input
+              type="checkbox"
+              name="tags.isBestSeller"
+              checked={values?.tags?.isBestSeller}
+              onChange={handleChange}
+              className="accent-black"
+            />
+            Best Seller
+          </label>
+
+          <label className="flex items-center gap-2 text-sm font-medium opacity-70">
+            <input
+              type="checkbox"
+              checked={
+                values?.originalPrice &&
+                Number(values?.originalPrice) > Number(values.price)
+              }
+              disabled
+              className="accent-black"
+            />
+            On Sale (auto)
+          </label>
         </div>
 
         <FormRow

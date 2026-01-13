@@ -5,13 +5,20 @@ import {
 } from "../../features/products/productApi";
 import { useNavigate, useParams } from "react-router-dom";
 import ProductForm from "../../component/admin/form/ProductForm";
+import { toast } from "sonner";
 
 const initialValue = {
   name: "",
   price: "",
-  stock: "",
+  originalPrice: "",
   category: "",
+  stock: "",
   description: "",
+  tags: {
+    isFeatured: false,
+    isBestSeller: false,
+    isSale: false,
+  },
 };
 
 const UpdateProduct = () => {
@@ -26,9 +33,26 @@ const UpdateProduct = () => {
   const [imagesPreview, setImagesPreview] = useState([]);
 
   const handleChange = (e) => {
-    const name = e.target.name;
-    const value = e.target.value;
-    setValues({ ...values, [name]: value });
+    const { name, value, type, checked } = e.target;
+
+    if (name.startsWith("tags.")) {
+      const tagName = name.split(".")[1];
+
+      setValues((prev) => ({
+        ...prev,
+        tags: {
+          ...prev.tags,
+          [tagName]: checked,
+        },
+      }));
+      return;
+    }
+
+    // For normal inputs
+    setValues((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
   };
 
   const updateProductImagesChange = (e) => {
@@ -54,14 +78,35 @@ const UpdateProduct = () => {
 
   const updateProductHandler = async (e) => {
     e.preventDefault();
-    const { name, price, stock, description, category } = values;
+    const { name, price, originalPrice, stock, description, category, tags } =
+      values;
 
-    const product = { id, name, price, stock, description, images, category };
+    const isSale = originalPrice && Number(originalPrice) > Number(price);
+
+    const product = {
+      id,
+      name,
+      price,
+      originalPrice,
+      stock,
+      description,
+      category,
+      images,
+      tags: {
+        ...tags,
+        isSale,
+      },
+    };
+
+    console.log(product);
+
     try {
       await updateProduct(product).unwrap();
+      toast.success("Product updated successfully");
       navigate("/admin/products");
     } catch (err) {
-      console.log(err);
+      console.log(err, "Product Update failed");
+      toast.error(err?.data?.message || "Product Update failed");
     }
   };
 
@@ -70,9 +115,15 @@ const UpdateProduct = () => {
       setValues({
         name: product.product.name,
         price: product.product.price,
+        originalPrice: product.product.originalPrice || "",
         stock: product.product.Stock,
         category: product.product.category,
         description: product.product.description,
+        tags: {
+          isFeatured: product.product.tags?.isFeatured || false,
+          isBestSeller: product.product.tags?.isBestSeller || false,
+          isSale: product.product.tags?.isSale || false,
+        },
       });
       setOldImages(product?.product?.images);
     }

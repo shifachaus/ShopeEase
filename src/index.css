@@ -36,4 +36,13 @@
       scrollbar-width: none; /* Firefox */
     }
   }
+
+  @layer utilities {
+    .pagination li:first-child,
+    .pagination li:nth-child(2),
+    .pagination li:nth-last-child(2),
+    .pagination li:last-child {
+      display: none !important;
+    }
+  }
 }

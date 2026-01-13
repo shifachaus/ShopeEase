@@ -32,7 +32,7 @@ const Shop = () => {
     ratings,
   });
 
-  /* 🔹 Debounced search */
+  /*  Debounced search */
   useEffect(() => {
     const debouncedFn = debounce(setDebouncedKeyword, 800);
     debouncedFn(inputKeyword);
@@ -40,7 +40,6 @@ const Shop = () => {
     return () => debouncedFn.cancel();
   }, [inputKeyword]);
 
-  /* 🔹 Reset page when filters change */
   useEffect(() => {
     setCurrentPage(1);
   }, [debouncedKeyword, category, ratings, priceV]);
@@ -80,19 +79,35 @@ const Shop = () => {
         </div>
 
         {product.filteredProductsCount > product.resultPerPage && (
-          <div className="flex justify-center mt-12">
+          <div className="mt-20 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
             <Pagination
               activePage={currentPage}
               itemsCountPerPage={product.resultPerPage}
               totalItemsCount={product.filteredProductsCount}
               onChange={setCurrentPageNo}
-              nextPageText="Next"
-              prevPageText="Prev"
-              itemClass="inline-block mx-1 px-3 py-1 rounded-md border"
+              hideNavigation
+              hideFirstLastPages
+              itemClass="inline-block mx-2 px-3 py-1 rounded-sm border"
               linkClass="text-gray-600 hover:text-primary"
-              activeClass="bg-primary !text-white"
-              activeLinkClass="!text-white"
+              activeClass="border-primary !text-black"
+              activeLinkClass="!text-gray-900"
             />
+
+            <p className="text-sm text-gray-500">
+              Showing{" "}
+              <span className="font-medium text-gray-900">
+                {(currentPage - 1) * product.resultPerPage + 1}–
+                {Math.min(
+                  currentPage * product.resultPerPage,
+                  product.filteredProductsCount
+                )}
+              </span>{" "}
+              of{" "}
+              <span className="font-medium text-gray-900">
+                {product.filteredProductsCount}
+              </span>{" "}
+              results
+            </p>
           </div>
         )}
       </>

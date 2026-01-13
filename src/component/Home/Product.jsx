@@ -1,7 +1,7 @@
 import Shimmer from "../skeletons/Shimmer";
 import FeaturedProducts from "./FeaturedProducts";
 import { useGetAllFeaturedProductsQuery } from "../../features/products/productApi";
-import { useMemo, useState } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 
 const categories = ["All", "Tables and Chairs", "Sofas", "Lighting", "Decor"];

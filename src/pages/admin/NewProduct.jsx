@@ -2,13 +2,20 @@ import { useState } from "react";
 import { useNewProductMutation } from "../../features/products/productApi";
 import { useNavigate } from "react-router-dom";
 import ProductForm from "../../component/admin/form/ProductForm";
+import { toast } from "sonner";
 
 const initialValue = {
   name: "",
   price: "",
-  stock: "",
+  originalPrice: "",
   category: "",
+  stock: "",
   description: "",
+  tags: {
+    isFeatured: false,
+    isBestSeller: false,
+    isSale: false,
+  },
 };
 const NewProduct = () => {
   const [values, setValues] = useState(initialValue);
@@ -19,9 +26,27 @@ const NewProduct = () => {
   const [imagesPreview, setImagesPreview] = useState([]);
 
   const handleChange = (e) => {
-    const name = e.target.name;
-    const value = e.target.value;
-    setValues({ ...values, [name]: value });
+    const { name, value, type, checked } = e.target;
+
+    // For tag checkboxes
+    if (name.startsWith("tags.")) {
+      const tagName = name.split(".")[1];
+
+      setValues((prev) => ({
+        ...prev,
+        tags: {
+          ...prev.tags,
+          [tagName]: checked,
+        },
+      }));
+      return;
+    }
+
+    // For normal inputs
+    setValues((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
   };
 
   const createProductImagesChange = (e) => {
@@ -46,13 +71,32 @@ const NewProduct = () => {
 
   const createProduct = async (e) => {
     e.preventDefault();
-    const { name, description, stock, category, price } = values;
-    const product = { name, description, stock, category, price, images };
+    const { name, description, stock, category, price, originalPrice, tags } =
+      values;
+
+    const isSale = originalPrice && Number(originalPrice) > Number(price);
+
+    const product = {
+      name,
+      description,
+      stock,
+      category,
+      price,
+      originalPrice,
+      images,
+      tags: {
+        ...tags,
+        isSale,
+      },
+    };
+
     try {
       await newProduct(product);
+      toast.success("Product created successfully");
       navigate("/admin/products");
     } catch (err) {
-      console.log(err, "NEW PRODUCT ERROR");
+      console.log(err, "Failed to create product");
+      toast.error(err?.data?.message || "Failed to create product");
     }
   };
 

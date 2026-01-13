@@ -9,7 +9,7 @@ const DealOfTheWeek = () => {
             <img
               src={armchair}
               alt="Wooden Arm Chair"
-              className="w-full h-[320px] sm:h-[420px] lg:h-[500px] object-contain rounded-lg"
+              className="w-full h-[320px] sm:h-[420px] lg:h-[500px] object-contain"
             />
 
             <div className="absolute inset-0 flex flex-col items-center justify-center text-center gap-3 pointer-events-none">

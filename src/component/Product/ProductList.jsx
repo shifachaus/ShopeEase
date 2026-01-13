@@ -7,20 +7,19 @@ const ProductList = ({ item }) => {
   return (
     <Link
       to={`/product/${_id}`}
-      className="group flex flex-col rounded-lg transition"
+      className="group flex flex-col gap-4 transition-all duration-300"
     >
-      {/* Image wrapper */}
-      <div className="relative bg-gray-100 flex items-center justify-center h-48 sm:h-56  rounded-sm overflow-hidden">
+      {/* Image Wrapper */}
+      <div className="flex items-center justify-center bg-gray-100 rounded-sm overflow-hidden h-[248px] ">
         <img
-          src={images?.[0]?.url}
+          src={images[0]?.url}
           alt={name}
-          className="w-full h-full md:w-52 lg:w-64 p-4 mix-blend-darken transition-transform duration-500 ease-out group-hover:scale-110"
+          className="w-28 sm:w-40 md:w-52 xl:w-64 p-4 mix-blend-darken transition-transform duration-500 ease-out group-hover:scale-110"
         />
       </div>
 
-      {/* Text */}
-      <div className="mt-4 flex flex-col gap-1">
-        <p className="font-semibold text-[.95rem] capitalize">{name}</p>
+      <div className="flex flex-col items-center text-center">
+        <p className="mb-1 font-semibold text-[.95rem] capitalize">{name}</p>
         <p className="text-sm text-gray-500">{formatPrice(price)}</p>
       </div>
     </Link>

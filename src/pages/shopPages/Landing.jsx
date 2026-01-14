@@ -5,7 +5,7 @@ import {
   Categories,
   StoreBenefits,
   DealOfTheWeek,
-} from "../../component/home";
+} from "../../component/Home";
 
 const Landing = () => {
   return (

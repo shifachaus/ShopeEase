@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom";
 import { useState } from "react";
 import ShimmerSingleProduct from "../../component/skeletons/ShimmerSingleProduct";
-import ProductCard from "../../component/product/ProductCard.jsx";
+import ProductCard from "../../component/Product/ProductCard.jsx";
 import {
   useGetAllProductsReviewsQuery,
   useGetProductQuery,

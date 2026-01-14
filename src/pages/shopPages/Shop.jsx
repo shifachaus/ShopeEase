@@ -1,5 +1,5 @@
 import { useState, useMemo, useEffect } from "react";
-import { ProductList, SidebarFilter, Filters } from "../../component/product";
+import { ProductList, SidebarFilter, Filters } from "../../component/Product";
 import Shimmer from "../../component/skeletons/Shimmer";
 import { useGetAllProductsQuery } from "../../features/products/productApi";
 import Pagination from "react-js-pagination";

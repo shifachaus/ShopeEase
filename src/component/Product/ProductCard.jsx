@@ -1,13 +1,16 @@
-import { Link, useNavigate } from "react-router-dom";
-import { addItems } from "../../features/cart/cartSlice";
+import { useNavigate } from "react-router-dom";
+import { addItems } from "../../features/carts/cartSlice";
 import { formatPrice } from "../../utils/helper";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useState } from "react";
 import Rating from "./Rating";
-import ReviewPopup from "../review/ReviewPopup";
-import ReviewContainer from "../review/ReviewContainer";
 
-const Product = ({ displayImage, singleProductItem, setDisplay, display }) => {
+const ProductCard = ({
+  displayImage,
+  singleProductItem,
+  setDisplay,
+  display,
+}) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [qty, setQty] = useState(1);
@@ -147,4 +150,4 @@ const Product = ({ displayImage, singleProductItem, setDisplay, display }) => {
   );
 };
 
-export default Product;
+export default ProductCard;

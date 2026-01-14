@@ -1,6 +1,6 @@
 import CheckoutStep from "./CheckoutStep";
 import OrderStatus from "./OrderStatus";
-import Payment from "./Payment";
+import PaymentCard from "./PaymentCard";
 import Proceed from "./Proceed";
 
-export { CheckoutStep, OrderStatus, Payment, Proceed };
+export { CheckoutStep, OrderStatus, PaymentCard, Proceed };

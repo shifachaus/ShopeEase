@@ -1,7 +1,7 @@
 import { formatPrice } from "../../utils/helper";
 import { FiCheckCircle, FiAlertCircle } from "react-icons/fi";
 
-const Payment = ({ orderData }) => {
+const PaymentCard = ({ orderData }) => {
   const status = orderData?.order?.paymentInfo?.status;
   const isPaid = status === "succeeded";
 
@@ -37,4 +37,4 @@ const Payment = ({ orderData }) => {
   );
 };
 
-export default Payment;
+export default PaymentCard;

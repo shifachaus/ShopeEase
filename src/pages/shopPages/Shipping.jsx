@@ -2,7 +2,7 @@ import { Country, State } from "country-state-city";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { CheckoutStep } from "../../component/payment";
-import { saveShippingInfo } from "../../features/cart/cartSlice";
+import { saveShippingInfo } from "../../features/carts/cartSlice";
 import { useNavigate } from "react-router-dom";
 import { FormRow } from "../../component/admin/form";
 

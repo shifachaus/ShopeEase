@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom";
 import { useGetOrderDetailsQuery } from "../../features/orders/orderApi";
 import { Address, CartItems } from "../../component/order";
-import { Payment, OrderStatus } from "../../component/Payment";
+import { PaymentCard, OrderStatus } from "../../component/payment";
 import Breadcrumb from "../../component/Breadcrumb";
 
 const OrderDetails = () => {
@@ -67,7 +67,7 @@ const OrderDetails = () => {
           <h2 className="text-lg font-semibold text-gray-900 mb-2">
             Payment Summery
           </h2>
-          <Payment orderData={orderData} />
+          <PaymentCard orderData={orderData} />
         </div>
 
         {/* Cart Items */}

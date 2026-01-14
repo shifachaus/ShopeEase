@@ -8,7 +8,7 @@ import ProtectedRoute from "./ProtectedRoute";
 import Loading from "../component/skeletons/Loading";
 
 // User Pages
-import { Landing, Cart, Shipping, Payment, Success } from "../pages/shop";
+import { Landing, Cart, Shipping, Payment, Success } from "../pages/shopPages";
 import SharedLayout from "../component/layout/SharedLayout";
 import SharedLayoutDashboard from "../component/layout/SharedLayoutDashboard";
 import {
@@ -18,7 +18,7 @@ import {
   ResetPassword,
   UpdatePassword,
   UpdateProfile,
-} from "../pages/user";
+} from "../pages/userPages";
 
 // Admin Pages
 import {
@@ -30,17 +30,17 @@ import {
   UpdateProduct,
   UpdateUser,
   UsersList,
-} from "../pages/admin";
+} from "../pages/adminPages";
 
 // Orders
-import { MyOrders, OrderDetails } from "../pages/Order";
+import { MyOrders, OrderDetails } from "../pages/orderPages";
 import Blog from "../pages/blog";
 
 // Lazy-loaded pages
-const Shop = lazy(() => import("../pages/shop/Shop"));
-const SingleProduct = lazy(() => import("../pages/shop/SingleProduct"));
-const ConfirmOrder = lazy(() => import("../pages/shop/ConfirmOrder"));
-const Dashboard = lazy(() => import("../pages/admin/Dashboard"));
+const Shop = lazy(() => import("../pages/shopPages/Shop"));
+const SingleProduct = lazy(() => import("../pages/shopPages/SingleProduct"));
+const ConfirmOrder = lazy(() => import("../pages/shopPages/ConfirmOrder"));
+const Dashboard = lazy(() => import("../pages/adminPages/Dashboard"));
 
 const AppRoutes = ({ stripeApiKey }) => {
   return (

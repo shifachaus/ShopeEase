@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom";
 import { useState } from "react";
 import ShimmerSingleProduct from "../../component/skeletons/ShimmerSingleProduct";
-import Product from "../../component/product/Product.jsx";
+import ProductCard from "../../component/product/ProductCard.jsx";
 import {
   useGetAllProductsReviewsQuery,
   useGetProductQuery,
@@ -25,7 +25,7 @@ const SingleProduct = () => {
         </div>
         {!isLoading ? (
           <>
-            <Product
+            <ProductCard
               singleProductItem={product}
               setDisplay={setDisplay}
               display={display}

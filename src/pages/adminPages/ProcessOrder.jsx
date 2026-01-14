@@ -4,7 +4,7 @@ import {
   useUpdateOrderMutation,
 } from "../../features/orders/orderApi";
 import { Address, CartItems } from "../../component/order";
-import { Payment, Proceed, OrderStatus } from "../../component/Payment";
+import { PaymentCard, Proceed, OrderStatus } from "../../component/payment";
 import { useParams } from "react-router-dom";
 
 const ProcessOrder = () => {
@@ -42,7 +42,7 @@ const ProcessOrder = () => {
                 shippingInfo={orderData?.order?.shippingInfo}
               />
 
-              <Payment orderData={orderData} />
+              <PaymentCard orderData={orderData} />
 
               <OrderStatus orderData={orderData} />
 

@@ -7,7 +7,7 @@ import {
   useGetProductQuery,
 } from "../../features/products/productApi";
 import PageHero from "../../component/Breadcrumb.jsx";
-import ProductReviewSection from "../../component/review/ProductReviewSection.jsx";
+import ProductReviewSection from "../../component/Review/ProductReviewSection.jsx";
 
 const SingleProduct = () => {
   const { id } = useParams();

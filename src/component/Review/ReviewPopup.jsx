@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import Rating from "../product/Rating";
+import Rating from "../Product/Rating";
 import { useNewReviewMutation } from "../../features/products/productApi";
 import { useParams } from "react-router-dom";
 

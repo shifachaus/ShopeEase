@@ -1,5 +1,5 @@
 import { useDeleteProductReviewMutation } from "../../features/products/productApi";
-import Rating from "../product/Rating";
+import Rating from "../Product/Rating";
 
 import { AiOutlineDelete, AiOutlineEdit } from "react-icons/ai";
 

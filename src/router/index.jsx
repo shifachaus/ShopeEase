@@ -37,7 +37,7 @@ import { MyOrders, OrderDetails } from "../pages/Order";
 import Blog from "../pages/blog";
 
 // Lazy-loaded pages
-const Shop = lazy(() => import("../pages/Shop/Shop"));
+const Shop = lazy(() => import("../pages/shop/Shop"));
 const SingleProduct = lazy(() => import("../pages/shop/SingleProduct"));
 const ConfirmOrder = lazy(() => import("../pages/shop/ConfirmOrder"));
 const Dashboard = lazy(() => import("../pages/admin/Dashboard"));

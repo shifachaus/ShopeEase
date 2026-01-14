@@ -1,6 +1,6 @@
-import furniture from "../../assets/furniture.jpg";
-import lighting from "../../assets/lighting.jpg";
-import accessories from "../../assets/accessories.jpg";
+import furniture from "../../assets/furniture.webp";
+import lighting from "../../assets/lighting.webp";
+import accessories from "../../assets/accessories.webp";
 
 const Categories = () => {
   return (

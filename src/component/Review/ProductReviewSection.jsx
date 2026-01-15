@@ -1,56 +1,145 @@
-import { Link } from "react-router-dom";
-import ReviewPopup from "./ReviewPopup";
-import ReviewContainer from "./ReviewContainer";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
+import { Link, useParams } from "react-router-dom";
+import Rating from "../Product/Rating";
+import ReviewContainer from "./ReviewContainer";
+import { useNewReviewMutation } from "../../features/products/productApi";
+
+const DUMMY_REVIEWS = {
+  reviews: [
+    {
+      _id: "demo-1",
+      name: "John Doe",
+      rating: 4,
+      comment: "Amazing product! The product feels well-made.",
+      isDummy: true,
+    },
+    {
+      _id: "demo-2",
+      name: "Jane Brown",
+      rating: 3.5,
+      comment: "Very good value for money. Delivery was fast.",
+      isDummy: true,
+    },
+
+    {
+      _id: "demo-3",
+      name: "Emily Carter",
+      rating: 3,
+      comment: "Decent product for the price.",
+      isDummy: true,
+    },
+  ],
+};
 
 const ProductReviewSection = ({ reviews }) => {
-  const [open, setOpen] = useState(false);
+  const { id } = useParams();
   const user = useSelector((store) => store.user);
 
-  const userReview = reviews?.product?.reviews?.find((review) => {
-    return review.user === user.user?._id;
-  });
+  const [newReview] = useNewReviewMutation();
+  const [comment, setComment] = useState("");
+  const [rating, setRating] = useState(0);
+
+  const userReview = reviews?.product?.reviews?.find(
+    (review) => review.user === user?.user?._id
+  );
+
+  useEffect(() => {
+    if (userReview) {
+      setComment(userReview.comment);
+      setRating(userReview.rating);
+    }
+  }, [userReview]);
+
+  const submitReview = async () => {
+    try {
+      await newReview({
+        comment,
+        rating,
+        id,
+        productId: reviews?.product?._id,
+      }).unwrap();
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  const hasReviews =
+    Array.isArray(reviews?.product?.reviews) &&
+    reviews.product.reviews.length > 0;
+  const displayReviews = hasReviews ? reviews?.product : DUMMY_REVIEWS;
+  const canSubmitReview = user?.success || user?.data?.success;
 
   return (
-    <div className="mt-20 ">
-      <div className="flex flex-col items-center ">
-        <h2 className="text-xl font-medium mb-4 text-black">
-          Review this product
-        </h2>
-        <p className="text-base mb-2 text-gray-800">
-          Share your thoughts with other customers
-        </p>
+    <div className="mt-20 max-w-6xl mx-auto px-4">
+      <h2 className="text-2xl font-semibold text-gray-800 mb-10 text-center md:text-left">
+        Customer Reviews
+      </h2>
 
-        {!userReview && (
-          <>
-            {user?.success || user?.data?.success ? (
-              <button
-                onClick={() => setOpen(true)}
-                className="border  cursor-pointer rounded-xl  px-4 py-2 shadow"
-              >
-                Write a product review
-              </button>
-            ) : (
-              <Link
-                to={"/login"}
-                className="border cursor-pointer rounded-xl  px-4 py-2 shadow "
-              >
-                <p className="text-lg font-medium"> Write a product review</p>
-              </Link>
-            )}
-          </>
-        )}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+        <div>
+          <ReviewContainer
+            reviews={displayReviews}
+            setComment={setComment}
+            setRating={setRating}
+          />
+          {!hasReviews && (
+            <p className="text-xs text-gray-500 my-4 ">
+              Sample reviews shown for preview. Be the first to review this
+              product.
+            </p>
+          )}
+        </div>
+
+        <div className="bg-white border rounded-lg p-6 shadow-sm h-fit">
+          <h3 className="text-lg font-semibold mb-6 text-center">
+            {userReview ? "Edit Your Review" : "Write a Review"}
+          </h3>
+
+          <div className="mb-5">
+            <label className="block mb-2 text-sm font-medium text-gray-700">
+              Rating
+            </label>
+            <Rating stars={rating} setRate={setRating} />
+          </div>
+
+          <div className="mb-6">
+            <label className="block mb-2 text-sm font-medium text-gray-700">
+              Comment
+            </label>
+            <textarea
+              rows="4"
+              value={comment}
+              onChange={(e) => setComment(e.target.value)}
+              className="w-full p-3 border rounded-md text-sm outline-none focus:ring-2 focus:ring-gray-900 resize-none"
+              placeholder="Share your experience..."
+            />
+          </div>
+
+          {canSubmitReview && (
+            <button
+              onClick={submitReview}
+              disabled={!comment || rating === 0}
+              className={`w-full py-2.5 rounded-md text-sm font-medium text-white transition ${
+                comment && rating > 0
+                  ? "bg-gray-900 hover:bg-black"
+                  : "bg-gray-400 cursor-not-allowed"
+              }`}
+            >
+              Submit Review
+            </button>
+          )}
+
+          {!canSubmitReview && (
+            <Link
+              to="/login"
+              className="block text-center w-full py-2.5 rounded-md text-sm font-medium text-white bg-gray-900 hover:bg-black transition"
+            >
+              Login to Submit Review
+            </Link>
+          )}
+        </div>
       </div>
-
-      <ReviewPopup
-        setOpen={setOpen}
-        open={open}
-        editReview={reviews?.product?.reviews}
-        productId={reviews?.product._id}
-        userReview={userReview}
-      />
-      <ReviewContainer setOpen={setOpen} reviews={reviews} />
     </div>
   );
 };

@@ -10,14 +10,16 @@ const Rating = ({ stars, setRate }) => {
           <span key={index}>
             {stars > number ? (
               <BsStarFill
+                size={14}
                 className="fill-yellow-400"
                 onClick={() => setRate && setRate(index + 1)}
                 onMouseOver={() => setRate && setRate(index + 1)}
               />
             ) : stars > index ? (
-              <BsStarHalf className="fill-yellow-400" />
+              <BsStarHalf className="fill-yellow-400" size={14} />
             ) : (
               <BsStar
+                size={14}
                 className="fill-yellow-400"
                 onClick={() => setRate && setRate(index + 1)}
                 onMouseOver={() => setRate && setRate(index + 1)}

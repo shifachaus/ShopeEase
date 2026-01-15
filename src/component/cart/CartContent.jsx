@@ -20,7 +20,7 @@ const CartContent = () => {
       <div className="col-span-8">
         <CartColumns />
 
-        <div className="flex flex-col gap-4 overflow-y-auto max-h-[70vh] pr-2 no-scrollbar cursor-grab active:cursor-grabbing border-b pb-2">
+        <div className="flex flex-col gap-4 overflow-y-auto max-h-[70vh] pr-2  border-b pb-2">
           {cartItems?.map((item) => (
             <CartItem key={item._id} item={item} />
           ))}

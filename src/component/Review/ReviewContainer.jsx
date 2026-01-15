@@ -1,47 +1,59 @@
-import { useDeleteProductReviewMutation } from "../../features/products/productApi";
-import Rating from "../Product/Rating";
-
 import { AiOutlineDelete, AiOutlineEdit } from "react-icons/ai";
+import { useSelector } from "react-redux";
+import Rating from "../Product/Rating";
+import { useDeleteProductReviewMutation } from "../../features/products/productApi";
 
-const ReviewContainer = ({ setOpen, reviews }) => {
-  const [deleteReview, { isLoading }] = useDeleteProductReviewMutation();
+const ReviewContainer = ({ reviews, setComment, setRating }) => {
+  const [deleteReview] = useDeleteProductReviewMutation();
+  const user = useSelector((store) => store.user);
 
   const handleDelete = async (reviewId) => {
     try {
       await deleteReview({
         id: reviewId,
-        productId: reviews?.product?._id,
+        productId: reviews?._id,
       }).unwrap();
-    } catch (err) {}
-  };
-
-  const handleEdit = (review) => {
-    setOpen(true);
+      setComment("");
+      setRating(0);
+    } catch (err) {
+      console.error(err);
+    }
   };
 
   return (
-    <div className="mt-10 max-w-5xl m-auto">
-      <h2 className="text-xl font-medium  text-gray-800 mb-6">Review List</h2>
+    <div className="mt-10 md:mt-0">
+      <h3 className="text-lg font-medium text-gray-800 mb-4">Review List</h3>
 
-      <div className="p-2 flex flex-col gap-4 ">
-        {reviews?.product?.reviews.map((review) => {
+      <div className="flex flex-col gap-4 max-h-[500px] overflow-y-auto pr-2">
+        {reviews?.reviews?.map((review) => {
+          const isOwner = review.user === user?.user?._id;
+
           return (
-            <div
-              key={review._id}
-              className="px-3 py-2 flex  justify-between items-end "
-            >
-              <div className="">
-                <p className="text-sm text-gray-600 mb-4">{review?.name}</p>
-                <Rating stars={review?.rating} />
-                <p className="text-sm text-gray-800 mt-2">{review?.comment}</p>
+            <div key={review._id} className="border rounded-sm p-5 bg-white ">
+              <div className="flex items-center mb-2 justify-between">
+                <div>
+                  <p className="text-sm font-semibold text-gray-800">
+                    {review.name}
+                  </p>
+                  <div className="mt-1 ">
+                    <Rating stars={review.rating} />
+                  </div>
+                </div>
+
+                {isOwner && (
+                  <div className="text-gray-500">
+                    <AiOutlineDelete
+                      size={18}
+                      className="cursor-pointer hover:text-red-500 transition"
+                      onClick={() => handleDelete(review._id)}
+                    />
+                  </div>
+                )}
               </div>
-              <div className="flex gap-2 text-gray-700 cursor-pointer">
-                <AiOutlineEdit size={20} onClick={() => handleEdit()} />
-                <AiOutlineDelete
-                  size={20}
-                  onClick={() => handleDelete(review._id)}
-                />
-              </div>
+
+              <p className="text-sm text-gray-700 leading-relaxed">
+                {review.comment}
+              </p>
             </div>
           );
         })}

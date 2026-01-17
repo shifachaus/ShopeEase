@@ -31,7 +31,7 @@ const CartContent = () => {
         <CartTotals total={total} />
         <Link
           to={user?.success || user?.data?.success ? "/shipping" : "/login"}
-          className="p-2 px-4 cursor-pointer border border-gray-900 hover:shadow-md uppercase hover:bg-gray-900 hover:text-white hover:border-gray-900 transition rounded-sm "
+          className="p-2 px-4 cursor-pointer border border-gray-900 hover:shadow-md uppercase bg-gray-900 text-white transition rounded-sm "
         >
           <p className="text-base font-medium text-center">Check Out</p>
         </Link>

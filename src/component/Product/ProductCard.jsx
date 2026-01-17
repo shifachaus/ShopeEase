@@ -5,27 +5,13 @@ import { useDispatch } from "react-redux";
 import { useState } from "react";
 import Rating from "./Rating";
 
-const ProductCard = ({
-  displayImage,
-  singleProductItem,
-  setDisplay,
-  display,
-}) => {
+const ProductCard = ({ singleProductItem, setDisplay, display }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [qty, setQty] = useState(1);
 
-  const {
-    name,
-    price,
-    ratings,
-    reviews,
-    images,
-    description,
-    category,
-    numOfReviews,
-    Stock,
-  } = singleProductItem?.product;
+  const { name, price, ratings, images, description, numOfReviews, Stock } =
+    singleProductItem?.product;
 
   const onAddToCart = () => {
     dispatch(
@@ -37,7 +23,7 @@ const ProductCard = ({
         image: singleProductItem.product.images[0].url,
         stock: singleProductItem.product.Stock,
         qty,
-      })
+      }),
     );
     navigate("/cart");
   };
@@ -61,7 +47,7 @@ const ProductCard = ({
     <section className="my-10">
       <div className="grid grid-cols-1 gap-6 md:gap-[6rem] md:grid-cols-2">
         <div className="flex flex-col gap-5">
-          <div className="bg-gray-100 rounded-xl overflow-hidden flex items-center justify-center">
+          <div className="bg-gray-70 rounded-sm overflow-hidden flex items-center justify-center">
             <img
               src={images?.[display]?.url}
               alt={name}
@@ -75,7 +61,7 @@ const ProductCard = ({
               <button
                 key={img._id}
                 onClick={() => setDisplay(index)}
-                className={`rounded-sm bg-gray-100 p-2 transition border
+                className={`rounded-sm bg-gray-70 p-2 transition border
           ${
             display === index
               ? "border-primary ring-2 ring-primary/40"
@@ -95,28 +81,31 @@ const ProductCard = ({
         <div className="flex flex-col gap-6 mt-10 md:mt-0">
           <div>
             {Stock > 0 ? (
-              <span className="  rounded border border-green-500 px-4 py-2 text-center text-xs font-medium capitalize text-green-500 ">
+              <span className="  rounded-sm border border-green-500 px-4 py-2 text-center text-xs font-medium capitalize text-green-500 ">
                 In stock
               </span>
             ) : (
-              <span className="  rounded border  border-red-300 px-4 py-2 text-xs font-medium capitalize text-red-300 ">
+              <span className="  rounded-sm border  border-red-300 px-4 py-2 text-xs font-medium capitalize text-red-300 ">
                 Out of stock
               </span>
             )}
           </div>
 
-          <h2 className="text-2xl md:text-3xl lg:text-4xl font-semibold capitalize leading-tight">
-            {name}
-          </h2>
+          <div className="flex flex-col gap-2">
+            <h2 className="text-2xl md:text-3xl lg:text-4xl font-semibold capitalize leading-tight">
+              {name}
+            </h2>
 
-          <div className="flex items-center gap-3 text-sm">
-            <Rating stars={ratings} />
-            <span className="text-gray-500">({numOfReviews} reviews)</span>
+            <div className="flex items-center gap-3 text-sm">
+              <Rating stars={ratings} />
+              <span className="text-gray-500">({numOfReviews} reviews)</span>
+            </div>
           </div>
 
           <p className="text-2xl font-semibold text-gray-900">
             {formatPrice(price)}
           </p>
+
           <p className="text-gray-500 leading-relaxed">{description}</p>
 
           <div className="flex gap-4  mb-4  items-center">
@@ -139,7 +128,7 @@ const ProductCard = ({
             <button
               onClick={() => onAddToCart()}
               disabled={Stock < 1 ? true : false}
-              className="w-40 sm:w-60 p-2 px-4 cursor-pointer border border-gray-900 hover:shadow-md uppercase hover:bg-gray-900 hover:text-white hover:border-gray-900 transition rounded-sm "
+              className="w-40 sm:w-60 p-2 px-4 cursor-pointer border border-gray-900 hover:shadow-md uppercase bg-gray-900 text-white transition rounded-sm"
             >
               Add to cart
             </button>

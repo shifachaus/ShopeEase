@@ -41,7 +41,7 @@ const ProductReviewSection = ({ reviews }) => {
   const [rating, setRating] = useState(0);
 
   const userReview = reviews?.product?.reviews?.find(
-    (review) => review.user === user?.user?._id
+    (review) => review.user === user?.user?._id,
   );
 
   useEffect(() => {
@@ -71,10 +71,10 @@ const ProductReviewSection = ({ reviews }) => {
   const canSubmitReview = user?.success || user?.data?.success;
 
   return (
-    <div className="mt-20 max-w-6xl mx-auto px-4">
-      <h2 className="text-2xl font-semibold text-gray-800 mb-10 text-center md:text-left">
+    <div className="my-20 max-w-6xl mx-auto px-4">
+      <h3 className="text-2xl md:text-3xl font-semibold text-gray-900 font-body mb-8 md:mb-10">
         Customer Reviews
-      </h2>
+      </h3>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
         <div>
@@ -91,7 +91,7 @@ const ProductReviewSection = ({ reviews }) => {
           )}
         </div>
 
-        <div className="bg-white border rounded-lg p-6 shadow-sm h-fit">
+        <div className="bg-white border rounded-sm p-6 shadow-sm h-fit">
           <h3 className="text-lg font-semibold mb-6 text-center">
             {userReview ? "Edit Your Review" : "Write a Review"}
           </h3>
@@ -111,7 +111,7 @@ const ProductReviewSection = ({ reviews }) => {
               rows="4"
               value={comment}
               onChange={(e) => setComment(e.target.value)}
-              className="w-full p-3 border rounded-md text-sm outline-none focus:ring-2 focus:ring-gray-900 resize-none"
+              className="w-full p-3 border rounded-sm text-sm outline-none focus:ring-2 focus:ring-gray-900 resize-none"
               placeholder="Share your experience..."
             />
           </div>
@@ -120,7 +120,7 @@ const ProductReviewSection = ({ reviews }) => {
             <button
               onClick={submitReview}
               disabled={!comment || rating === 0}
-              className={`w-full py-2.5 rounded-md text-sm font-medium text-white transition ${
+              className={`w-full py-2.5 rounded-sm text-sm font-medium text-white transition ${
                 comment && rating > 0
                   ? "bg-gray-900 hover:bg-black"
                   : "bg-gray-400 cursor-not-allowed"
@@ -133,7 +133,7 @@ const ProductReviewSection = ({ reviews }) => {
           {!canSubmitReview && (
             <Link
               to="/login"
-              className="block text-center w-full py-2.5 rounded-md text-sm font-medium text-white bg-gray-900 hover:bg-black transition"
+              className="block text-center w-full py-2.5 rounded-sm text-sm font-medium text-white bg-gray-900 hover:bg-black transition"
             >
               Login to Submit Review
             </Link>

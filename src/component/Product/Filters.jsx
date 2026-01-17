@@ -35,7 +35,7 @@ const Filters = ({
   }, []);
 
   return (
-    <aside className="sticky top-4 hidden h-fit w-full max-w-xs flex-col gap-8 rounded-md border bg-white p-6 md:flex">
+    <aside className="sticky top-4 hidden h-fit w-full max-w-xs flex-col gap-8 rounded-sm border bg-white p-6 md:flex">
       {/* Header */}
       <div className="flex items-center justify-between pb-4">
         <h2 className="text-lg font-semibold uppercase tracking-wide">

@@ -21,8 +21,8 @@ const ReviewContainer = ({ reviews, setComment, setRating }) => {
   };
 
   return (
-    <div className="mt-10 md:mt-0">
-      <h3 className="text-lg font-medium text-gray-800 mb-4">Review List</h3>
+    <div>
+      <h3 className="text-lg font-semibold text-black mb-4">Review List</h3>
 
       <div className="flex flex-col gap-4 max-h-[500px] overflow-y-auto pr-2">
         {reviews?.reviews?.map((review) => {

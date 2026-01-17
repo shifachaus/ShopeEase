@@ -1,5 +1,9 @@
 import { useState, useMemo, useEffect } from "react";
-import { ProductList, SidebarFilter, Filters } from "../../component/Product";
+import {
+  SingleProductCard,
+  SidebarFilter,
+  Filters,
+} from "../../component/Product";
 import Shimmer from "../../component/skeletons/Shimmer";
 import { useGetAllProductsQuery } from "../../features/products/productApi";
 import Pagination from "react-js-pagination";
@@ -74,7 +78,7 @@ const Shop = () => {
       <>
         <div className="grid grid-cols-2 gap-4 md:grid-cols-3 md:gap-8">
           {product.products.map((item) => (
-            <ProductList key={item._id} item={item} />
+            <SingleProductCard key={item._id} item={item} />
           ))}
         </div>
 
@@ -99,7 +103,7 @@ const Shop = () => {
                 {(currentPage - 1) * product.resultPerPage + 1}–
                 {Math.min(
                   currentPage * product.resultPerPage,
-                  product.filteredProductsCount
+                  product.filteredProductsCount,
                 )}
               </span>{" "}
               of{" "}

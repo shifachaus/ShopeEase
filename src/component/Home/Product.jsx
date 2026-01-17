@@ -4,7 +4,7 @@ import { useGetAllFeaturedProductsQuery } from "../../features/products/productA
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
-const categories = ["All", "Tables and Chairs", "Sofas", "Lighting", "Decor"];
+const categories = ["all", "Tables and Chairs", "Sofas", "Lighting", "Decor"];
 
 const Product = () => {
   const [activeCategory, setActiveCategory] = useState("all");
@@ -45,6 +45,8 @@ const Product = () => {
         <>
           <ul className="flex gap-6 pt-4 flex-wrap">
             {categories.map((cat) => {
+              console.log(activeCategory, cat);
+
               return (
                 <li
                   key={cat}

@@ -3,7 +3,6 @@ import { formatPrice } from "../../utils/helper";
 
 const FeaturedProducts = ({ item }) => {
   const { _id, name, images, price, tags } = item;
-  console.log(tags);
 
   return (
     <Link

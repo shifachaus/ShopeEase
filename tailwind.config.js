@@ -6,6 +6,7 @@ export default {
     extend: {
       colors: {
         primary: "#DF6D4F",
+        "gray-70": "#F8F8F8",
       },
 
       fontFamily: {

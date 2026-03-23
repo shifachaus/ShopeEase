@@ -5,8 +5,8 @@ import accessories from "../../assets/accessories.webp";
 const Categories = () => {
   return (
     <section className="relative">
-      <div className="relative mx-auto max-w-6xl px-6 md:px-14 py-16 ">
-        <div className="absolute inset-x-0 top-0 h-[55%] bg-gray-50 z-0" />
+      <div className="relative mx-auto max-w-6xl px-6 md:px-14 pb-16 md:pb-24 pt-20 md:pt-28">
+        <div className="absolute inset-x-0 top-0 h-[50%] bg-gray-100 z-0" />
 
         <div className="relative z-10">
           <div className="flex items-end justify-between mb-12 ">
@@ -21,9 +21,9 @@ const Categories = () => {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-10 items-start">
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-10 items-start">
             {/* Text */}
-            <p className="md:col-span-3 text-sm md:text-base text-gray-600">
+            <p className="md:col-span-3 text-sm  text-gray-400">
               Discover thoughtfully curated furniture, lighting, and accessories
               designed to elevate modern living spaces with comfort and style.
             </p>

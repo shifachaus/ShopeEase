@@ -32,7 +32,7 @@ const DUMMY_REVIEWS = {
   ],
 };
 
-const ProductReviewSection = ({ reviews }) => {
+const ProductReviewSection = ({ reviews, isLoading }) => {
   const { id } = useParams();
   const user = useSelector((store) => store.user);
 
@@ -84,7 +84,7 @@ const ProductReviewSection = ({ reviews }) => {
             setRating={setRating}
           />
           {!hasReviews && (
-            <p className="text-xs text-gray-500 my-4 ">
+            <p className="text-xs text-gray-800 my-4 ">
               Sample reviews shown for preview. Be the first to review this
               product.
             </p>
@@ -119,14 +119,14 @@ const ProductReviewSection = ({ reviews }) => {
           {canSubmitReview && (
             <button
               onClick={submitReview}
-              disabled={!comment || rating === 0}
+              disabled={!!comment.trim() || rating === 0 || isLoading}
               className={`w-full py-2.5 rounded-sm text-sm font-medium text-white transition ${
                 comment && rating > 0
                   ? "bg-gray-900 hover:bg-black"
                   : "bg-gray-400 cursor-not-allowed"
               }`}
             >
-              Submit Review
+              {isLoading ? "Submitting..." : "Submit Review"}
             </button>
           )}
 

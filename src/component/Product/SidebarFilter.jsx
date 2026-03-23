@@ -48,6 +48,8 @@ const SidebarFilter = ({
 
       {/* Sidebar */}
       <aside
+        role="dialog"
+        aria-label="Product Filters"
         className={`fixed right-0 top-0 z-40 h-full w-[260px] sm:w-5/12 bg-white transform transition-transform duration-300 ease-in-out md:hidden
           ${open ? "translate-x-0" : "translate-x-full"}`}
       >

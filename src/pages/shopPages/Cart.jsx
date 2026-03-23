@@ -11,13 +11,13 @@ const Cart = () => {
     <section>
       <Breadcrumb title={"cart"} />
 
-      <div className="mx-auto max-w-6xl px-6 md:px-14 md:pt-6 pb-16 md:h-screen">
+      <div className="mx-auto max-w-6xl px-6 md:px-14 md:pt-6 pb-16 min-h-screen">
         {cartItems?.length === 0 ? (
-          <div className="max-w-sx flex flex-col items-center  p-3  w-full h-screen">
+          <div className="flex flex-col items-center  p-3  w-full min-h-[60vh">
             <h2 className="mb-4 text-2xl md:text-3xl tracking-tight font-medium ">
               Your Cart is Empty
             </h2>
-            <p className="mb-4 text-lg font-light text-gray-500">
+            <p className="mb-4 text-base font-light text-gray-500 text-ce">
               Looks like you haven't added anything to your cart yet
             </p>
             <img src={cartImage} alt="cart image" />

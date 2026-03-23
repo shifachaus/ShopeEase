@@ -49,7 +49,7 @@ const Shipping = () => {
   }, [shippingInfo]);
 
   return (
-    <div className="mx-auto max-w-6xl  py-10  my-12 px-6 md:px-14 ">
+    <section className="mx-auto max-w-6xl py-10 lg:px-8 mb-12 px-6 md:px-14">
       <CheckoutStep activeStep={0} />
 
       <div className="mt-12 grid gap-10 md:grid-cols-2">
@@ -153,7 +153,7 @@ const Shipping = () => {
           </button>
         </form>
       </div>
-    </div>
+    </section>
   );
 };
 

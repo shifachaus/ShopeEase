@@ -12,28 +12,44 @@ import ProductReviewSection from "../../component/Review/ProductReviewSection.js
 const SingleProduct = () => {
   const { id } = useParams();
   const { data: product, error, isLoading } = useGetProductQuery(id);
-  const { data: productReview } = useGetAllProductsReviewsQuery(id);
+  const {
+    data: productReview,
+    isLoading: reviewLoading,
+    error: reviewError,
+  } = useGetAllProductsReviewsQuery(id);
 
   const [display, setDisplay] = useState(0);
 
   return (
     <section>
-      <PageHero title={product?.product?.name} product={product?.product} />
+      <PageHero
+        title={product?.product?.name || "Product"}
+        product={product?.product}
+      />
       <div className="mx-auto max-w-6xl px-6 md:px-14 py-2">
-        <div className="text-center">
-          <p className="font-medium">{error?.data.message}</p>
-        </div>
-        {!isLoading ? (
+        {error && (
+          <div className="text-center">
+            <p className="font-medium text-red-500">
+              {error?.data?.message || "Something went wrong"}
+            </p>
+          </div>
+        )}
+
+        {isLoading ? (
+          <ShimmerSingleProduct />
+        ) : (
           <>
             <ProductCard
               singleProductItem={product}
               setDisplay={setDisplay}
               display={display}
             />
-            <ProductReviewSection reviews={productReview} />
+
+            <ProductReviewSection
+              reviews={productReview}
+              isLoading={reviewLoading}
+            />
           </>
-        ) : (
-          <ShimmerSingleProduct />
         )}
       </div>
     </section>

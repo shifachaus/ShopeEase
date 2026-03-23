@@ -22,12 +22,17 @@ const Hero = () => {
           <img
             src={sofa}
             alt="Modern sofa"
+            width="1200"
+            height="600"
             className="h-full w-[85%] max-w-none object-cover object-top"
           />
         </div>
         <img
           src={lamp}
           alt="Decorative lamp"
+          width="140"
+          height="200"
+          loading="lazy"
           className="absolute top-0 left-10 hidden md:block w-[140px]"
         />
       </div>

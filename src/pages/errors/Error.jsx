@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import blob from "../assets/blob.png";
+import blob from "../../assets/blob.png";
 import { RiArrowGoBackLine } from "react-icons/ri";
 
 const Error = () => {

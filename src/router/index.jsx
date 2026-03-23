@@ -23,24 +23,25 @@ import {
 // Admin Pages
 import {
   NewProduct,
-  OrderList,
   ProcessOrder,
-  ProductList,
   ProductReviews,
   UpdateProduct,
   UpdateUser,
-  UsersList,
 } from "../pages/adminPages";
 
 // Orders
 import { MyOrders, OrderDetails } from "../pages/orderPages";
 import Blog from "../pages/blog";
+import Error from "../pages/errors/Error";
 
 // Lazy-loaded pages
 const Shop = lazy(() => import("../pages/shopPages/Shop"));
 const SingleProduct = lazy(() => import("../pages/shopPages/SingleProduct"));
 const ConfirmOrder = lazy(() => import("../pages/shopPages/ConfirmOrder"));
 const Dashboard = lazy(() => import("../pages/adminPages/Dashboard"));
+const ProductList = lazy(() => "../pages/adminPages/ProductList");
+const UsersList = lazy(() => "../pages/adminPages/UsersList");
+const OrderList = lazy(() => "../pages/adminPages/OrderList");
 
 const AppRoutes = ({ stripeApiKey }) => {
   return (

@@ -2,16 +2,16 @@ const Footer = () => {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="mx-auto max-w-6xl   border-t">
-      <div className="mx-auto max-w-6xl px-6 md:px-14 py-14 grid gap-10 md:grid-cols-4 bg-gray-900 text-gray-300">
-        {/* Address */}
+    <footer className="max-w-6xl mx-auto md:px-14">
+      <div className="bg-gray-900 text-gray-300 px-6 py-16 md:py-20 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 min-h-[260px]">
+        {/* Brand */}
         <section className="space-y-4">
-          <h1 className="font-black tracking-wider text-xl ">
+          <h2 className="font-black tracking-wider text-xl leading-none">
             <span className="text-primary">Shop</span>
             <span className="text-white">Ease</span>
-          </h1>
+          </h2>
 
-          <p className="text-sm text-gray-300">
+          <p className="text-sm leading-relaxed text-gray-400 max-w-xs">
             400 University Drive Suite 200
             <br />
             Coral Gables, FL 33134 ABC
@@ -20,71 +20,73 @@ const Footer = () => {
 
         {/* Links */}
         <section className="space-y-4">
-          <h4 className="text-sm uppercase tracking-wider text-gray-300">
+          <h4 className="text-xs uppercase tracking-widest text-gray-500">
             Links
           </h4>
 
-          <nav className="flex flex-col gap-2 text-sm font-medium">
-            <a href="#" className="hover:text-gray-300 ">
-              Home
-            </a>
-            <a href="#" className="hover:text-gray-300">
-              Shop
-            </a>
-            <a href="#" className="hover:text-gray-300">
-              About
-            </a>
-            <a href="#" className="hover:text-gray-300">
-              Contact
-            </a>
+          <nav className="flex flex-col gap-2 text-sm">
+            {["Home", "Shop", "About", "Contact"].map((item) => (
+              <a
+                key={item}
+                href="#"
+                className="hover:text-white transition-all duration-200 hover:translate-x-1"
+              >
+                {item}
+              </a>
+            ))}
           </nav>
         </section>
 
         {/* Help */}
         <section className="space-y-4">
-          <h4 className="text-sm uppercase tracking-wider text-gray-300">
+          <h4 className="text-xs uppercase tracking-widest text-gray-500">
             Help
           </h4>
 
-          <nav className="flex flex-col gap-2 text-sm font-medium">
-            <a href="#" className="hover:text-gray-400">
-              Privacy Policy
-            </a>
-            <a href="#" className="hover:text-gray-400">
-              Terms & Conditions
-            </a>
-            <a href="#" className="hover:text-gray-400">
-              Support
-            </a>
+          <nav className="flex flex-col gap-2 text-sm">
+            {["Privacy Policy", "Terms & Conditions", "Support"].map((item) => (
+              <a
+                key={item}
+                href="#"
+                className="hover:text-white transition-all duration-200 hover:translate-x-1"
+              >
+                {item}
+              </a>
+            ))}
           </nav>
         </section>
 
         {/* Newsletter */}
         <section className="space-y-4">
-          <h4 className="text-sm uppercase tracking-wider text-gray-30">
+          <h4 className="text-xs uppercase tracking-widest text-gray-500">
             Newsletter
           </h4>
 
-          <p className="text-sm text-gray-400">
+          <p className="text-sm text-gray-400 leading-relaxed">
             Subscribe to get updates and offers.
           </p>
 
-          <div className="flex gap-2">
+          <form className="flex">
+            {" "}
             <input
               type="email"
               placeholder="Email address"
-              className="w-full border rounded-sm px-4 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-gray-400"
-            />
-            <button className="px-4 py-1 text-xs uppercase tracking-widest bg-primary text-white rounded-sm">
-              Subscribe
-            </button>
-          </div>
+              className="flex-1 h-10 lg:w-24 px-4 text-sm border border-gray-700 bg-gray-800 rounded-l-md focus:outline-none focus:ring-1 focus:ring-primary"
+            />{" "}
+            <button
+              type="submit"
+              className="h-10 px-4 lg:px-2 text-sm font-medium bg-primary text-white rounded-r-md whitespace-nowrap"
+            >
+              {" "}
+              Subscribe{" "}
+            </button>{" "}
+          </form>
         </section>
       </div>
 
-      {/* Bottom Bar */}
-      <div>
-        <p className="mx-auto max-w-6xl px-6 md:px-14 py-4 text-sm text-gray-700">
+      {/* Bottom bar */}
+      <div className="border-t border-gray-800">
+        <p className="mx-auto max-w-6xl px-6 md:px-14 py-5 text-sm text-gray-500 text-center md:text-left">
           © {year} ShopEase — All rights reserved.
         </p>
       </div>

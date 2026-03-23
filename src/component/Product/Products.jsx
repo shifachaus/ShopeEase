@@ -13,7 +13,7 @@ const Products = () => {
   const [category, setCategory] = useState("all");
   const [ratings, setRatings] = useState(0);
   const [price] = useState([0, 2500000]);
-  const [priceV, setPriceV] = useState(3000000);
+  const [priceV, setPriceV] = useState(1500000);
 
   const {
     data: product,
@@ -35,6 +35,7 @@ const Products = () => {
     <section>
       <div className="mx-auto max-w-7xl  p-6 my-10  lg:px-8 md:grid md:grid-flow-col gap-4 ">
         {/* DESKTOP */}
+
         <Filters
           setInputKeyword={setInputKeyword}
           inputKeyword={inputKeyword}
@@ -46,7 +47,6 @@ const Products = () => {
           priceV={priceV}
           category={category}
         />
-
         {/* MOBILE */}
         <SidebarFilter
           setInputKeyword={setInputKeyword}
@@ -59,7 +59,6 @@ const Products = () => {
           priceV={priceV}
           category={category}
         />
-
         <div className="col-span-11 px-4">
           {error ? (
             <p className="text-center font-medium mt-5 capitalize h-screen">

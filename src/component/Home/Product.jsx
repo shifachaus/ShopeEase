@@ -9,9 +9,15 @@ const categories = ["all", "Tables and Chairs", "Sofas", "Lighting", "Decor"];
 const Product = () => {
   const [activeCategory, setActiveCategory] = useState("all");
 
-  const { data, error, isLoading } = useGetAllFeaturedProductsQuery({
-    category: activeCategory,
-  });
+  const queryParams =
+    activeCategory === "all" ? {} : { category: activeCategory };
+
+  const { data, error, isLoading } = useGetAllFeaturedProductsQuery(
+    queryParams,
+    {
+      refetchOnMountOrArgChange: true,
+    },
+  );
 
   const featuredProducts = data?.products?.slice(0, 8) || [];
 
@@ -24,7 +30,11 @@ const Product = () => {
         </h2>
 
         <Link
-          to={`/products?category=${encodeURIComponent(activeCategory)}`}
+          to={`/products${
+            activeCategory !== "all"
+              ? `?category=${encodeURIComponent(activeCategory)}`
+              : ""
+          }`}
           className="text-sm md:text-base font-medium text-gray-900 transition"
         >
           Browse All Products{" "}
@@ -34,41 +44,39 @@ const Product = () => {
         </Link>
       </div>
 
-      {/* States */}
       {error ? (
         <p className="text-center font-medium mt-10 capitalize">
           Oops! something went wrong...
         </p>
-      ) : isLoading ? (
-        <Shimmer box={4} />
       ) : (
         <>
+          {/* Categories */}
           <ul className="flex gap-6 pt-4 flex-wrap">
-            {categories.map((cat) => {
-              console.log(activeCategory, cat);
-
-              return (
-                <li
-                  key={cat}
-                  onClick={() => setActiveCategory(cat)}
-                  className={`cursor-pointer text-xs md:text-sm uppercase tracking-wide font-medium transition
-        ${
-          activeCategory === cat
-            ? "text-black"
-            : "text-gray-500 hover:text-black"
-        }`}
-                >
-                  {cat}
-                </li>
-              );
-            })}
+            {categories.map((cat) => (
+              <li
+                key={cat}
+                onClick={() => setActiveCategory(cat)}
+                className={`cursor-pointer text-xs md:text-sm uppercase tracking-wide font-medium transition
+                ${
+                  activeCategory === cat
+                    ? "text-black"
+                    : "text-gray-500 hover:text-black"
+                }`}
+              >
+                {cat}
+              </li>
+            ))}
           </ul>
 
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-8 pt-10">
-            {featuredProducts.map((item) => (
-              <FeaturedProducts key={item?._id} item={item} />
-            ))}
-          </div>
+          {isLoading ? (
+            <Shimmer />
+          ) : (
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-8 pt-10">
+              {featuredProducts.map((item) => (
+                <FeaturedProducts key={item._id} item={item} />
+              ))}
+            </div>
+          )}
         </>
       )}
     </section>

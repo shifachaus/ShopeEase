@@ -1,15 +1,14 @@
-import { useState, useMemo, useEffect } from "react";
-import {
-  SingleProductCard,
-  SidebarFilter,
-  Filters,
-} from "../../component/Product";
+import { useState, useMemo, useEffect, lazy, Suspense } from "react";
+import { SidebarFilter, Filters } from "../../component/Product";
 import Shimmer from "../../component/skeletons/Shimmer";
 import { useGetAllProductsQuery } from "../../features/products/productApi";
 import Pagination from "react-js-pagination";
 import searchImage from "../../assets/search.png";
 import { debounce } from "../../utils/helper";
 import { useLocation } from "react-router-dom";
+const SingleProductCard = lazy(
+  () => import("../../component/Product/SingleProductCard"),
+);
 
 const Shop = () => {
   const location = useLocation();
@@ -22,7 +21,7 @@ const Shop = () => {
   const [category, setCategory] = useState(categoryFromUrl || "all");
   const [ratings, setRatings] = useState(0);
   const [price] = useState([0, 2500000]);
-  const [priceV, setPriceV] = useState(3000000);
+  const [priceV, setPriceV] = useState(2500000);
 
   const {
     data: product,
@@ -37,12 +36,13 @@ const Shop = () => {
   });
 
   /*  Debounced search */
-  useEffect(() => {
-    const debouncedFn = debounce(setDebouncedKeyword, 800);
-    debouncedFn(inputKeyword);
+  const debouncedSearch = useMemo(() => debounce(setDebouncedKeyword, 800), []);
 
-    return () => debouncedFn.cancel();
-  }, [inputKeyword]);
+  useEffect(() => {
+    debouncedSearch(inputKeyword);
+
+    return () => debouncedSearch.cancel();
+  }, [inputKeyword, debouncedSearch]);
 
   useEffect(() => {
     setCurrentPage(1);
@@ -76,11 +76,13 @@ const Shop = () => {
 
     return (
       <>
-        <div className="grid grid-cols-2 gap-4 md:grid-cols-3 md:gap-8">
-          {product.products.map((item) => (
-            <SingleProductCard key={item._id} item={item} />
-          ))}
-        </div>
+        <Suspense fallback={<Shimmer />}>
+          <div className="grid grid-cols-2 gap-4 lg:grid-cols-3 md:gap-8">
+            {product.products.map((item) => (
+              <SingleProductCard key={item._id} item={item} />
+            ))}
+          </div>
+        </Suspense>
 
         {product.filteredProductsCount > product.resultPerPage && (
           <div className="mt-20 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
@@ -123,7 +125,7 @@ const Shop = () => {
       <section>
         <div className="mx-auto max-w-6xl my-10 px-6 grid grid-cols-1 md:grid-cols-12 gap-6">
           {/* Desktop Filters */}
-          <div className="hidden md:block md:col-span-3">
+          <div className="hidden md:block md:col-span-4 lg:col-span-3">
             <Filters
               setInputKeyword={setInputKeyword}
               inputKeyword={inputKeyword}
@@ -151,7 +153,7 @@ const Shop = () => {
           />
 
           {/* Products */}
-          <div className="md:col-span-9">{renderProducts}</div>
+          <div className="md:col-span-8 lg:col-span-9">{renderProducts}</div>
         </div>
       </section>
     </main>

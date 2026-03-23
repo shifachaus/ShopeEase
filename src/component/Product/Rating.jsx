@@ -1,30 +1,37 @@
 import { BsStarFill, BsStarHalf, BsStar } from "react-icons/bs";
+import { useState } from "react";
 
-const Rating = ({ stars, setRate }) => {
+const Rating = ({ stars = 0, setRate }) => {
+  const [hover, setHover] = useState(null);
+
+  const displayRating = hover ?? stars;
+
   return (
     <div className="flex items-center gap-1">
-      {Array?.from({ length: 5 }).map((_, index) => {
-        const number = index + 0.5;
+      {Array.from({ length: 5 }).map((_, index) => {
+        const starValue = index + 1;
+
+        let icon;
+
+        if (displayRating >= starValue) {
+          icon = <BsStarFill size={14} className="fill-yellow-400" />;
+        } else if (displayRating >= starValue - 0.5) {
+          icon = <BsStarHalf size={14} className="fill-yellow-400" />;
+        } else {
+          icon = <BsStar size={14} className="fill-yellow-400" />;
+        }
 
         return (
-          <span key={index}>
-            {stars > number ? (
-              <BsStarFill
-                size={14}
-                className="fill-yellow-400"
-                onClick={() => setRate && setRate(index + 1)}
-                onMouseOver={() => setRate && setRate(index + 1)}
-              />
-            ) : stars > index ? (
-              <BsStarHalf className="fill-yellow-400" size={14} />
-            ) : (
-              <BsStar
-                size={14}
-                className="fill-yellow-400"
-                onClick={() => setRate && setRate(index + 1)}
-                onMouseOver={() => setRate && setRate(index + 1)}
-              />
-            )}
+          <span
+            key={index}
+            role={setRate ? "button" : undefined}
+            aria-label={`${starValue} star`}
+            className={setRate ? "cursor-pointer" : ""}
+            onClick={() => setRate && setRate(starValue)}
+            onMouseEnter={() => setRate && setHover(starValue)}
+            onMouseLeave={() => setRate && setHover(null)}
+          >
+            {icon}
           </span>
         );
       })}

@@ -3,8 +3,8 @@ import desktopBg from "../../assets/footerimage.webp";
 
 const BrandBanner = () => {
   return (
-    <section className="mx-auto max-w-6xl md:px-14">
-      <div className="relative h-56  overflow-hidden group">
+    <section className="">
+      <div className="relative h-56  overflow-hidden group mx-auto max-w-6xl md:px-14">
         {/* Image */}
         <picture>
           <source media="(min-width: 768px)" srcSet={desktopBg} />

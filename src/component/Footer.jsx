@@ -2,8 +2,8 @@ const Footer = () => {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="max-w-6xl mx-auto md:px-14">
-      <div className="bg-gray-900 text-gray-300 px-6 py-16 md:py-20 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 min-h-[260px]">
+    <footer className="">
+      <div className="bg-gray-900 text-gray-300 max-w-6xl mx-auto md:px-14 px-6 py-16 md:py-20 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 min-h-[260px]">
         {/* Brand */}
         <section className="space-y-4">
           <h2 className="font-black tracking-wider text-xl leading-none">
@@ -85,7 +85,7 @@ const Footer = () => {
       </div>
 
       {/* Bottom bar */}
-      <div className="border-t border-gray-800">
+      <div className="">
         <p className="mx-auto max-w-6xl px-6 md:px-14 py-5 text-sm text-gray-500 text-center md:text-left">
           © {year} ShopEase — All rights reserved.
         </p>

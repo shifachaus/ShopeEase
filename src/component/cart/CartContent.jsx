@@ -14,7 +14,7 @@ const CartContent = () => {
   return (
     <div
       className={`flex flex-col gap-10 md:grid md:grid-flow-col ${
-        cartItems?.length === 1 && "h-screen"
+        cartItems?.length === 1 && "min-h-full"
       }`}
     >
       <div className="col-span-8">

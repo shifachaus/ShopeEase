@@ -13,6 +13,8 @@ const ProductList = () => {
   const { data: productData } = useGetAdminProductsQuery();
   const [deleteProduct] = useDeleteProductMutation();
 
+  console.log(productData);
+
   const products = productData ? productData?.products : [];
 
   const deleteProductHandler = async (id) => {

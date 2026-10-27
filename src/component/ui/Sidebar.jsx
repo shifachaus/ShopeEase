@@ -10,7 +10,6 @@ import { HiOutlineMenuAlt2 } from "react-icons/hi";
 import { IoMdClose } from "react-icons/io";
 
 const Sidebar = () => {
-  const [open, setOpen] = useState(false);
   const [show, setShow] = useState(false);
 
   const navLinkClass = ({ isActive }) =>

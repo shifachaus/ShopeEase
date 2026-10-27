@@ -39,9 +39,9 @@ const Shop = lazy(() => import("../pages/shopPages/Shop"));
 const SingleProduct = lazy(() => import("../pages/shopPages/SingleProduct"));
 const ConfirmOrder = lazy(() => import("../pages/shopPages/ConfirmOrder"));
 const Dashboard = lazy(() => import("../pages/adminPages/Dashboard"));
-const ProductList = lazy(() => "../pages/adminPages/ProductList");
-const UsersList = lazy(() => "../pages/adminPages/UsersList");
-const OrderList = lazy(() => "../pages/adminPages/OrderList");
+const ProductList = lazy(() => import("../pages/adminPages/ProductList"));
+const UsersList = lazy(() => import("../pages/adminPages/UsersList"));
+const OrderList = lazy(() => import("../pages/adminPages/OrderList"));
 
 const AppRoutes = ({ stripeApiKey }) => {
   return (

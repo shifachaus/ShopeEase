@@ -1,5 +1,7 @@
 import lamp from "../../assets/lamp1.webp";
 import sofa from "../../assets/Cloudsofa.webp";
+import { Link } from "react-router-dom";
+import { FiArrowRight } from "react-icons/fi";
 
 const Hero = () => {
   return (
@@ -14,10 +16,15 @@ const Hero = () => {
             Massive discounts arriving shortly.
           </p>
 
-          <button className="inline-block border border-white px-8 py-3 text-xs uppercase tracking-widest text-white  rounded-sm">
+          <Link
+            to="/products"
+            className="inline-flex items-center gap-3 border border-white px-8 py-3 text-xs uppercase tracking-widest text-white rounded-sm transition-all duration-300 hover:bg-white hover:text-gray-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-primary"
+          >
             Shop Now
-          </button>
+            <FiArrowRight size={16} />
+          </Link>
         </div>
+
         <div className="absolute bottom-0 left-1/2 -translate-x-1/2 h-[260px] hidden lg:flex w-full justify-center overflow-hidden">
           <img
             src={sofa}
@@ -27,6 +34,7 @@ const Hero = () => {
             className="h-full w-[85%] max-w-none object-cover object-top"
           />
         </div>
+
         <img
           src={lamp}
           alt="Decorative lamp"

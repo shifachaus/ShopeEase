@@ -52,7 +52,7 @@ const DealOfTheWeek = () => {
             </p>
 
             {/* CTA */}
-            <button className="w-fit px-6 md:px-8 py-3 text-xs uppercase tracking-widest bg-gray-900 text-white rounded-sm transition hover:shadow-md">
+            <button className="w-fit px-6 md:px-8 py-3.5 text-xs uppercase tracking-widest bg-gray-950 text-white rounded-xl transition hover:shadow-md">
               Shop Now
             </button>
           </div>

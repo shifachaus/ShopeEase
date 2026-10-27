@@ -3,7 +3,7 @@ const Footer = () => {
 
   return (
     <footer className="">
-      <div className="bg-gray-900 text-gray-300 max-w-6xl mx-auto md:px-14 px-6 py-16 md:py-20 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 min-h-[260px]">
+      <div className="bg-gray-950 text-gray-300 max-w-6xl mx-auto md:px-14 px-6 py-16 md:py-20 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 min-h-[260px]">
         {/* Brand */}
         <section className="space-y-4">
           <div className="flex items-center">

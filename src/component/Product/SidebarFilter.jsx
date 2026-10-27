@@ -16,17 +16,14 @@ const SidebarFilter = ({
   ratings,
   category,
 }) => {
+  const [open, setOpen] = useState(false);
   const debouncedPriceHandler = useRef(null);
 
   if (!debouncedPriceHandler.current) {
     debouncedPriceHandler.current = debounce((value) => {
-      setPriceV(value);
+      setPriceV(Number(value));
     }, 300);
   }
-
-  const priceHandler = (e) => {
-    debouncedPriceHandler.current(e.target.value);
-  };
 
   useEffect(() => {
     return () => {
@@ -34,39 +31,88 @@ const SidebarFilter = ({
     };
   }, []);
 
-  const [open, setOpen] = useState(false);
+  // Prevent background scrolling while the drawer is open.
+  useEffect(() => {
+    if (!open) return;
+
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+
+    return () => {
+      document.body.style.overflow = previousOverflow;
+    };
+  }, [open]);
+
+  const priceHandler = (event) => {
+    debouncedPriceHandler.current(Number(event.target.value));
+  };
+
+  const handleClearFilters = () => {
+    debouncedPriceHandler.current?.cancel();
+
+    clearFilter(setInputKeyword, setCategory, setRatings, setPriceV);
+
+    setOpen(false);
+  };
+
+  const handleRatingChange = (rating) => {
+    setRatings(ratings === rating ? 0 : rating);
+  };
+
+  const handleCategoryChange = (nextCategory) => {
+    setCategory(nextCategory);
+    setOpen(false);
+  };
 
   return (
     <>
       {/* Overlay */}
       {open && (
-        <div
-          className="fixed inset-0 z-30 bg-black/40 md:hidden"
+        <button
+          type="button"
+          aria-label="Close product filters"
           onClick={() => setOpen(false)}
+          className="fixed inset-0 z-40 cursor-default bg-black/40 md:hidden"
         />
       )}
 
-      {/* Sidebar */}
+      {/* Mobile filter drawer */}
       <aside
+        id="mobile-product-filters"
         role="dialog"
-        aria-label="Product Filters"
-        className={`fixed right-0 top-0 z-40 h-full w-[260px] sm:w-5/12 bg-white transform transition-transform duration-300 ease-in-out md:hidden
-          ${open ? "translate-x-0" : "translate-x-full"}`}
+        aria-modal={open ? "true" : undefined}
+        aria-label="Product filters"
+        aria-hidden={!open}
+        inert={!open}
+        className={`fixed right-0 top-0 z-50 h-dvh w-[260px] overflow-y-auto bg-white shadow-xl transition-transform duration-300 ease-in-out sm:w-5/12 md:hidden ${
+          open ? "translate-x-0" : "translate-x-full"
+        }`}
       >
-        <div className="flex h-full flex-col overflow-y-auto p-6">
+        <div className="flex min-h-full flex-col p-6">
           {/* Header */}
-          <div className="mb-6 flex items-center justify-between pb-4">
+          <div className="mb-6 flex items-center justify-between border-b pb-4">
             <h2 className="text-lg font-semibold uppercase tracking-wide">
               Filters
             </h2>
-            <button
-              className="text-sm font-medium text-primary hover:underline"
-              onClick={() =>
-                clearFilter(setInputKeyword, setCategory, setRatings, setPriceV)
-              }
-            >
-              Clear all
-            </button>
+
+            <div className="flex items-center gap-4">
+              <button
+                type="button"
+                onClick={handleClearFilters}
+                className="text-sm font-medium text-primary hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+              >
+                Clear all
+              </button>
+
+              <button
+                type="button"
+                onClick={() => setOpen(false)}
+                aria-label="Close filters"
+                className="rounded p-1 text-xl text-gray-600 hover:bg-gray-100 hover:text-black focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+              >
+                &times;
+              </button>
+            </div>
           </div>
 
           {/* Search */}
@@ -78,18 +124,21 @@ const SidebarFilter = ({
           </div>
 
           {/* Category */}
-          <div className="mb-6">
-            <h3 className="mb-3 text-sm font-semibold uppercase tracking-wider text-gray-700">
+          <fieldset className="mb-6">
+            <legend className="mb-3 text-sm font-semibold uppercase tracking-wider text-gray-700">
               Category
-            </h3>
+            </legend>
+
             <ul className="flex flex-col gap-2">
               {categories.map((cat) => (
                 <li key={cat}>
                   <button
-                    onClick={() => setCategory(cat)}
-                    className={`w-full text-left capitalize transition ${
+                    type="button"
+                    aria-pressed={category === cat}
+                    onClick={() => handleCategoryChange(cat)}
+                    className={`w-full rounded-sm py-1 text-left capitalize transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary ${
                       category === cat
-                        ? "font-medium text-black"
+                        ? "font-semibold text-black"
                         : "text-gray-500 hover:text-black"
                     }`}
                   >
@@ -98,75 +147,113 @@ const SidebarFilter = ({
                 </li>
               ))}
             </ul>
-          </div>
+          </fieldset>
 
           {/* Ratings */}
-          <div className="mb-6">
-            <h3 className="mb-3 text-sm font-semibold uppercase tracking-wider text-gray-700">
-              Ratings
-            </h3>
-            <div className="flex items-center gap-1">
-              {Array.from({ length: 5 }).map((_, index) => (
-                <button
-                  key={index}
-                  onClick={() => setRatings(index + 1)}
-                  className="transition hover:scale-110"
-                  aria-label={`${index + 1} star rating`}
-                >
-                  {ratings > index ? (
-                    <BsStarFill className="h-4 w-4 fill-yellow-400" />
-                  ) : (
-                    <BsStar className="h-4 w-4 fill-yellow-400" />
-                  )}
-                </button>
-              ))}
+          <fieldset className="mb-6">
+            <legend className="mb-3 text-sm font-semibold uppercase tracking-wider text-gray-700">
+              Rating
+            </legend>
+
+            <div className="flex items-center gap-2">
+              {Array.from({ length: 5 }, (_, index) => {
+                const rating = index + 1;
+                const selected = ratings >= rating;
+
+                return (
+                  <button
+                    key={rating}
+                    type="button"
+                    onClick={() => handleRatingChange(rating)}
+                    aria-label={`${rating} star${rating > 1 ? "s" : ""} and above`}
+                    aria-pressed={ratings === rating}
+                    className="rounded-sm transition hover:scale-110 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+                  >
+                    {selected ? (
+                      <BsStarFill
+                        aria-hidden="true"
+                        className="h-5 w-5 text-yellow-400"
+                      />
+                    ) : (
+                      <BsStar
+                        aria-hidden="true"
+                        className="h-5 w-5 text-yellow-400"
+                      />
+                    )}
+                  </button>
+                );
+              })}
             </div>
-          </div>
+
+            {ratings > 0 && (
+              <button
+                type="button"
+                onClick={() => setRatings(0)}
+                className="mt-2 text-xs text-gray-500 underline hover:text-black"
+              >
+                Clear rating
+              </button>
+            )}
+          </fieldset>
 
           {/* Price */}
-          <div>
-            <h3 className="mb-3 text-sm font-semibold uppercase tracking-wider text-gray-700">
+          <div className="mb-6">
+            <label
+              htmlFor="mobile-price"
+              className="mb-3 block text-sm font-semibold uppercase tracking-wider text-gray-700"
+            >
               Price
-            </h3>
+            </label>
+
             <input
-              id="price"
+              id="mobile-price"
               type="range"
               min={price[0]}
               max={price[1]}
-              value={priceV}
               step={10}
+              value={Math.min(price[1], Math.max(price[0], priceV))}
               onChange={priceHandler}
-              className="h-2 w-full cursor-pointer appearance-none rounded-lg bg-gray-200 accent-primary"
+              aria-valuetext={`₹${(priceV / 100).toLocaleString("en-IN")}`}
+              className="h-2 w-full cursor-pointer appearance-none rounded-lg bg-gray-200 accent-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
             />
-            <div className="flex justify-between text-sm text-gray-600">
-              <span>₹{price[0] / 100}</span>
-              <span className="font-medium text-gray-900">₹{priceV / 100}</span>
-              <span>₹{price[1] / 100}</span>
+
+            <div className="mt-2 flex justify-between gap-2 text-sm text-gray-600">
+              <span>₹{(price[0] / 100).toLocaleString("en-IN")}</span>
+
+              <output
+                htmlFor="mobile-price"
+                className="font-medium text-gray-900"
+              >
+                ₹{(priceV / 100).toLocaleString("en-IN")}
+              </output>
+
+              <span>₹{(price[1] / 100).toLocaleString("en-IN")}</span>
             </div>
           </div>
         </div>
-
-        {/* Toggle Button */}
-        <button
-          onClick={() => setOpen(!open)}
-          className="absolute inset-y-1/2 -left-10 flex h-10 w-10 items-center justify-center bg-black text-white rounded-l-full"
-        >
-          <svg
-            stroke="currentColor"
-            fill="currentColor"
-            strokeWidth="0"
-            viewBox="0 0 320 512"
-            height="1em"
-            width="1em"
-            xmlns="http://www.w3.org/2000/svg"
-            className={`h-4 w-4 transition-transform  fill-white  ${
-              open ? "rotate-180" : ""
-            }`}
-          >
-            <path d="M285.476 272.971L91.132 467.314c-9.373 9.373-24.569 9.373-33.941 0l-22.667-22.667c-9.357-9.357-9.375-24.522-.04-33.901L188.505 256 34.484 101.255c-9.335-9.379-9.317-24.544.04-33.901l22.667-22.667c9.373-9.373 24.569-9.373 33.941 0L285.475 239.03c9.373 9.372 9.373 24.568.001 33.941z" />
-          </svg>
-        </button>
       </aside>
+
+      {/* Drawer toggle: stays visible even when the drawer is closed */}
+      <button
+        type="button"
+        onClick={() => setOpen((previous) => !previous)}
+        aria-label={open ? "Close product filters" : "Open product filters"}
+        aria-expanded={open}
+        aria-controls="mobile-product-filters"
+        className={`fixed top-1/2 z-[60] flex h-11 w-10 -translate-y-1/2 items-center justify-center rounded-l-full bg-black text-white shadow-lg transition-all duration-300 md:hidden ${
+          open ? "right-[260px] sm:right-[41.666667%]" : "right-0"
+        }`}
+      >
+        <svg
+          aria-hidden="true"
+          viewBox="0 0 320 512"
+          className={`h-4 w-4 fill-current transition-transform duration-300 ${
+            open ? "rotate-180" : ""
+          }`}
+        >
+          <path d="M285.476 272.971L91.132 467.314c-9.373 9.373-24.569 9.373-33.941 0l-22.667-22.667c-9.357-9.357-9.375-24.522-.04-33.901L188.505 256 34.484 101.255c-9.335-9.379-9.317-24.544.04-33.901l22.667-22.667c9.373-9.373 24.569-9.373 33.941 0L285.475 239.03c9.373 9.372 9.373 24.568.001 33.941z" />
+        </svg>
+      </button>
     </>
   );
 };

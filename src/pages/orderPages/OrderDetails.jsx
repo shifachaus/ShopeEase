@@ -35,7 +35,7 @@ const OrderDetails = () => {
       <Breadcrumb title={"Order status"} profile={true} order={true} />
       <div className="max-w-6xl mx-auto p-6 space-y-6 mt-10 md:mt-12 mb-10">
         {/* Order Header */}
-        <div className="bg-white border rounded-xl shadow-sm p-5">
+        <div className="bg-white border rounded-xl p-5">
           <p className="text-sm text-gray-500">Order ID</p>
           <h1 className="text-xl md:text-2xl font-semibold text-gray-900">
             #{order._id}
@@ -43,7 +43,7 @@ const OrderDetails = () => {
         </div>
 
         {/* Order Status */}
-        <div className="bg-white border rounded-xl shadow-sm p-5">
+        <div className="bg-white border rounded-xl p-5">
           <h2 className="text-lg font-semibold text-gray-900 mb-2">
             Current Status
           </h2>
@@ -51,7 +51,7 @@ const OrderDetails = () => {
         </div>
 
         {/* Address */}
-        <div className="bg-white border rounded-xl shadow-sm p-5">
+        <div className="bg-white border rounded-xl p-5">
           <h2 className="text-lg font-semibold text-gray-900 mb-2">
             Delivery Address
           </h2>
@@ -63,7 +63,7 @@ const OrderDetails = () => {
         </div>
 
         {/* Payment */}
-        <div className="bg-white border rounded-xl shadow-sm p-5">
+        <div className="bg-white border rounded-xl p-5">
           <h2 className="text-lg font-semibold text-gray-900 mb-2">
             Payment Summery
           </h2>
@@ -71,7 +71,7 @@ const OrderDetails = () => {
         </div>
 
         {/* Cart Items */}
-        <div className="bg-white border rounded-xl shadow-sm p-5">
+        <div className="bg-white border rounded-xl p-5">
           <h2 className="text-lg font-semibold text-gray-900 mb-3">
             Items in this Order
           </h2>

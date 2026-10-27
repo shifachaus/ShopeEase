@@ -1,47 +1,60 @@
 import { Link } from "react-router-dom";
+import {
+  FiCheckCircle,
+  FiPackage,
+  FiArrowRight,
+  FiShoppingBag,
+} from "react-icons/fi";
 
 const Success = () => {
   return (
-    <div className="min-h-screen flex items-center justify-center p-4">
-      <div className="shadow-xl rounded-xl max-w-md w-full p-8 text-center">
-        <div className="flex flex-col items-center gap-4">
-          <div className="bg-green-100 rounded-full p-3">
-            <svg viewBox="0 0 24 24" className="text-green-600 w-12 h-12">
-              <path
-                fill="currentColor"
-                d="M12,0A12,12,0,1,0,24,12,12.014,12.014,0,0,0,12,0Zm6.927,8.2-6.845,9.289a1.011,1.011,0,0,1-1.43.188L5.764,13.769a1,1,0,1,1,1.25-1.562l4.076,3.261,6.227-8.451A1,1,0,1,1,18.927,8.2Z"
-              ></path>
-            </svg>
-          </div>
+    <section className="flex min-h-[80vh] items-center justify-center px-4 py-12">
+      <div className="w-full max-w-lg rounded-2xl border border-gray-100 bg-white p-6 text-center shadow-sm sm:p-10">
+        {/* Success icon */}
+        <div className="mx-auto flex h-20 w-20 items-center justify-center rounded-full bg-green-50">
+          <FiCheckCircle
+            size={52}
+            className="text-green-600"
+            strokeWidth={1.6}
+          />
+        </div>
 
-          <h2 className="text-2xl font-semibold text-gray-900">
-            Payment Successful 🎉
-          </h2>
-
-          <p className="text-gray-600">
-            Thank you for completing your secure payment.
-            <br />
-            Your order has been placed successfully.
+        {/* Heading */}
+        <div className="mt-6">
+          <p className="text-sm font-semibold uppercase tracking-widest text-green-600">
+            Payment complete
           </p>
 
-          <div className="pt-6 flex flex-col gap-3 w-full">
-            <Link
-              to="/orders"
-              className="w-full bg-gray-900 text-white rounded-sm py-2.5 font-medium  transition"
-            >
-              View My Orders
-            </Link>
+          <h1 className="mt-2 text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">
+            Thank you for your order!
+          </h1>
 
-            <Link
-              to="/"
-              className="w-full border border-gray-900 rounded-sm py-2.5 font-medium hover:bg-gray-100 transition"
-            >
-              Back to Home
-            </Link>
-          </div>
+          <p className="mx-auto mt-3 max-w-sm text-sm leading-6 text-gray-500 sm:text-base">
+            Your payment was successful. We're looking forward to getting your
+            order ready.
+          </p>
+        </div>
+
+        {/* Actions */}
+        <div className="mt-8 flex flex-col gap-3">
+          <Link
+            to="/orders"
+            className="inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-lg bg-gray-950 px-5 py-3 text-sm font-semibold text-white transition hover:bg-black focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-900 focus-visible:ring-offset-2"
+          >
+            <FiShoppingBag size={18} />
+            View My Orders
+            <FiArrowRight size={17} />
+          </Link>
+
+          <Link
+            to="/"
+            className="inline-flex min-h-12 w-full items-center justify-center rounded-lg border border-gray-200 px-5 py-3 text-sm font-semibold text-gray-700 transition hover:border-gray-300 hover:bg-gray-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-900 focus-visible:ring-offset-2"
+          >
+            Continue Shopping
+          </Link>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 

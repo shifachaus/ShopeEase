@@ -72,15 +72,15 @@ const Profile = () => {
       </div>
 
       {/* Actions */}
-      <div className="grid md:grid-cols-2 gap-4 mt-10">
+      <div className="grid md:grid-cols-2 gap-6 mt-10">
         <Link
           to="/orders"
-          className="px-4 py-3 rounded-sm bg-gray-900 text-white flex justify-center items-center gap-2 "
+          className="px-4 py-3 rounded-xl bg-gray-950  text-white flex justify-center items-center gap-2 "
         >
           <FiShoppingBag /> My Orders
         </Link>
 
-        <Link to="/" className="px-4 py-3 rounded-sm border text-center ">
+        <Link to="/" className="px-4 py-3 rounded-xl border text-center ">
           Go to Home
         </Link>
       </div>

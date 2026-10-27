@@ -1,4 +1,12 @@
-const FormRow = ({ type, name, value, handleChange, labelText }) => {
+const FormRow = ({
+  type = "text",
+  name,
+  value,
+  handleChange,
+  labelText,
+  placeholder,
+  required = false,
+}) => {
   return (
     <div className="mb-4">
       <label
@@ -7,14 +15,16 @@ const FormRow = ({ type, name, value, handleChange, labelText }) => {
       >
         {labelText || name}
       </label>
+
       <input
+        id={name}
         type={type}
         name={name}
         value={value ?? ""}
         onChange={handleChange}
-        className="text-sm appearance-none border border-neutral-100 rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-        id={name}
-        placeholder={labelText || name}
+        placeholder={placeholder || `Enter ${labelText || name}`}
+        required={required}
+        className="w-full rounded-lg border border-gray-200 bg-white px-3 py-3 text-sm text-gray-900 outline-none transition placeholder:text-gray-400 hover:border-gray-300 focus:border-gray-900 focus:ring-2 focus:ring-gray-900/10"
       />
     </div>
   );

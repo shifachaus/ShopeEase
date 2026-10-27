@@ -6,11 +6,12 @@ const Footer = () => {
       <div className="bg-gray-900 text-gray-300 max-w-6xl mx-auto md:px-14 px-6 py-16 md:py-20 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 min-h-[260px]">
         {/* Brand */}
         <section className="space-y-4">
-          <h2 className="font-black tracking-wider text-xl leading-none">
-            <span className="text-primary">Shop</span>
-            <span className="text-white">Ease</span>
-          </h2>
-
+          <div className="flex items-center">
+            <h1 className="font-heading text-lg font-bold tracking-tight text-primary md:hidden lg:inline">
+              Shop
+              <span className="font-body font-semibold text-white">Ease</span>
+            </h1>
+          </div>
           <p className="text-sm leading-relaxed text-gray-400 max-w-xs">
             400 University Drive Suite 200
             <br />

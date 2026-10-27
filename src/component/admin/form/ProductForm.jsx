@@ -13,7 +13,7 @@ const ProductForm = ({
   oldImages,
 }) => {
   return (
-    <div className="bg-white shadow-sm rounded-2xl border border-gray-100">
+    <div className="bg-white shadow-sm ">
       <form onSubmit={handlerSubmit} className="px-6 pt-8 pb-10 space-y-6">
         <h3 className="text-lg font-semibold text-gray-800 text-center">
           Product Details
@@ -43,10 +43,10 @@ const ProductForm = ({
             labelText="Product Original Price"
           />
 
-          <div className="mb-2">
+          <div>
             <label
               htmlFor="category"
-              className="block text-sm font-semibold text-gray-700 mb-1"
+              className="mb-2 block text-sm font-medium text-gray-700"
             >
               Category
             </label>
@@ -56,9 +56,13 @@ const ProductForm = ({
               name="category"
               value={values.category}
               onChange={handleChange}
-              className="w-full rounded-lg border-gray-300 text-gray-700 shadow-sm focus:ring-2 focus:ring-gray-800 focus:border-gray-800 py-2 px-3"
+              required
+              className="w-full rounded border border-gray-100 bg-white px-4 py-1.5 text-sm text-gray-700 outline-none transition focus:border-primary focus:ring-2 focus:ring-orange-100"
             >
-              <option value="">Choose Category</option>
+              <option value="" disabled>
+                Choose category
+              </option>
+
               {categories.map((cate) => (
                 <option key={cate} value={cate}>
                   {cate}

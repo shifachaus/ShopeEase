@@ -27,10 +27,10 @@ const Header = () => {
         role="navigation"
         aria-label="Menu Navigation"
       >
-        <Link to={"/"} className="flex ">
-          <h1 className="font-black tracking-wider text-xl">
-            <span className="text-white">Shop</span>
-            <span className="text-gray-900">Ease</span>
+        <Link to="/" className="flex items-center">
+          <h1 className="font-heading text-lg font-bold tracking-tight text-white md:hidden lg:inline">
+            Shop
+            <span className="font-body font-semibold text-gray-900">Ease</span>
           </h1>
         </Link>
 

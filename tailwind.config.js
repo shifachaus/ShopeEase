@@ -10,8 +10,8 @@ export default {
       },
 
       fontFamily: {
-        body: ["Poppins", "sans-serif"],
-        heading: ["Playfair Display", "serif"],
+        body: ["Inter", "sans-serif"],
+        heading: ["Poppins", "sans-serif"],
       },
 
       screens: {
@@ -22,5 +22,6 @@ export default {
       },
     },
   },
+
   plugins: [],
 };
